@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0153B3C3179A3638009744C0 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0153B3C2179A3638009744C0 /* FlipsideViewController.m */; };
 		0185E0241798484A00C16260 /* SoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B545411798296F00A4F4E0 /* SoundPlayer.m */; };
 		01B54500179828B300A4F4E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B544FF179828B300A4F4E0 /* Foundation.framework */; };
 		01B54502179828B300A4F4E0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B54501179828B300A4F4E0 /* CoreGraphics.framework */; };
@@ -19,7 +20,6 @@
 		01B54518179828B300A4F4E0 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B54516179828B300A4F4E0 /* Main_iPad.storyboard */; };
 		01B5451B179828B300A4F4E0 /* Ticker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01B54519179828B300A4F4E0 /* Ticker.xcdatamodeld */; };
 		01B5451E179828B300A4F4E0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B5451D179828B300A4F4E0 /* MainViewController.m */; };
-		01B54521179828B300A4F4E0 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B54520179828B300A4F4E0 /* FlipsideViewController.m */; };
 		01B54523179828B300A4F4E0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B54522179828B300A4F4E0 /* Images.xcassets */; };
 		01B5452A179828B400A4F4E0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B54529179828B400A4F4E0 /* XCTest.framework */; };
 		01B5452B179828B400A4F4E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B544FF179828B300A4F4E0 /* Foundation.framework */; };
@@ -42,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0153B371179A29E7009744C0 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
+		0153B372179A29E7009744C0 /* Timer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timer.m; sourceTree = "<group>"; };
+		0153B3C1179A3638009744C0 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
+		0153B3C2179A3638009744C0 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
 		01B544FC179828B300A4F4E0 /* Ticker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ticker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B544FF179828B300A4F4E0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		01B54501179828B300A4F4E0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,8 +62,6 @@
 		01B5451A179828B300A4F4E0 /* Ticker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ticker.xcdatamodel; sourceTree = "<group>"; };
 		01B5451C179828B300A4F4E0 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		01B5451D179828B300A4F4E0 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		01B5451F179828B300A4F4E0 /* FlipsideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
-		01B54520179828B300A4F4E0 /* FlipsideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
 		01B54522179828B300A4F4E0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		01B54528179828B400A4F4E0 /* TickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B54529179828B400A4F4E0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -138,12 +140,14 @@
 				01B54516179828B300A4F4E0 /* Main_iPad.storyboard */,
 				01B5451C179828B300A4F4E0 /* MainViewController.h */,
 				01B5451D179828B300A4F4E0 /* MainViewController.m */,
+				0153B371179A29E7009744C0 /* Timer.h */,
+				0153B372179A29E7009744C0 /* Timer.m */,
 				01B5454317982F8000A4F4E0 /* tick.caf */,
 				01B5454417982F8000A4F4E0 /* tock.caf */,
 				01B545401798296F00A4F4E0 /* SoundPlayer.h */,
 				01B545411798296F00A4F4E0 /* SoundPlayer.m */,
-				01B5451F179828B300A4F4E0 /* FlipsideViewController.h */,
-				01B54520179828B300A4F4E0 /* FlipsideViewController.m */,
+				0153B3C1179A3638009744C0 /* FlipsideViewController.h */,
+				0153B3C2179A3638009744C0 /* FlipsideViewController.m */,
 				01B54522179828B300A4F4E0 /* Images.xcassets */,
 				01B54519179828B300A4F4E0 /* Ticker.xcdatamodeld */,
 				01B54508179828B300A4F4E0 /* Supporting Files */,
@@ -283,8 +287,8 @@
 				01B54512179828B300A4F4E0 /* AppDelegate.m in Sources */,
 				01B5451B179828B300A4F4E0 /* Ticker.xcdatamodeld in Sources */,
 				01B5450E179828B300A4F4E0 /* main.m in Sources */,
-				01B54521179828B300A4F4E0 /* FlipsideViewController.m in Sources */,
 				0185E0241798484A00C16260 /* SoundPlayer.m in Sources */,
+				0153B3C3179A3638009744C0 /* FlipsideViewController.m in Sources */,
 				01B5451E179828B300A4F4E0 /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

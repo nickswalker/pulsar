@@ -8,11 +8,8 @@
 
 #import "FlipsideViewController.h"
 
-@interface FlipsideViewController ()
-
-@end
-
 @implementation FlipsideViewController
+NSUserDefaults *defaults;
 
 - (void)awakeFromNib
 {
@@ -23,7 +20,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	// Make switches reflect defaults
+	defaults = [NSUserDefaults standardUserDefaults];
+	self.flashControl.on = [defaults boolForKey:@"flashing"];
+	self.vibrationControl.on = [defaults boolForKey:@"vibration"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,7 +36,17 @@
 
 - (IBAction)done:(id)sender
 {
+	NSLog(@"Done action recieved in flip controller");
     [self.delegate flipsideViewControllerDidFinish:self];
 }
-
+- (IBAction)toggleFlashing:(UISwitch *)flashingSwitch
+{
+	 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setBool:flashingSwitch.isOn forKey:@"flashing"];
+}
+- (IBAction)toggleVibration:(UISwitch *)vibrationSwitch
+{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setBool:vibrationSwitch.isOn forKey:@"vibration"];
+}
 @end

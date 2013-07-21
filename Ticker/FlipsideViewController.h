@@ -11,13 +11,16 @@
 @class FlipsideViewController;
 
 @protocol FlipsideViewControllerDelegate
+@required
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller;
 @end
 
-@interface FlipsideViewController : UIViewController
+@interface FlipsideViewController : UITableViewController
 
 @property (weak, nonatomic) id <FlipsideViewControllerDelegate> delegate;
-
+@property IBOutlet UISwitch* vibrationControl;
+@property IBOutlet UISwitch* flashControl;
 - (IBAction)done:(id)sender;
-
+-(IBAction)toggleFlashing:(UISwitch*)flashingSwitch;
+-(IBAction)toggleVibration:(UISwitch*)vibrationSwitch;
 @end

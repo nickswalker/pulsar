@@ -23,7 +23,8 @@
 
 @property (nonatomic, strong)UIView *whiteScreen;
 
-@property(nonatomic)BOOL isRunning;
+@property(nonatomic, strong)UISwitch *timerSwitch;
+
 
 -(void) beat:(NSTimer*)timer;
 -(IBAction)changeBPM:(UIStepper*)stepper;
@@ -32,4 +33,5 @@
 -(void) startTimer;
 -(void) stopTimer;
 -(IBAction)toggleTimer:(UISwitch*)toggle;
+-(void) flipsideViewControllerDidFinish:(FlipsideViewController *)controller;
 @end

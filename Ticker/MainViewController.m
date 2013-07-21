@@ -16,37 +16,48 @@
 NSTimer* timer;
 int count;
 SoundPlayer* player;
+NSUserDefaults* defaults;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
+	//Setup stored defaults
+	defaults = [NSUserDefaults standardUserDefaults];
+	
+	//Setup audio
 	player = [[SoundPlayer alloc] init];
+	
+	//Match the display to the stepper value
 	[self changeBPM:self.stepper];
-	[self startTimer];
+	
+	//Setup flashing view
 	self.whiteScreen = [[UIView alloc] initWithFrame:self.view.frame];
     self.whiteScreen.layer.opacity = 0.0f;
     self.whiteScreen.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     [self.view addSubview:self.whiteScreen];
-
+	
+	// Start running if the metronome is on
+	if (self.timerSwitch.isOn) [self startTimer];
 }
 -(void)stopTimer{
 	[timer invalidate];
 	double speed = INFINITY;
 	timer = [NSTimer scheduledTimerWithTimeInterval:speed target:self selector:@selector(beat:) userInfo:nil repeats:YES];
-	self.isRunning = false;
 }
 -(void)startTimer{
 	[timer invalidate];
 	timer = nil;
 	double speed = SECONDS/self.stepper.value;
 	timer = [NSTimer scheduledTimerWithTimeInterval:speed target:self selector:@selector(beat:) userInfo:nil repeats:YES];
-	self.isRunning = true;
 }
 -(IBAction)changeBPM:(UIStepper*)sender	{
-	[self stopTimer];
-	self.bpmLabel.text = [NSString stringWithFormat:@"%d", (int)sender.value];
-	[self startTimer];
+	if(self.timerSwitch.isOn){
+		[self stopTimer];
+		self.bpmLabel.text = [NSString stringWithFormat:@"%d", (int)sender.value];
+		[self startTimer];
+	}
+	else self.bpmLabel.text = [NSString stringWithFormat:@"%d", (int)sender.value];
 }
 -(IBAction)toggleTimer:(UISwitch*)toggle{
 	if (toggle.on) [self startTimer];
@@ -54,9 +65,12 @@ SoundPlayer* player;
 	
 }
 -(void)beat:(NSTimer*)timer{
-	//[self updateCount];
+	[self updateCount];
 	NSLog(@"Beat.");
-	[self flashScreen];
+	if ([defaults boolForKey:@"flashing"]) {
+		[self flashScreen];
+	};
+	
 }
 -(void)updateCount{
 	count += 1;
@@ -114,6 +128,8 @@ SoundPlayer* player;
 
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller
 {
+	NSLog(@"Recieved through protocol");
+	if (self.timerSwitch.isOn) [self startTimer];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
@@ -128,6 +144,7 @@ SoundPlayer* player;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+	[self stopTimer];
     if ([[segue identifier] isEqualToString:@"showAlternate"]) {
         [[segue destinationViewController] setDelegate:self];
         
