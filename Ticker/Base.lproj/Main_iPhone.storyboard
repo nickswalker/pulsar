@@ -53,6 +53,9 @@
                                             <segment title="3"/>
                                             <segment title="4"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="changeSignature:" destination="rQl-PL-IFJ" eventType="valueChanged" id="TFo-I9-4JB"/>
+                                        </connections>
                                     </segmentedControl>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fLr-e0-dai">
                                         <rect key="frame" x="77" y="189" width="51" height="31"/>
@@ -64,6 +67,10 @@
                                     </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="j67-1B-cl2" appends="YES" id="lma-Kt-PdC"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -77,9 +84,15 @@
                         <outlet property="bpmLabel" destination="M8U-Hw-Vpi" id="hK1-7K-MGY"/>
                         <outlet property="signature" destination="VmO-Ue-m7z" id="Edd-HT-Feu"/>
                         <outlet property="stepper" destination="wn0-X4-jQs" id="5Uq-Bm-wKw"/>
+                        <outlet property="timerSwitch" destination="fLr-e0-dai" id="B7h-Y0-cxl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4L-l5-tyG" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="j67-1B-cl2">
+                    <connections>
+                        <action selector="handlePan:" destination="rQl-PL-IFJ" id="jKP-u5-FYf"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-51" y="182"/>
         </scene>
@@ -188,11 +201,14 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
             <relationships>
                 <relationship kind="action" name="changeBPM:" candidateClass="UIStepper"/>
+                <relationship kind="action" name="changeSignature:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
                 <relationship kind="action" name="togglePopover:"/>
                 <relationship kind="action" name="toggleTimer:" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="bpmLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="signature" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="stepper" candidateClass="UIStepper"/>
+                <relationship kind="outlet" name="timerSwitch" candidateClass="UISwitch"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">

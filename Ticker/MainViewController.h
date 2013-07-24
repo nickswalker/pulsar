@@ -23,7 +23,7 @@
 
 @property (nonatomic, strong)UIView *whiteScreen;
 
-@property(nonatomic, strong)UISwitch *timerSwitch;
+@property(nonatomic, strong)IBOutlet UISwitch *timerSwitch;
 
 
 -(void) beat:(NSTimer*)timer;
@@ -34,4 +34,6 @@
 -(void) stopTimer;
 -(IBAction)toggleTimer:(UISwitch*)toggle;
 -(void) flipsideViewControllerDidFinish:(FlipsideViewController *)controller;
+-(IBAction)changeSignature:(UISegmentedControl*)signature;
+- (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
 @end

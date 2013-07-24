@@ -37,11 +37,13 @@ NSUserDefaults* defaults;
     self.whiteScreen.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     [self.view addSubview:self.whiteScreen];
 	
+	count= 1;
 	// Start running if the metronome is on
-	if (self.timerSwitch.isOn) [self startTimer];
+	if (self.timerSwitch.on) [self startTimer];
 }
 -(void)stopTimer{
 	[timer invalidate];
+	count = 1;
 	double speed = INFINITY;
 	timer = [NSTimer scheduledTimerWithTimeInterval:speed target:self selector:@selector(beat:) userInfo:nil repeats:YES];
 }
@@ -52,7 +54,7 @@ NSUserDefaults* defaults;
 	timer = [NSTimer scheduledTimerWithTimeInterval:speed target:self selector:@selector(beat:) userInfo:nil repeats:YES];
 }
 -(IBAction)changeBPM:(UIStepper*)sender	{
-	if(self.timerSwitch.isOn){
+	if(self.timerSwitch.on){
 		[self stopTimer];
 		self.bpmLabel.text = [NSString stringWithFormat:@"%d", (int)sender.value];
 		[self startTimer];
@@ -64,44 +66,32 @@ NSUserDefaults* defaults;
 	else [self stopTimer];
 	
 }
+- (IBAction)changeSignature:(UISegmentedControl *)signature	{
+	[self stopTimer];
+	count = 1;
+	[self startTimer];
+}
 -(void)beat:(NSTimer*)timer{
 	[self updateCount];
-	NSLog(@"Beat.");
 	if ([defaults boolForKey:@"flashing"]) {
 		[self flashScreen];
 	};
 	
 }
 -(void)updateCount{
-	count += 1;
+	
 	//if 4/4 timing is selected then the count wont go past 4
-	if (self.signature.selectedSegmentIndex == 2) {
-		if (count >= 5) {
+	if (self.signature.selectedSegmentIndex+1 < count) {
 			count = 1;
-		}
 	}
-	
-	//if 3/4 timing is selected then the count wont go past 3
-	if (self.signature.selectedSegmentIndex == 1) {
-		if (count >= 4) {
-			count = 1;
-		}
-	}
-	
-	//if 2/4 timing is selected then the count wont go past 2
-	if (self.signature.selectedSegmentIndex == 0) {
-		if (count >= 3) {
-			count = 1;
-		}
-	}
-	//In each timing case it plays the sound on one and depending
-	//on the limitiations on the cont value the amount of each tick
+
 	if (count == 1) {
-		[player playTockSound];
-	}else {
 		[player playTickSound];
+	}else {
+		[player playTockSound];
 	}
-	//numberLabel.text = [NSString stringWithFormat:@"%i",count];
+	NSLog(@"%d", count);
+	count += 1;
 }
 -(void)flashScreen {
     CAKeyframeAnimation *opacityAnimation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
@@ -119,6 +109,12 @@ NSUserDefaults* defaults;
     [self.whiteScreen.layer addAnimation:opacityAnimation forKey:@"animation"];
 }
 
+- (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
+    CGPoint translation = [recognizer translationInView:self.view];
+	self.stepper.value = self.stepper.value - -1*translation.y/10;
+	[self changeBPM:self.stepper];
+	[recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
