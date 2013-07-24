@@ -7,12 +7,18 @@
         <!--Main View Controller-->
         <scene sceneID="rV5-Y2-ghB">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h4L-l5-tyG" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="j67-1B-cl2">
+                    <connections>
+                        <action selector="handlePan:" destination="rQl-PL-IFJ" id="jKP-u5-FYf"/>
+                    </connections>
+                </panGestureRecognizer>
                 <viewController id="rQl-PL-IFJ" customClass="MainViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l9E-07-oys">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqg-sy-dxO">
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqg-sy-dxO">
                                 <rect key="frame" x="278" y="526" width="22" height="22"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                 <state key="normal">
@@ -27,11 +33,11 @@
                                 </connections>
                             </button>
                             <view autoresizesSubviews="NO" opaque="NO" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XxR-Jg-CVn">
-                                <rect key="frame" x="59" y="164" width="202" height="240"/>
+                                <rect key="frame" x="59" y="120" width="202" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8U-Hw-Vpi">
-                                        <rect key="frame" x="23" y="11" width="156" height="81"/>
+                                        <rect key="frame" x="23" y="10" width="156" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="72"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -45,7 +51,7 @@
                                         </connections>
                                     </stepper>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VmO-Ue-m7z">
-                                        <rect key="frame" x="21" y="144" width="161" height="29"/>
+                                        <rect key="frame" x="21" y="143" width="162" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="1"/>
@@ -68,6 +74,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="202" id="tgW-ed-ddf"/>
+                                    <constraint firstAttribute="height" constant="240" id="wdp-Q1-p4y"/>
+                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="j67-1B-cl2" appends="YES" id="lma-Kt-PdC"/>
                                 </connections>
@@ -75,8 +85,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="jqg-sy-dxO" secondAttribute="trailing" constant="20" symbolic="YES" id="1ym-A3-aKq"/>
-                            <constraint firstAttribute="bottom" secondItem="jqg-sy-dxO" secondAttribute="bottom" constant="20" symbolic="YES" id="Uf2-YL-3zF"/>
+                            <constraint firstAttribute="centerY" secondItem="XxR-Jg-CVn" secondAttribute="centerY" id="2HU-Bc-STa"/>
+                            <constraint firstAttribute="centerX" secondItem="XxR-Jg-CVn" secondAttribute="centerX" id="Vu0-EA-cem"/>
+                            <constraint firstAttribute="centerY" secondItem="XxR-Jg-CVn" secondAttribute="centerY" id="uhY-ZN-vsZ"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -87,12 +98,6 @@
                         <outlet property="timerSwitch" destination="fLr-e0-dai" id="B7h-Y0-cxl"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="h4L-l5-tyG" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="j67-1B-cl2">
-                    <connections>
-                        <action selector="handlePan:" destination="rQl-PL-IFJ" id="jKP-u5-FYf"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-51" y="182"/>
         </scene>
@@ -101,7 +106,7 @@
             <objects>
                 <tableViewController id="fzf-sl-JNw" customClass="FlipsideViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="PIc-WD-sIN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <navigationBar key="tableHeaderView" contentMode="scaleToFill" barStyle="black" id="XkJ-Wb-oVx">
@@ -185,6 +190,21 @@
             </objects>
             <point key="canvasLocation" x="424" y="182"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="SdU-wv-2bO">
+            <objects>
+                <viewController id="oll-qE-diw" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A1k-cl-ZQX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JON-Bb-Ead" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="859" y="-65"/>
+        </scene>
     </scenes>
     <classes>
         <class className="FlipsideViewController" superclassName="UITableViewController">
@@ -203,7 +223,6 @@
                 <relationship kind="action" name="changeBPM:" candidateClass="UIStepper"/>
                 <relationship kind="action" name="changeSignature:" candidateClass="UISegmentedControl"/>
                 <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="togglePopover:"/>
                 <relationship kind="action" name="toggleTimer:" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="bpmLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="signature" candidateClass="UISegmentedControl"/>
@@ -218,6 +237,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>
