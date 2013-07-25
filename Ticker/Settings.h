@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@class FlipsideViewController;
+@class Settings;
 
-@protocol FlipsideViewControllerDelegate
+@protocol SettingsViewControllerDelegate
 @required
-- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller;
+- (void)settingsViewControllerDidFinish:(Settings *)controller;
 @end
 
-@interface FlipsideViewController : UITableViewController
+@interface Settings : UITableViewController
 
-@property (weak, nonatomic) id <FlipsideViewControllerDelegate> delegate;
+@property (weak, nonatomic) id <SettingsViewControllerDelegate> delegate;
 @property IBOutlet UISwitch* vibrationControl;
 @property IBOutlet UISwitch* flashControl;
 - (IBAction)done:(id)sender;

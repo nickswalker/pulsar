@@ -6,14 +6,15 @@
 //  Copyright (c) 2013 Nick Walker. All rights reserved.
 //
 
-#import "FlipsideViewController.h"
-#import "SoundPlayer.h"
+#import "Settings.h"
+#import "Timer.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate, UIPopoverControllerDelegate>
+@interface Metronome : UIViewController <SettingsViewControllerDelegate, TimerDelegate, UIPopoverControllerDelegate, CBPeripheralManagerDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-@property (strong, nonatomic) UIPopoverController *flipsidePopoverController;
+@property (strong, nonatomic) UIPopoverController *settingsPopoverController;
 
 @property (nonatomic, retain)IBOutlet UILabel *bpmLabel;
 
@@ -25,15 +26,15 @@
 
 @property(nonatomic, strong)IBOutlet UISwitch *timerSwitch;
 
+@property(nonatomic, strong)IBOutlet UIView *tapView;
 
--(void) beat:(NSTimer*)timer;
+@property (nonatomic, strong) CBPeripheralManager *manager;
+
 -(IBAction)changeBPM:(UIStepper*)stepper;
--(void) updateCount;
--(void) flashScreen;
--(void) startTimer;
--(void) stopTimer;
+-(void)flashScreen;
+-(void)beat;
 -(IBAction)toggleTimer:(UISwitch*)toggle;
--(void) flipsideViewControllerDidFinish:(FlipsideViewController *)controller;
+-(void) settingsViewControllerDidFinish:(Settings *)controller;
 -(IBAction)changeSignature:(UISegmentedControl*)signature;
-- (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
+-(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
 @end

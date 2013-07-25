@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Nick Walker. All rights reserved.
 //
 
-#import "FlipsideViewController.h"
+#import "Settings.h"
 
-@implementation FlipsideViewController
+@implementation Settings
 NSUserDefaults *defaults;
 
 - (void)awakeFromNib
@@ -36,8 +36,7 @@ NSUserDefaults *defaults;
 
 - (IBAction)done:(id)sender
 {
-	NSLog(@"Done action recieved in flip controller");
-    [self.delegate flipsideViewControllerDidFinish:self];
+    [self.delegate settingsViewControllerDidFinish:self];
 }
 - (IBAction)toggleFlashing:(UISwitch *)flashingSwitch
 {

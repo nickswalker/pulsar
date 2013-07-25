@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "MainViewController.h"
+#import "Metronome.h"
 
 @implementation AppDelegate
 
@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-	MainViewController *controller = (MainViewController *)self.window.rootViewController;
+	Metronome *controller = (Metronome *)self.window.rootViewController;
 	controller.managedObjectContext = self.managedObjectContext;
     return YES;
 }

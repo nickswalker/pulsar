@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4457.9" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rQl-PL-IFJ">
     <dependencies>
+        <development version="5000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3682.9"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Metronome-->
         <scene sceneID="rV5-Y2-ghB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="h4L-l5-tyG" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="j67-1B-cl2">
-                    <connections>
-                        <action selector="handlePan:" destination="rQl-PL-IFJ" id="jKP-u5-FYf"/>
-                    </connections>
-                </panGestureRecognizer>
-                <viewController id="rQl-PL-IFJ" customClass="MainViewController" sceneMemberID="viewController">
+                <viewController id="rQl-PL-IFJ" customClass="Metronome" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l9E-07-oys">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -32,7 +27,7 @@
                                     <segue destination="fzf-sl-JNw" kind="modal" identifier="showAlternate" modalTransitionStyle="flipHorizontal" id="Xkt-dQ-S7q"/>
                                 </connections>
                             </button>
-                            <view autoresizesSubviews="NO" opaque="NO" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XxR-Jg-CVn">
+                            <view autoresizesSubviews="NO" opaque="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="XxR-Jg-CVn">
                                 <rect key="frame" x="59" y="120" width="202" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -82,29 +77,53 @@
                                     <outletCollection property="gestureRecognizers" destination="j67-1B-cl2" appends="YES" id="lma-Kt-PdC"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGa-VU-yN3">
+                                <rect key="frame" x="278" y="438" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="togglePopover:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="F9D-3L-Icb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="XxR-Jg-CVn" secondAttribute="centerY" id="2HU-Bc-STa"/>
+                            <constraint firstAttribute="bottom" secondItem="gGa-VU-yN3" secondAttribute="bottom" constant="20" id="IaG-O6-oTR"/>
                             <constraint firstAttribute="centerX" secondItem="XxR-Jg-CVn" secondAttribute="centerX" id="Vu0-EA-cem"/>
+                            <constraint firstAttribute="trailing" secondItem="gGa-VU-yN3" secondAttribute="trailing" constant="20" id="eQA-fh-mTX"/>
                             <constraint firstAttribute="centerY" secondItem="XxR-Jg-CVn" secondAttribute="centerY" id="uhY-ZN-vsZ"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
-                        <outlet property="bpmLabel" destination="M8U-Hw-Vpi" id="hK1-7K-MGY"/>
+                        <outlet property="bpmLabel" destination="M8U-Hw-Vpi" id="fxf-C7-cag"/>
                         <outlet property="signature" destination="VmO-Ue-m7z" id="Edd-HT-Feu"/>
                         <outlet property="stepper" destination="wn0-X4-jQs" id="5Uq-Bm-wKw"/>
+                        <outlet property="tapView" destination="l9E-07-oys" id="vI9-Xd-RUt"/>
                         <outlet property="timerSwitch" destination="fLr-e0-dai" id="B7h-Y0-cxl"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h4L-l5-tyG" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="j67-1B-cl2">
+                    <connections>
+                        <action selector="handlePan:" destination="rQl-PL-IFJ" id="jKP-u5-FYf"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-51" y="182"/>
         </scene>
-        <!--Flipside View Controller-->
+        <!--Settings-->
         <scene sceneID="dwV-NU-HVh">
             <objects>
-                <tableViewController id="fzf-sl-JNw" customClass="FlipsideViewController" sceneMemberID="viewController">
+                <tableViewController id="fzf-sl-JNw" customClass="Settings" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="PIc-WD-sIN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -152,7 +171,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="yO0-pl-f1z">
-                                        <rect key="frame" x="0.0" y="88" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -176,6 +195,31 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="Ps7-PG-dIh">
+                                        <rect key="frame" x="0.0" y="132" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NiZ-E5-USM">
+                                                    <rect key="frame" x="251" y="6" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="toggleFlashing:" destination="fzf-sl-JNw" eventType="valueChanged" id="Ul9-tS-aiW"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Master" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYe-Ez-K8B">
+                                                    <rect key="frame" x="20" y="11" width="51" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -190,50 +234,7 @@
             </objects>
             <point key="canvasLocation" x="424" y="182"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="SdU-wv-2bO">
-            <objects>
-                <viewController id="oll-qE-diw" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="A1k-cl-ZQX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JON-Bb-Ead" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="859" y="-65"/>
-        </scene>
     </scenes>
-    <classes>
-        <class className="FlipsideViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlipsideViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="toggleFlashing:" candidateClass="UISwitch"/>
-                <relationship kind="action" name="toggleVibration:" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="flashControl" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="vibrationControl" candidateClass="UISwitch"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="changeBPM:" candidateClass="UIStepper"/>
-                <relationship kind="action" name="changeSignature:" candidateClass="UISegmentedControl"/>
-                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="toggleTimer:" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="bpmLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="signature" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="stepper" candidateClass="UIStepper"/>
-                <relationship kind="outlet" name="timerSwitch" candidateClass="UISwitch"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

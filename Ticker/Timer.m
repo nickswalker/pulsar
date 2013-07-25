@@ -7,25 +7,68 @@
 //
 
 #import "Timer.h"
-
+#define SECONDS 60
 @implementation Timer
 
+NSTimer* timer;
+int signature;
+SEL flashSelector;
+id target;
+int bpm;
+NSUserDefaults* defaults;
+
+- (id)initWithDelegate:(id)sentTarget
+{
+	defaults = [NSUserDefaults standardUserDefaults];
+    self = [super init];
+	if(self){
+		
+		self.delegate = sentTarget;
+		self.on= false;
+	}
+    return(self);
+}
 -(void)stopTimer{
 	[timer invalidate];
+	self.count = 0;
 	double speed = INFINITY;
 	timer = [NSTimer scheduledTimerWithTimeInterval:speed target:self selector:@selector(beat:) userInfo:nil repeats:YES];
-	self.isRunning = false;
 }
 -(void)startTimer{
 	[timer invalidate];
 	timer = nil;
-	double speed = SECONDS/self.stepper.value;
+	[self beat:nil];
+	double speed = (double)SECONDS/bpm;
 	timer = [NSTimer scheduledTimerWithTimeInterval:speed target:self selector:@selector(beat:) userInfo:nil repeats:YES];
-	self.isRunning = true;
 }
--(IBAction)changeBPM:(UIStepper*)sender	{
+-(void)changeBpm:(int)value	{
 	[self stopTimer];
-	self.bpmLabel.text = [NSString stringWithFormat:@"%d", (int)sender.value];
-	[self startTimer];
+	bpm = value;
+	if(self.on){
+		[self startTimer];
+	}
 }
+- (void)changeSignature:(int)top and:(int)bottom	{
+	
+	[self stopTimer];
+	signature = top;
+	if(self.on){
+		[self startTimer];
+	}
+}
+-(void)beat:(NSTimer*)timer{
+	[self updateCount];
+	[self.delegate beat];
+	
+}
+-(void)updateCount{
+	self.count +=1;
+	if (self.count > signature ) {
+		self.count = 1;
+	}
+
+	NSLog(@"%d",self.count);
+	
+}
+
 @end
