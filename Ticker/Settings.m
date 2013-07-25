@@ -22,9 +22,12 @@ NSUserDefaults *defaults;
     [super viewDidLoad];
 	// Make switches reflect defaults
 	defaults = [NSUserDefaults standardUserDefaults];
-	self.screenFlashControl.on = [defaults boolForKey:@"screenFlash"] || true;
-	self.vibrateControl.on = [defaults boolForKey:@"vibrate"] || false;
-	self.ledFlashControl.on = [defaults boolForKey:@"ledFlash"] || false;
+	self.screenFlashControl.on = [defaults boolForKey:@"screenFlash"];
+	self.vibrateControl.on = [defaults boolForKey:@"vibrate"];
+	self.ledFlashControl.on = [defaults boolForKey:@"ledFlash"];
+	
+	self.masterControl.on = [defaults boolForKey:@"master"];
+	
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,6 +40,7 @@ NSUserDefaults *defaults;
 
 - (IBAction)done:(id)sender
 {
+	[defaults synchronize];
     [self.delegate settingsViewControllerDidFinish:self];
 }
 - (IBAction)toggleScreenFlash:(UISwitch *)screenFlashSwitch
@@ -53,5 +57,16 @@ NSUserDefaults *defaults;
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setBool:ledSwitch.on forKey:@"ledFlash"];
+}
+- (IBAction)toggleMaster:(UISwitch *)masterSwitch
+{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setBool:masterSwitch.on forKey:@"master"];
+}
+#pragma mark - Tableview methods
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+	if ( section == 2) return [NSString stringWithFormat:@"%@ Version %@ \n Nick Walker", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"],[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ];
+	return nil;
 }
 @end

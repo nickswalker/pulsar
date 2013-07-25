@@ -26,8 +26,6 @@
 
 @property(nonatomic, strong)IBOutlet UISwitch *timerSwitch;
 
-@property(nonatomic, strong)IBOutlet UIView *tapView;
-
 @property (nonatomic, strong) CBPeripheralManager *manager;
 
 - (IBAction)changeBPM:(UIStepper*)stepper;
@@ -37,4 +35,6 @@
 - (void) settingsViewControllerDidFinish:(Settings *)controller;
 - (IBAction)changeSignature:(UISegmentedControl*)signature;
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
+- (IBAction)matchBpm:(UIButton *)sender;
+
 @end

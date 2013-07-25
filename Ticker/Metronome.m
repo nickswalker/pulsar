@@ -17,6 +17,8 @@
 Timer* timeKeeper;
 SoundPlayer* player;
 NSUserDefaults* defaults;
+double startTime;
+double endTime;
 static NSString * const kServiceUUID = @"312700E2-E798-4D5C-8DCF-49908332DF9F";
 static NSString * const kCharacteristicUUID = @"FFA28CDE-6525-4489-801C-1C060CAC9767";
 
@@ -36,22 +38,48 @@ static NSString * const kCharacteristicUUID = @"FFA28CDE-6525-4489-801C-1C060CAC
 	timeKeeper = [[Timer alloc] initWithDelegate: self];
 	
 	//Match the display to the stepper value
+	self.stepper.value = [defaults integerForKey:@"bpm"];
 	[self changeBPM:self.stepper];
+	self.signature.selectedSegmentIndex = [defaults integerForKey:@"signatureTop"]-1;
 	
 	//Start bluetooth
-	//self.manager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+	//if([defaults boolForKey:@"master"]) self.manager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
 
 	//Setup player
 	player =  [[SoundPlayer alloc] init];
-	;
+
 	// Start running if the metronome is on
 	[self toggleTimer:(UISwitch *)self.timerSwitch];
 }
 
+- (IBAction)matchBpm:(UIButton *)sender {
+
+	//Document this and add a short averaging mechanism, an array of past time deltas
+	if (startTime == 0) {
+		startTime = [[NSDate date] timeIntervalSince1970];
+		return;
+	}
+	else if (endTime == 0)	{
+		endTime = [[NSDate date] timeIntervalSince1970];
+	}
+	else {
+		startTime = endTime;
+		endTime = [[NSDate date] timeIntervalSince1970];
+	}
+	if( (60/(endTime-startTime)) <20 ){
+		startTime = [[NSDate date] timeIntervalSince1970];
+		endTime = 0;
+		return;
+	}
+	NSLog(@"S:%f E:%f", startTime, endTime);
+	self.stepper.value = 60/(endTime-startTime) ;
+	[self changeBPM:self.stepper];
+}
 #pragma mark - UI
 -(IBAction)changeBPM:(UIStepper*)sender	{
 	self.bpmLabel.text = [NSString stringWithFormat:@"%d", (int)sender.value];
 	[timeKeeper changeBpm:sender.value];
+	[defaults setInteger:(int)sender.value forKey:@"bpm"];
 }
 -(IBAction)toggleTimer:(UISwitch*)toggle{
 	if (toggle.on) [timeKeeper startTimer], timeKeeper.on=true;
@@ -59,6 +87,7 @@ static NSString * const kCharacteristicUUID = @"FFA28CDE-6525-4489-801C-1C060CAC
 }
 - (IBAction)changeSignature:(UISegmentedControl *)signature	{
 	[timeKeeper changeSignature:(int)signature.selectedSegmentIndex+1 and:(int)4];
+	[defaults setInteger:(int)signature.selectedSegmentIndex+1 forKey:@"signatureTop"];
 }
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
     CGPoint translation = [recognizer translationInView:self.view];

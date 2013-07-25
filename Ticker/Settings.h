@@ -21,9 +21,11 @@
 @property IBOutlet UISwitch* vibrateControl;
 @property IBOutlet UISwitch* screenFlashControl;
 @property IBOutlet UISwitch* ledFlashControl;
+@property IBOutlet UISwitch* masterControl;
 
 -(IBAction)done:(id)sender;
 -(IBAction)toggleScreenFlash:(UISwitch*)screenFlashSwitch;
 -(IBAction)toggleLedFlash:(UISwitch*)ledSwitch;
 -(IBAction)toggleVibrate:(UISwitch*)vibrateSwitch;
+-(IBAction)toggleMaster:(UISwitch*)masterSwitch;
 @end
