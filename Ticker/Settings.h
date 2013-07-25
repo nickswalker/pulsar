@@ -18,9 +18,12 @@
 @interface Settings : UITableViewController
 
 @property (weak, nonatomic) id <SettingsViewControllerDelegate> delegate;
-@property IBOutlet UISwitch* vibrationControl;
-@property IBOutlet UISwitch* flashControl;
-- (IBAction)done:(id)sender;
--(IBAction)toggleFlashing:(UISwitch*)flashingSwitch;
--(IBAction)toggleVibration:(UISwitch*)vibrationSwitch;
+@property IBOutlet UISwitch* vibrateControl;
+@property IBOutlet UISwitch* screenFlashControl;
+@property IBOutlet UISwitch* ledFlashControl;
+
+-(IBAction)done:(id)sender;
+-(IBAction)toggleScreenFlash:(UISwitch*)screenFlashSwitch;
+-(IBAction)toggleLedFlash:(UISwitch*)ledSwitch;
+-(IBAction)toggleVibrate:(UISwitch*)vibrateSwitch;
 @end

@@ -10,6 +10,6 @@
 
 @interface SoundPlayer : NSObject
 
--(void) playTickSound;
--(void) playTockSound;
+- (void) playTickSound;
+- (void) playTockSound;
 @end

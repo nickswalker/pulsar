@@ -10,7 +10,7 @@
 @class Timer;
 @protocol TimerDelegate
 
--(void)beat;
+- (void)beat;
 
 @end
 
@@ -23,10 +23,11 @@
 @property int bottomSignature;
 
 - (id) initWithDelegate:(id)sentTarget;
--(void) changeSignature:(int)top and:(int)bottom;
--(void) startTimer;
--(void) stopTimer;
--(void) changeBpm:(int)value;
--(void) beat:(NSTimer*)timer;
--(void) updateCount;
+- (void) changeSignature:(int)top and:(int)bottom;
+- (void) startTimer;
+- (void) stopTimer;
+- (void) changeBpm:(int)value;
+- (void) beat:(NSTimer*)timer;
+- (void) updateCount;
+
 @end

@@ -10,6 +10,7 @@
 		0153B3C3179A3638009744C0 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0153B3C2179A3638009744C0 /* Settings.m */; };
 		01565DD217A0A77E007BDC0A /* Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0153B372179A29E7009744C0 /* Timer.m */; };
 		0185E0241798484A00C16260 /* SoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B545411798296F00A4F4E0 /* SoundPlayer.m */; };
+		0192E30517A1895300DE45EC /* LED.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192E30417A1895300DE45EC /* LED.m */; };
 		01B54500179828B300A4F4E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B544FF179828B300A4F4E0 /* Foundation.framework */; };
 		01B54502179828B300A4F4E0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B54501179828B300A4F4E0 /* CoreGraphics.framework */; };
 		01B54504179828B300A4F4E0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B54503179828B300A4F4E0 /* UIKit.framework */; };
@@ -47,6 +48,8 @@
 		0153B372179A29E7009744C0 /* Timer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timer.m; sourceTree = "<group>"; };
 		0153B3C1179A3638009744C0 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		0153B3C2179A3638009744C0 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		0192E30317A1895300DE45EC /* LED.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LED.h; sourceTree = "<group>"; };
+		0192E30417A1895300DE45EC /* LED.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LED.m; sourceTree = "<group>"; };
 		01B544FC179828B300A4F4E0 /* Ticker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ticker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B544FF179828B300A4F4E0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		01B54501179828B300A4F4E0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -141,6 +144,8 @@
 				01B54516179828B300A4F4E0 /* Main_iPad.storyboard */,
 				01B5451C179828B300A4F4E0 /* Metronome.h */,
 				01B5451D179828B300A4F4E0 /* Metronome.m */,
+				0192E30317A1895300DE45EC /* LED.h */,
+				0192E30417A1895300DE45EC /* LED.m */,
 				0153B371179A29E7009744C0 /* Timer.h */,
 				0153B372179A29E7009744C0 /* Timer.m */,
 				01B5454317982F8000A4F4E0 /* tick.caf */,
@@ -285,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0192E30517A1895300DE45EC /* LED.m in Sources */,
 				01B54512179828B300A4F4E0 /* AppDelegate.m in Sources */,
 				01B5451B179828B300A4F4E0 /* Ticker.xcdatamodeld in Sources */,
 				01B5450E179828B300A4F4E0 /* main.m in Sources */,

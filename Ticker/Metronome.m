@@ -73,7 +73,7 @@ static NSString * const kCharacteristicUUID = @"FFA28CDE-6525-4489-801C-1C060CAC
 	}else {
 		[player playTockSound];
 	}
-	if ([defaults boolForKey:@"flashing"]) [self flashScreen];
+	if ([defaults boolForKey:@"screenFlash"]) [self flashScreen];
 }
 -(void)flashScreen {
     CAKeyframeAnimation *opacityAnimation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
@@ -86,7 +86,7 @@ static NSString * const kCharacteristicUUID = @"FFA28CDE-6525-4489-801C-1C060CAC
     [opacityAnimation setTimingFunctions:animationTimingFunctions];
     opacityAnimation.fillMode = kCAFillModeForwards;
     opacityAnimation.removedOnCompletion = YES;
-    opacityAnimation.duration = 0.4;
+    opacityAnimation.duration = 0.15;
 	
     [self.whiteScreen.layer addAnimation:opacityAnimation forKey:@"animation"];
 }

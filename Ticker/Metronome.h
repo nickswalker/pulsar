@@ -30,11 +30,11 @@
 
 @property (nonatomic, strong) CBPeripheralManager *manager;
 
--(IBAction)changeBPM:(UIStepper*)stepper;
--(void)flashScreen;
--(void)beat;
--(IBAction)toggleTimer:(UISwitch*)toggle;
--(void) settingsViewControllerDidFinish:(Settings *)controller;
--(IBAction)changeSignature:(UISegmentedControl*)signature;
--(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
+- (IBAction)changeBPM:(UIStepper*)stepper;
+- (void)flashScreen;
+- (void)beat;
+- (IBAction)toggleTimer:(UISwitch*)toggle;
+- (void) settingsViewControllerDidFinish:(Settings *)controller;
+- (IBAction)changeSignature:(UISegmentedControl*)signature;
+- (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
 @end

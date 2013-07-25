@@ -11,15 +11,11 @@
 @implementation Timer
 
 NSTimer* timer;
-int signature;
-SEL flashSelector;
 id target;
 int bpm;
-NSUserDefaults* defaults;
 
 - (id)initWithDelegate:(id)sentTarget
 {
-	defaults = [NSUserDefaults standardUserDefaults];
     self = [super init];
 	if(self){
 		
@@ -51,7 +47,7 @@ NSUserDefaults* defaults;
 - (void)changeSignature:(int)top and:(int)bottom	{
 	
 	[self stopTimer];
-	signature = top;
+	self.topSignature = top;
 	if(self.on){
 		[self startTimer];
 	}
@@ -63,7 +59,7 @@ NSUserDefaults* defaults;
 }
 -(void)updateCount{
 	self.count +=1;
-	if (self.count > signature ) {
+	if (self.count > self.topSignature ) {
 		self.count = 1;
 	}
 

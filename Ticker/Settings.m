@@ -22,8 +22,9 @@ NSUserDefaults *defaults;
     [super viewDidLoad];
 	// Make switches reflect defaults
 	defaults = [NSUserDefaults standardUserDefaults];
-	self.flashControl.on = [defaults boolForKey:@"flashing"];
-	self.vibrationControl.on = [defaults boolForKey:@"vibration"];
+	self.screenFlashControl.on = [defaults boolForKey:@"screenFlash"] || true;
+	self.vibrateControl.on = [defaults boolForKey:@"vibrate"] || false;
+	self.ledFlashControl.on = [defaults boolForKey:@"ledFlash"] || false;
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,14 +39,19 @@ NSUserDefaults *defaults;
 {
     [self.delegate settingsViewControllerDidFinish:self];
 }
-- (IBAction)toggleFlashing:(UISwitch *)flashingSwitch
+- (IBAction)toggleScreenFlash:(UISwitch *)screenFlashSwitch
 {
 	 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setBool:flashingSwitch.isOn forKey:@"flashing"];
+	[defaults setBool:screenFlashSwitch.on forKey:@"screenFlash"];
 }
-- (IBAction)toggleVibration:(UISwitch *)vibrationSwitch
+- (IBAction)toggleVibrate:(UISwitch *)vibrateSwitch
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setBool:vibrationSwitch.isOn forKey:@"vibration"];
+	[defaults setBool:vibrateSwitch.on forKey:@"vibrate"];
+}
+- (IBAction)toggleLedFlash:(UISwitch *)ledSwitch
+{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setBool:ledSwitch.on forKey:@"ledFlash"];
 }
 @end
