@@ -18,9 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSDictionary *appDefaults = @{ @"screenFlash": @YES, @"ledFlash": @NO, @"vibrate": @NO, @"master": @NO, @"bpm": @60, @"signatureTop": @4,@"signatureBottom": @4 };
+    NSDictionary *appDefaults = @{ @"screenFlash": @YES, @"ledFlash": @NO, @"vibrate": @NO, @"master": @NO, @"bpm": @60, @"timeSignatureTop": @4,@"timeSignatureBottom": @4 };
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
-	NSLog(@"%hhd", [[NSUserDefaults standardUserDefaults] boolForKey:@"screenFlash"] );
+
 	Metronome *controller = (Metronome *)self.window.rootViewController;
 	controller.managedObjectContext = self.managedObjectContext;
     return YES;

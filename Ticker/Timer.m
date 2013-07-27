@@ -10,9 +10,12 @@
 #define SECONDS 60
 @implementation Timer
 
+@synthesize bpm = _bpm,
+	timeSignature = _timeSignature;
+
 NSTimer* timer;
 id target;
-int bpm;
+
 
 - (id)initWithDelegate:(id)sentTarget
 {
@@ -24,33 +27,18 @@ int bpm;
 	}
     return(self);
 }
--(void)stopTimer{
-	[timer invalidate];
-	self.count = 0;
-	double speed = INFINITY;
-	timer = [NSTimer scheduledTimerWithTimeInterval:speed target:self selector:@selector(beat:) userInfo:nil repeats:YES];
-}
 -(void)startTimer{
 	[timer invalidate];
 	timer = nil;
 	[self beat:nil];
-	double speed = (double)SECONDS/bpm;
+	double speed = (double)SECONDS/self.bpm;
 	timer = [NSTimer scheduledTimerWithTimeInterval:speed target:self selector:@selector(beat:) userInfo:nil repeats:YES];
 }
--(void)changeBpm:(int)value	{
-	[self stopTimer];
-	bpm = value;
-	if(self.on){
-		[self startTimer];
-	}
-}
-- (void)changeSignature:(int)top and:(int)bottom	{
-	
-	[self stopTimer];
-	self.topSignature = top;
-	if(self.on){
-		[self startTimer];
-	}
+-(void)stopTimer{
+	[timer invalidate];
+	self.currentBeat = 0;
+	double speed = INFINITY;
+	timer = [NSTimer scheduledTimerWithTimeInterval:speed target:self selector:@selector(beat:) userInfo:nil repeats:YES];
 }
 -(void)beat:(NSTimer*)timer{
 	[self updateCount];
@@ -58,13 +46,33 @@ int bpm;
 	
 }
 -(void)updateCount{
-	self.count +=1;
-	if (self.count > self.topSignature ) {
-		self.count = 1;
-	}
-
-	NSLog(@"%d",self.count);
+	self.currentBeat +=1;
+	if (self.currentBeat > [[self.timeSignature valueForKey:@"top" ] intValue] ) self.currentBeat= 1;
+	NSLog(@"%d",self.currentBeat);
 	
 }
 
+#pragma mark - Getters and Setters
+
+-(void)setBpm:(int)value	{
+	[self stopTimer];
+	_bpm = value;
+	if(self.on){
+		[self startTimer];
+	}
+}
+- (int)bpm	{
+	return _bpm;
+}
+- (void)setTimeSignature:(NSDictionary*)timeSignature	{
+	
+	[self stopTimer];
+	_timeSignature = @{ @"top": [timeSignature objectForKey:@"top"], @"bottom": [timeSignature objectForKey:@"bottom"]};
+	if(self.on){
+		[self startTimer];
+	}
+}
+-(NSDictionary*)timeSignature	{
+	return _timeSignature;
+}
 @end

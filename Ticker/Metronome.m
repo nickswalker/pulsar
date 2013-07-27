@@ -8,7 +8,9 @@
 
 #import "Metronome.h"
 #import "Timer.h"
+#import "LED.h"
 #import "SoundPlayer.h"
+#import "deltaTracker.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 //@interface MainViewController ()
 //@end
@@ -16,95 +18,111 @@
 
 Timer* timeKeeper;
 SoundPlayer* player;
+LED* led;
 NSUserDefaults* defaults;
 double startTime;
 double endTime;
-static NSString * const kServiceUUID = @"312700E2-E798-4D5C-8DCF-49908332DF9F";
-static NSString * const kCharacteristicUUID = @"FFA28CDE-6525-4489-801C-1C060CAC9767";
-
+NSDictionary* standardTimeSignatures;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-	//Setup flashing view
-	self.whiteScreen = [[UIView alloc] initWithFrame:self.view.frame];
-    self.whiteScreen.layer.opacity = 0.0f;
-    self.whiteScreen.layer.backgroundColor = [[UIColor whiteColor] CGColor];
-    [self.view addSubview:self.whiteScreen];
 	
 	//Setup stored defaults
 	defaults = [NSUserDefaults standardUserDefaults];
 	
 	timeKeeper = [[Timer alloc] initWithDelegate: self];
+	led = [[LED alloc] init];
 	
 	//Match the display to the stepper value
 	self.stepper.value = [defaults integerForKey:@"bpm"];
-	[self changeBPM:self.stepper];
-	self.signature.selectedSegmentIndex = [defaults integerForKey:@"signatureTop"]-1;
-	
-	//Start bluetooth
-	//if([defaults boolForKey:@"master"]) self.manager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+	[self updateBPM:self.stepper];
+	self.signatureBottom.selectedSegmentIndex = [defaults integerForKey:@"timeSignatureBottom"] ;
 
 	//Setup player
 	player =  [[SoundPlayer alloc] init];
+	
+	//Setup top signature
+	self.signatureTop.numberOfDots = [defaults integerForKey:@"timeSignatureTop"];
+	self.signatureTop.currentDot = 1;
 
 	// Start running if the metronome is on
 	[self toggleTimer:(UISwitch *)self.timerSwitch];
+	standardTimeSignatures = @{
+											 @1: @{@"top": @4, @"bottom":@4},
+											 @2: @{@"top": @2, @"bottom":@4},
+											 @3: @{@"top": @6, @"bottom":@8},
+											 @4: @{@"top": @3, @"bottom":@4},
+											 @5: @{@"top": @9, @"bottom":@8},
+											 @5: @{@"top": @3, @"bottom":@8},
+											 @6: @{@"top": @12, @"bottom":@8},
+											 };
 }
-
+//TODO: Document this and add a short averaging mechanism, an array of past time deltas
 - (IBAction)matchBpm:(UIButton *)sender {
-
-	//Document this and add a short averaging mechanism, an array of past time deltas
-	if (startTime == 0) {
-		startTime = [[NSDate date] timeIntervalSince1970];
+	deltaTracker* tracker = [[deltaTracker alloc] init];
+	double delta = [tracker benchmark];
+	if(!delta) return;
+	else if( (60/delta) <20 ){
+		[tracker clear];
+		[tracker benchmark];
 		return;
 	}
-	else if (endTime == 0)	{
-		endTime = [[NSDate date] timeIntervalSince1970];
-	}
-	else {
-		startTime = endTime;
-		endTime = [[NSDate date] timeIntervalSince1970];
-	}
-	if( (60/(endTime-startTime)) <20 ){
-		startTime = [[NSDate date] timeIntervalSince1970];
-		endTime = 0;
-		return;
-	}
-	NSLog(@"S:%f E:%f", startTime, endTime);
-	self.stepper.value = 60/(endTime-startTime) ;
-	[self changeBPM:self.stepper];
+	self.stepper.value = 60/(delta) ;
+	[self updateBPM:self.stepper];
 }
 #pragma mark - UI
--(IBAction)changeBPM:(UIStepper*)sender	{
+-(IBAction)updateBPM:(UIStepper*)sender	{
 	self.bpmLabel.text = [NSString stringWithFormat:@"%d", (int)sender.value];
-	[timeKeeper changeBpm:sender.value];
+	timeKeeper.bpm = sender.value;
 	[defaults setInteger:(int)sender.value forKey:@"bpm"];
 }
 -(IBAction)toggleTimer:(UISwitch*)toggle{
 	if (toggle.on) [timeKeeper startTimer], timeKeeper.on=true;
 	else [timeKeeper stopTimer], timeKeeper.on=false;
 }
-- (IBAction)changeSignature:(UISegmentedControl *)signature	{
-	[timeKeeper changeSignature:(int)signature.selectedSegmentIndex+1 and:(int)4];
-	[defaults setInteger:(int)signature.selectedSegmentIndex+1 forKey:@"signatureTop"];
+- (IBAction)updateTimeSignature:(id)sender	{
+	int top = self.signatureTop.numberOfDots;
+	int bottom = [[self.signatureBottom titleForSegmentAtIndex:self.signatureBottom.selectedSegmentIndex] intValue];
+	timeKeeper.timeSignature = @{ @"top" : [NSNumber numberWithInt:top], @"bottom": [NSNumber numberWithInt:bottom] };
+	[defaults setInteger:bottom forKey:@"timeSignatureBottom"];
+	[defaults setInteger:top forKey:@"timeSignatureTop"];
+}
+- (void) changeTimeSignature:(NSDictionary *)timeSignature	{
+	timeKeeper.timeSignature = timeSignature;
+	[defaults setInteger:(int)[timeSignature objectForKey:@"bottom"] forKey:@"timeSignatureBottom"];
+	[defaults setInteger:(int)[timeSignature objectForKey:@"top"] forKey:@"timeSignatureTop"];
 }
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
     CGPoint translation = [recognizer translationInView:self.view];
 	self.stepper.value = self.stepper.value - -1*translation.y/10;
-	[self changeBPM:self.stepper];
+	[self updateBPM:self.stepper];
 	[recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
+}
+- (IBAction)cycleSignatures:(id)sender	{
+	deltaTracker* tracker = [[deltaTracker alloc] init];
+	double delta = [tracker benchmark];
+	if( (delta) > 2 ){
+		[tracker clear];
+		[tracker benchmark];
+	}
+
+	NSLog(@"Double");
 }
 -(void)beat
 {
-	if (timeKeeper.count == 1) {
+	if (timeKeeper.currentBeat == 1) {
 		[player playTickSound];
 	}else {
 		[player playTockSound];
 	}
+	self.signatureTop.currentDot = timeKeeper.currentBeat;
 	if ([defaults boolForKey:@"screenFlash"]) [self flashScreen];
+	if ([defaults boolForKey:@"ledFlash"]) [led toggleTorch];
+	if ([defaults boolForKey:@"vibrate"]) [player vibrate];
 }
 -(void)flashScreen {
+	self.backgroundButton.layer.opacity = 0;
+	self.backgroundButton.backgroundColor = [UIColor whiteColor];
     CAKeyframeAnimation *opacityAnimation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
     NSArray *animationValues = @[ @0.8f, @0.0f ];
     NSArray *animationTimes = @[ @0.3f, @1.0f ];
@@ -117,46 +135,11 @@ static NSString * const kCharacteristicUUID = @"FFA28CDE-6525-4489-801C-1C060CAC
     opacityAnimation.removedOnCompletion = YES;
     opacityAnimation.duration = 0.15;
 	
-    [self.whiteScreen.layer addAnimation:opacityAnimation forKey:@"animation"];
+    [self.backgroundButton.layer addAnimation:opacityAnimation forKey:@"animation"];
 }
 
 #pragma mark - BlueTooth
 
-//- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
-//    switch (peripheral.state) {
-//        case CBPeripheralManagerStatePoweredOn:
-//            [self setupService];
-//            break;
-//        default:
-//            NSLog(@"Peripheral Manager did change state");
-//            break;
-//    }
-//}
-//- (void)setupService {
-//    // Creates the characteristic UUID
-//    CBUUID *characteristicUUID = [CBUUID UUIDWithString:kCharacteristicUUID];
-//	
-//    // Creates the characteristic
-//    self.customCharacteristic = [[CBMutableCharacteristic alloc] initWithType:characteristicUUID properties:CBCharacteristicPropertyNotify value:nil permissions:CBAttributePermissionsReadable];
-//	
-//    // Creates the service UUID
-//    CBUUID *serviceUUID = [CBUUID UUIDWithString:kServiceUUID];
-//	
-//    // Creates the service and adds the characteristic to it
-//    self.customService = [[CBMutableService alloc] initWithType:serviceUUID primary:YES];
-//	
-//    // Sets the characteristics for this service
-//    [self.customService setCharacteristics:@[self.customCharacteristic]];
-//	
-//    // Publishes the service
-//    [self.peripheralManager addService:self.customService];
-//}
-//- (void)peripheralManager:(CBPeripheralManager *)peripheral didAddService:(CBService *)service error:(NSError *)error {
-//    if (error == nil) {
-//        // Starts advertising the service
-//        [self.peripheralManager startAdvertising:@{ CBAdvertisementDataLocalNameKey : @"ICServer", CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:kServiceUUID]] }];
-//    }
-//}
 #pragma mark - settings View Controller
 
 - (void)settingsViewControllerDidFinish:(Settings *)controller

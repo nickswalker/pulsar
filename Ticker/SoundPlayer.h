@@ -12,4 +12,5 @@
 
 - (void) playTickSound;
 - (void) playTockSound;
+- (void) vibrate;
 @end

@@ -8,9 +8,10 @@
 
 #import "Settings.h"
 #import "Timer.h"
+#import "SignatureControl.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface Metronome : UIViewController <SettingsViewControllerDelegate, TimerDelegate, UIPopoverControllerDelegate, CBPeripheralManagerDelegate>
+@interface Metronome : UIViewController <SettingsViewControllerDelegate, TimerDelegate, UIPopoverControllerDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
@@ -18,23 +19,27 @@
 
 @property (nonatomic, retain)IBOutlet UILabel *bpmLabel;
 
-@property (nonatomic, retain)IBOutlet UISegmentedControl *signature;
+@property (nonatomic, retain)IBOutlet UISegmentedControl *signatureBottom;
+
+@property (nonatomic, retain)IBOutlet SignatureControl *signatureTop;
 
 @property (nonatomic, retain)IBOutlet UIStepper *stepper;
 
-@property (nonatomic, strong)UIView *whiteScreen;
+@property (nonatomic, strong)IBOutlet UIButton *backgroundButton;
 
 @property(nonatomic, strong)IBOutlet UISwitch *timerSwitch;
 
-@property (nonatomic, strong) CBPeripheralManager *manager;
 
-- (IBAction)changeBPM:(UIStepper*)stepper;
-- (void)flashScreen;
-- (void)beat;
+- (IBAction)updateBPM:(UIStepper*)stepper;
+- (IBAction)updateTimeSignature:(id)sender;
 - (IBAction)toggleTimer:(UISwitch*)toggle;
-- (void) settingsViewControllerDidFinish:(Settings *)controller;
-- (IBAction)changeSignature:(UISegmentedControl*)signature;
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
 - (IBAction)matchBpm:(UIButton *)sender;
+- (IBAction)cycleTimeSignature:(id)sender;
+- (void)flashScreen;
+- (void)beat;
+- (void) settingsViewControllerDidFinish:(Settings *)controller;
+- (void)changeTimeSignature:(NSDictionary*)timeSignature;
+
 
 @end

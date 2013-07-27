@@ -18,7 +18,6 @@
     AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:path])
 									 , &soundID);
 	AudioServicesPlaySystemSound (soundID);
-	AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 	
 	
 	
@@ -32,9 +31,11 @@
 	AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:path])
 									 , &soundID);
 	AudioServicesPlaySystemSound (soundID);
+
+}
+-(void)vibrate
+{
 	AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
-	
-
 
 @end
