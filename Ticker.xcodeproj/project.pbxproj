@@ -10,7 +10,7 @@
 		0153B3C3179A3638009744C0 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0153B3C2179A3638009744C0 /* Settings.m */; };
 		01565DD217A0A77E007BDC0A /* Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0153B372179A29E7009744C0 /* Timer.m */; };
 		0167864517A42F7700F71527 /* SignatureControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0167864417A42F7700F71527 /* SignatureControl.m */; };
-		0167864917A4809F00F71527 /* deltaTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0167864817A4809F00F71527 /* deltaTracker.m */; };
+		0167864917A4809F00F71527 /* DeltaTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0167864817A4809F00F71527 /* DeltaTracker.m */; };
 		0185E0241798484A00C16260 /* SoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B545411798296F00A4F4E0 /* SoundPlayer.m */; };
 		0192E30517A1895300DE45EC /* LED.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192E30417A1895300DE45EC /* LED.m */; };
 		01B54500179828B300A4F4E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B544FF179828B300A4F4E0 /* Foundation.framework */; };
@@ -52,8 +52,8 @@
 		0153B3C2179A3638009744C0 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		0167864317A42F7700F71527 /* SignatureControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureControl.h; sourceTree = "<group>"; };
 		0167864417A42F7700F71527 /* SignatureControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureControl.m; sourceTree = "<group>"; };
-		0167864717A4809F00F71527 /* deltaTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deltaTracker.h; sourceTree = "<group>"; };
-		0167864817A4809F00F71527 /* deltaTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deltaTracker.m; sourceTree = "<group>"; };
+		0167864717A4809F00F71527 /* DeltaTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeltaTracker.h; sourceTree = "<group>"; };
+		0167864817A4809F00F71527 /* DeltaTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeltaTracker.m; sourceTree = "<group>"; };
 		0192E30317A1895300DE45EC /* LED.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LED.h; sourceTree = "<group>"; };
 		0192E30417A1895300DE45EC /* LED.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LED.m; sourceTree = "<group>"; };
 		01B544FC179828B300A4F4E0 /* Ticker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ticker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,8 +161,8 @@
 				0153B3C2179A3638009744C0 /* Settings.m */,
 				01B5451C179828B300A4F4E0 /* Metronome.h */,
 				01B5451D179828B300A4F4E0 /* Metronome.m */,
-				0167864717A4809F00F71527 /* deltaTracker.h */,
-				0167864817A4809F00F71527 /* deltaTracker.m */,
+				0167864717A4809F00F71527 /* DeltaTracker.h */,
+				0167864817A4809F00F71527 /* DeltaTracker.m */,
 				0153B371179A29E7009744C0 /* Timer.h */,
 				0153B372179A29E7009744C0 /* Timer.m */,
 				0167864317A42F7700F71527 /* SignatureControl.h */,
@@ -332,7 +332,7 @@
 				01B5450E179828B300A4F4E0 /* main.m in Sources */,
 				0185E0241798484A00C16260 /* SoundPlayer.m in Sources */,
 				0153B3C3179A3638009744C0 /* Settings.m in Sources */,
-				0167864917A4809F00F71527 /* deltaTracker.m in Sources */,
+				0167864917A4809F00F71527 /* DeltaTracker.m in Sources */,
 				01B5451E179828B300A4F4E0 /* Metronome.m in Sources */,
 				01565DD217A0A77E007BDC0A /* Timer.m in Sources */,
 			);

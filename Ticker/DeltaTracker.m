@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Nick Walker. All rights reserved.
 //
 
-#import "deltaTracker.h"
+#import "DeltaTracker.h"
 
-@implementation deltaTracker
+@implementation DeltaTracker
 - (double)benchmark{
 	if (self.startTime == 0) {
 		self.startTime = [[NSDate date] timeIntervalSince1970];

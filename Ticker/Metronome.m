@@ -10,19 +10,18 @@
 #import "Timer.h"
 #import "LED.h"
 #import "SoundPlayer.h"
-#import "deltaTracker.h"
-#import <CoreBluetooth/CoreBluetooth.h>
-//@interface MainViewController ()
-//@end
+#import "DeltaTracker.h"
+
 @implementation Metronome
 
 Timer* timeKeeper;
 SoundPlayer* player;
 LED* led;
 NSUserDefaults* defaults;
-double startTime;
-double endTime;
+DeltaTracker* bpmTracker;
+DeltaTracker* timeSignatureTracker;
 NSDictionary* standardTimeSignatures;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -32,18 +31,20 @@ NSDictionary* standardTimeSignatures;
 	
 	timeKeeper = [[Timer alloc] initWithDelegate: self];
 	led = [[LED alloc] init];
+	bpmTracker = [[DeltaTracker alloc] init];
+	timeSignatureTracker = [[DeltaTracker alloc] init];
 	
 	//Match the display to the stepper value
 	self.stepper.value = [defaults integerForKey:@"bpm"];
 	[self updateBPM:self.stepper];
-	self.signatureBottom.selectedSegmentIndex = [defaults integerForKey:@"timeSignatureBottom"] ;
+	
 
 	//Setup player
 	player =  [[SoundPlayer alloc] init];
 	
-	//Setup top signature
-	self.signatureTop.numberOfDots = [defaults integerForKey:@"timeSignatureTop"];
-	self.signatureTop.currentDot = 1;
+	//Setup signature
+	NSLog(@"%d",[[defaults objectForKey:@"timeSignatureTop"] intValue]);
+	[self changeTimeSignature:@{@"top": [defaults objectForKey:@"timeSignatureTop"], @"bottom": [defaults objectForKey:@"timeSignatureBottom"]}];
 
 	// Start running if the metronome is on
 	[self toggleTimer:(UISwitch *)self.timerSwitch];
@@ -57,40 +58,22 @@ NSDictionary* standardTimeSignatures;
 											 @6: @{@"top": @12, @"bottom":@8},
 											 };
 }
-//TODO: Document this and add a short averaging mechanism, an array of past time deltas
-- (IBAction)matchBpm:(UIButton *)sender {
-	deltaTracker* tracker = [[deltaTracker alloc] init];
-	double delta = [tracker benchmark];
-	if(!delta) return;
-	else if( (60/delta) <20 ){
-		[tracker clear];
-		[tracker benchmark];
-		return;
-	}
-	self.stepper.value = 60/(delta) ;
-	[self updateBPM:self.stepper];
-}
 #pragma mark - UI
 -(IBAction)updateBPM:(UIStepper*)sender	{
 	self.bpmLabel.text = [NSString stringWithFormat:@"%d", (int)sender.value];
 	timeKeeper.bpm = sender.value;
 	[defaults setInteger:(int)sender.value forKey:@"bpm"];
 }
--(IBAction)toggleTimer:(UISwitch*)toggle{
-	if (toggle.on) [timeKeeper startTimer], timeKeeper.on=true;
-	else [timeKeeper stopTimer], timeKeeper.on=false;
-}
 - (IBAction)updateTimeSignature:(id)sender	{
 	int top = self.signatureTop.numberOfDots;
 	int bottom = [[self.signatureBottom titleForSegmentAtIndex:self.signatureBottom.selectedSegmentIndex] intValue];
-	timeKeeper.timeSignature = @{ @"top" : [NSNumber numberWithInt:top], @"bottom": [NSNumber numberWithInt:bottom] };
-	[defaults setInteger:bottom forKey:@"timeSignatureBottom"];
-	[defaults setInteger:top forKey:@"timeSignatureTop"];
+	NSDictionary* tempDict = @{ @"top" : [NSNumber numberWithInt:top], @"bottom": [NSNumber numberWithInt:bottom] };
+	[self changeTimeSignature:tempDict];
 }
-- (void) changeTimeSignature:(NSDictionary *)timeSignature	{
-	timeKeeper.timeSignature = timeSignature;
-	[defaults setInteger:(int)[timeSignature objectForKey:@"bottom"] forKey:@"timeSignatureBottom"];
-	[defaults setInteger:(int)[timeSignature objectForKey:@"top"] forKey:@"timeSignatureTop"];
+-(IBAction)toggleTimer:(UISwitch*)toggle{
+	self.signatureTop.currentDot = 0;
+	if (toggle.on) [timeKeeper startTimer], timeKeeper.on=true;
+	else [timeKeeper stopTimer], timeKeeper.on=false;
 }
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
     CGPoint translation = [recognizer translationInView:self.view];
@@ -98,15 +81,26 @@ NSDictionary* standardTimeSignatures;
 	[self updateBPM:self.stepper];
 	[recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
 }
+//TODO: Document this and add a short averaging mechanism, an array of past time deltas
+- (IBAction)matchBpm:(UIButton *)sender {
+	
+	double delta = [bpmTracker benchmark];
+	if(delta == 0) return;
+	else if( (60/delta) <20 ){
+		[bpmTracker clear];
+		[bpmTracker benchmark];
+		return;
+	}
+	self.stepper.value = 60/(delta) ;
+	[self updateBPM:self.stepper];
+}
 - (IBAction)cycleSignatures:(id)sender	{
-	deltaTracker* tracker = [[deltaTracker alloc] init];
-	double delta = [tracker benchmark];
+	double delta = [timeSignatureTracker benchmark];
 	if( (delta) > 2 ){
-		[tracker clear];
-		[tracker benchmark];
+		[timeSignatureTracker clear];
+		[timeSignatureTracker benchmark];
 	}
 
-	NSLog(@"Double");
 }
 -(void)beat
 {
@@ -121,7 +115,7 @@ NSDictionary* standardTimeSignatures;
 	if ([defaults boolForKey:@"vibrate"]) [player vibrate];
 }
 -(void)flashScreen {
-	self.backgroundButton.layer.opacity = 0;
+	self.backgroundButton.layer.opacity = .02;
 	self.backgroundButton.backgroundColor = [UIColor whiteColor];
     CAKeyframeAnimation *opacityAnimation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
     NSArray *animationValues = @[ @0.8f, @0.0f ];
@@ -138,8 +132,26 @@ NSDictionary* standardTimeSignatures;
     [self.backgroundButton.layer addAnimation:opacityAnimation forKey:@"animation"];
 }
 
-#pragma mark - BlueTooth
-
+- (void) changeTimeSignature:(NSDictionary *)timeSignature	{
+	int index = 0;
+	NSLog(@"%@", timeSignature);
+	int top = [[timeSignature objectForKey:@"top"] integerValue];
+	int bottom = [[timeSignature objectForKey:@"bottom"] integerValue];
+	NSLog(@"%d",top);
+	switch (bottom) {
+		case 2: index = 0; break;
+		case 4: index = 1; break;
+		case 8: index = 2; break;
+		case 16: index = 3; break;
+			
+	}
+	self.signatureBottom.selectedSegmentIndex = index;
+	self.signatureTop.numberOfDots = top;
+	self.signatureTop.currentDot = 0;
+	timeKeeper.timeSignature = timeSignature;
+	[defaults setInteger: bottom forKey:@"timeSignatureBottom"];
+	[defaults setInteger: top forKey:@"timeSignatureTop"];
+}
 #pragma mark - settings View Controller
 
 - (void)settingsViewControllerDidFinish:(Settings *)controller

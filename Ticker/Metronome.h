@@ -38,7 +38,7 @@
 - (IBAction)cycleTimeSignature:(id)sender;
 - (void)flashScreen;
 - (void)beat;
-- (void) settingsViewControllerDidFinish:(Settings *)controller;
+- (void)settingsViewControllerDidFinish:(Settings *)controller;
 - (void)changeTimeSignature:(NSDictionary*)timeSignature;
 
 

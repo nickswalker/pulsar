@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface deltaTracker : NSObject
+@interface DeltaTracker : NSObject
 @property double startTime;
 @property double endTime;
 
