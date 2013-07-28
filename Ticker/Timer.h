@@ -11,16 +11,16 @@
 @protocol TimerDelegate
 
 - (void)beat;
-- (void)countDidReset;
+
 @end
 
 @interface Timer : NSObject
 
 @property (weak, nonatomic) id <TimerDelegate> delegate;
 @property bool on;
-@property int currentBeat;
+@property NSUInteger currentBeat;
 @property NSDictionary* timeSignature;
-@property int bpm;
+@property NSUInteger bpm;
 
 
 - (id) initWithDelegate:(id)sentTarget;

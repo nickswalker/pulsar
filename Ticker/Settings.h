@@ -28,4 +28,5 @@
 -(IBAction)toggleLedFlash:(UISwitch*)ledSwitch;
 -(IBAction)toggleVibrate:(UISwitch*)vibrateSwitch;
 -(IBAction)toggleMaster:(UISwitch*)masterSwitch;
+
 @end

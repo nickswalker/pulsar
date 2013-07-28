@@ -31,7 +31,7 @@ id target;
 	[timer invalidate];
 	timer = nil;
 	[self beat:nil];
-	double speed = (double)SECONDS/self.bpm;
+	double speed = ((double)SECONDS)/self.bpm;
 	timer = [NSTimer scheduledTimerWithTimeInterval:speed target:self selector:@selector(beat:) userInfo:nil repeats:YES];
 }
 -(void)stopTimer{
@@ -47,21 +47,21 @@ id target;
 }
 -(void)updateCount{
 	self.currentBeat +=1;
-	if (self.currentBeat > [[self.timeSignature valueForKey:@"top" ] intValue] ) self.currentBeat= 1;
-	NSLog(@"%d",self.currentBeat);
+	if (self.currentBeat > [[self.timeSignature valueForKey:@"top" ] intValue]) self.currentBeat= 1;
+	NSLog(@"%u",self.currentBeat);
 	
 }
 
 #pragma mark - Getters and Setters
 
--(void)setBpm:(int)value	{
+-(void)setBpm:(NSUInteger)value	{
 	[self stopTimer];
 	_bpm = value;
 	if(self.on){
 		[self startTimer];
 	}
 }
-- (int)bpm	{
+- (NSUInteger)bpm	{
 	return _bpm;
 }
 - (void)setTimeSignature:(NSDictionary*)timeSignature	{

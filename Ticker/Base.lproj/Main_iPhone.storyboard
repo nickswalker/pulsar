@@ -20,7 +20,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -31,59 +31,45 @@
                                 </connections>
                             </button>
                             <view autoresizesSubviews="NO" opaque="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="XxR-Jg-CVn" userLabel="Control Container">
-                                <rect key="frame" x="59" y="149" width="202" height="270"/>
+                                <rect key="frame" x="59" y="163" width="202" height="243"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8U-Hw-Vpi" userLabel="BPM">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8U-Hw-Vpi" userLabel="BPM">
                                         <rect key="frame" x="61" y="0.0" width="81" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="72" id="y2c-oc-3hf"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="72"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
-                                    <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minimumValue="20" maximumValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="wn0-X4-jQs" userLabel="BPM Stepper">
-                                        <rect key="frame" x="54" y="84" width="94" height="29"/>
+                                    <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minimumValue="20" maximumValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="wn0-X4-jQs" userLabel="BPM Stepper">
+                                        <rect key="frame" x="54" y="89" width="94" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <connections>
                                             <action selector="updateBPM:" destination="rQl-PL-IFJ" eventType="valueChanged" id="kkU-fd-rhl"/>
                                         </connections>
                                     </stepper>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VmO-Ue-m7z" userLabel="Signature Bottom">
-                                        <rect key="frame" x="14" y="171" width="175" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="175" id="Kfx-F9-mEc"/>
-                                            <constraint firstAttribute="height" constant="28" id="pzS-Fd-UHb"/>
-                                        </constraints>
-                                        <segments>
-                                            <segment title="2"/>
-                                            <segment title="4"/>
-                                            <segment title="8"/>
-                                            <segment title="16"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="updateTimeSignature:" destination="rQl-PL-IFJ" eventType="valueChanged" id="ie5-bY-Qlc"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fLr-e0-dai" userLabel="Metronome Switch">
-                                        <rect key="frame" x="77" y="219" width="51" height="31"/>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fLr-e0-dai" userLabel="Metronome Switch">
+                                        <rect key="frame" x="77" y="209" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="toggleTimer:" destination="rQl-PL-IFJ" eventType="valueChanged" id="TH2-PX-4lJ"/>
                                         </connections>
                                     </switch>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W7s-79-25L" userLabel="Signature Top" customClass="SignatureControl">
-                                        <rect key="frame" x="20" y="126" width="162" height="30"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WGl-cH-1fT" customClass="TimeSignatureControl">
+                                        <rect key="frame" x="14" y="130" width="175" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Kp1-Dy-eI3"/>
-                                            <constraint firstAttribute="width" constant="162" id="Ybu-yT-4d5"/>
+                                            <constraint firstAttribute="width" constant="175" id="A6P-rK-04w"/>
+                                            <constraint firstAttribute="height" constant="62" id="jtd-Ta-lJ4"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="updateTimeSignature:" destination="rQl-PL-IFJ" eventType="valueChanged" id="pfh-mx-ECG"/>
+                                            <action selector="updateTimeSignature:" destination="rQl-PL-IFJ" eventType="valueChanged" id="BGc-1N-rOj"/>
                                         </connections>
                                     </view>
                                 </subviews>
@@ -91,18 +77,15 @@
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="M8U-Hw-Vpi" firstAttribute="top" secondItem="XxR-Jg-CVn" secondAttribute="top" id="5rg-6a-JB2"/>
-                                    <constraint firstAttribute="bottom" secondItem="fLr-e0-dai" secondAttribute="bottom" constant="20" id="Ae2-eQ-3nY"/>
-                                    <constraint firstAttribute="centerX" secondItem="VmO-Ue-m7z" secondAttribute="centerX" id="E9E-WE-jH9"/>
-                                    <constraint firstItem="fLr-e0-dai" firstAttribute="top" secondItem="VmO-Ue-m7z" secondAttribute="bottom" constant="20" id="L9O-l1-1pH"/>
-                                    <constraint firstItem="VmO-Ue-m7z" firstAttribute="top" secondItem="W7s-79-25L" secondAttribute="bottom" constant="15" id="RAO-pm-uPS"/>
-                                    <constraint firstItem="wn0-X4-jQs" firstAttribute="top" secondItem="M8U-Hw-Vpi" secondAttribute="bottom" constant="12" id="USg-b5-GvR"/>
+                                    <constraint firstItem="fLr-e0-dai" firstAttribute="top" secondItem="WGl-cH-1fT" secondAttribute="bottom" constant="17" id="6rl-gb-vaE"/>
+                                    <constraint firstAttribute="width" constant="202" id="GPv-YV-SZ1"/>
+                                    <constraint firstItem="WGl-cH-1fT" firstAttribute="top" secondItem="wn0-X4-jQs" secondAttribute="bottom" constant="12" id="Km4-TY-tkZ"/>
+                                    <constraint firstAttribute="height" constant="243" id="QxM-ag-hHe"/>
+                                    <constraint firstItem="wn0-X4-jQs" firstAttribute="top" secondItem="M8U-Hw-Vpi" secondAttribute="bottom" constant="17" id="USg-b5-GvR"/>
+                                    <constraint firstAttribute="centerX" secondItem="WGl-cH-1fT" secondAttribute="centerX" id="V5Y-cO-zXT"/>
                                     <constraint firstAttribute="centerX" secondItem="M8U-Hw-Vpi" secondAttribute="centerX" id="VdV-nd-05u"/>
                                     <constraint firstAttribute="centerX" secondItem="fLr-e0-dai" secondAttribute="centerX" id="byc-ec-CS7"/>
                                     <constraint firstAttribute="centerX" secondItem="wn0-X4-jQs" secondAttribute="centerX" id="cMR-BC-m7s"/>
-                                    <constraint firstItem="W7s-79-25L" firstAttribute="top" secondItem="wn0-X4-jQs" secondAttribute="bottom" constant="13" id="o8q-7C-aDg"/>
-                                    <constraint firstAttribute="width" constant="202" id="tgW-ed-ddf"/>
-                                    <constraint firstAttribute="height" constant="270" id="wdp-Q1-p4y"/>
-                                    <constraint firstAttribute="centerX" secondItem="W7s-79-25L" secondAttribute="centerX" id="yqV-0B-EGF"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="j67-1B-cl2" appends="YES" id="Ext-bL-BKI"/>
@@ -121,7 +104,7 @@
                                 </state>
                                 <connections>
                                     <action selector="togglePopover:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="F9D-3L-Icb"/>
-                                    <segue destination="fzf-sl-JNw" kind="modal" identifier="showAlternate" modalTransitionStyle="flipHorizontal" id="JpO-5f-yoT"/>
+                                    <segue destination="fzf-sl-JNw" kind="modal" identifier="showAlternate" modalTransitionStyle="coverVertical" id="JpO-5f-yoT"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -137,9 +120,8 @@
                     <connections>
                         <outlet property="backgroundButton" destination="PMX-aB-L4e" id="And-SP-MYk"/>
                         <outlet property="bpmLabel" destination="M8U-Hw-Vpi" id="fxf-C7-cag"/>
-                        <outlet property="signatureBottom" destination="VmO-Ue-m7z" id="b8e-AS-p0N"/>
-                        <outlet property="signatureTop" destination="W7s-79-25L" id="sge-fT-95G"/>
                         <outlet property="stepper" destination="wn0-X4-jQs" id="5Uq-Bm-wKw"/>
+                        <outlet property="timeSignatureControl" destination="WGl-cH-1fT" id="mMI-8v-gxY"/>
                         <outlet property="timerSwitch" destination="fLr-e0-dai" id="B7h-Y0-cxl"/>
                     </connections>
                 </viewController>
@@ -180,10 +162,60 @@
                             </items>
                         </navigationBar>
                         <sections>
+                            <tableViewSection id="BAN-dI-WFY">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="s3z-vd-6wM">
+                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cQ4-LT-J8p">
+                                                    <rect key="frame" x="251" y="6" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </switch>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Division" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlp-6O-0M2">
+                                                    <rect key="frame" x="20" y="11" width="56" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CC0-RM-1ec">
+                                        <rect key="frame" x="0.0" y="88" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SMQ-gA-IZb">
+                                                    <rect key="frame" x="251" y="6" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </switch>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subdivision" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zlj-dW-dlp">
+                                                    <rect key="frame" x="20" y="11" width="84" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="On Beat" id="at7-NC-877">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="yO0-pl-f1z">
-                                        <rect key="frame" x="0.0" y="99" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="181" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -209,7 +241,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="jNu-aj-9T4">
-                                        <rect key="frame" x="0.0" y="143" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="225" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -235,7 +267,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="XwI-NC-ShK">
-                                        <rect key="frame" x="0.0" y="187" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="269" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -265,7 +297,7 @@
                             <tableViewSection headerTitle="Sync" id="37I-h6-5FG">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="2Pv-Qe-OVt">
-                                        <rect key="frame" x="0.0" y="280" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="362" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -312,6 +344,45 @@
             <point key="canvasLocation" x="424" y="182"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="Metronome" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Metronome.h"/>
+            <relationships>
+                <relationship kind="action" name="cycleTimeSignature:"/>
+                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="matchBpm:" candidateClass="UIButton"/>
+                <relationship kind="action" name="togglePopover:"/>
+                <relationship kind="action" name="toggleTimer:" candidateClass="UISwitch"/>
+                <relationship kind="action" name="updateBPM:" candidateClass="UIStepper"/>
+                <relationship kind="action" name="updateTimeSignature:" candidateClass="TimeSignatureControl"/>
+                <relationship kind="outlet" name="backgroundButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bpmLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="stepper" candidateClass="UIStepper"/>
+                <relationship kind="outlet" name="timeSignatureControl" candidateClass="TimeSignatureControl"/>
+                <relationship kind="outlet" name="timerSwitch" candidateClass="UISwitch"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="Settings" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Settings.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="toggleLedFlash:" candidateClass="UISwitch"/>
+                <relationship kind="action" name="toggleMaster:" candidateClass="UISwitch"/>
+                <relationship kind="action" name="toggleScreenFlash:" candidateClass="UISwitch"/>
+                <relationship kind="action" name="toggleVibrate:" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="ledFlashControl" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="masterControl" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="screenFlashControl" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="vibrateControl" candidateClass="UISwitch"/>
+            </relationships>
+        </class>
+        <class className="TimeSignatureControl" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TimeSignatureControl.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

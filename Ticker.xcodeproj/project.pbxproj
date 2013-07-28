@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010E36FC17A5859D00FFD257 /* TimeSignatureControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 010E36FB17A5859D00FFD257 /* TimeSignatureControl.m */; };
 		0153B3C3179A3638009744C0 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0153B3C2179A3638009744C0 /* Settings.m */; };
 		01565DD217A0A77E007BDC0A /* Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0153B372179A29E7009744C0 /* Timer.m */; };
-		0167864517A42F7700F71527 /* SignatureControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0167864417A42F7700F71527 /* SignatureControl.m */; };
+		0167864517A42F7700F71527 /* BeatsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0167864417A42F7700F71527 /* BeatsControl.m */; };
 		0167864917A4809F00F71527 /* DeltaTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0167864817A4809F00F71527 /* DeltaTracker.m */; };
 		0185E0241798484A00C16260 /* SoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B545411798296F00A4F4E0 /* SoundPlayer.m */; };
 		0192E30517A1895300DE45EC /* LED.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192E30417A1895300DE45EC /* LED.m */; };
@@ -46,12 +47,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		010E36FA17A5859D00FFD257 /* TimeSignatureControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSignatureControl.h; sourceTree = "<group>"; };
+		010E36FB17A5859D00FFD257 /* TimeSignatureControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSignatureControl.m; sourceTree = "<group>"; };
 		0153B371179A29E7009744C0 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
 		0153B372179A29E7009744C0 /* Timer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timer.m; sourceTree = "<group>"; };
 		0153B3C1179A3638009744C0 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		0153B3C2179A3638009744C0 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
-		0167864317A42F7700F71527 /* SignatureControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureControl.h; sourceTree = "<group>"; };
-		0167864417A42F7700F71527 /* SignatureControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureControl.m; sourceTree = "<group>"; };
+		0167864317A42F7700F71527 /* BeatsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatsControl.h; sourceTree = "<group>"; };
+		0167864417A42F7700F71527 /* BeatsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatsControl.m; sourceTree = "<group>"; };
 		0167864717A4809F00F71527 /* DeltaTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeltaTracker.h; sourceTree = "<group>"; };
 		0167864817A4809F00F71527 /* DeltaTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeltaTracker.m; sourceTree = "<group>"; };
 		0192E30317A1895300DE45EC /* LED.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LED.h; sourceTree = "<group>"; };
@@ -165,8 +168,10 @@
 				0167864817A4809F00F71527 /* DeltaTracker.m */,
 				0153B371179A29E7009744C0 /* Timer.h */,
 				0153B372179A29E7009744C0 /* Timer.m */,
-				0167864317A42F7700F71527 /* SignatureControl.h */,
-				0167864417A42F7700F71527 /* SignatureControl.m */,
+				010E36FA17A5859D00FFD257 /* TimeSignatureControl.h */,
+				010E36FB17A5859D00FFD257 /* TimeSignatureControl.m */,
+				0167864317A42F7700F71527 /* BeatsControl.h */,
+				0167864417A42F7700F71527 /* BeatsControl.m */,
 				0192E30317A1895300DE45EC /* LED.h */,
 				0192E30417A1895300DE45EC /* LED.m */,
 				01B545401798296F00A4F4E0 /* SoundPlayer.h */,
@@ -326,9 +331,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0192E30517A1895300DE45EC /* LED.m in Sources */,
-				0167864517A42F7700F71527 /* SignatureControl.m in Sources */,
+				0167864517A42F7700F71527 /* BeatsControl.m in Sources */,
 				01B54512179828B300A4F4E0 /* AppDelegate.m in Sources */,
 				01B5451B179828B300A4F4E0 /* Ticker.xcdatamodeld in Sources */,
+				010E36FC17A5859D00FFD257 /* TimeSignatureControl.m in Sources */,
 				01B5450E179828B300A4F4E0 /* main.m in Sources */,
 				0185E0241798484A00C16260 /* SoundPlayer.m in Sources */,
 				0153B3C3179A3638009744C0 /* Settings.m in Sources */,

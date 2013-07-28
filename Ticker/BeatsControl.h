@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignatureControl : UIControl
+@interface BeatsControl : UIControl
 
-@property int currentDot;
-@property int numberOfDots;
-@property int radius;
+@property NSUInteger currentDot;
+@property NSUInteger numberOfDots;
+@property NSUInteger radius;
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 @end

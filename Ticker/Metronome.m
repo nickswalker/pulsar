@@ -43,8 +43,7 @@ NSDictionary* standardTimeSignatures;
 	player =  [[SoundPlayer alloc] init];
 	
 	//Setup signature
-	NSLog(@"%d",[[defaults objectForKey:@"timeSignatureTop"] intValue]);
-	[self changeTimeSignature:@{@"top": [defaults objectForKey:@"timeSignatureTop"], @"bottom": [defaults objectForKey:@"timeSignatureBottom"]}];
+	self.timeSignatureControl.timeSignature= @{@"top": [defaults objectForKey:@"timeSignatureTop"], @"bottom": [defaults objectForKey:@"timeSignatureBottom"]};
 
 	// Start running if the metronome is on
 	[self toggleTimer:(UISwitch *)self.timerSwitch];
@@ -61,19 +60,30 @@ NSDictionary* standardTimeSignatures;
 #pragma mark - UI
 -(IBAction)updateBPM:(UIStepper*)sender	{
 	self.bpmLabel.text = [NSString stringWithFormat:@"%d", (int)sender.value];
-	timeKeeper.bpm = sender.value;
+	timeKeeper.bpm = (NSUInteger)sender.value;
 	[defaults setInteger:(int)sender.value forKey:@"bpm"];
 }
-- (IBAction)updateTimeSignature:(id)sender	{
-	int top = self.signatureTop.numberOfDots;
-	int bottom = [[self.signatureBottom titleForSegmentAtIndex:self.signatureBottom.selectedSegmentIndex] intValue];
-	NSDictionary* tempDict = @{ @"top" : [NSNumber numberWithInt:top], @"bottom": [NSNumber numberWithInt:bottom] };
-	[self changeTimeSignature:tempDict];
+- (IBAction)updateTimeSignature:(TimeSignatureControl*)timeSignatureControl	{
+	int top = [[timeSignatureControl.timeSignature objectForKey:@"top"] integerValue];
+	int bottom = [[timeSignatureControl.timeSignature objectForKey:@"bottom"] integerValue];
+	
+	
+	timeKeeper.timeSignature = timeSignatureControl.timeSignature;
+	[defaults setInteger: bottom forKey:@"timeSignatureBottom"];
+	[defaults setInteger: top forKey:@"timeSignatureTop"];
 }
 -(IBAction)toggleTimer:(UISwitch*)toggle{
-	self.signatureTop.currentDot = 0;
-	if (toggle.on) [timeKeeper startTimer], timeKeeper.on=true;
-	else [timeKeeper stopTimer], timeKeeper.on=false;
+	self.timeSignatureControl.topControl.currentDot = 0;
+	if (toggle.on) {
+		[timeKeeper startTimer];
+		timeKeeper.on=true;
+		[UIApplication sharedApplication].idleTimerDisabled = YES;
+	}
+	else {
+		[timeKeeper stopTimer];
+		timeKeeper.on=false;
+		[UIApplication sharedApplication].idleTimerDisabled = NO;
+	}
 }
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
     CGPoint translation = [recognizer translationInView:self.view];
@@ -94,12 +104,13 @@ NSDictionary* standardTimeSignatures;
 	self.stepper.value = 60/(delta) ;
 	[self updateBPM:self.stepper];
 }
-- (IBAction)cycleSignatures:(id)sender	{
+- (IBAction)cycleTimeSignature:(id)sender	{
 	double delta = [timeSignatureTracker benchmark];
 	if( (delta) > 2 ){
 		[timeSignatureTracker clear];
 		[timeSignatureTracker benchmark];
 	}
+	//Iterate over the common signatures and send them to the control. Pass the new control to the updateTimeSignatureMethod
 
 }
 -(void)beat
@@ -109,7 +120,7 @@ NSDictionary* standardTimeSignatures;
 	}else {
 		[player playTockSound];
 	}
-	self.signatureTop.currentDot = timeKeeper.currentBeat;
+	self.timeSignatureControl.topControl.currentDot = timeKeeper.currentBeat;
 	if ([defaults boolForKey:@"screenFlash"]) [self flashScreen];
 	if ([defaults boolForKey:@"ledFlash"]) [led toggleTorch];
 	if ([defaults boolForKey:@"vibrate"]) [player vibrate];
@@ -132,31 +143,13 @@ NSDictionary* standardTimeSignatures;
     [self.backgroundButton.layer addAnimation:opacityAnimation forKey:@"animation"];
 }
 
-- (void) changeTimeSignature:(NSDictionary *)timeSignature	{
-	int index = 0;
-	NSLog(@"%@", timeSignature);
-	int top = [[timeSignature objectForKey:@"top"] integerValue];
-	int bottom = [[timeSignature objectForKey:@"bottom"] integerValue];
-	NSLog(@"%d",top);
-	switch (bottom) {
-		case 2: index = 0; break;
-		case 4: index = 1; break;
-		case 8: index = 2; break;
-		case 16: index = 3; break;
-			
-	}
-	self.signatureBottom.selectedSegmentIndex = index;
-	self.signatureTop.numberOfDots = top;
-	self.signatureTop.currentDot = 0;
-	timeKeeper.timeSignature = timeSignature;
-	[defaults setInteger: bottom forKey:@"timeSignatureBottom"];
-	[defaults setInteger: top forKey:@"timeSignatureTop"];
-}
+
 #pragma mark - settings View Controller
 
 - (void)settingsViewControllerDidFinish:(Settings *)controller
 {
-	if (self.timerSwitch.isOn) [timeKeeper startTimer];
+	self.timerSwitch.on = false;
+	[self toggleTimer:self.timerSwitch];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {

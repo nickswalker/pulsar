@@ -8,7 +8,7 @@
 
 #import "Settings.h"
 #import "Timer.h"
-#import "SignatureControl.h"
+#import "TimeSignatureControl.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
 @interface Metronome : UIViewController <SettingsViewControllerDelegate, TimerDelegate, UIPopoverControllerDelegate>
@@ -19,9 +19,7 @@
 
 @property (nonatomic, retain)IBOutlet UILabel *bpmLabel;
 
-@property (nonatomic, retain)IBOutlet UISegmentedControl *signatureBottom;
-
-@property (nonatomic, retain)IBOutlet SignatureControl *signatureTop;
+@property (nonatomic, retain)IBOutlet TimeSignatureControl* timeSignatureControl;
 
 @property (nonatomic, retain)IBOutlet UIStepper *stepper;
 
@@ -39,7 +37,6 @@
 - (void)flashScreen;
 - (void)beat;
 - (void)settingsViewControllerDidFinish:(Settings *)controller;
-- (void)changeTimeSignature:(NSDictionary*)timeSignature;
 
 
 @end
