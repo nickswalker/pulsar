@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSDictionary *appDefaults = @{ @"screenFlash": @YES, @"ledFlash": @NO, @"vibrate": @NO, @"master": @NO, @"bpm": @60, @"timeSignatureTop": @4,@"timeSignatureBottom": @4 };
+    NSDictionary *appDefaults = @{ @"screenFlash": @YES, @"ledFlash": @NO, @"vibrate": @NO, @"master": @NO, @"bpm": @60, @"accents":@[@1,@4], @"timeSignature":@[@4,@4] };
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
 
 	Metronome *controller = (Metronome *)self.window.rootViewController;

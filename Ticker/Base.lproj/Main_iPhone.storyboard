@@ -188,7 +188,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CC0-RM-1ec">
-                                        <rect key="frame" x="0.0" y="88" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -210,12 +210,28 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="cfD-pd-f3E">
+                                        <rect key="frame" x="0.0" y="132" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kl4-gA-TJQ" customClass="AccentsControl">
+                                                    <rect key="frame" x="20" y="11" width="280" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="On Beat" id="at7-NC-877">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="yO0-pl-f1z">
-                                        <rect key="frame" x="0.0" y="181" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="225" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -241,7 +257,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="jNu-aj-9T4">
-                                        <rect key="frame" x="0.0" y="225" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="269" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -267,7 +283,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="XwI-NC-ShK">
-                                        <rect key="frame" x="0.0" y="269" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="313" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -297,7 +313,7 @@
                             <tableViewSection headerTitle="Sync" id="37I-h6-5FG">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="2Pv-Qe-OVt">
-                                        <rect key="frame" x="0.0" y="362" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="406" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -344,45 +360,6 @@
             <point key="canvasLocation" x="424" y="182"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="Metronome" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Metronome.h"/>
-            <relationships>
-                <relationship kind="action" name="cycleTimeSignature:"/>
-                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="matchBpm:" candidateClass="UIButton"/>
-                <relationship kind="action" name="togglePopover:"/>
-                <relationship kind="action" name="toggleTimer:" candidateClass="UISwitch"/>
-                <relationship kind="action" name="updateBPM:" candidateClass="UIStepper"/>
-                <relationship kind="action" name="updateTimeSignature:" candidateClass="TimeSignatureControl"/>
-                <relationship kind="outlet" name="backgroundButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="bpmLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="stepper" candidateClass="UIStepper"/>
-                <relationship kind="outlet" name="timeSignatureControl" candidateClass="TimeSignatureControl"/>
-                <relationship kind="outlet" name="timerSwitch" candidateClass="UISwitch"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="Settings" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Settings.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="toggleLedFlash:" candidateClass="UISwitch"/>
-                <relationship kind="action" name="toggleMaster:" candidateClass="UISwitch"/>
-                <relationship kind="action" name="toggleScreenFlash:" candidateClass="UISwitch"/>
-                <relationship kind="action" name="toggleVibrate:" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="ledFlashControl" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="masterControl" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="screenFlashControl" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="vibrateControl" candidateClass="UISwitch"/>
-            </relationships>
-        </class>
-        <class className="TimeSignatureControl" superclassName="UIControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TimeSignatureControl.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

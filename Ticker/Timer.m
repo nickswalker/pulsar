@@ -47,7 +47,7 @@ id target;
 }
 -(void)updateCount{
 	self.currentBeat +=1;
-	if (self.currentBeat > [[self.timeSignature valueForKey:@"top" ] intValue]) self.currentBeat= 1;
+	if (self.currentBeat > [self.timeSignature[0] intValue]) self.currentBeat= 1;
 	NSLog(@"%u",self.currentBeat);
 	
 }
@@ -64,15 +64,15 @@ id target;
 - (NSUInteger)bpm	{
 	return _bpm;
 }
-- (void)setTimeSignature:(NSDictionary*)timeSignature	{
+- (void)setTimeSignature:(NSArray*)timeSignature	{
 	
 	[self stopTimer];
-	_timeSignature = @{ @"top": [timeSignature objectForKey:@"top"], @"bottom": [timeSignature objectForKey:@"bottom"]};
+	_timeSignature = timeSignature;
 	if(self.on){
 		[self startTimer];
 	}
 }
--(NSDictionary*)timeSignature	{
+-(NSArray*)timeSignature	{
 	return _timeSignature;
 }
 @end

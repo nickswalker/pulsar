@@ -12,7 +12,7 @@
 
 @property BeatsControl* topControl;
 @property UISegmentedControl* bottomControl;
-@property NSDictionary* timeSignature;
+@property NSArray* timeSignature;
 
 - (void) updateTimeSignature:(id)sender;
 @end

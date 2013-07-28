@@ -20,7 +20,7 @@ LED* led;
 NSUserDefaults* defaults;
 DeltaTracker* bpmTracker;
 DeltaTracker* timeSignatureTracker;
-NSDictionary* standardTimeSignatures;
+NSArray* standardTimeSignatures;
 
 - (void)viewDidLoad
 {
@@ -38,24 +38,24 @@ NSDictionary* standardTimeSignatures;
 	self.stepper.value = [defaults integerForKey:@"bpm"];
 	[self updateBPM:self.stepper];
 	
-
+	
 	//Setup player
 	player =  [[SoundPlayer alloc] init];
 	
 	//Setup signature
-	self.timeSignatureControl.timeSignature= @{@"top": [defaults objectForKey:@"timeSignatureTop"], @"bottom": [defaults objectForKey:@"timeSignatureBottom"]};
+	self.timeSignatureControl.timeSignature= [defaults objectForKey:@"timeSignature"];
 
 	// Start running if the metronome is on
 	[self toggleTimer:(UISwitch *)self.timerSwitch];
-	standardTimeSignatures = @{
-											 @1: @{@"top": @4, @"bottom":@4},
-											 @2: @{@"top": @2, @"bottom":@4},
-											 @3: @{@"top": @6, @"bottom":@8},
-											 @4: @{@"top": @3, @"bottom":@4},
-											 @5: @{@"top": @9, @"bottom":@8},
-											 @5: @{@"top": @3, @"bottom":@8},
-											 @6: @{@"top": @12, @"bottom":@8},
-											 };
+	standardTimeSignatures = @[
+							   @[ @4, @4],
+							   @[ @2, @4],
+							   @[ @6, @8],
+							   @[ @3, @4],
+							   @[ @9, @8],
+							   @[ @3, @8],
+							   @[ @12, @8]
+							];
 }
 #pragma mark - UI
 -(IBAction)updateBPM:(UIStepper*)sender	{
@@ -64,13 +64,9 @@ NSDictionary* standardTimeSignatures;
 	[defaults setInteger:(int)sender.value forKey:@"bpm"];
 }
 - (IBAction)updateTimeSignature:(TimeSignatureControl*)timeSignatureControl	{
-	int top = [[timeSignatureControl.timeSignature objectForKey:@"top"] integerValue];
-	int bottom = [[timeSignatureControl.timeSignature objectForKey:@"bottom"] integerValue];
-	
 	
 	timeKeeper.timeSignature = timeSignatureControl.timeSignature;
-	[defaults setInteger: bottom forKey:@"timeSignatureBottom"];
-	[defaults setInteger: top forKey:@"timeSignatureTop"];
+	[defaults setObject:timeSignatureControl.timeSignature forKey:@"timeSignature"];
 }
 -(IBAction)toggleTimer:(UISwitch*)toggle{
 	self.timeSignatureControl.topControl.currentDot = 0;

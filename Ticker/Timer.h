@@ -19,7 +19,7 @@
 @property (weak, nonatomic) id <TimerDelegate> delegate;
 @property bool on;
 @property NSUInteger currentBeat;
-@property NSDictionary* timeSignature;
+@property NSArray* timeSignature;
 @property NSUInteger bpm;
 
 
