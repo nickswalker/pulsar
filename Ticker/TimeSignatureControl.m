@@ -32,7 +32,7 @@
 	[self addSubview:self.topControl];
 }
 - (void) updateTimeSignature:(id)sender	{
-	self.timeSignature = @[[NSNumber numberWithInt:self.topControl.numberOfDots], [self.bottomControl titleForSegmentAtIndex:self.bottomControl.selectedSegmentIndex]];
+	self.timeSignature = @[[NSNumber numberWithInt:self.topControl.numberOfBeats], [self.bottomControl titleForSegmentAtIndex:self.bottomControl.selectedSegmentIndex]];
 }
 
 #pragma mark - Getters and Setters
@@ -51,12 +51,13 @@
 	}
 	
 	self.bottomControl.selectedSegmentIndex = index;
-	self.topControl.numberOfDots = top;
-	self.topControl.currentDot = 0;
+	self.topControl.numberOfBeats = top;
+	self.topControl.currentBeat = 0;
 	_timeSignature = timeSignature;
 	[self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 -(NSArray*) timeSignature	{
 	return _timeSignature;
 }
+
 @end

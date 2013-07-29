@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BeatControl.h"
 
 @interface BeatsControl : UIControl
 
-@property NSUInteger currentDot;
-@property NSUInteger numberOfDots;
+@property NSUInteger currentBeat;
+@property NSUInteger numberOfBeats;
 @property NSUInteger radius;
+@property NSArray* accents;
+@property UITapGestureRecognizer* tapRecognizer;
+@property UIButton* backgroundButton;
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)handleTap:(UITapGestureRecognizer*)recognizer;
+- (bool)beatIsAccent:(NSUInteger)beat;
+- (void)updateAccent:(BeatControl*)beat;
 @end

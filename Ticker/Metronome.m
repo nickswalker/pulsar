@@ -21,6 +21,7 @@ NSUserDefaults* defaults;
 DeltaTracker* bpmTracker;
 DeltaTracker* timeSignatureTracker;
 NSArray* standardTimeSignatures;
+int i;
 
 - (void)viewDidLoad
 {
@@ -37,13 +38,16 @@ NSArray* standardTimeSignatures;
 	//Match the display to the stepper value
 	self.stepper.value = [defaults integerForKey:@"bpm"];
 	[self updateBPM:self.stepper];
-	
+	[defaults setObject:@[@2] forKey:@"accents"];
+	NSLog(@"%@", [defaults objectForKey:@"accents"]);
 	
 	//Setup player
 	player =  [[SoundPlayer alloc] init];
 	
 	//Setup signature
+	NSLog(@"%@", [defaults objectForKey:@"timeSignature"]);
 	self.timeSignatureControl.timeSignature= [defaults objectForKey:@"timeSignature"];
+	self.timeSignatureControl.topControl.accents = [defaults objectForKey:@"accents"];
 
 	// Start running if the metronome is on
 	[self toggleTimer:(UISwitch *)self.timerSwitch];
@@ -69,7 +73,7 @@ NSArray* standardTimeSignatures;
 	[defaults setObject:timeSignatureControl.timeSignature forKey:@"timeSignature"];
 }
 -(IBAction)toggleTimer:(UISwitch*)toggle{
-	self.timeSignatureControl.topControl.currentDot = 0;
+	self.timeSignatureControl.topControl.currentBeat = 0;
 	if (toggle.on) {
 		[timeKeeper startTimer];
 		timeKeeper.on=true;
@@ -105,18 +109,19 @@ NSArray* standardTimeSignatures;
 	if( (delta) > 2 ){
 		[timeSignatureTracker clear];
 		[timeSignatureTracker benchmark];
+		i = 0;
 	}
-	//Iterate over the common signatures and send them to the control. Pass the new control to the updateTimeSignatureMethod
-
+	self.timeSignatureControl.timeSignature= [standardTimeSignatures objectAtIndex:i];
+	i++;
 }
 -(void)beat
 {
-	if (timeKeeper.currentBeat == 1) {
+	if ([self.timeSignatureControl.topControl beatIsAccent: timeKeeper.currentBeat]) {
 		[player playTickSound];
 	}else {
 		[player playTockSound];
 	}
-	self.timeSignatureControl.topControl.currentDot = timeKeeper.currentBeat;
+	self.timeSignatureControl.topControl.currentBeat = timeKeeper.currentBeat;
 	if ([defaults boolForKey:@"screenFlash"]) [self flashScreen];
 	if ([defaults boolForKey:@"ledFlash"]) [led toggleTorch];
 	if ([defaults boolForKey:@"vibrate"]) [player vibrate];

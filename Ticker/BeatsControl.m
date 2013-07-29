@@ -7,65 +7,100 @@
 //
 
 #import "BeatsControl.h"
+#import "BeatControl.h"
 
 @implementation BeatsControl
-@synthesize numberOfDots = _numberOfDots,
-	currentDot = _currentDot;
+@synthesize numberOfBeats = _numberOfBeats,
+currentBeat = _currentBeat,
+accents = _accents;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+		self.tapRecognizer = [[UITapGestureRecognizer alloc] init];
+		[self.tapRecognizer addTarget:self action:@selector(handleTap:)];
+		[self addGestureRecognizer:self.tapRecognizer];
     }
     return self;
 }
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-	if (self.numberOfDots ==12) self.numberOfDots = 1;
-	self.numberOfDots++;
+- (void)handleTap:(UITapGestureRecognizer*)recognizer{
+	NSLog(@"tap");
+	if (self.numberOfBeats ==12) self.numberOfBeats = 1;
+	self.numberOfBeats++;
 	[self sendActionsForControlEvents:UIControlEventValueChanged];
 }
-
+- (void)updateAccent:(BeatControl*)beat	{
+	NSMutableArray* tempArray;
+	if([self beatIsAccent:beat.number]){
+		tempArray = [self.accents mutableCopy] ;
+		[tempArray removeObject:[NSNumber numberWithInt:beat.number]];
+	}
+	else{
+		tempArray = [self.accents mutableCopy] ;
+		[tempArray addObject:[NSNumber numberWithInt:beat.number]];
+	}
+	self.accents = tempArray;
+}
 - (void)drawRect:(CGRect)rect
 {
-	//NSLog(NSStringFromCGRect(rect));
-	
-	int xwidth = rect.size.width/self.numberOfDots;
-	CGContextRef ctx = UIGraphicsGetCurrentContext();
-	
-	for (int i = 0; i < self.numberOfDots; i++) {
+	[self.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
+	[self clearsContextBeforeDrawing];
+	int xwidth = rect.size.width/self.numberOfBeats;
+	for (int i = 0; i < self.numberOfBeats; i++) {
 		CGRect tempRect = CGRectMake((i*xwidth), 0, xwidth, rect.size.height);
-		CGPoint center = CGPointMake(CGRectGetMidX(tempRect), CGRectGetMidY(tempRect));
+		BeatControl* tempBeatControl = [[BeatControl alloc] init];
+		tempBeatControl.frame = tempRect;
+		tempBeatControl.backgroundColor = [UIColor clearColor];
+		tempBeatControl.number = i+1;
+		if([self beatIsAccent:i+1]) tempBeatControl.accent = true;
+		else tempBeatControl.accent = false;
+		if (i+1 == self.currentBeat) tempBeatControl.current = true;
+		else tempBeatControl.current = false;
 		
-		CGRect tempCircleRect = CGRectMake(center.x-self.radius, center.y-self.radius, self.radius*2, self.radius*2);
-	
-		CGContextAddEllipseInRect(ctx, tempCircleRect);
-		
-		CGContextSetLineWidth(ctx, 1.0f);
-		if (i+1 == self.currentDot) CGContextSetFillColor(ctx, CGColorGetComponents([self.tintColor CGColor])), CGContextSetStrokeColor(ctx, CGColorGetComponents([[UIColor clearColor] CGColor]));
-		else CGContextSetFillColor(ctx, CGColorGetComponents([[UIColor clearColor] CGColor])), CGContextSetStrokeColor(ctx, CGColorGetComponents([self.tintColor CGColor]));
-		CGContextFillEllipseInRect(ctx, tempCircleRect);
-	
-		CGContextStrokeEllipseInRect(ctx, tempCircleRect);
-		
+		[tempBeatControl addTarget:self action:@selector(updateAccent:) forControlEvents:UIControlEventValueChanged];
+		[self addSubview:tempBeatControl];
 	}
-   
+}
+- (bool)beatIsAccent:(NSUInteger)beat{
+	NSNumber* testBeat = [NSNumber numberWithInt:beat];
+	for (NSNumber* beat in self.accents) {
+		if ( [beat isEqualToNumber:testBeat] ) {
+			return true;
+		}
+	}
+			 return false;
+	
+}
+- (void)longPress:(UILongPressGestureRecognizer*)gesture {
+    if ( gesture.state == UIGestureRecognizerStateEnded ) {
+        NSLog(@"Long Press");
+    }
 }
 #pragma mark - Getters and Setters
 
-- (NSUInteger)numberOfDots	{
-	return _numberOfDots;
+- (NSUInteger)numberOfBeats	{
+	return _numberOfBeats;
 }
 
-- (void)setNumberOfDots:(NSUInteger)numberOfDots	{
-	_numberOfDots = numberOfDots;
+- (void)setNumberOfBeats:(NSUInteger)numberOfBeats	{
+	_numberOfBeats = numberOfBeats;
 	[self setNeedsDisplay];
 }
-- (NSUInteger)currentDot	{
-	return _currentDot;
+- (NSUInteger)currentBeat	{
+	return _currentBeat;
 }
 
-- (void)setCurrentDot:(NSUInteger)currentDot	{
-	_currentDot = currentDot;
+- (void)setCurrentBeat:(NSUInteger)currentBeat	{
+	_currentBeat = currentBeat;
 	[self setNeedsDisplay];
 }
+- (NSArray*)accents	{
+	return _accents;
+}
 
+- (void)setAccents:(NSArray*)accents	{
+	_accents = accents;
+	[self setNeedsDisplay];
+	[self sendActionsForControlEvents:UIControlEventValueChanged];
+}
 @end
