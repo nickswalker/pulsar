@@ -24,10 +24,7 @@ accents = _accents;
     return self;
 }
 - (void)handleTap:(UITapGestureRecognizer*)recognizer{
-	NSLog(@"tap");
-	if (self.numberOfBeats ==12) self.numberOfBeats = 1;
-	self.numberOfBeats++;
-	[self sendActionsForControlEvents:UIControlEventValueChanged];
+	[self sendActionsForControlEvents:UIControlEventTouchUpInside];
 }
 - (void)updateAccent:(BeatControl*)beat	{
 	NSMutableArray* tempArray;
@@ -40,6 +37,19 @@ accents = _accents;
 		[tempArray addObject:[NSNumber numberWithInt:beat.number]];
 	}
 	self.accents = tempArray;
+}
+- (void) advanceBeat	{
+	int currentBeatNumber = (int)self.currentBeat.number;
+	int newCurrentBeatNumber = currentBeatNumber+1;
+	if(currentBeatNumber == (int)self.numberOfBeats) newCurrentBeatNumber = 1;
+	
+	NSLog(@"Current beat:%d Next beat: %d", currentBeatNumber, newCurrentBeatNumber);
+	for (BeatControl* beat in [self subviews]) {
+		int beatNumber = (int)beat.number;
+		if(beatNumber == currentBeatNumber) beat.current = false;
+		if(beatNumber == newCurrentBeatNumber) beat.current = true, self.currentBeat = beat;
+	}
+
 }
 - (void)drawRect:(CGRect)rect
 {
@@ -54,28 +64,23 @@ accents = _accents;
 		tempBeatControl.number = i+1;
 		if([self beatIsAccent:i+1]) tempBeatControl.accent = true;
 		else tempBeatControl.accent = false;
-		if (i+1 == self.currentBeat) tempBeatControl.current = true;
+		if (i+1 == self.currentBeat.number) tempBeatControl.current = true;
 		else tempBeatControl.current = false;
-		
 		[tempBeatControl addTarget:self action:@selector(updateAccent:) forControlEvents:UIControlEventValueChanged];
 		[self addSubview:tempBeatControl];
 	}
 }
 - (bool)beatIsAccent:(NSUInteger)beat{
 	NSNumber* testBeat = [NSNumber numberWithInt:beat];
-	for (NSNumber* beat in self.accents) {
-		if ( [beat isEqualToNumber:testBeat] ) {
+	for (NSNumber* beatInCycle in self.accents) {
+		if ( [beatInCycle isEqualToNumber:testBeat] ) {
 			return true;
 		}
 	}
 			 return false;
 	
 }
-- (void)longPress:(UILongPressGestureRecognizer*)gesture {
-    if ( gesture.state == UIGestureRecognizerStateEnded ) {
-        NSLog(@"Long Press");
-    }
-}
+
 #pragma mark - Getters and Setters
 
 - (NSUInteger)numberOfBeats	{
@@ -86,11 +91,11 @@ accents = _accents;
 	_numberOfBeats = numberOfBeats;
 	[self setNeedsDisplay];
 }
-- (NSUInteger)currentBeat	{
+- (BeatControl*)currentBeat	{
 	return _currentBeat;
 }
 
-- (void)setCurrentBeat:(NSUInteger)currentBeat	{
+- (void)setCurrentBeat:(BeatControl*)currentBeat	{
 	_currentBeat = currentBeat;
 	[self setNeedsDisplay];
 }
@@ -102,5 +107,6 @@ accents = _accents;
 	_accents = accents;
 	[self setNeedsDisplay];
 	[self sendActionsForControlEvents:UIControlEventValueChanged];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"syncDefaults" object:self];
 }
 @end

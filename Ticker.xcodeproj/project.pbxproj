@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0103148717A6AEBB001D6D7E /* bpmControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0103148617A6AEBB001D6D7E /* bpmControl.m */; };
 		010E36FC17A5859D00FFD257 /* TimeSignatureControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 010E36FB17A5859D00FFD257 /* TimeSignatureControl.m */; };
 		0153B3C3179A3638009744C0 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0153B3C2179A3638009744C0 /* Settings.m */; };
 		01565DD217A0A77E007BDC0A /* Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0153B372179A29E7009744C0 /* Timer.m */; };
@@ -35,6 +36,7 @@
 		01B54537179828B400A4F4E0 /* TickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B54536179828B400A4F4E0 /* TickerTests.m */; };
 		01B54545179830DC00A4F4E0 /* tock.caf in Resources */ = {isa = PBXBuildFile; fileRef = 01B5454417982F8000A4F4E0 /* tock.caf */; };
 		01B54546179830DE00A4F4E0 /* tick.caf in Resources */ = {isa = PBXBuildFile; fileRef = 01B5454317982F8000A4F4E0 /* tick.caf */; };
+		01C9021517A69FF10086AD0C /* MetronomeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C9021417A69FF10086AD0C /* MetronomeControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0103148517A6AEBB001D6D7E /* bpmControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bpmControl.h; sourceTree = "<group>"; };
+		0103148617A6AEBB001D6D7E /* bpmControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bpmControl.m; sourceTree = "<group>"; };
 		010E36FA17A5859D00FFD257 /* TimeSignatureControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSignatureControl.h; sourceTree = "<group>"; };
 		010E36FB17A5859D00FFD257 /* TimeSignatureControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSignatureControl.m; sourceTree = "<group>"; };
 		0153B371179A29E7009744C0 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 		01B545411798296F00A4F4E0 /* SoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPlayer.m; sourceTree = "<group>"; };
 		01B5454317982F8000A4F4E0 /* tick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = tick.caf; path = Sounds/tick.caf; sourceTree = "<group>"; };
 		01B5454417982F8000A4F4E0 /* tock.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = tock.caf; path = Sounds/tock.caf; sourceTree = "<group>"; };
+		01C9021317A69FF10086AD0C /* MetronomeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetronomeControl.h; sourceTree = "<group>"; };
+		01C9021417A69FF10086AD0C /* MetronomeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetronomeControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,12 +134,16 @@
 		019270E717A5B83600C26410 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				01C9021317A69FF10086AD0C /* MetronomeControl.h */,
+				01C9021417A69FF10086AD0C /* MetronomeControl.m */,
 				010E36FA17A5859D00FFD257 /* TimeSignatureControl.h */,
 				010E36FB17A5859D00FFD257 /* TimeSignatureControl.m */,
 				0167864317A42F7700F71527 /* BeatsControl.h */,
 				0167864417A42F7700F71527 /* BeatsControl.m */,
 				019270E917A5EF4F00C26410 /* BeatControl.h */,
 				019270EA17A5EF4F00C26410 /* BeatControl.m */,
+				0103148517A6AEBB001D6D7E /* bpmControl.h */,
+				0103148617A6AEBB001D6D7E /* bpmControl.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -354,9 +364,11 @@
 				0192E30517A1895300DE45EC /* LED.m in Sources */,
 				0167864517A42F7700F71527 /* BeatsControl.m in Sources */,
 				01B54512179828B300A4F4E0 /* AppDelegate.m in Sources */,
+				0103148717A6AEBB001D6D7E /* bpmControl.m in Sources */,
 				01B5451B179828B300A4F4E0 /* Ticker.xcdatamodeld in Sources */,
 				010E36FC17A5859D00FFD257 /* TimeSignatureControl.m in Sources */,
 				01B5450E179828B300A4F4E0 /* main.m in Sources */,
+				01C9021517A69FF10086AD0C /* MetronomeControl.m in Sources */,
 				0185E0241798484A00C16260 /* SoundPlayer.m in Sources */,
 				019270EB17A5EF4F00C26410 /* BeatControl.m in Sources */,
 				0153B3C3179A3638009744C0 /* Settings.m in Sources */,

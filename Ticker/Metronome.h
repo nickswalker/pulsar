@@ -8,35 +8,24 @@
 
 #import "Settings.h"
 #import "Timer.h"
-#import "TimeSignatureControl.h"
+#import "MetronomeControl.h"
+#import "BeatControl.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface Metronome : UIViewController <SettingsViewControllerDelegate, TimerDelegate, UIPopoverControllerDelegate>
+@interface Metronome : UIViewController <SettingsViewControllerDelegate, MetronomeControlDelegate, UIPopoverControllerDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
 @property (strong, nonatomic) UIPopoverController *settingsPopoverController;
-
-@property (nonatomic, retain)IBOutlet UILabel *bpmLabel;
-
-@property (nonatomic, retain)IBOutlet TimeSignatureControl* timeSignatureControl;
-
-@property (nonatomic, retain)IBOutlet UIStepper *stepper;
-
 @property (nonatomic, strong)IBOutlet UIButton *backgroundButton;
+@property IBOutlet MetronomeControl* controls;
 
-@property(nonatomic, strong)IBOutlet UISwitch *timerSwitch;
 
-
-- (IBAction)updateBPM:(UIStepper*)stepper;
-- (IBAction)updateTimeSignature:(id)sender;
-- (IBAction)toggleTimer:(UISwitch*)toggle;
-- (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
 - (IBAction)matchBpm:(UIButton *)sender;
 - (IBAction)cycleTimeSignature:(id)sender;
 - (void)flashScreen;
-- (void)beat;
+- (void)beat:(BeatsControl*)beat;
+- (void)setSettingsFromDefaults:(MetronomeControl*)target;
 - (void)settingsViewControllerDidFinish:(Settings *)controller;
-
+- (void)syncSettingsChangesToDefaults;
 
 @end

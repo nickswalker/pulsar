@@ -9,20 +9,24 @@
 #import "BeatControl.h"
 
 @implementation BeatControl
+
 @synthesize current = _current,
 accent = _accent;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         self.longPressRecognizer = [[UILongPressGestureRecognizer alloc] init];
 		 [self.longPressRecognizer addTarget:self action:@selector(handleLongPress:)];
+		self.longPressRecognizer.minimumPressDuration = .2;
 		 [self addGestureRecognizer:self.longPressRecognizer];
     }
     return self;
 }
 
-- (void)handleLongPress:(UILongPressGestureRecognizer*)recognizer	{
+- (void)handleLongPress:(UILongPressGestureRecognizer*)recognizer
+{
 	if (recognizer.state == UIGestureRecognizerStateEnded)
 	{
 		if (self.accent==false) self.accent = true;
@@ -63,7 +67,6 @@ accent = _accent;
 - (void)setCurrent:(bool)current	{
 	_current = current;
 	[self setNeedsDisplay];
-	[self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 - (bool)current{
 	return _current;

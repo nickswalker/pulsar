@@ -15,4 +15,5 @@
 @property NSArray* timeSignature;
 
 - (void) updateTimeSignature:(id)sender;
+- (void) addBeat:(id)sender;
 @end

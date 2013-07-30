@@ -29,7 +29,6 @@ NSUserDefaults *defaults;
 	self.masterControl.on = [defaults boolForKey:@"master"];
 	
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -62,6 +61,12 @@ NSUserDefaults *defaults;
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setBool:masterSwitch.on forKey:@"master"];
+	if (masterSwitch.on) {
+		self.view.tintColor = [UIColor colorWithRed:0/255.0f green:122/255.0f blue:255/255.0f alpha:1.0f];
+	}
+	else{
+		self.view.tintColor = [UIColor colorWithRed:13/255.0f green:204/255.0f blue:0/255.0f alpha:1.0f];
+	}
 }
 #pragma mark - Tableview methods
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section

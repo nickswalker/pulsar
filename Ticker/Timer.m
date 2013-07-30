@@ -11,44 +11,26 @@
 @implementation Timer
 
 @synthesize bpm = _bpm,
-	timeSignature = _timeSignature;
+	on = _on;
 
 NSTimer* timer;
 id target;
 
-
-- (id)initWithDelegate:(id)sentTarget
-{
-    self = [super init];
-	if(self){
-		
-		self.delegate = sentTarget;
-		self.on= false;
-	}
-    return(self);
-}
 -(void)startTimer{
 	[timer invalidate];
 	timer = nil;
+	//Fire the first beat as soon as the action is registered so as to allow instant metronome start
 	[self beat:nil];
 	double speed = ((double)SECONDS)/self.bpm;
 	timer = [NSTimer scheduledTimerWithTimeInterval:speed target:self selector:@selector(beat:) userInfo:nil repeats:YES];
 }
 -(void)stopTimer{
 	[timer invalidate];
-	self.currentBeat = 0;
 	double speed = INFINITY;
 	timer = [NSTimer scheduledTimerWithTimeInterval:speed target:self selector:@selector(beat:) userInfo:nil repeats:YES];
 }
 -(void)beat:(NSTimer*)timer{
-	[self updateCount];
-	[self.delegate beat];
-	
-}
--(void)updateCount{
-	self.currentBeat +=1;
-	if (self.currentBeat > [self.timeSignature[0] intValue]) self.currentBeat= 1;
-	NSLog(@"%u",self.currentBeat);
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"beat" object:self];
 	
 }
 
@@ -64,15 +46,12 @@ id target;
 - (NSUInteger)bpm	{
 	return _bpm;
 }
-- (void)setTimeSignature:(NSArray*)timeSignature	{
-	
-	[self stopTimer];
-	_timeSignature = timeSignature;
-	if(self.on){
-		[self startTimer];
-	}
+- (void) setOn:(bool)on	{
+	if (on) [self startTimer];
+	else [self stopTimer];
+	_on = on;
 }
--(NSArray*)timeSignature	{
-	return _timeSignature;
+- (bool) on	{
+	return _on;
 }
 @end

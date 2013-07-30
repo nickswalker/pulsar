@@ -7,26 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-@class Timer;
-@protocol TimerDelegate
-
-- (void)beat;
-
-@end
-
 @interface Timer : NSObject
 
-@property (weak, nonatomic) id <TimerDelegate> delegate;
 @property bool on;
-@property NSUInteger currentBeat;
-@property NSArray* timeSignature;
 @property NSUInteger bpm;
-
-
-- (id) initWithDelegate:(id)sentTarget;
+@property NSUInteger beatDenomination;
 - (void) startTimer;
 - (void) stopTimer;
 - (void) beat:(NSTimer*)timer;
-- (void) updateCount;
+
 
 @end
