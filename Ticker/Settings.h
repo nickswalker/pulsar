@@ -22,6 +22,8 @@
 @property IBOutlet UISwitch* screenFlashControl;
 @property IBOutlet UISwitch* ledFlashControl;
 @property IBOutlet UISwitch* masterControl;
+@property IBOutlet UISwitch* divisionControl;
+@property IBOutlet UISwitch* subdivisionControl;
 
 -(IBAction)done:(id)sender;
 -(IBAction)toggleScreenFlash:(UISwitch*)screenFlashSwitch;

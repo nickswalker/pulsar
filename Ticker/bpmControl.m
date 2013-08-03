@@ -31,7 +31,7 @@
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
     CGPoint translation = [recognizer translationInView:self];
 	self.stepper.value = self.stepper.value - -1*translation.y/10;
-	[self updateBPM:self.stepper];
+	[self.stepper sendActionsForControlEvents:UIControlEventValueChanged];
 	[recognizer setTranslation:CGPointMake(0, 0) inView:self];
 }
 @end

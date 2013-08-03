@@ -9,10 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface DeltaTracker : NSObject
-@property double startTime;
-@property double endTime;
+
 @property NSUInteger numberOfBenchmarks;
 
 - (double)benchmark;
-- (void)clear;
 @end

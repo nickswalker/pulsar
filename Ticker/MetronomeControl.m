@@ -21,7 +21,9 @@
 //}
 - (void) awakeFromNib
 {
+
 	self.timeKeeper = [[Timer alloc] init];
+	self.timeKeeper.timeSignature = self.timeSignatureControl.timeSignature;
 	self.bpmControl.timeKeeper = self.timeKeeper;
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(beat)
@@ -29,6 +31,7 @@
 											   object:nil];
 }
 -(IBAction)controlValueChanged:(id)sender	{
+	self.timeKeeper.timeSignature = self.timeSignatureControl.timeSignature;
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"syncDefaults" object:self];
 }
 -(IBAction)toggleRunning:(UISwitch*)toggle
@@ -46,8 +49,14 @@
 
 - (void)beat
 {
-	[self.timeSignatureControl.topControl advanceBeat];
-	[self.delegate beat:self.timeSignatureControl.topControl.currentBeat];
+	NSLog(@"%lu", (unsigned long)self.timeKeeper.beatPartCount);
+	if (self.timeKeeper.beatDenomination == dottedEigth || self.timeKeeper.beatDenomination == dottedQuarter) {
+		if(self.timeKeeper.beatPartCount == 8 || self.timeKeeper.beatPartCount == 16) [self.timeSignatureControl.topControl advanceBeat];
+	}
+	if (self.timeKeeper.beatPartCount == 1) {
+		[self.timeSignatureControl.topControl advanceBeat];
+	}
+	[self.delegate beat:self.timeSignatureControl.topControl.currentBeat denomination:self.timeKeeper.beatDenomination part:self.timeKeeper.beatPartCount];
 	
 }
 @end

@@ -10,9 +10,9 @@
 #import <AudioToolbox/AudioToolbox.h>
 @implementation SoundPlayer
 
--(void)playTickSound
+- (void)playNormal
 {
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"tick"
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"Beat"
 													 ofType:@"caf"];
 	SystemSoundID soundID;
     AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:path])
@@ -22,9 +22,9 @@
 	
 	
 }
--(void)playTockSound
+- (void)playAccent
 {
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"tock"
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"Accent"
 													 ofType:@"caf"];
 	
 	SystemSoundID soundID;
@@ -33,7 +33,40 @@
 	AudioServicesPlaySystemSound (soundID);
 
 }
--(void)vibrate
+- (void)playDivision
+{
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"Division"
+													 ofType:@"caf"];
+	
+	SystemSoundID soundID;
+	AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:path])
+									 , &soundID);
+	AudioServicesPlaySystemSound (soundID);
+	
+}
+- (void)playSubdivision
+{
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"Subdivision"
+													 ofType:@"caf"];
+	
+	SystemSoundID soundID;
+	AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:path])
+									 , &soundID);
+	AudioServicesPlaySystemSound (soundID);
+	
+}
+- (void)playTriplet
+{
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"Triplet"
+													 ofType:@"caf"];
+	
+	SystemSoundID soundID;
+	AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:path])
+									 , &soundID);
+	AudioServicesPlaySystemSound (soundID);
+	
+}
+- (void)vibrate
 {
 	AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }

@@ -7,25 +7,33 @@
 //
 
 #import "DeltaTracker.h"
+#include <mach/mach_time.h>
 
 @implementation DeltaTracker
+
 - (double)benchmark{
-	if (self.startTime == 0) {
-		self.startTime = [[NSDate date] timeIntervalSince1970];
-		return 0;
-	}
-	else if (self.endTime == 0)	{
-		self.endTime = [[NSDate date] timeIntervalSince1970];
-	}
-	else {
-		self.startTime = self.endTime;
-		self.endTime = [[NSDate date] timeIntervalSince1970];
-	}
-	return self.endTime-self.startTime;
-}
-- (void) clear	{
+	static double lastTime = 0;
 	
-	self.startTime = 0;
-	self.endTime = 0;
+	double currentTime = machGetClockS() ;
+	
+	double diff = currentTime - lastTime ;
+	
+	lastTime = currentTime ; // update for next call
+	return diff ; // that's your answe
+
+}
+double machGetClockS()
+{
+	static bool init = false ;
+	static mach_timebase_info_data_t tbInfo ;
+	static double conversionFactor ;
+	if(!init)
+	{
+		// get the time base
+		mach_timebase_info( &tbInfo ) ;
+		conversionFactor = tbInfo.numer / (1e9*tbInfo.denom) ; // ns->s
+	}
+	
+	return mach_absolute_time() * conversionFactor ; // seconds
 }
 @end

@@ -110,21 +110,6 @@
                                     <segue destination="fzf-sl-JNw" kind="modal" identifier="showAlternate" modalTransitionStyle="coverVertical" id="JpO-5f-yoT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p2C-Az-b3m">
-                                <rect key="frame" x="124" y="446" width="73" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="cycleTimeSignature:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="eQ0-vG-pxY"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -167,13 +152,14 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
-                                <navigationItem title="Title" id="RMG-X9-2OD">
+                                <navigationItem title="Settings" id="RMG-X9-2OD">
                                     <barButtonItem key="backBarButtonItem" title="Done" id="LY1-eB-bgo"/>
                                     <barButtonItem key="leftBarButtonItem" title="Done" systemItem="done" id="6LJ-FU-qW8">
                                         <connections>
                                             <action selector="done:" destination="fzf-sl-JNw" id="d01-9M-YqD"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem key="rightBarButtonItem" title="Sync" id="duw-hp-mT4"/>
                                 </navigationItem>
                             </items>
                         </navigationBar>
@@ -191,6 +177,9 @@
                                                     <rect key="frame" x="251" y="6" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="toggleDivision:" destination="fzf-sl-JNw" eventType="valueChanged" id="xyQ-Z5-jmt"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Division" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlp-6O-0M2">
                                                     <rect key="frame" x="20" y="11" width="223" height="21"/>
@@ -213,6 +202,9 @@
                                                     <rect key="frame" x="251" y="6" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="toggleSubdivision:" destination="fzf-sl-JNw" eventType="valueChanged" id="r8Q-7V-8lL"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subdivision" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zlj-dW-dlp">
                                                     <rect key="frame" x="20" y="11" width="223" height="21"/>
@@ -328,23 +320,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Pv-Qe-OVt" id="8JZ-hF-G4Z">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="udb-5y-Pxp">
-                                                    <rect key="frame" x="251" y="6" width="51" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <action selector="toggleMaster:" destination="fzf-sl-JNw" eventType="valueChanged" id="amr-wZ-BZb"/>
-                                                    </connections>
-                                                </switch>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Master" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yM1-vx-xZb">
-                                                    <rect key="frame" x="20" y="11" width="223" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -357,9 +332,10 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="divisionControl" destination="cQ4-LT-J8p" id="gVU-df-6ZF"/>
                         <outlet property="ledFlashControl" destination="Z4L-tT-Ft5" id="nZn-ZZ-JI6"/>
-                        <outlet property="masterControl" destination="udb-5y-Pxp" id="QeC-ak-l0n"/>
                         <outlet property="screenFlashControl" destination="EYn-Sq-PLv" id="Zdw-v1-opJ"/>
+                        <outlet property="subdivisionControl" destination="SMQ-gA-IZb" id="KgD-op-ROF"/>
                         <outlet property="vibrateControl" destination="kqW-ih-O3i" id="rqm-Vy-bkp"/>
                     </connections>
                 </tableViewController>

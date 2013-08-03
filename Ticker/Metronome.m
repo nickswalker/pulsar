@@ -11,7 +11,7 @@
 #import "LED.h"
 #import "SoundPlayer.h"
 #import "DeltaTracker.h"
-
+#import <MultipeerConnectivity/MultipeerConnectivity.h>
 @implementation Metronome
 
 
@@ -36,6 +36,10 @@ int i;
 	
 	//Setup player
 	player =  [[SoundPlayer alloc] init];
+	
+	//Setup Multipeer
+	self.peerID = [[MCPeerID alloc] initWithDisplayName:[[UIDevice currentDevice] name]];
+	self.session = [[MCSession alloc] initWithPeer:self.peerID];
 
 	self.controls.delegate = self;
 	standardSettings = @[
@@ -66,7 +70,7 @@ int i;
 - (void) setSettingsFromDefaults:(MetronomeControl*)target
 {
 	target.bpmControl.stepper.value = [defaults integerForKey:@"bpm"];
-	[target.bpmControl updateBPM:self.controls.bpmControl.stepper];
+	[target.bpmControl.stepper sendActionsForControlEvents:UIControlEventValueChanged];
 	target.timeSignatureControl.timeSignature= [defaults objectForKey:@"timeSignature"];
 	target.timeSignatureControl.topControl.accents = [defaults objectForKey:@"accents"];
 	
@@ -76,21 +80,19 @@ int i;
 
 - (IBAction)matchBpm:(UIButton *)sender
 {
-	self.controls.bpmControl.timeKeeper.on= false;
+	
+	self.controls.timeKeeper.on= false;
 	double delta = [bpmTracker benchmark];
 	if(delta == 0) return;
 	else if( (60/delta) <20 ){
-		[bpmTracker clear];
-		[bpmTracker benchmark];
 		return;
 	}
-	self.controls.bpmControl.stepper.value= 60/(delta) ;
+	self.controls.bpmControl.stepper.value= 60/(delta);
+	[self.controls.bpmControl.stepper sendActionsForControlEvents:UIControlEventValueChanged];
 }
 - (IBAction)cycleTimeSignature:(id)sender	{
 	double delta = [timeSignatureTracker benchmark];
 	if( (delta) > 2 ){
-		[timeSignatureTracker clear];
-		[timeSignatureTracker benchmark];
 		i = 0;
 	}
 	if (i>6) {
@@ -103,16 +105,39 @@ int i;
 	
 	i++;
 }
--(void)beat:(BeatControl*)beat
+-(void)beat:(BeatControl*)beat denomination:(BeatDenomination)denomination part:(NSUInteger)part
 {
-	if (beat.accent) {
-		[player playTickSound];
-	}else {
-		[player playTockSound];
+	if (denomination == dottedQuarter || denomination == dottedEigth) {
+		
+			if ( part == 1 ) {
+				if (beat.accent) [player playAccent];
+				else [player playNormal];
+			}
+			else if ( (part == 9 || part == 17) && [defaults boolForKey:@"division"]) [player playDivision];
+			else if ( (part == 5 || part == 13 || part == 21) && [defaults boolForKey:@"subdivision"]) [player playSubdivision];
 	}
-	if ([defaults boolForKey:@"screenFlash"]) [self flashScreen];
-	if ([defaults boolForKey:@"ledFlash"]) [led toggleTorch];
-	if ([defaults boolForKey:@"vibrate"]) [player vibrate];
+	else{
+		if ( part == 1 ) {
+			if (beat.accent) {
+				[player playAccent];
+				if ([defaults boolForKey:@"screenFlash"]) [self flashScreen];
+				if ([defaults boolForKey:@"ledFlash"]) [led toggleTorch];
+				if ([defaults boolForKey:@"vibrate"]) [player vibrate];
+			}
+			else [player playNormal];
+		}
+		else if ( (part == 13) && [defaults boolForKey:@"division"]){
+			[player playDivision];
+		}
+		else if ( (part == 7 || part == 19) && [defaults boolForKey:@"subdivision"]){
+			[player playSubdivision];
+		}
+	}
+
+	
+//	if ( [defaults boolForKey:@"triplet"] && (part == 8 ) || (part == 16) ){
+//		[player playTriplet];
+//	}
 }
 -(void)flashScreen {
 	self.backgroundButton.layer.opacity = .02;
