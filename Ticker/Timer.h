@@ -25,11 +25,8 @@ typedef enum{
 @property NSUInteger bpm;
 @property NSArray* timeSignature;
 @property BeatDenomination beatDenomination;
-//Type def enum ? half quarter dottedQuarter sixteenth
-//Make the timer always run on the smallest possible division, allow the  other classes to determine what to show in the UI
 
 - (void) startTimer;
-- (void) stopTimer;
 - (void) beat:(NSTimer*)timer;
 
 

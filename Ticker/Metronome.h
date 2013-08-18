@@ -21,7 +21,7 @@
 @property IBOutlet MetronomeControl* controls;
 
 
-- (IBAction)matchBpm:(UIButton *)sender;
+- (IBAction)matchBpm:(id)sender;
 - (IBAction)cycleTimeSignature:(id)sender;
 - (void)flashScreen;
 - (void)beat:(BeatsControl*)beat denomination:(BeatDenomination)denomination part:(NSUInteger)part;

@@ -13,13 +13,13 @@ NSUserDefaults *defaults;
 
 - (void)awakeFromNib
 {
-
 	self.contentSizeForViewInPopover = CGSizeMake(320.0, 480.0);
     [super awakeFromNib];
 }
 
 - (void)viewDidLoad
 {
+	
     [super viewDidLoad];
 	// Make switches reflect defaults
 	defaults = [NSUserDefaults standardUserDefaults];

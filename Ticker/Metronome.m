@@ -26,7 +26,6 @@ int i;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
 	//Setup stored defaults
 	defaults = [NSUserDefaults standardUserDefaults];
 	[self setSettingsFromDefaults:self.controls];
@@ -45,11 +44,11 @@ int i;
 	standardSettings = @[
 							   @[ @[ @4, @4], @[@1] ],
 							   @[ @[ @2, @4], @[@1] ],
-							   @[ @[ @6, @8], @[@1, @4] ],
+							   @[ @[ @6, @8], @[@1] ],
 							   @[ @[ @3, @4], @[@1] ],
-							   @[ @[ @9, @8], @[@1, @4, @7] ],
+							   @[ @[ @9, @8], @[@1] ],
 							   @[ @[ @3, @8], @[@1] ],
-							   @[ @[ @12, @8], @[@1, @4, @7, @10] ],
+							   @[ @[ @12, @8], @[@1] ],
 							];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(syncSettingsChangesToDefaults)
@@ -78,10 +77,8 @@ int i;
 
 #pragma mark - UI
 
-- (IBAction)matchBpm:(UIButton *)sender
+- (IBAction)matchBpm:(id)sender
 {
-	
-	self.controls.timeKeeper.on= false;
 	double delta = [bpmTracker benchmark];
 	if(delta == 0) return;
 	else if( (60/delta) <20 ){
@@ -101,7 +98,7 @@ int i;
 	self.controls.timeSignatureControl.timeSignature= standardSettings[i][0];
 	self.controls.timeSignatureControl.topControl.accents = standardSettings[i][1];
 	self.controls.timeSignatureControl.topControl.currentBeat = nil;
-	self.controls.timeKeeper.on= true;
+
 	
 	i++;
 }
@@ -110,7 +107,12 @@ int i;
 	if (denomination == dottedQuarter || denomination == dottedEigth) {
 		
 			if ( part == 1 ) {
-				if (beat.accent) [player playAccent];
+				if (beat.accent) {
+					[player playAccent];
+					if ([defaults boolForKey:@"screenFlash"]) [self flashScreen];
+					if ([defaults boolForKey:@"ledFlash"]) [led toggleTorch];
+					if ([defaults boolForKey:@"vibrate"]) [player vibrate];
+				}
 				else [player playNormal];
 			}
 			else if ( (part == 9 || part == 17) && [defaults boolForKey:@"division"]) [player playDivision];
@@ -162,8 +164,7 @@ int i;
 
 - (void)settingsViewControllerDidFinish:(Settings *)controller
 {
-	self.controls.runningSwitch.on = false;
-	[self.controls toggleRunning:self.controls.runningSwitch];
+
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
@@ -178,7 +179,8 @@ int i;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	[self.controls.timeKeeper stopTimer];
+	self.controls.runningSwitch.on = false;
+	[self.controls toggleRunning:self.controls.runningSwitch];
     if ([[segue identifier] isEqualToString:@"showAlternate"]) {
         [[segue destinationViewController] setDelegate:self];
         

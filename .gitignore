@@ -5,6 +5,7 @@ out
 *.iml
 project.xcworkspace
 *.xccheckout
+Other\ Elements
 
 #########################
 # .gitignore file for Xcode4 / OS X Source projects

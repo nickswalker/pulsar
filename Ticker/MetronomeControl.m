@@ -49,7 +49,7 @@
 
 - (void)beat
 {
-	NSLog(@"%lu", (unsigned long)self.timeKeeper.beatPartCount);
+	//NSLog(@"%lu", (unsigned long)self.timeKeeper.beatPartCount);
 	if (self.timeKeeper.beatDenomination == dottedEigth || self.timeKeeper.beatDenomination == dottedQuarter) {
 		if(self.timeKeeper.beatPartCount == 8 || self.timeKeeper.beatPartCount == 16) [self.timeSignatureControl.topControl advanceBeat];
 	}
