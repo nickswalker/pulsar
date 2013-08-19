@@ -8,22 +8,6 @@
         <!--Metronome-->
         <scene sceneID="rV5-Y2-ghB">
             <objects>
-                <tapGestureRecognizer id="gbt-UG-KTR" userLabel="Match BPM">
-                    <connections>
-                        <action selector="matchBpm:" destination="rQl-PL-IFJ" id="CV5-bo-0Zd"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer numberOfTouchesRequired="2" id="PZF-At-fYK" userLabel="Cycle Signature">
-                    <connections>
-                        <action selector="cycleTimeSignature:" destination="rQl-PL-IFJ" id="QiE-0w-guc"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="j67-1B-cl2">
-                    <connections>
-                        <action selector="handlePan:" destination="xow-we-SQY" id="2fl-9w-IS0"/>
-                    </connections>
-                </panGestureRecognizer>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="h4L-l5-tyG" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="mainView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rQl-PL-IFJ" customClass="Metronome" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HcC-wE-6za"/>
@@ -51,11 +35,11 @@
                                 </connections>
                             </button>
                             <view autoresizesSubviews="NO" opaque="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="XxR-Jg-CVn" userLabel="Control Container" customClass="MetronomeControl">
-                                <rect key="frame" x="59" y="163" width="202" height="243"/>
+                                <rect key="frame" x="59" y="146" width="202" height="275"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fLr-e0-dai" userLabel="Metronome Switch">
-                                        <rect key="frame" x="77" y="209" width="51" height="31"/>
+                                        <rect key="frame" x="77" y="237" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -63,7 +47,7 @@
                                         </connections>
                                     </switch>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WGl-cH-1fT" customClass="TimeSignatureControl">
-                                        <rect key="frame" x="14" y="129" width="175" height="62"/>
+                                        <rect key="frame" x="14" y="152" width="175" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
@@ -71,19 +55,19 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xow-we-SQY" customClass="bpmControl">
-                                        <rect key="frame" x="52" y="0.0" width="101" height="122"/>
+                                        <rect key="frame" x="42" y="0.0" width="118" height="132"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipz-Ct-Rt3" userLabel="BPM">
-                                                <rect key="frame" x="-30" y="0.0" width="160" height="83"/>
+                                                <rect key="frame" x="-21" y="0.0" width="160" height="83"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="72"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="96"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                                             </label>
                                             <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minimumValue="20" maximumValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="Ux3-pZ-IHZ" userLabel="BPM Stepper">
-                                                <rect key="frame" x="4" y="91" width="94" height="29"/>
+                                                <rect key="frame" x="12" y="103" width="94" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <connections>
                                                     <action selector="updateBPM:" destination="xow-we-SQY" eventType="valueChanged" id="xYY-07-eDs"/>
@@ -101,8 +85,8 @@
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="202" id="GPv-YV-SZ1"/>
-                                    <constraint firstAttribute="height" constant="243" id="QxM-ag-hHe"/>
+                                    <constraint firstAttribute="height" constant="275" id="Wkw-HE-IK7"/>
+                                    <constraint firstAttribute="width" constant="202" id="oeh-Ha-On0"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="bpmControl" destination="xow-we-SQY" id="t2D-pm-mkk"/>
@@ -129,9 +113,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="XxR-Jg-CVn" secondAttribute="centerY" id="0G7-Xm-u7e"/>
+                            <constraint firstAttribute="centerY" secondItem="XxR-Jg-CVn" secondAttribute="centerY" id="BtL-eT-DJe"/>
                             <constraint firstAttribute="bottom" secondItem="gGa-VU-yN3" secondAttribute="bottom" constant="20" id="IaG-O6-oTR"/>
-                            <constraint firstAttribute="centerX" secondItem="XxR-Jg-CVn" secondAttribute="centerX" id="Vu0-EA-cem"/>
+                            <constraint firstAttribute="centerX" secondItem="XxR-Jg-CVn" secondAttribute="centerX" id="Ywp-Fh-zqh"/>
                             <constraint firstAttribute="trailing" secondItem="gGa-VU-yN3" secondAttribute="trailing" constant="20" id="eQA-fh-mTX"/>
                         </constraints>
                     </view>
@@ -141,6 +125,22 @@
                         <outlet property="controls" destination="XxR-Jg-CVn" id="sGS-1A-cgv"/>
                     </connections>
                 </viewController>
+                <tapGestureRecognizer id="gbt-UG-KTR" userLabel="Match BPM">
+                    <connections>
+                        <action selector="matchBpm:" destination="rQl-PL-IFJ" id="CV5-bo-0Zd"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTouchesRequired="2" id="PZF-At-fYK" userLabel="Cycle Signature">
+                    <connections>
+                        <action selector="cycleTimeSignature:" destination="rQl-PL-IFJ" id="QiE-0w-guc"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="j67-1B-cl2">
+                    <connections>
+                        <action selector="handlePan:" destination="xow-we-SQY" id="2fl-9w-IS0"/>
+                    </connections>
+                </panGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h4L-l5-tyG" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-51" y="182"/>
         </scene>

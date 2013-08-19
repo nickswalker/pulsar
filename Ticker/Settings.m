@@ -13,7 +13,7 @@ NSUserDefaults *defaults;
 
 - (void)awakeFromNib
 {
-	self.contentSizeForViewInPopover = CGSizeMake(320.0, 480.0);
+	//self.contentSizeForViewInPopover = CGSizeMake(320.0, 480.0);
     [super awakeFromNib];
 }
 
