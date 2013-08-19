@@ -43,7 +43,7 @@ accents = _accents;
 	int newCurrentBeatNumber = currentBeatNumber+1;
 	if(currentBeatNumber == (int)self.numberOfBeats) newCurrentBeatNumber = 1;
 	
-	NSLog(@"Current beat:%d Next beat: %d", currentBeatNumber, newCurrentBeatNumber);
+	//NSLog(@"Current beat:%d Next beat: %d", currentBeatNumber, newCurrentBeatNumber);
 	for (BeatControl* beat in [self subviews]) {
 		int beatNumber = (int)beat.number;
 		if(beatNumber == currentBeatNumber) beat.current = false;

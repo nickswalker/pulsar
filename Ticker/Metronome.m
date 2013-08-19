@@ -26,6 +26,9 @@ int i;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	     self.tracker= [[DeltaTracker alloc] init];
+	[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+	
 	//Setup stored defaults
 	defaults = [NSUserDefaults standardUserDefaults];
 	[self setSettingsFromDefaults:self.controls];
@@ -74,7 +77,10 @@ int i;
 	target.timeSignatureControl.topControl.accents = [defaults objectForKey:@"accents"];
 	
 }
-
+- (BOOL)prefersStatusBarHidden
+{
+	return YES;
+}
 #pragma mark - UI
 
 - (IBAction)matchBpm:(id)sender
@@ -107,6 +113,8 @@ int i;
 	if (denomination == dottedQuarter || denomination == dottedEigth) {
 		
 			if ( part == 1 ) {
+				double error = [self.tracker benchmark]*1000;
+				NSLog(@"Overall Error: %fms", error );
 				if (beat.accent) {
 					[player playAccent];
 					if ([defaults boolForKey:@"screenFlash"]) [self flashScreen];
@@ -120,6 +128,8 @@ int i;
 	}
 	else{
 		if ( part == 1 ) {
+			double error = [self.tracker benchmark]*1000;
+			NSLog(@"Overall Error: %fms", error );
 			if (beat.accent) {
 				[player playAccent];
 				if ([defaults boolForKey:@"screenFlash"]) [self flashScreen];

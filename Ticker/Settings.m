@@ -21,6 +21,7 @@ NSUserDefaults *defaults;
 {
 	
     [super viewDidLoad];
+	
 	// Make switches reflect defaults
 	defaults = [NSUserDefaults standardUserDefaults];
 	
@@ -39,7 +40,10 @@ NSUserDefaults *defaults;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (BOOL)prefersStatusBarHidden
+{
+	return YES;
+}
 #pragma mark - Actions
 
 - (IBAction)done:(id)sender

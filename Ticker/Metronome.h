@@ -13,6 +13,7 @@
 
 @interface Metronome : UIViewController <SettingsViewControllerDelegate, MetronomeControlDelegate, UIPopoverControllerDelegate>
 
+@property DeltaTracker* tracker;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property MCPeerID* peerID;
 @property MCSession* session;

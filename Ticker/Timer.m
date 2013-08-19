@@ -14,7 +14,7 @@
 @synthesize bpm = _bpm,
 	on = _on,
 	timeSignature = _timeSignature;
-
+double error;
 NSTimer* timer;
 id target;
 -(Timer*)init{
@@ -31,30 +31,39 @@ id target;
 	//Fire the first beat as soon as the action is registered so as to allow instant metronome start
 	[self beat:nil];
 	double gap = (((double)SECONDS)/self.bpm )/24;
-
-	[NSTimer scheduledTimerWithTimeInterval:gap target:self selector:@selector(beat:) userInfo:nil repeats:NO];
+	timer = [NSTimer scheduledTimerWithTimeInterval:gap target:self selector:@selector(beat:) userInfo:nil repeats:YES];
 	
 }
+- (void)stopTimer{
+	[timer invalidate];
+	timer = nil;
+}
 -(void)updateTimer	{
+	[timer invalidate];
+	timer = nil;
 	double gap = (((double)SECONDS)/self.bpm )/24;
-	[NSTimer scheduledTimerWithTimeInterval:gap target:self selector:@selector(beat:) userInfo:nil repeats:NO];
+	
+	timer= [NSTimer scheduledTimerWithTimeInterval:gap target:self selector:@selector(beat:) userInfo:nil repeats:YES];
 }
 
 -(void)beat:(NSTimer*)timer{
 
 	if(self.beatPartCount==25) self.beatPartCount=1;
 	
-//	float error = [self.tracker benchmark]-((60/(float)self.bpm)/24);
-//	NSLog(@"Error: %fms", error*1000 );
+	error = [self.tracker benchmark]-((60/(double)self.bpm)/24);
+	NSLog(@"Error: %fms", error*1000 );
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"beat" object:[NSNumber numberWithInt:self.beatPartCount]];
 	self.beatPartCount++;
-	if(self.on)[self updateTimer];
+//if(self.on)[self updateTimer];
 }
 
 #pragma mark - Getters and Setters
 
 -(void)setBpm:(NSUInteger)value	{
+	if (self.on) {
+		[self updateTimer];
+	}
 	_bpm = value;
 
 }
@@ -65,6 +74,7 @@ id target;
 	if (on) {
 		[self startTimer];
 	}
+	else [self stopTimer];
 	_on = on;
 }
 - (bool) on	{
