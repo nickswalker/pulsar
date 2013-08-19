@@ -14,6 +14,6 @@
 @property UISegmentedControl* bottomControl;
 @property NSArray* timeSignature;
 
-- (void) updateTimeSignature:(id)sender;
+- (void) updateTimeSignature;
 - (void) addBeat:(id)sender;
 @end

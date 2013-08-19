@@ -24,13 +24,17 @@
 
 	self.timeKeeper = [[Timer alloc] init];
 	self.timeKeeper.timeSignature = self.timeSignatureControl.timeSignature;
-	self.bpmControl.timeKeeper = self.timeKeeper;
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(beat)
 												 name:@"beat"
 											   object:nil];
 }
--(IBAction)controlValueChanged:(id)sender	{
+-(IBAction)bpmControlValueChanged:(id)sender	{
+	self.timeKeeper.bpm = self.bpmControl.stepper.value;
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"syncDefaults" object:self];
+}
+-(IBAction)timeSignatureValueChanged:(id)sender	{
+	self.timeSignatureControl.topControl.currentBeat = nil;
 	self.timeKeeper.timeSignature = self.timeSignatureControl.timeSignature;
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"syncDefaults" object:self];
 }

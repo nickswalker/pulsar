@@ -28,6 +28,7 @@ id target;
 	[timer invalidate];
 	timer = nil;
 	self.beatPartCount = 1;
+	//This needs to change actually because the first beat might be an accent. We need to send the actual first beat along for the ride
 	//Fire the first beat as soon as the action is registered so as to allow instant metronome start
 	[self beat:nil];
 	double gap = (((double)SECONDS)/self.bpm )/24;
@@ -50,8 +51,8 @@ id target;
 
 	if(self.beatPartCount==25) self.beatPartCount=1;
 	
-	error = [self.tracker benchmark]-((60/(double)self.bpm)/24);
-	NSLog(@"Error: %fms", error*1000 );
+	//error = [self.tracker benchmark]-((60/(double)self.bpm)/24);
+	//NSLog(@"Error: %fms", error*1000 );
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"beat" object:[NSNumber numberWithInt:self.beatPartCount]];
 	self.beatPartCount++;
@@ -61,10 +62,10 @@ id target;
 #pragma mark - Getters and Setters
 
 -(void)setBpm:(NSUInteger)value	{
+	_bpm = value;
 	if (self.on) {
 		[self updateTimer];
 	}
-	_bpm = value;
 
 }
 - (NSUInteger)bpm	{
@@ -109,6 +110,8 @@ id target;
 				self.beatDenomination = dottedEigth;
 			}
 	}
+	[self stopTimer];
+	if (self.on) [self startTimer];
 }
 - (NSArray*) timeSignature	{
 	return _timeSignature;

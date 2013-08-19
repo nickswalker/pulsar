@@ -13,7 +13,6 @@
 
 @property (nonatomic, retain)IBOutlet UILabel *bpmLabel;
 @property (nonatomic, retain)IBOutlet UIStepper *stepper;
-@property Timer* timeKeeper;
 
 - (IBAction)updateBPM:(UIStepper*)stepper;
 - (IBAction)handlePan:(UIPanGestureRecognizer*)recognizer;

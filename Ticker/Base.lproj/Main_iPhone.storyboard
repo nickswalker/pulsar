@@ -51,31 +51,31 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <action selector="controlValueChanged:" destination="XxR-Jg-CVn" eventType="valueChanged" id="R6Q-GJ-XoL"/>
+                                            <action selector="timeSignatureValueChanged:" destination="XxR-Jg-CVn" eventType="valueChanged" id="dwi-OO-l3Y"/>
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xow-we-SQY" customClass="bpmControl">
-                                        <rect key="frame" x="42" y="0.0" width="118" height="132"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="202" height="132"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
+                                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minimumValue="20" maximumValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="Ux3-pZ-IHZ" userLabel="BPM Stepper">
+                                                <rect key="frame" x="54" y="103" width="94" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <connections>
+                                                    <action selector="updateBPM:" destination="xow-we-SQY" eventType="valueChanged" id="xYY-07-eDs"/>
+                                                </connections>
+                                            </stepper>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipz-Ct-Rt3" userLabel="BPM">
-                                                <rect key="frame" x="-21" y="0.0" width="160" height="83"/>
+                                                <rect key="frame" x="6" y="-15" width="190" height="110"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="96"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                                             </label>
-                                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minimumValue="20" maximumValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="Ux3-pZ-IHZ" userLabel="BPM Stepper">
-                                                <rect key="frame" x="12" y="103" width="94" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <connections>
-                                                    <action selector="updateBPM:" destination="xow-we-SQY" eventType="valueChanged" id="xYY-07-eDs"/>
-                                                </connections>
-                                            </stepper>
                                         </subviews>
                                         <connections>
-                                            <action selector="controlValueChanged:" destination="XxR-Jg-CVn" eventType="valueChanged" id="nZd-wZ-t2j"/>
+                                            <action selector="bpmControlValueChanged:" destination="XxR-Jg-CVn" eventType="valueChanged" id="C6Z-Od-A0g"/>
                                             <outlet property="bpmLabel" destination="ipz-Ct-Rt3" id="MIa-ZQ-NRi"/>
                                             <outlet property="stepper" destination="Ux3-pZ-IHZ" id="CnF-W6-hyO"/>
                                             <outletCollection property="gestureRecognizers" destination="j67-1B-cl2" appends="YES" id="AAg-PE-MGo"/>

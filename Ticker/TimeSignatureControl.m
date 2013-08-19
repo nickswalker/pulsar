@@ -22,7 +22,7 @@
 	NSArray *bottomNumbers = @[@"2", @"4", @"8", @"16"];
 	self.bottomControl = [[UISegmentedControl alloc] initWithItems:bottomNumbers];
 	self.bottomControl.frame = CGRectMake(0, 33, 175, 29);
-	[self.bottomControl addTarget:self action: @selector(updateTimeSignature:) forControlEvents:UIControlEventValueChanged];
+	[self.bottomControl addTarget:self action: @selector(updateTimeSignature) forControlEvents:UIControlEventValueChanged];
 	[self addSubview:self.bottomControl];
 	
 	self.topControl = [[BeatsControl alloc] init];
@@ -31,22 +31,23 @@
 	self.topControl.frame = CGRectMake(3, 0, 168, 20);
 	
 	[self.topControl addTarget:self action:@selector(addBeat:) forControlEvents:UIControlEventTouchUpInside];
-	[self.topControl addTarget:self action:@selector(updateTimeSignature:) forControlEvents:UIControlEventValueChanged];
+	[self.topControl addTarget:self action:@selector(updateTimeSignature) forControlEvents:UIControlEventValueChanged];
 	[self addSubview:self.topControl];
 
 }
-- (void) updateTimeSignature:(id)sender	{
+- (void) updateTimeSignature	{
 	self.timeSignature = @[[NSNumber numberWithInt:self.topControl.numberOfBeats], [self.bottomControl titleForSegmentAtIndex:self.bottomControl.selectedSegmentIndex]];
 }
 - (void)addBeat:(id)sender{
 	if (self.topControl.numberOfBeats ==12) self.topControl.numberOfBeats = 1;
 	self.topControl.numberOfBeats++;
-	[self sendActionsForControlEvents:UIControlEventValueChanged];
+	[self updateTimeSignature];
 }
 
 #pragma mark - Getters and Setters
 
 - (void) setTimeSignature:(NSArray *)timeSignature	{
+	self.topControl.currentBeat = nil;
 	NSUInteger top = [timeSignature[0] intValue];
 	NSUInteger bottom = [timeSignature[1] intValue];
 	int index = 0;

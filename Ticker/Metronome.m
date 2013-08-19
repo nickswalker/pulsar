@@ -63,7 +63,7 @@ int i;
 
 - (void) syncSettingsChangesToDefaults
 {
-	NSLog(@"settings sync");
+	//NSLog(@"settings sync");
 	NSArray* timeSignature = @[ [NSNumber numberWithInt:self.controls.timeSignatureControl.topControl.numberOfBeats], [self.controls.timeSignatureControl.bottomControl titleForSegmentAtIndex:self.controls.timeSignatureControl.bottomControl.selectedSegmentIndex]];
 	[defaults setObject: timeSignature forKey:@"timeSignature"];
 	[defaults setInteger:(int)self.controls.bpmControl.stepper.value forKey:@"bpm"];
@@ -86,12 +86,13 @@ int i;
 - (IBAction)matchBpm:(id)sender
 {
 	double delta = [bpmTracker benchmark];
+
 	if(delta == 0) return;
 	else if( (60/delta) <20 ){
 		return;
 	}
 	self.controls.bpmControl.stepper.value= 60/(delta);
-	[self.controls.bpmControl.stepper sendActionsForControlEvents:UIControlEventValueChanged];
+	[self.controls.bpmControl updateBPM:self.controls.bpmControl.stepper];
 }
 - (IBAction)cycleTimeSignature:(id)sender	{
 	double delta = [timeSignatureTracker benchmark];
@@ -103,8 +104,6 @@ int i;
 	}
 	self.controls.timeSignatureControl.timeSignature= standardSettings[i][0];
 	self.controls.timeSignatureControl.topControl.accents = standardSettings[i][1];
-	self.controls.timeSignatureControl.topControl.currentBeat = nil;
-
 	
 	i++;
 }
@@ -113,8 +112,8 @@ int i;
 	if (denomination == dottedQuarter || denomination == dottedEigth) {
 		
 			if ( part == 1 ) {
-				double error = [self.tracker benchmark]*1000;
-				NSLog(@"Overall Error: %fms", error );
+//				double error = [self.tracker benchmark]*1000;
+//				NSLog(@"Overall Error: %fms", error );
 				if (beat.accent) {
 					[player playAccent];
 					if ([defaults boolForKey:@"screenFlash"]) [self flashScreen];
@@ -128,8 +127,8 @@ int i;
 	}
 	else{
 		if ( part == 1 ) {
-			double error = [self.tracker benchmark]*1000;
-			NSLog(@"Overall Error: %fms", error );
+//			double error = [self.tracker benchmark]*1000;
+//			NSLog(@"Overall Error: %fms", error );
 			if (beat.accent) {
 				[player playAccent];
 				if ([defaults boolForKey:@"screenFlash"]) [self flashScreen];

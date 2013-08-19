@@ -23,15 +23,16 @@
 {
 		
 }
+// Call when stepper value changes. Updates the text label and sends and event to propogate bpm change
 -(IBAction)updateBPM:(UIStepper*)sender	{
 	self.bpmLabel.text = [NSString stringWithFormat:@"%d", (int)sender.value];
-	self.timeKeeper.bpm = (NSUInteger)sender.value;
 	[self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
     CGPoint translation = [recognizer translationInView:self];
-	self.stepper.value = self.stepper.value - -1*translation.y/10;
-	[self.stepper sendActionsForControlEvents:UIControlEventValueChanged];
+	self.stepper.value = self.stepper.value - -1*translation.y/8.5;
 	[recognizer setTranslation:CGPointMake(0, 0) inView:self];
+	
+	[self.stepper sendActionsForControlEvents:UIControlEventValueChanged];
 }
 @end

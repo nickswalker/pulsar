@@ -13,14 +13,13 @@
 
 - (double)benchmark{
 	static double lastTime = 0;
-	
+
 	double currentTime = CACurrentMediaTime() ;
 	
 	double diff = currentTime - lastTime ;
 	
 	lastTime = currentTime ; // update for next call
 	return diff ;
-
 }
 
 @end
