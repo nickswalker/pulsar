@@ -1,59 +1,93 @@
 #import "MetronomeControl.h"
-#import "bpmControl.h"
-#import "TimeSignatureControl.h"
+#import "BPMControl.h"
+#import "MeasureControl.h"
+#import "Timer.h"
 
 @implementation MetronomeControl
 
-//- (id)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//    }
-//    return self;
-//}
+Timer* timeKeeper;
+BPMControl* bpmControl;
+UISwitch *runningSwitch;
+MeasureControl* measureControl;
+NSUserDefaults* defaults;
+
+@synthesize running = _running;
+
 - (void) awakeFromNib
 {
+	
+	bpmControl = [[BPMControl alloc] initWithFrame:  CGRectMake(0, 0, self.frame.size.width, 150)];
+	[bpmControl addTarget:self action:@selector(bpmControlChanged:) forControlEvents:UIControlEventValueChanged];
+	[self addSubview:bpmControl];
+	
+	measureControl = [[MeasureControl alloc] initWithFrame:  CGRectMake(0, 131, self.frame.size.width, 75)];
+	[measureControl addTarget:self action:@selector(measureControlChanged:) forControlEvents:UIControlEventValueChanged];
+	[self addSubview:measureControl];
 
-	self.timeKeeper = [[Timer alloc] init];
-	self.timeKeeper.timeSignature = self.timeSignatureControl.timeSignature;
+	runningSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(self.frame.size.width/2 -52/2, 230, 0, 0)];
+	runningSwitch.onTintColor = [self tintColor];
+	[runningSwitch addTarget:self action:@selector(switchControlChanged:) forControlEvents:UIControlEventValueChanged];
+	[self addSubview:runningSwitch];
+	
+	timeKeeper = [[Timer alloc] init];
+	timeKeeper.timeSignature = measureControl.timeSignature;
+
+	defaults = [NSUserDefaults standardUserDefaults];
 	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(beat)
-												 name:@"beat"
+											 selector:@selector(syncSettingsChangesToDefaults)
+												 name:@"syncDefaults"
 											   object:nil];
-}
--(IBAction)bpmControlValueChanged:(id)sender	{
-	self.timeKeeper.bpm = self.bpmControl.stepper.value;
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"syncDefaults" object:self];
-}
--(IBAction)timeSignatureValueChanged:(id)sender	{
-	self.timeSignatureControl.topControl.currentBeat = nil;
-	self.timeKeeper.timeSignature = self.timeSignatureControl.timeSignature;
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"syncDefaults" object:self];
+	[self setSettingsFromDefaults];
 }
 // This needs to be modified to toggle on tap down.
--(IBAction)toggleRunning:(UISwitch*)toggle
+
+- (void) syncSettingsChangesToDefaults
 {
-	self.timeSignatureControl.topControl.currentBeat = nil;
-	if (toggle.on) {
-		self.timeKeeper.on= true;
-		[UIApplication sharedApplication].idleTimerDisabled = YES;
-	}
-	else {
-		self.timeKeeper.on= false;
-		[UIApplication sharedApplication].idleTimerDisabled = NO;
-	}
+	NSLog(@"settings sync");
+	[defaults setObject: self.timeSignature forKey:@"timeSignature"];
+	[defaults setInteger: self.bpm forKey:@"bpm"];
+	[defaults synchronize];
+}
+- (void) setSettingsFromDefaults
+{
+	self.bpm = [defaults integerForKey:@"bpm"];
+	self.timeSignature= [defaults objectForKey:@"timeSignature"];
+	//self.accents = [defaults objectForKey:@"accents"];
+	
+}
+//Functions called when a ui interaction causes a change. There should be no other entrance to these codepaths.
+- (void)measureControlChanged:(MeasureControl*)control	{
+	self.timeSignature = control.timeSignature;
+}
+- (void)switchControlChanged:(UISwitch*)control	{
+	self.running = control.on;
+}
+- (void)bpmControlChanged:(BPMControl*)control	{
+	self.bpm = control.bpm;
 }
 
-- (void)beat
-{
-	//NSLog(@"%lu", (unsigned long)self.timeKeeper.beatPartCount);
-	if (self.timeKeeper.beatDenomination == dottedEigth || self.timeKeeper.beatDenomination == dottedQuarter) {
-		if(self.timeKeeper.beatPartCount == 8 || self.timeKeeper.beatPartCount == 16) [self.timeSignatureControl.topControl advanceBeat];
-	}
-	if (self.timeKeeper.beatPartCount == 1) {
-		[self.timeSignatureControl.topControl advanceBeat];
-	}
-	[self.delegate beat:self.timeSignatureControl.topControl.currentBeat denomination:self.timeKeeper.beatDenomination part:self.timeKeeper.beatPartCount];
+//Facade for all of the nitty gritty below
+- (NSUInteger) bpm	{
+	return bpmControl.bpm;
+}
+- (void) setBpm:(NSUInteger)bpm{
+	bpmControl.bpm = bpm;
+	timeKeeper.bpm = bpm;
+}
+- (NSArray*) timeSignature	{
+	return measureControl.timeSignature;
+}
+- (void) setTimeSignature:(NSArray *)timeSignature	{
+	NSLog(@"updating ts");
+	measureControl.timeSignature = timeSignature;
+	timeKeeper.timeSignature = timeSignature;
+}
+- (BOOL) running{
+	return timeKeeper.on;
+}
+- (void) setRunning:(BOOL)running{
+	timeKeeper.on = running;
 	
+	[UIApplication sharedApplication].idleTimerDisabled = running;
 }
 @end

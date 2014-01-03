@@ -5,6 +5,6 @@
 
 @property (nonatomic, retain) AVCaptureSession * torchSession;
 
-- (void) toggleTorch;
++ (void) toggleTorch;
 	
 @end

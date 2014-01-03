@@ -19,7 +19,6 @@ accent = _accent;
 
 - (void)handleLongPress:(UILongPressGestureRecognizer*)recognizer
 {
-	NSLog(@"Long");
 	if (recognizer.state == UIGestureRecognizerStateEnded)
 	{
 		if (self.accent==false) self.accent = true;
@@ -49,7 +48,7 @@ accent = _accent;
 		CGContextSetFillColor(ctx, CGColorGetComponents([self.tintColor CGColor]));
 		CGContextSetStrokeColor(ctx, CGColorGetComponents([self.tintColor CGColor]));
 	}
-//	else if(self.subDivision){
+//	else if(self.division){
 //		static CGFloat const kDashedPhase           = (0.0f);
 //		static CGFloat const kDashedLinesLength[]   = {4.0f, 2.0f};
 //		static size_t const kDashedCount            = (2.0f);

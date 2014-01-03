@@ -1,18 +1,43 @@
 #import "Settings.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+
 @implementation Settings
+
 NSUserDefaults *defaults;
 
 - (void)awakeFromNib
 {
-	//self.contentSizeForViewInPopover = CGSizeMake(320.0, 480.0);
     [super awakeFromNib];
+	
 }
-
+- (UIBarPosition)positionForBar:(id <UIBarPositioning>)bar {
+    return UIBarPositionTop;
+}
+//- (UIStatusBarStyle)preferredStatusBarStyle{
+//    return UIStatusBarStyleDefault;
+//}
+//- (BOOL) prefersStatusBarHidden
+//{
+//    return YES;
+//}
 - (void)viewDidLoad
 {
-	
     [super viewDidLoad];
+	self.view.frame = CGRectMake(0, 50, 320, 460);
+	// May return nil if a tracker has not already been initialized with a
+	// property ID.
+	id tracker = [[GAI sharedInstance] defaultTracker];
+	
+	// This screen name value will remain set on the tracker and sent with
+	// hits until it is set to a new value or to nil.
+	[tracker set:kGAIScreenName
+		   value:@"Settings"];
+	
+	[tracker send:[[GAIDictionaryBuilder createAppView] build]];
+	
 	
 	// Make switches reflect defaults
 	defaults = [NSUserDefaults standardUserDefaults];
@@ -32,10 +57,7 @@ NSUserDefaults *defaults;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (BOOL)prefersStatusBarHidden
-{
-	return YES;
-}
+
 #pragma mark - Actions
 
 - (IBAction)done:(id)sender
@@ -82,7 +104,7 @@ NSUserDefaults *defaults;
 #pragma mark - Tableview methods
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-	if ( section == 2) return [NSString stringWithFormat:@"%@ Version %@ \n Nick Walker", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"],[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ];
+	if ( section == 2) return [NSString stringWithFormat:@"%@ Version %@ \nNick Walker", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"],[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ];
 	return nil;
 }
 @end

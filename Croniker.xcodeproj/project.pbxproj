@@ -7,20 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0103148717A6AEBB001D6D7E /* bpmControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0103148617A6AEBB001D6D7E /* bpmControl.m */; };
+		0103148717A6AEBB001D6D7E /* BPMControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0103148617A6AEBB001D6D7E /* BPMControl.m */; };
 		010314D617A9C8F1001D6D7E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010314D517A9C8F1001D6D7E /* AudioToolbox.framework */; };
-		010314D817A9C917001D6D7E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010314D717A9C917001D6D7E /* Accelerate.framework */; };
-		010E36FC17A5859D00FFD257 /* TimeSignatureControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 010E36FB17A5859D00FFD257 /* TimeSignatureControl.m */; };
+		010E36FC17A5859D00FFD257 /* MeasureControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 010E36FB17A5859D00FFD257 /* MeasureControl.m */; };
+		013F4F7317EE899600685E37 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013F4F7217EE899600685E37 /* OpenAL.framework */; };
 		014E89D817C3178300B17C47 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 014E89D717C3178300B17C47 /* Settings.bundle */; };
-		0152FE0317ADC07D00941A18 /* Accent.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0152FDFE17ADC07D00941A18 /* Accent.caf */; };
-		0152FE0417ADC07D00941A18 /* Beat.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0152FDFF17ADC07D00941A18 /* Beat.caf */; };
-		0152FE0517ADC07D00941A18 /* Division.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0152FE0017ADC07D00941A18 /* Division.caf */; };
-		0152FE0617ADC07D00941A18 /* Subdivision.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0152FE0117ADC07D00941A18 /* Subdivision.caf */; };
-		0152FE0717ADC07D00941A18 /* Triplet.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0152FE0217ADC07D00941A18 /* Triplet.caf */; };
 		0153B3C3179A3638009744C0 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0153B3C2179A3638009744C0 /* Settings.m */; };
 		01565DD217A0A77E007BDC0A /* Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0153B372179A29E7009744C0 /* Timer.m */; };
 		0167864517A42F7700F71527 /* BeatsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0167864417A42F7700F71527 /* BeatsControl.m */; };
 		0167864917A4809F00F71527 /* DeltaTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0167864817A4809F00F71527 /* DeltaTracker.m */; };
+		016BBC211875F6BD007A08A4 /* triplet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 016BBC1C1875F6BD007A08A4 /* triplet.wav */; };
+		016BBC221875F6BD007A08A4 /* subdivision.wav in Resources */ = {isa = PBXBuildFile; fileRef = 016BBC1D1875F6BD007A08A4 /* subdivision.wav */; };
+		016BBC231875F6BD007A08A4 /* division.wav in Resources */ = {isa = PBXBuildFile; fileRef = 016BBC1E1875F6BD007A08A4 /* division.wav */; };
+		016BBC241875F6BD007A08A4 /* accent.wav in Resources */ = {isa = PBXBuildFile; fileRef = 016BBC1F1875F6BD007A08A4 /* accent.wav */; };
+		016BBC251875F6BD007A08A4 /* beat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 016BBC201875F6BD007A08A4 /* beat.wav */; };
+		016BBC3418763E98007A08A4 /* libFinch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 016BBC2D1876211D007A08A4 /* libFinch.a */; };
 		0185E0241798484A00C16260 /* SoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B545411798296F00A4F4E0 /* SoundPlayer.m */; };
 		019270EB17A5EF4F00C26410 /* BeatControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 019270EA17A5EF4F00C26410 /* BeatControl.m */; };
 		0192E30517A1895300DE45EC /* LED.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192E30417A1895300DE45EC /* LED.m */; };
@@ -32,7 +33,6 @@
 		01B5450E179828B300A4F4E0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B5450D179828B300A4F4E0 /* main.m */; };
 		01B54512179828B300A4F4E0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B54511179828B300A4F4E0 /* AppDelegate.m */; };
 		01B54515179828B300A4F4E0 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B54513179828B300A4F4E0 /* Main_iPhone.storyboard */; };
-		01B54518179828B300A4F4E0 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B54516179828B300A4F4E0 /* Main_iPad.storyboard */; };
 		01B5451B179828B300A4F4E0 /* Ticker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01B54519179828B300A4F4E0 /* Ticker.xcdatamodeld */; };
 		01B5451E179828B300A4F4E0 /* Metronome.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B5451D179828B300A4F4E0 /* Metronome.m */; };
 		01B54523179828B300A4F4E0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B54522179828B300A4F4E0 /* Images.xcassets */; };
@@ -43,7 +43,6 @@
 		01B54535179828B400A4F4E0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01B54533179828B400A4F4E0 /* InfoPlist.strings */; };
 		01B54537179828B400A4F4E0 /* CronikerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B54536179828B400A4F4E0 /* CronikerTests.m */; };
 		01C9021517A69FF10086AD0C /* MetronomeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C9021417A69FF10086AD0C /* MetronomeControl.m */; };
-		01DF839717C65AAE0001048F /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01DF839617C65AAE0001048F /* libGoogleAnalyticsServices.a */; };
 		01DF839917C65ABF0001048F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01DF839817C65ABF0001048F /* SystemConfiguration.framework */; };
 		01DF839B17C65ACC0001048F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 01DF839A17C65ACC0001048F /* libz.dylib */; };
 		01DF83A517C65B580001048F /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01DF83A317C65B580001048F /* libGoogleAnalytics_debug.a */; };
@@ -51,6 +50,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		016BBC2C1876211D007A08A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01386372186A23EF003D54DB /* Finch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0D2AA93E14174FA000F4071B;
+			remoteInfo = Finch;
+		};
+		016BBC2E1876211D007A08A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01386372186A23EF003D54DB /* Finch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0D1BA656141A45B6004A5A9F;
+			remoteInfo = Tests;
+		};
+		016BBC301876211D007A08A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01386372186A23EF003D54DB /* Finch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0D2AA971141750F700F4071B;
+			remoteInfo = "Finch Demo";
+		};
+		016BBC321876211D007A08A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01386372186A23EF003D54DB /* Finch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0DAF0EA516947C8D00612EED;
+			remoteInfo = "Test Runner";
+		};
 		01B5452E179828B400A4F4E0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 01B544F4179828B300A4F4E0 /* Project object */;
@@ -61,18 +88,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0103148517A6AEBB001D6D7E /* bpmControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bpmControl.h; sourceTree = "<group>"; };
-		0103148617A6AEBB001D6D7E /* bpmControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bpmControl.m; sourceTree = "<group>"; };
+		0103148517A6AEBB001D6D7E /* BPMControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMControl.h; sourceTree = "<group>"; };
+		0103148617A6AEBB001D6D7E /* BPMControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMControl.m; sourceTree = "<group>"; };
 		010314D517A9C8F1001D6D7E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		010314D717A9C917001D6D7E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		010E36FA17A5859D00FFD257 /* TimeSignatureControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSignatureControl.h; sourceTree = "<group>"; };
-		010E36FB17A5859D00FFD257 /* TimeSignatureControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSignatureControl.m; sourceTree = "<group>"; };
+		010E36FA17A5859D00FFD257 /* MeasureControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureControl.h; sourceTree = "<group>"; };
+		010E36FB17A5859D00FFD257 /* MeasureControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureControl.m; sourceTree = "<group>"; };
+		01386372186A23EF003D54DB /* Finch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Finch.xcodeproj; path = Support/finch/Finch.xcodeproj; sourceTree = "<group>"; };
+		013F4F7217EE899600685E37 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		014E89D717C3178300B17C47 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		0152FDFE17ADC07D00941A18 /* Accent.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Accent.caf; path = Sounds/Accent.caf; sourceTree = "<group>"; };
-		0152FDFF17ADC07D00941A18 /* Beat.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Beat.caf; path = Sounds/Beat.caf; sourceTree = "<group>"; };
-		0152FE0017ADC07D00941A18 /* Division.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Division.caf; path = Sounds/Division.caf; sourceTree = "<group>"; };
-		0152FE0117ADC07D00941A18 /* Subdivision.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Subdivision.caf; path = Sounds/Subdivision.caf; sourceTree = "<group>"; };
-		0152FE0217ADC07D00941A18 /* Triplet.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Triplet.caf; path = Sounds/Triplet.caf; sourceTree = "<group>"; };
 		0153B371179A29E7009744C0 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
 		0153B372179A29E7009744C0 /* Timer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timer.m; sourceTree = "<group>"; };
 		0153B3C1179A3638009744C0 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
@@ -81,6 +105,11 @@
 		0167864417A42F7700F71527 /* BeatsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatsControl.m; sourceTree = "<group>"; };
 		0167864717A4809F00F71527 /* DeltaTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeltaTracker.h; sourceTree = "<group>"; };
 		0167864817A4809F00F71527 /* DeltaTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeltaTracker.m; sourceTree = "<group>"; };
+		016BBC1C1875F6BD007A08A4 /* triplet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = triplet.wav; path = Sounds/triplet.wav; sourceTree = "<group>"; };
+		016BBC1D1875F6BD007A08A4 /* subdivision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = subdivision.wav; path = Sounds/subdivision.wav; sourceTree = "<group>"; };
+		016BBC1E1875F6BD007A08A4 /* division.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = division.wav; path = Sounds/division.wav; sourceTree = "<group>"; };
+		016BBC1F1875F6BD007A08A4 /* accent.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = accent.wav; path = Sounds/accent.wav; sourceTree = "<group>"; };
+		016BBC201875F6BD007A08A4 /* beat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = beat.wav; path = Sounds/beat.wav; sourceTree = "<group>"; };
 		019270E917A5EF4F00C26410 /* BeatControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatControl.h; sourceTree = "<group>"; };
 		019270EA17A5EF4F00C26410 /* BeatControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatControl.m; sourceTree = "<group>"; };
 		0192E30317A1895300DE45EC /* LED.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LED.h; sourceTree = "<group>"; };
@@ -97,7 +126,6 @@
 		01B54510179828B300A4F4E0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		01B54511179828B300A4F4E0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		01B54514179828B300A4F4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		01B54517179828B300A4F4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		01B5451A179828B300A4F4E0 /* Ticker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ticker.xcdatamodel; sourceTree = "<group>"; };
 		01B5451C179828B300A4F4E0 /* Metronome.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Metronome.h; sourceTree = "<group>"; };
 		01B5451D179828B300A4F4E0 /* Metronome.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Metronome.m; sourceTree = "<group>"; };
@@ -129,15 +157,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				016BBC3418763E98007A08A4 /* libFinch.a in Frameworks */,
+				013F4F7317EE899600685E37 /* OpenAL.framework in Frameworks */,
 				01DF839B17C65ACC0001048F /* libz.dylib in Frameworks */,
+				01DF83A617C65B580001048F /* libGoogleAnalyticsServices.a in Frameworks */,
+				01B54506179828B300A4F4E0 /* CoreData.framework in Frameworks */,
 				01DF839917C65ABF0001048F /* SystemConfiguration.framework in Frameworks */,
-				01DF839717C65AAE0001048F /* libGoogleAnalyticsServices.a in Frameworks */,
-				010314D817A9C917001D6D7E /* Accelerate.framework in Frameworks */,
 				010314D617A9C8F1001D6D7E /* AudioToolbox.framework in Frameworks */,
 				01B54502179828B300A4F4E0 /* CoreGraphics.framework in Frameworks */,
-				01B54506179828B300A4F4E0 /* CoreData.framework in Frameworks */,
 				01DF83A517C65B580001048F /* libGoogleAnalytics_debug.a in Frameworks */,
-				01DF83A617C65B580001048F /* libGoogleAnalyticsServices.a in Frameworks */,
 				01B54504179828B300A4F4E0 /* UIKit.framework in Frameworks */,
 				01B54500179828B300A4F4E0 /* Foundation.framework in Frameworks */,
 			);
@@ -160,13 +188,24 @@
 		0167864617A439C100F71527 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				0152FDFE17ADC07D00941A18 /* Accent.caf */,
-				0152FDFF17ADC07D00941A18 /* Beat.caf */,
-				0152FE0017ADC07D00941A18 /* Division.caf */,
-				0152FE0117ADC07D00941A18 /* Subdivision.caf */,
-				0152FE0217ADC07D00941A18 /* Triplet.caf */,
+				016BBC1C1875F6BD007A08A4 /* triplet.wav */,
+				016BBC1D1875F6BD007A08A4 /* subdivision.wav */,
+				016BBC1E1875F6BD007A08A4 /* division.wav */,
+				016BBC1F1875F6BD007A08A4 /* accent.wav */,
+				016BBC201875F6BD007A08A4 /* beat.wav */,
 			);
 			name = Sounds;
+			sourceTree = "<group>";
+		};
+		016BBC261876211D007A08A4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				016BBC2D1876211D007A08A4 /* libFinch.a */,
+				016BBC2F1876211D007A08A4 /* Tests.octest */,
+				016BBC311876211D007A08A4 /* Finch Demo.app */,
+				016BBC331876211D007A08A4 /* TestRunner.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		019270E717A5B83600C26410 /* Controls */ = {
@@ -174,14 +213,14 @@
 			children = (
 				01C9021317A69FF10086AD0C /* MetronomeControl.h */,
 				01C9021417A69FF10086AD0C /* MetronomeControl.m */,
-				010E36FA17A5859D00FFD257 /* TimeSignatureControl.h */,
-				010E36FB17A5859D00FFD257 /* TimeSignatureControl.m */,
+				010E36FA17A5859D00FFD257 /* MeasureControl.h */,
+				010E36FB17A5859D00FFD257 /* MeasureControl.m */,
 				0167864317A42F7700F71527 /* BeatsControl.h */,
 				0167864417A42F7700F71527 /* BeatsControl.m */,
 				019270E917A5EF4F00C26410 /* BeatControl.h */,
 				019270EA17A5EF4F00C26410 /* BeatControl.m */,
-				0103148517A6AEBB001D6D7E /* bpmControl.h */,
-				0103148617A6AEBB001D6D7E /* bpmControl.m */,
+				0103148517A6AEBB001D6D7E /* BPMControl.h */,
+				0103148617A6AEBB001D6D7E /* BPMControl.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -224,6 +263,7 @@
 		01B544FE179828B300A4F4E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				013F4F7217EE899600685E37 /* OpenAL.framework */,
 				01DF839A17C65ACC0001048F /* libz.dylib */,
 				01DF839817C65ABF0001048F /* SystemConfiguration.framework */,
 				01DF839617C65AAE0001048F /* libGoogleAnalyticsServices.a */,
@@ -244,7 +284,6 @@
 				01B54510179828B300A4F4E0 /* AppDelegate.h */,
 				01B54511179828B300A4F4E0 /* AppDelegate.m */,
 				01B54513179828B300A4F4E0 /* Main_iPhone.storyboard */,
-				01B54516179828B300A4F4E0 /* Main_iPad.storyboard */,
 				01B5451C179828B300A4F4E0 /* Metronome.h */,
 				01B5451D179828B300A4F4E0 /* Metronome.m */,
 				0153B3C1179A3638009744C0 /* Settings.h */,
@@ -262,6 +301,7 @@
 		01B54508179828B300A4F4E0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				01386372186A23EF003D54DB /* Finch.xcodeproj */,
 				0167864617A439C100F71527 /* Sounds */,
 				01B54509179828B300A4F4E0 /* Croniker-Info.plist */,
 				01B5450A179828B300A4F4E0 /* InfoPlist.strings */,
@@ -372,6 +412,12 @@
 			mainGroup = 01B544F3179828B300A4F4E0;
 			productRefGroup = 01B544FD179828B300A4F4E0 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 016BBC261876211D007A08A4 /* Products */;
+					ProjectRef = 01386372186A23EF003D54DB /* Finch.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				01B544FB179828B300A4F4E0 /* Croniker */,
@@ -380,21 +426,51 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		016BBC2D1876211D007A08A4 /* libFinch.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFinch.a;
+			remoteRef = 016BBC2C1876211D007A08A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		016BBC2F1876211D007A08A4 /* Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.octest;
+			remoteRef = 016BBC2E1876211D007A08A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		016BBC311876211D007A08A4 /* Finch Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Finch Demo.app";
+			remoteRef = 016BBC301876211D007A08A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		016BBC331876211D007A08A4 /* TestRunner.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = TestRunner.app;
+			remoteRef = 016BBC321876211D007A08A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		01B544FA179828B300A4F4E0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0152FE0317ADC07D00941A18 /* Accent.caf in Resources */,
-				01B54518179828B300A4F4E0 /* Main_iPad.storyboard in Resources */,
 				014E89D817C3178300B17C47 /* Settings.bundle in Resources */,
-				0152FE0517ADC07D00941A18 /* Division.caf in Resources */,
-				0152FE0717ADC07D00941A18 /* Triplet.caf in Resources */,
 				01B54523179828B300A4F4E0 /* Images.xcassets in Resources */,
 				01B54515179828B300A4F4E0 /* Main_iPhone.storyboard in Resources */,
-				0152FE0417ADC07D00941A18 /* Beat.caf in Resources */,
-				0152FE0617ADC07D00941A18 /* Subdivision.caf in Resources */,
+				016BBC211875F6BD007A08A4 /* triplet.wav in Resources */,
+				016BBC241875F6BD007A08A4 /* accent.wav in Resources */,
+				016BBC221875F6BD007A08A4 /* subdivision.wav in Resources */,
+				016BBC251875F6BD007A08A4 /* beat.wav in Resources */,
 				01B5450C179828B300A4F4E0 /* InfoPlist.strings in Resources */,
+				016BBC231875F6BD007A08A4 /* division.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,9 +509,9 @@
 				0192E30517A1895300DE45EC /* LED.m in Sources */,
 				0167864517A42F7700F71527 /* BeatsControl.m in Sources */,
 				01B54512179828B300A4F4E0 /* AppDelegate.m in Sources */,
-				0103148717A6AEBB001D6D7E /* bpmControl.m in Sources */,
+				0103148717A6AEBB001D6D7E /* BPMControl.m in Sources */,
 				01B5451B179828B300A4F4E0 /* Ticker.xcdatamodeld in Sources */,
-				010E36FC17A5859D00FFD257 /* TimeSignatureControl.m in Sources */,
+				010E36FC17A5859D00FFD257 /* MeasureControl.m in Sources */,
 				01B5450E179828B300A4F4E0 /* main.m in Sources */,
 				01C9021517A69FF10086AD0C /* MetronomeControl.m in Sources */,
 				0185E0241798484A00C16260 /* SoundPlayer.m in Sources */,
@@ -480,14 +556,6 @@
 				01B54514179828B300A4F4E0 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		01B54516179828B300A4F4E0 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01B54517179828B300A4F4E0 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		01B54533179828B400A4F4E0 /* InfoPlist.strings */ = {
@@ -574,6 +642,7 @@
 		01B5453B179828B400A4F4E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos7.0]" = "";
@@ -589,7 +658,8 @@
 				PRODUCT_NAME = Croniker;
 				PROVISIONING_PROFILE = "";
 				SYMROOT = "$(PROJECT_DIR)/build";
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
+				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "<Multiple values> \"$(SRCROOT)/Classes/Support/finch/Finch\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -597,6 +667,7 @@
 		01B5453C179828B400A4F4E0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos7.0]" = "";
@@ -606,14 +677,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Classes/Croniker-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				"HEADER_SEARCH_PATHS[arch=*]" = "/Users/Nick/Documents/Projects/Dev/Croniker/Finch-master/**";
 				INFOPLIST_FILE = "Classes/Croniker-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = /Users/Nick/Documents/Projects/Dev/Croniker/Classes/Analytics;
 				PRODUCT_NAME = Croniker;
 				PROVISIONING_PROFILE = "";
 				SYMROOT = "$(PROJECT_DIR)/build";
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
-				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "<Multiple values> \"$(SRCROOT)/Classes/Support/finch/Finch\"/**";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "$(BUILT_PRODUCTS_DIR) /Users/Nick/Documents/Projects/Dev/Croniker/Finch-master/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

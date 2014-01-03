@@ -1,71 +1,58 @@
 #import "SoundPlayer.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "FISoundEngine.h"
+#import "FISound.h"
+
 @implementation SoundPlayer
 
-- (void)playNormal
-{
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"Beat"
-													 ofType:@"caf"];
-	SystemSoundID soundID;
-    AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:path])
-									 , &soundID);
-	AudioServicesPlaySystemSound (soundID);
+FISound *beat;
+FISound *division;
+FISound *subdivision;
+FISound *triplet;
+FISound *accent;
+
++(void)loadSounds{
 	
+	NSError *error = nil;
 	
+	FISoundEngine *engine = [FISoundEngine sharedEngine];
 	
-}
-- (void)playAccent
-{
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"Accent"
-													 ofType:@"caf"];
-	
-	SystemSoundID soundID;
-	AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:path])
-									 , &soundID);
-	AudioServicesPlaySystemSound (soundID);
+	beat = [engine soundNamed:@"beat.wav" maxPolyphony:4 error:&error];
+	division = [engine soundNamed:@"division.wav" maxPolyphony:4 error:&error];
+	subdivision = [engine soundNamed:@"subdivision.wav" maxPolyphony:4 error:&error];
+	triplet = [engine soundNamed:@"triplet.wav" maxPolyphony:4 error:&error];
+	accent = [engine soundNamed:@"accent.wav" maxPolyphony:4 error:&error];
 
 }
-- (void)playDivision
+
++ (void)playBeat
 {
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"Division"
-													 ofType:@"caf"];
-	
-	SystemSoundID soundID;
-	AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:path])
-									 , &soundID);
-	AudioServicesPlaySystemSound (soundID);
-	
+	[beat play];
 }
-- (void)playSubdivision
++ (void)playAccent
 {
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"Subdivision"
-													 ofType:@"caf"];
-	
-	SystemSoundID soundID;
-	AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:path])
-									 , &soundID);
-	AudioServicesPlaySystemSound (soundID);
-	
+	[accent play];
 }
-- (void)playTriplet
++ (void)playDivision
 {
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"Triplet"
-													 ofType:@"caf"];
-	
-	SystemSoundID soundID;
-	AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:path])
-									 , &soundID);
-	AudioServicesPlaySystemSound (soundID);
-	
+	[division play];
 }
-- (void)vibrate
++ (void)playSubdivision
 {
-	//AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+	[subdivision play];
+}
++ (void)playTriplet
+{
+	[triplet play];
+}
++ (void)vibrate
+{
+	AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 	NSMutableDictionary* dict = [NSMutableDictionary dictionary];
 	NSMutableArray* arr = [NSMutableArray array ];
 	
-	[arr addObject:[NSNumber numberWithBool:YES]]; //vibrate for 2000ms
-	[arr addObject:[NSNumber numberWithInt:150]];
+	[arr addObject:[NSNumber numberWithBool:YES]];
+	[arr addObject:[NSNumber numberWithInt:10]];
 	
 	[dict setObject:arr forKey:@"VibePattern"];
 	[dict setObject:[NSNumber numberWithInt:1] forKey:@"Intensity"];

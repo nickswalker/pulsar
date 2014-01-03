@@ -7,7 +7,7 @@
 - (void)settingsViewControllerDidFinish:(Settings *)controller;
 @end
 
-@interface Settings : UITableViewController
+@interface Settings : UITableViewController <UIBarPositioningDelegate>
 
 @property (weak, nonatomic) id <SettingsViewControllerDelegate> delegate;
 @property IBOutlet UISwitch* vibrateControl;

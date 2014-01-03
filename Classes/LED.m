@@ -2,7 +2,7 @@
 
 @implementation LED
 
-- (void) toggleTorch
++ (void) toggleTorch
 {
 	Class captureDeviceClass = NSClassFromString(@"AVCaptureDevice");
 	if (captureDeviceClass != nil) {

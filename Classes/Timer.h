@@ -3,23 +3,20 @@
 @interface Timer : NSObject
 
 typedef enum{
-	half,
-	quarter,
-	eigth,
-	sixteenth,
-	dottedQuarter,
-	dottedEigth
+	half = 2,
+	quarter = 4,
+	eigth = 8,
+	sixteenth = 16,
+	dottedQuarter = 0,
+	dottedEigth = 0
 }  BeatDenomination;
 
-@property DeltaTracker* tracker;
 @property bool on;
-@property NSUInteger beatPartCount;
 @property NSUInteger bpm;
 @property NSArray* timeSignature;
-@property BeatDenomination beatDenomination;
+
 
 - (void) startTimer;
-- (void) beat:(NSTimer*)timer;
 
 
 @end

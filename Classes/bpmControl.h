@@ -1,11 +1,9 @@
 #import <UIKit/UIKit.h>
-#import "Timer.h"
 
-@interface bpmControl : UIControl
+@interface BPMControl : UIControl
 
-@property (nonatomic, retain)IBOutlet UILabel *bpmLabel;
-@property (nonatomic, retain)IBOutlet UIStepper *stepper;
+@property (nonatomic, retain) UILabel *bpmLabel;
+@property (nonatomic, retain)UIStepper *stepper;
+@property NSUInteger bpm;
 
-- (IBAction)updateBPM:(UIStepper*)stepper;
-- (IBAction)handlePan:(UIPanGestureRecognizer*)recognizer;
 @end

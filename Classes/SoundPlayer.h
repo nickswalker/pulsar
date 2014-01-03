@@ -2,10 +2,11 @@
 
 @interface SoundPlayer : NSObject
 
-- (void) playNormal;
-- (void) playAccent;
-- (void) playDivision;
-- (void) playSubdivision;
-- (void) playTriplet;
-- (void) vibrate;
++ (void) loadSounds;
++ (void) playBeat;
++ (void) playAccent;
++ (void) playDivision;
++ (void) playSubdivision;
++ (void) playTriplet;
++ (void) vibrate;
 @end

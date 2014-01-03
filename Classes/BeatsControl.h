@@ -4,14 +4,14 @@
 @interface BeatsControl : UIControl
 
 @property BeatControl* currentBeat;
-@property NSUInteger numberOfBeats;
 @property NSUInteger radius;
 @property NSArray* accents;
-@property UITapGestureRecognizer* tapRecognizer;
-@property UIButton* backgroundButton;
-@property NSArray* timeSignature;
+@property NSUInteger numberOfBeats;
 
 - (bool)beatIsAccent:(NSUInteger)beat;
 - (void)updateAccent:(BeatControl*)beat;
 - (void)advanceBeat;
+- (void)beat:(NSNotification *)notification;
+- (void)addBeat;
+
 @end

@@ -3,6 +3,10 @@
 #import "DeltaTracker.h"
 @implementation Timer
 
+DeltaTracker* tracker;
+BeatDenomination beatDenomination;
+NSUInteger beatPartCount;
+
 @synthesize bpm = _bpm,
 	on = _on,
 	timeSignature = _timeSignature;
@@ -12,18 +16,21 @@ id target;
 -(Timer*)init{
 	self = [super init];
     if (self) {
-        self.tracker= [[DeltaTracker alloc] init];
+        tracker= [[DeltaTracker alloc] init];
     }
     return self;
 }
 -(void)startTimer{
 	[timer invalidate];
 	timer = nil;
-	self.beatPartCount = 1;
+	
+	beatPartCount = 1;
 	//This needs to change actually because the first beat might be an accent. We need to send the actual first beat along for the ride
 	//Fire the first beat as soon as the action is registered so as to allow instant metronome start
 	[self beat:nil];
 	double gap = (((double)SECONDS)/self.bpm )/24;
+	NSLog(@"%f", gap);
+	NSLog(@"%lu", (unsigned long)self.bpm);
 	timer = [NSTimer scheduledTimerWithTimeInterval:gap target:self selector:@selector(beat:) userInfo:nil repeats:YES];
 	
 }
@@ -41,13 +48,14 @@ id target;
 
 -(void)beat:(NSTimer*)timer{
 
-	if(self.beatPartCount==25) self.beatPartCount=1;
+	if(beatPartCount==25) beatPartCount=1;
 	
-	//error = [self.tracker benchmark]-((60/(double)self.bpm)/24);
-	//NSLog(@"Error: %fms", error*1000 );
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"beat" object:[NSNumber numberWithInt:self.beatPartCount]];
-	self.beatPartCount++;
+//	error = [tracker benchmark]-((60/(double)self.bpm)/24);
+//	NSLog(@"Error: %fms", error*1000 );
+	NSNumber *denomination = [NSNumber numberWithUnsignedInteger: beatDenomination];
+	NSNumber* part = [NSNumber numberWithUnsignedInteger:beatPartCount];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"beat" object:self userInfo:@{@"beatPartCount": part, @"beatDenomination": denomination}];
+	beatPartCount++;
 //if(self.on)[self updateTimer];
 }
 
@@ -76,31 +84,16 @@ id target;
 - (void) setTimeSignature:(NSArray *)timeSignature
 {
 	_timeSignature = timeSignature;
-	int topValue = [timeSignature[0] intValue];
-	int bottomValue = [timeSignature[1] intValue];
-	switch (bottomValue) {
-		case 2:
-			self.beatDenomination = half;
-			break;
-		case 4:
-			self.beatDenomination = quarter;
-			break;
-		case 8:
-			self.beatDenomination = eigth;
-			break;
-		case 16:
-			self.beatDenomination = sixteenth;
-			break;
-		default:
-			break;
-	}
-	if ( topValue > 3 && topValue % 3 == 0 ){
-			if ( bottomValue == 8 ) {
-				self.beatDenomination = dottedQuarter;
-			}
-			else if ( bottomValue == 16 ){
-				self.beatDenomination = dottedEigth;
-			}
+	int numerator = [timeSignature[0] intValue];
+	int denominator = [timeSignature[1] intValue];
+	beatDenomination = denominator;
+	if ( numerator > 3 && numerator % 3 == 0 ){
+		if ( denominator == 8 ) {
+			beatDenomination = dottedQuarter;
+		}
+		else if ( denominator == 16 ){
+			beatDenomination = dottedEigth;
+		}
 	}
 	[self stopTimer];
 	if (self.on) [self startTimer];
