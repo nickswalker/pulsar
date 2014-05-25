@@ -28,7 +28,7 @@ UIButton* backgroundButton;
 - (void)handleTap:(UITapGestureRecognizer*)recognizer{
 	[self addBeat];
 }
-- (void)updateAccent:(BeatControl*)beat	{
+- (void)userChangedAccent:(BeatControl*)beat	{
 	NSMutableArray* tempArray;
 	if([self beatIsAccent:beat.number]){
 		tempArray = [self.accents mutableCopy] ;
@@ -84,7 +84,7 @@ UIButton* backgroundButton;
 
 		if (i == self.currentBeat.number) tempBeatControl.current = true;
 		else tempBeatControl.current = false;
-		[tempBeatControl addTarget:self action:@selector(updateAccent:) forControlEvents:UIControlEventValueChanged];
+		[tempBeatControl addTarget:self action:@selector(userChangedAccent:) forControlEvents:UIControlEventValueChanged];
 		[self addSubview:tempBeatControl];
 	}
 }
@@ -104,6 +104,10 @@ UIButton* backgroundButton;
 	[self setNeedsDisplay];
 	[self sendActionsForControlEvents:UIControlEventValueChanged];
 
+}
+- (void) clearDisplay	{
+	self.currentBeat = nil;
+	[self setNeedsDisplay];
 }
 #pragma mark - Getters and Setters
 

@@ -19,7 +19,7 @@ UIPanGestureRecognizer* recognizer;
 		bpmLabel.textColor = [UIColor whiteColor];
 		bpmLabel.textAlignment = NSTextAlignmentCenter;
 		bpmLabel.font =  [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:96];
-		bpmLabel.text = @"60";
+		bpmLabel.attributedText = [[NSMutableAttributedString alloc] initWithString:@"60"];
 		[self addSubview:bpmLabel];
 		
 		stepper = [[UIStepper alloc] initWithFrame:  CGRectMake(self.frame.size.width/2 -94/2, 96,0 , 0)];
@@ -42,7 +42,8 @@ UIPanGestureRecognizer* recognizer;
 }
 -(void) setBpm:(NSUInteger)bpm	{
 	stepper.value = bpm;
-	bpmLabel.text = [NSString stringWithFormat:@"%d", (int)stepper.value];
+	NSString* value = [NSString stringWithFormat:@"%d", (int)stepper.value];
+	bpmLabel.attributedText = [[NSMutableAttributedString alloc] initWithString:value];
 }
 - (void)handlePan:(UIPanGestureRecognizer*)recognizer {
     CGPoint translation = [recognizer translationInView:self];

@@ -79,7 +79,7 @@ int i;
 		i=0;
 	}
 	self.controls.timeSignature= standardSettings[i][0];
-	//self.controls.timeSignatureControl.topControl.accents = standardSettings[i][1];
+	self.controls.accents = standardSettings[i][1];
 	
 	i++;
 }
@@ -87,21 +87,22 @@ int i;
 {
 	BeatDenomination denomination = [[[notification userInfo] objectForKey:@"beatDenomination"] intValue];
 	NSUInteger part = [[[notification userInfo] objectForKey:@"beatPartCount"] intValue];
+	bool accent = [[[notification userInfo] objectForKey:@"accent"] boolValue];
 	if (denomination == dottedQuarter || denomination == dottedEigth) {
 		
 			if ( part == 1 ) {
 //				double error = [self.tracker benchmark]*1000;
 //				NSLog(@"Overall Error: %fms", error );
-//				if (beat.accent) {
-//					[SoundPlayer playAccent];
-//					[self flashScreen];
-//					if ([defaults boolForKey:@"ledFlash"]) [LED toggleTorch];
-//					if ([defaults boolForKey:@"vibrate"]) [SoundPlayer vibrate];
-//				}
-//				else {
+				if (accent) {
+					[SoundPlayer playAccent];
+					[self flashScreen];
+					if ([defaults boolForKey:@"ledFlash"]) [LED toggleTorch];
+					if ([defaults boolForKey:@"vibrate"]) [SoundPlayer vibrate];
+				}
+				else {
 					[SoundPlayer playBeat];
 					if ([defaults boolForKey:@"screenFlash"]) [self flashScreen];
-//				}
+				}
 			}
 			else if ( (part == 9 || part == 17) && [defaults boolForKey:@"division"]) [SoundPlayer playDivision];
 			else if ( (part == 5 || part == 13 || part == 21) && [defaults boolForKey:@"subdivision"]) [SoundPlayer playSubdivision];
@@ -110,16 +111,16 @@ int i;
 		if ( part == 1 ) {
 //			double error = [self.tracker benchmark]*1000;
 //			NSLog(@"Overall Error: %fms", error );
-//			if (beat.accent) {
-//				[SoundPlayer playAccent];
-//				[self flashScreen];
-//				if ([defaults boolForKey:@"ledFlash"]) [LED toggleTorch];
-//				if ([defaults boolForKey:@"vibrate"]) [SoundPlayer vibrate];
-//			}
-//			else{
+			if (accent) {
+				[SoundPlayer playAccent];
+				[self flashScreen];
+				if ([defaults boolForKey:@"ledFlash"]) [LED toggleTorch];
+				if ([defaults boolForKey:@"vibrate"]) [SoundPlayer vibrate];
+			}
+			else{
 				[SoundPlayer playBeat];
 				if ([defaults boolForKey:@"screenFlash"]) [self flashScreen];
-//			}
+			}
 		}
 		else if ( (part == 13) && [defaults boolForKey:@"division"]){
 			[SoundPlayer playDivision];

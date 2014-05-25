@@ -46,13 +46,14 @@ NSUserDefaults* defaults;
 	NSLog(@"settings sync");
 	[defaults setObject: self.timeSignature forKey:@"timeSignature"];
 	[defaults setInteger: self.bpm forKey:@"bpm"];
+	[defaults setObject: self.accents forKey:@"accents"];
 	[defaults synchronize];
 }
 - (void) setSettingsFromDefaults
 {
 	self.bpm = [defaults integerForKey:@"bpm"];
 	self.timeSignature= [defaults objectForKey:@"timeSignature"];
-	//self.accents = [defaults objectForKey:@"accents"];
+	self.accents = [defaults objectForKey:@"accents"];
 	
 }
 //Functions called when a ui interaction causes a change. There should be no other entrance to these codepaths.
@@ -67,6 +68,7 @@ NSUserDefaults* defaults;
 }
 
 //Facade for all of the nitty gritty below
+//Eventually, you should really replace this with KVO
 - (NSUInteger) bpm	{
 	return bpmControl.bpm;
 }
@@ -82,12 +84,20 @@ NSUserDefaults* defaults;
 	measureControl.timeSignature = timeSignature;
 	timeKeeper.timeSignature = timeSignature;
 }
+- (NSArray*) accents	{
+	return measureControl.accents;
+}
+- (void) setAccents:(NSArray *)accents	{
+	measureControl.accents = accents;
+	timeKeeper.accents = accents;
+}
 - (BOOL) running{
 	return timeKeeper.on;
 }
 - (void) setRunning:(BOOL)running{
 	timeKeeper.on = running;
-	
+	runningSwitch.on = running;
+
 	[UIApplication sharedApplication].idleTimerDisabled = running;
 }
 @end

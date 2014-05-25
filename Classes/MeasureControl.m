@@ -14,8 +14,6 @@ UISegmentedControl* denominatorControl;
 		
 		beatsControl = [[BeatsControl alloc] initWithFrame:CGRectMake(2, 0, self.frame.size.width-4, 45)];
 		beatsControl.backgroundColor = [UIColor clearColor];
-
-		beatsControl.radius = 5;
 		
 		[beatsControl addTarget:self action:@selector(userChangedTimeSignature) forControlEvents:UIControlEventValueChanged];
 		[self addSubview:beatsControl];
@@ -30,6 +28,9 @@ UISegmentedControl* denominatorControl;
 }
 - (void) userChangedTimeSignature	{
 	self.timeSignature = @[[NSNumber numberWithInt:beatsControl.numberOfBeats], [denominatorControl titleForSegmentAtIndex:denominatorControl.selectedSegmentIndex]];
+	[self sendActionsForControlEvents:UIControlEventValueChanged];
+}
+- (void) userChangedAccents	{
 	[self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
@@ -54,6 +55,13 @@ UISegmentedControl* denominatorControl;
 }
 - (NSArray*) timeSignature	{
 	return _timeSignature;
+}
+
+- (NSArray*) accents	{
+	return beatsControl.accents;
+}
+- (void) setAccents:(NSArray *)accents	{
+	beatsControl.accents = accents;
 }
 
 @end

@@ -9,7 +9,7 @@ FISound *beat;
 FISound *division;
 FISound *subdivision;
 FISound *triplet;
-FISound *accent;
+FISound *accentSound; //Accent is a reserved name for some reason
 
 +(void)loadSounds{
 	
@@ -21,17 +21,15 @@ FISound *accent;
 	division = [engine soundNamed:@"division.wav" maxPolyphony:4 error:&error];
 	subdivision = [engine soundNamed:@"subdivision.wav" maxPolyphony:4 error:&error];
 	triplet = [engine soundNamed:@"triplet.wav" maxPolyphony:4 error:&error];
-	accent = [engine soundNamed:@"accent.wav" maxPolyphony:4 error:&error];
-
+	accentSound = [engine soundNamed:@"accent.wav" maxPolyphony:4 error:&error];
 }
-
 + (void)playBeat
 {
 	[beat play];
 }
 + (void)playAccent
 {
-	[accent play];
+	[accentSound play];
 }
 + (void)playDivision
 {
@@ -58,7 +56,7 @@ FISound *accent;
 	[dict setObject:[NSNumber numberWithInt:1] forKey:@"Intensity"];
 	
 	
-	AudioServicesPlaySystemSoundWithVibration(4095,nil,dict);
+	//AudioServicesPlaySystemSoundWithVibration(4095,nil,dict);
 }
 
 @end

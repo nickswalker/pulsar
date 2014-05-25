@@ -14,9 +14,6 @@ typedef enum{
 @property bool on;
 @property NSUInteger bpm;
 @property NSArray* timeSignature;
-
-
-- (void) startTimer;
-
+@property NSArray* accents;
 
 @end

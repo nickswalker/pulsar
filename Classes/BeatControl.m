@@ -5,14 +5,18 @@
 @synthesize current = _current,
 accent = _accent;
 
+NSUInteger radius = 5;
+NSUInteger accentRadius = 2;
+UILongPressGestureRecognizer* longPressRecognizer;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.longPressRecognizer = [[UILongPressGestureRecognizer alloc] init];
-		 [self.longPressRecognizer addTarget:self action:@selector(handleLongPress:)];
-		self.longPressRecognizer.minimumPressDuration = .2;
-		 [self addGestureRecognizer:self.longPressRecognizer];
+        longPressRecognizer = [[UILongPressGestureRecognizer alloc] init];
+		 [longPressRecognizer addTarget:self action:@selector(handleLongPress:)];
+		longPressRecognizer.minimumPressDuration = .2;
+		 [self addGestureRecognizer:longPressRecognizer];
     }
     return self;
 }
@@ -29,11 +33,10 @@ accent = _accent;
 	
 - (void)drawRect:(CGRect)rect
 {
-	self.radius = 5;
 	CGContextRef ctx = UIGraphicsGetCurrentContext();
 	CGPoint center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
 	
-	CGRect tempCircleRect = CGRectMake(center.x-self.radius, center.y-self.radius, self.radius*2, self.radius*2);
+	CGRect tempCircleRect = CGRectMake(center.x-radius, center.y-radius, radius*2, radius*2);
 	
 	CGContextAddEllipseInRect(ctx, tempCircleRect);
 	
@@ -41,8 +44,6 @@ accent = _accent;
 	
 	CGContextSetFillColor(ctx, CGColorGetComponents([[UIColor clearColor] CGColor]));
 	CGContextSetStrokeColor(ctx, CGColorGetComponents([self.tintColor CGColor]));
-	
-	NSUInteger accentRadius = 2;
 	
 	if (self.current){
 		CGContextSetFillColor(ctx, CGColorGetComponents([self.tintColor CGColor]));
@@ -64,8 +65,6 @@ accent = _accent;
 		CGContextFillEllipseInRect(ctx, tempAccentCircleRect);
 	}
 	
-	
-
 }
 #pragma mark - Getters and Setters
 - (void)setCurrent:(bool)current	{

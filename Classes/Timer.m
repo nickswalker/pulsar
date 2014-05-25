@@ -6,13 +6,16 @@
 DeltaTracker* tracker;
 BeatDenomination beatDenomination;
 NSUInteger beatPartCount;
+NSUInteger currentBeat;
+bool accent;
+double error;
+NSTimer* timer;
+id target;
 
 @synthesize bpm = _bpm,
 	on = _on,
 	timeSignature = _timeSignature;
-double error;
-NSTimer* timer;
-id target;
+
 -(Timer*)init{
 	self = [super init];
     if (self) {
@@ -24,13 +27,13 @@ id target;
 	[timer invalidate];
 	timer = nil;
 	
+	currentBeat = 1;
 	beatPartCount = 1;
 	//This needs to change actually because the first beat might be an accent. We need to send the actual first beat along for the ride
 	//Fire the first beat as soon as the action is registered so as to allow instant metronome start
 	[self beat:nil];
 	double gap = (((double)SECONDS)/self.bpm )/24;
-	NSLog(@"%f", gap);
-	NSLog(@"%lu", (unsigned long)self.bpm);
+//  NSLog(@"%lu", (unsigned long)self.bpm);
 	timer = [NSTimer scheduledTimerWithTimeInterval:gap target:self selector:@selector(beat:) userInfo:nil repeats:YES];
 	
 }
@@ -47,16 +50,39 @@ id target;
 }
 
 -(void)beat:(NSTimer*)timer{
-
-	if(beatPartCount==25) beatPartCount=1;
+	accent = false;
+	if(beatPartCount>24) {
+		
+		beatPartCount=1;
+		if( currentBeat>[self.timeSignature[0] intValue] ) currentBeat = 1;
+		NSLog(@"%d", currentBeat);
+		accent = [self beatIsAccent:currentBeat];
+		NSLog(@"%d", accent);
+	}
 	
 //	error = [tracker benchmark]-((60/(double)self.bpm)/24);
 //	NSLog(@"Error: %fms", error*1000 );
 	NSNumber *denomination = [NSNumber numberWithUnsignedInteger: beatDenomination];
 	NSNumber* part = [NSNumber numberWithUnsignedInteger:beatPartCount];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"beat" object:self userInfo:@{@"beatPartCount": part, @"beatDenomination": denomination}];
+	NSNumber* number = [NSNumber numberWithUnsignedInteger:currentBeat];
+	NSNumber* isAccent = [NSNumber numberWithBool:accent];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"beat" object:self userInfo:@{@"beatPartCount": part, @"beatDenomination": denomination, @"beatNumber": number, @"accent": isAccent}];
+	if(beatPartCount == 1) currentBeat++;
 	beatPartCount++;
+	
+	
 //if(self.on)[self updateTimer];
+}
+
+- (bool)beatIsAccent:(NSUInteger)beat{
+	NSNumber* testBeat = [NSNumber numberWithInt:beat];
+	for (NSNumber* accentedBeat in self.accents) {
+		if ( [accentedBeat isEqualToNumber:testBeat] ) {
+			return true;
+		}
+	}
+	return false;
+	
 }
 
 #pragma mark - Getters and Setters
