@@ -13,8 +13,8 @@ import UIKit
                     self.setTitleColor(UIColor.whiteColor(), forState: .Normal)
                 }
 
-                if (self.animated) {
-                    UIView.animateWithDuration(0.3, animations: update)
+                if self.animated {
+                    UIView.animateWithDuration(0.2, animations: update)
                 } else {
                     update()
                 }
@@ -24,8 +24,8 @@ import UIKit
                     self.backgroundColor = UIColor.clearColor()
                     self.setTitleColor(self.tintColor, forState: .Normal)
                 }
-                if (self.animated) {
-                    UIView.animateWithDuration(0.3, animations: update)
+                if self.animated {
+                    UIView.animateWithDuration(0.2, animations: update)
                 } else {
                     update()
                 }

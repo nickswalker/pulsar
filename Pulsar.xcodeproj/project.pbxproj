@@ -10,6 +10,7 @@
 		014C3C241932A87D0095AB67 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B54513179828B300A4F4E0 /* iPhone.storyboard */; };
 		014E89D817C3178300B17C47 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 014E89D717C3178300B17C47 /* Settings.bundle */; };
 		01B54523179828B300A4F4E0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B54522179828B300A4F4E0 /* Images.xcassets */; };
+		D40988EB1A5658AE0091CAE8 /* CommonTimeSignatures.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4A426BF19881E9C00E7C435 /* CommonTimeSignatures.plist */; };
 		D4389AE31986D3AE00F064CA /* MetronomeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D7BC6196D95EE006DE741 /* MetronomeControl.swift */; };
 		D4389AE41986D3B600F064CA /* SlideStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D7B9F196D9034006DE741 /* SlideStepper.swift */; };
 		D439822F19A4FEBA007DFE42 /* accent.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822519A4FEBA007DFE42 /* accent.wav */; };
@@ -30,7 +31,6 @@
 		D46DB90319844F7100A5820B /* MetronomeControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46DB8EE19844F7100A5820B /* MetronomeControl.framework */; };
 		D46DB90419844F7100A5820B /* MetronomeControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D46DB8EE19844F7100A5820B /* MetronomeControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		D49B39151986A4DE001D7919 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B39141986A4DE001D7919 /* ToggleButton.swift */; };
-		D4A426C019881E9C00E7C435 /* CommonTimeSignatures.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4A426BF19881E9C00E7C435 /* CommonTimeSignatures.plist */; };
 		D4ADD330196EF80A0040DFF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F42E20196C370600BB847F /* AppDelegate.swift */; };
 		D4ADD331196EF80A0040DFF3 /* DeltaTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F42E24196C423800BB847F /* DeltaTracker.swift */; };
 		D4ADD332196EF80A0040DFF3 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F42E28196C838B00BB847F /* Timer.swift */; };
@@ -230,9 +230,9 @@
 		D48158CD1A5494AA0040AD08 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D4F42E22196C414200BB847F /* MetronomeViewController.swift */,
 				D457545D19859B9B00967641 /* QuickSettingsViewController.swift */,
 				D4D586BC196B422400B9CC8F /* SettingsViewController.swift */,
-				D4F42E22196C414200BB847F /* MetronomeViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -355,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D439823719A4FEBA007DFE42 /* subdivision.wav in Resources */,
+				D40988EB1A5658AE0091CAE8 /* CommonTimeSignatures.plist in Resources */,
 				D439823519A4FEBA007DFE42 /* digitalTriplet.wav in Resources */,
 				014C3C241932A87D0095AB67 /* iPhone.storyboard in Resources */,
 				D439823819A4FEBA007DFE42 /* triplet.wav in Resources */,
@@ -376,7 +377,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4A426C019881E9C00E7C435 /* CommonTimeSignatures.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

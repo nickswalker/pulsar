@@ -136,7 +136,9 @@ import UIKit
 
     override public func tintColorDidChange() {
         super.tintColorDidChange()
-        //Change all shard layer tintColors
+        for layer in layers {
+            layer.tintColor = tintColor
+        }
     }
 
     private func adjustSublayerAngles() {

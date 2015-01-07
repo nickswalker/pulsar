@@ -17,10 +17,10 @@ let triplet = [1, 5, 9]
 
     var on: Bool = false {
         willSet(newValue) {
-            if (newValue) {
-                //self.startTimer()
+            if newValue {
+                start()
             } else {
-                //self.stopTimer()
+                stop()
             }
         }
     }
@@ -64,7 +64,7 @@ let triplet = [1, 5, 9]
 
             //Block here until currentTime is later than the targetTime
             while continuePlaying && (currentTime.compare(targetTime) != NSComparisonResult.OrderedDescending) {
-                if (NSThread.currentThread().cancelled == true) {
+                if NSThread.currentThread().cancelled == true {
                     continuePlaying = false
                 }
                 NSThread.sleepForTimeInterval(0.001)

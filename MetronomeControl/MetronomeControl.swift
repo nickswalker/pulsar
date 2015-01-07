@@ -3,7 +3,6 @@ import UIKit
 
 @objc public protocol MetronomeControlDelegate {
     func switchToggled(sender: UISwitch)
-
     func bpmChanged(sender: SlideStepper)
 }
 
@@ -42,7 +41,6 @@ import UIKit
     public var delegate: MetronomeControlDelegate? {
         didSet {
             runningSwitch.addTarget(delegate, action: "switchToggled:", forControlEvents: .ValueChanged)
-            //beatValueControl.addTarget(delegate, action: "beatValueChanged:", forControlEvents: .ValueChanged)
             bpmControl.addTarget(delegate, action: "bpmChanged:", forControlEvents: .ValueChanged)
         }
     }
@@ -98,7 +96,7 @@ import UIKit
     }
 
     override public func tintColorDidChange() {
-        let isInactive = self.tintAdjustmentMode == .Dimmed
+        let isInactive = tintAdjustmentMode == .Dimmed
         if isInactive {
             runningSwitch.onTintColor = UIColor.grayColor()
         } else {

@@ -7,15 +7,19 @@ class ShardLayer: CALayer {
     // MARK: Types
 
     struct SharedColors {
-        static let defaultTintColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [0.5, 0.5, 0.5])
+        static let defaultTintColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.025)
     }
 
-    var tintColor: CGColor = SharedColors.defaultTintColor
+    var tintColor: UIColor = SharedColors.defaultTintColor {
+        didSet(newValue){
+            accentFillColor = newValue.colorWithAlphaComponent(0.025)
+        }
+    }
 
     private let normalStrokeColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.025)
     private let normalFillColor = UIColor.clearColor()
     private let activeFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.05)
-    private let accentFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.025)
+    private var accentFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.025)
     private let accentActiveFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)
 
     private var fillColor = UIColor.redColor()
@@ -109,7 +113,7 @@ class ShardLayer: CALayer {
 
         CGContextDrawPath(ctx, kCGPathFillStroke)
 
-        self.path = newPath
+        path = newPath
     }
 
     // MARK: Animation
@@ -119,7 +123,7 @@ class ShardLayer: CALayer {
     }
 
     override func actionForKey(event: String!) -> CAAction! {
-        //println("Asked for \(event) action")
+
         let animation = CABasicAnimation(keyPath: event)
         animation.duration = CATransaction.animationDuration()
         animation.timingFunction = CATransaction.animationTimingFunction()
@@ -130,16 +134,18 @@ class ShardLayer: CALayer {
             case "startAngle":
                 fallthrough
             case "endAngle":
+                println("Asked for \(event) action")
                 return animation
             case "contents":
                 return nil
             default:
+
                 return super.actionForKey(event)
         }
     }
 
     override class func needsDisplayForKey(key: String!) -> Bool {
-        if key == "active" || key == "thing" {
+        if key == "active" {
             return true
         }
         switch (key) {

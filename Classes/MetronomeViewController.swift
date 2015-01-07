@@ -17,20 +17,20 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
     @IBOutlet var quickSettingsButton: UIButton?
     @IBOutlet var settingsButton: UIButton?
 
-    var quickSettingsOverlayController: QuickSettingsViewController?
+    var overlayController: QuickSettingsViewController?
     var led = LED()
     var player = SoundPlayer()
     var bpmTracker = DeltaTracker()
     var timer = Timer()
     var timeSignatureTracker = DeltaTracker()
-    var commonTimeSignatures = NSArray()
+    var commonTimeSignatures: [AnyObject]?
     var defaults = NSUserDefaults.standardUserDefaults()
-    var positionInCommonTimeSignatures = 0
+    var commonSignaturesIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var path = NSBundle.mainBundle().pathForResource("standardConfigurations", ofType: "plist")
-        //commonTimeSignatures = NSArray(contentsOfFile: path!)
+        var path = NSBundle.mainBundle().pathForResource("CommonTimeSignatures", ofType: "plist")
+        commonTimeSignatures = NSArray(contentsOfFile: path!)
         controls!.delegate = self
 
         NSNotificationCenter.defaultCenter().addObserver(self,
@@ -88,6 +88,7 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
 
     func bpmChanged(sender: SlideStepper) {
         timer.bpm = sender.value
+        defaults.setObject(sender.value, forKey: "bpm")
     }
 
     func switchToggled(sender: UISwitch) {
@@ -108,16 +109,17 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
 
         defaults = NSUserDefaults.standardUserDefaults()
     }
+
     // FIXME: This makes more sense as a computed property
     func toggleRunningState(state: Bool) {
         if state == true {
             timer.start()
-            controls?.running = true
+            controls!.running = true
             UIApplication.sharedApplication().idleTimerDisabled = true
         } else {
             beatsControl!.activeShard = nil
             timer.stop()
-            controls?.running = false
+            controls!.running = false
             UIApplication.sharedApplication().idleTimerDisabled = false
         }
     }
@@ -132,13 +134,13 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
         opacityAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         opacityAnimation.fillMode = kCAFillModeForwards
         opacityAnimation.removedOnCompletion = true
-        opacityAnimation.duration = 0.15
+        opacityAnimation.duration = 0.10
         backgroundButton!.layer.addAnimation(opacityAnimation, forKey: "animation")
     }
 
     //MARK: Gesture Controls
 
-    let maxTimeBetweenTaps = 20.0
+    private let maxTimeBetweenTaps = 20.0
 
     @IBAction func matchBpm(sender: AnyObject) {
         var delta = bpmTracker.benchmark()
@@ -151,21 +153,20 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
     }
 
     @IBAction func cycleTimeSignature(sender: AnyObject) {
-        var delta = timeSignatureTracker.benchmark()
-        if (delta > 2) {
-            positionInCommonTimeSignatures = 0
+        let delta = timeSignatureTracker.benchmark()
+        if delta > 2 {
+            commonSignaturesIndex = 0
         }
-        if (positionInCommonTimeSignatures > 6) {
-            positionInCommonTimeSignatures = 0
+        if commonSignaturesIndex > 6 {
+            commonSignaturesIndex = 0
         }
-        //controls!.beatValue = NoteValue.fromRaw( 1/(commonTimeSignatures[positionInCommonTimeSignatures][1] as Int) )
-        //beatsControl!.shards = commonTimeSignatures.objectAtIndex(positionInCommonTimeSignatures)
-        positionInCommonTimeSignatures++
+
+        commonSignaturesIndex++
     }
 
     // MARK: Overlay Controls
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "showSettings") {
+        if segue.identifier == "showSettings" {
             toggleRunningState(false)
             // FIXME: Need a way to turn it off that's not so invasive
 
@@ -178,22 +179,21 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
     @IBAction func presentQuickSettings() {
         let window = UIApplication.sharedApplication().keyWindow!
 
-        quickSettingsOverlayController = QuickSettingsViewController()
+        overlayController = QuickSettingsViewController(nibName:"QuickSettingsControlsView", bundle: NSBundle.mainBundle())
         controls!.tintAdjustmentMode = .Dimmed
-        quickSettingsOverlayController!.delegate = self
-        quickSettingsOverlayController!.view.frame = self.view.frame
-        window.addSubview(quickSettingsOverlayController!.view)
-        quickSettingsOverlayController!.animateIn()
+        overlayController!.delegate = self
+        window.addSubview(overlayController!.view)
+        overlayController!.animateIn()
     }
 
-    func settingsViewControllerDidFinish(controller: SettingsViewController) {
+    func settingsViewControllerDidFinish() {
         player = SoundPlayer() //In case the voice changed, we'll reload the sounds
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     func quickSettingsViewControllerDidFinish() {
         controls!.tintAdjustmentMode = .Normal
-        quickSettingsOverlayController = nil
+        overlayController = nil
     }
 
     // MARK: Appearance

@@ -11,6 +11,16 @@ protocol QuickSettingsViewControllerDelegate {
 
 public class QuickSettingsViewController: UIViewController, BackgroundViewDelegate {
 
+    @IBOutlet var blurBackground: UIVisualEffectView?
+    @IBOutlet var beatControl: ToggleButton?
+    @IBOutlet var divisionControl: ToggleButton?
+    @IBOutlet var subdivisionControl: ToggleButton?
+    @IBOutlet var tripletControl: ToggleButton?
+    @IBOutlet var beatsControl: UIStepper?
+    @IBOutlet var beatsControlLabel: UILabel?
+
+    var defaults = NSUserDefaults.standardUserDefaults()
+
     class HideBackgroundView: UIView {
         var delegate: BackgroundViewDelegate?
         override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
@@ -20,42 +30,53 @@ public class QuickSettingsViewController: UIViewController, BackgroundViewDelega
         }
     }
 
+    public override func viewWillAppear(animated: Bool) {
+        beatControl!.on = defaults.boolForKey("beat")
+        divisionControl!.on = defaults.boolForKey("division")
+        subdivisionControl!.on = defaults.boolForKey("subdivision")
+        tripletControl!.on = defaults.boolForKey("triplet")
+        let timeSignature = defaults.objectForKey("timeSignature") as NSArray
+        let currentBeats = timeSignature[0] as NSNumber
+        beatsControlLabel!.text = Int(currentBeats).description
+        beatsControl!.value = Double(currentBeats)
+
+    }
     var overlayView = HideBackgroundView()
-    var controlArea = NSBundle.mainBundle().loadNibNamed("QuickSettingsControlsView", owner: nil, options: nil)[0] as ControlsView
     var delegate: QuickSettingsViewControllerDelegate?
 
     func animateIn() {
-        let controlAreaHeight: CGFloat = controlArea.frame.height
-        self.view.userInteractionEnabled = true
+        let controlAreaHeight: CGFloat = view.frame.height
+        view.userInteractionEnabled = true
 
-        overlayView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-        overlayView.frame = self.view.frame
+        overlayView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+        overlayView.frame = UIScreen.mainScreen().bounds
         overlayView.alpha = 0
         overlayView.delegate = self
 
-        let deviceHeight: CGFloat = view.frame.height
-        let deviceWidth: CGFloat = view.frame.width
+        let deviceHeight: CGFloat = UIScreen.mainScreen().bounds.height
+        let deviceWidth: CGFloat = UIScreen.mainScreen().bounds.width
         let scale = UIScreen.mainScreen().scale
 
         let offscreenFrame = CGRect(x: 0, y: deviceHeight, width: deviceWidth, height: controlAreaHeight)
         let onscreenFrame = CGRect(x: 0, y: deviceHeight - controlAreaHeight, width: deviceWidth, height: controlAreaHeight)
 
-        controlArea.frame = offscreenFrame
+        view.frame = offscreenFrame
 
-        view.addSubview(overlayView)
+        //Insert right beneath the controls panel
+        let index = view.superview!.subviews.count - 2
+        view.superview!.insertSubview(overlayView, aboveSubview: view.superview!.subviews[index] as UIView)
         UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: {
             self.overlayView.alpha = 1
         }, completion: nil)
 
-        view.addSubview(controlArea)
         UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: {
-            self.controlArea.frame = onscreenFrame
+            self.view.frame = onscreenFrame
         }, completion: nil)
 
     }
 
     func animateOut() {
-        let controlAreaHeight: CGFloat = controlArea.frame.height
+        let controlAreaHeight: CGFloat = view.frame.height
         let deviceHeight: CGFloat = UIScreen.mainScreen().bounds.height
         let deviceWidth: CGFloat = UIScreen.mainScreen().bounds.width
 
@@ -68,15 +89,40 @@ public class QuickSettingsViewController: UIViewController, BackgroundViewDelega
 
 
         UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: {
-            self.controlArea.frame = offscreenFrame
+            self.view.frame = offscreenFrame
         }, completion: {
-            succeeeded in self.controlArea.removeFromSuperview()
+            succeeeded in self.view.removeFromSuperview()
             self.view.userInteractionEnabled = false
         })
         if let target = delegate {
             target.quickSettingsViewControllerDidFinish()
         }
 
+    }
+
+    @IBAction func settingChanged(sender: ToggleButton) {
+        var key: String?
+        var value: Bool
+        if sender == beatControl {
+            key = "beat"
+        } else if sender == divisionControl {
+            key = "division"
+        } else if sender == subdivisionControl {
+            key = "subdivision"
+        } else if sender == tripletControl {
+            key = "triplet"
+        }
+
+        if key != nil {
+            defaults.setBool(sender.on, forKey: key!)
+        }
+        defaults.synchronize()
+    }
+
+    @IBAction func beatsChanged(sender: UIStepper) {
+        beatsControlLabel?.text = Int(sender.value).description
+        let currentTimeSignature = defaults.objectForKey("timeSignature") as NSArray
+        defaults.setObject([Int(sender.value), currentTimeSignature[1]], forKey: "timeSignature")
     }
 
     func viewWasTapped() {

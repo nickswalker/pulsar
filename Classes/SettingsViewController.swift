@@ -2,7 +2,7 @@ import Foundation
 import MultipeerConnectivity
 
 protocol SettingsViewControllerDelegate {
-    func settingsViewControllerDidFinish(controller: SettingsViewController)
+    func settingsViewControllerDidFinish()
 }
 
 class SettingsViewController: UITableViewController, UITableViewDataSource {
@@ -35,7 +35,7 @@ class SettingsViewController: UITableViewController, UITableViewDataSource {
 
     @IBAction func done(sender: AnyObject) {
         defaults.synchronize()
-        self.delegate?.settingsViewControllerDidFinish(self)
+        delegate?.settingsViewControllerDidFinish()
     }
 
     @IBAction func settingChanged(sender: UISwitch) {
