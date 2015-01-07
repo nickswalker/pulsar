@@ -3,7 +3,7 @@ import UIKit
 
 public class SlideStepper: UIControl {
 
-    let labelFontSize = 84
+    private let labelFontSize = 84
     let defaultValue = 60
     var label = UILabel()
     var stepper = UIStepper()
@@ -15,24 +15,30 @@ public class SlideStepper: UIControl {
             return Int(stepper.value)
         }
         set(newValue) {
-            if newValue > maximumValue {
-                stepper.value = Double(maximumValue)
-            } else if newValue < minimumValue {
-                stepper.value = Double(minimumValue)
-            }
-            stepper.value = Double(newValue)
+            let valueToSet: Int = {
+            if newValue > self.maximumValue {
+                return self.maximumValue
+            } else if newValue < self.minimumValue {
+                return self.minimumValue
+            } else{
+                return newValue
+                }}()
+            label.text = "\(Int(valueToSet))"
+            stepper.value = Double(valueToSet)
         }
     }
-    var recognizer = UIPanGestureRecognizer()
+    private var recognizer = UIPanGestureRecognizer()
 
     override init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 180, height: 140))
         commonInit()
     }
+
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -74,7 +80,6 @@ public class SlideStepper: UIControl {
 
     func stepperValueChanged(sender: UIStepper) {
         label.text = "\(Int(stepper.value))"
-        value = Int(stepper.value)
         sendActionsForControlEvents(.ValueChanged)
     }
 
@@ -83,18 +88,7 @@ public class SlideStepper: UIControl {
         var affector = Double(-1.0 * translation.y / 8.5)
         value = Int(Double(value) - affector)
         recognizer.setTranslation(CGPoint(x: 0, y: 0), inView: self)
-        //	if (recognizer.state == UIGestureRecognizerStateEnded) {
-        //
-        //		float velocity = [recognizer velocityInView:self.view].y
-        //		NSLog(@"%f",velocity)
-        //		float slideFactor = 0.1 // Increase for more of a slide
-        //		int finalValue = self.controls.bpm + slideFactor * velocity
-        //		[UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        //			self.controls.bpm = finalValue
-        //		} completion:nil]
-        //
-        //	}
-        stepper.sendActionsForControlEvents(.ValueChanged)
+        sendActionsForControlEvents(.ValueChanged)
     }
 
 }

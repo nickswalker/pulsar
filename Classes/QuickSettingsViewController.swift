@@ -21,7 +21,7 @@ public class QuickSettingsViewController: UIViewController, BackgroundViewDelega
 
     var defaults = NSUserDefaults.standardUserDefaults()
 
-    class HideBackgroundView: UIView {
+    private class HideBackgroundView: UIView {
         var delegate: BackgroundViewDelegate?
         override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
             if let target = delegate {
@@ -41,7 +41,7 @@ public class QuickSettingsViewController: UIViewController, BackgroundViewDelega
         beatsControl!.value = Double(currentBeats)
 
     }
-    var overlayView = HideBackgroundView()
+    private var overlayView = HideBackgroundView()
     var delegate: QuickSettingsViewControllerDelegate?
 
     func animateIn() {
@@ -101,21 +101,22 @@ public class QuickSettingsViewController: UIViewController, BackgroundViewDelega
     }
 
     @IBAction func settingChanged(sender: ToggleButton) {
-        var key: String?
-        var value: Bool
-        if sender == beatControl {
-            key = "beat"
-        } else if sender == divisionControl {
-            key = "division"
-        } else if sender == subdivisionControl {
-            key = "subdivision"
-        } else if sender == tripletControl {
-            key = "triplet"
-        }
+        let key: String = {
+            switch sender {
+                case self.beatControl!:
+                    return "beat"
+                case self.divisionControl! :
+                    return "division"
+                case self.subdivisionControl! :
+                    return "subdivision"
+                case self.tripletControl! :
+                    return "triplet"
+                default:
+                    abort()
+            }
+        }()
 
-        if key != nil {
-            defaults.setBool(sender.on, forKey: key!)
-        }
+        defaults.setBool(sender.on, forKey: key)
         defaults.synchronize()
     }
 

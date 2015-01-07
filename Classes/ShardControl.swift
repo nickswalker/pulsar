@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-@IBDesignable public class ShardControl: UIControl {
+@IBDesignable @objc public class ShardControl: UIControl {
 
     @IBInspectable public var numberOfShards: Int = 6 {
         willSet(newValue) {
@@ -66,7 +66,7 @@ import UIKit
     }
 
     private let sideLength: CGFloat = 500
-    private let longPressRecognizer = UILongPressGestureRecognizer()
+    private let doubleTapRecognizer = UITapGestureRecognizer()
     private let defaults = NSUserDefaults.standardUserDefaults()
     private var layers = [ShardLayer]()
 
@@ -83,9 +83,9 @@ import UIKit
     }
 
     private func commonInit() {
-        longPressRecognizer.minimumPressDuration = 1
-        longPressRecognizer.addTarget(self, action: "handleLongPress:")
-        addGestureRecognizer(longPressRecognizer)
+        doubleTapRecognizer.numberOfTapsRequired = 2
+        doubleTapRecognizer.addTarget(self, action: "handleDoubleTap:")
+        addGestureRecognizer(doubleTapRecognizer)
         setupShards()
     }
 
@@ -144,6 +144,7 @@ import UIKit
     private func adjustSublayerAngles() {
         //Set the angle on all shards
         let theta: CGFloat = (CGFloat(M_PI) * 2) / CGFloat(numberOfShards)
+        //FIXME: This is causing problems with the IBDesignable agent
         let accents = defaults.objectForKey("accents") as NSArray
         for var i = 0; i < layers.count; ++i {
             let targetLayer = layers[i]
@@ -193,27 +194,20 @@ import UIKit
         return false
     }
 
-    func handleLongPress(recognizer: UIGestureRecognizer) {
-        var targetShard: ShardLayer?
-        switch (recognizer.state) {
-            case .Began:
-                let point = recognizer.locationInView(self)
-                targetShard = layer.hitTest(point) as? ShardLayer
-                if targetShard != nil {
-                    targetShard!.accent = !targetShard!.accent
-                    targetShard!.setNeedsDisplay()
-                }
+    func handleDoubleTap(recognizer: UIGestureRecognizer) {
+        var targetShard: ShardLayer
+        if recognizer.state == .Ended {
+            let point = recognizer.locationInView(self)
+            targetShard = layer.hitTest(point) as ShardLayer
+            targetShard.accent = !targetShard.accent
+            targetShard.setNeedsDisplay()
 
-            default:
-                targetShard = nil
-        }
-        if targetShard != nil {
             for var i = 0; i < layers.count; i++ {
                 var targetLayer = layers[i]
                 if targetLayer == targetShard {
                     var accents = defaults.objectForKey("accents") as NSArray
                     var accentsCopy = accents.mutableCopy() as NSMutableArray
-                    accentsCopy[i] = targetShard!.accent ? 1 as NSNumber : 0 as NSNumber
+                    accentsCopy[i] = targetShard.accent ? 1 : 0
                     defaults.setObject(accentsCopy, forKey: "accents")
                     defaults.synchronize()
                     break

@@ -23,14 +23,14 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
     var bpmTracker = DeltaTracker()
     var timer = Timer()
     var timeSignatureTracker = DeltaTracker()
-    var commonTimeSignatures: [AnyObject]?
+    var commonTimeSignatures: [AnyObject]!
     var defaults = NSUserDefaults.standardUserDefaults()
     var commonSignaturesIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         var path = NSBundle.mainBundle().pathForResource("CommonTimeSignatures", ofType: "plist")
-        commonTimeSignatures = NSArray(contentsOfFile: path!)
+        commonTimeSignatures = NSArray(contentsOfFile: path!)!
         controls!.delegate = self
 
         NSNotificationCenter.defaultCenter().addObserver(self,
@@ -41,9 +41,13 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSettingsFromUserDefaults", name:
         NSUserDefaultsDidChangeNotification, object: nil)
         defaults = NSUserDefaults.standardUserDefaults()
+
         let newTimeSignature = defaults.objectForKey("timeSignature") as NSArray
         let beats = newTimeSignature[0] as Int
         beatsControl!.numberOfShards = beats
+
+        let bpm = defaults.objectForKey("bpm") as Int
+        controls!.bpm = bpm
 
     }
 
@@ -53,8 +57,7 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
 
     //@discussion listens to the timer emitting beatParts.
     func intervalWasFired(notification: NSNotification) {
-
-        //var denomination = notification.userInfo["beatDenomination"]
+        // FIXME: This is going to need to be faster. Too much branching
         let part: Int = Int(notification.userInfo?["beatPart"] as NSNumber)
         if find(onTheBeat, part) != nil {
             beatsControl!.activateNext()
@@ -89,25 +92,21 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
     func bpmChanged(sender: SlideStepper) {
         timer.bpm = sender.value
         defaults.setObject(sender.value, forKey: "bpm")
+        defaults.synchronize()
     }
 
     func switchToggled(sender: UISwitch) {
         toggleRunningState(sender.on)
     }
 
-    func beatValueChanged(sender: UISegmentedControl) {
-
-    }
-
     func updateSettingsFromUserDefaults() {
+        //The defaults were changed externally: pull in the changes
         defaults.synchronize()
         let newTimeSignature = defaults.objectForKey("timeSignature") as NSArray
         let beats = newTimeSignature[0] as Int
         if beats != beatsControl!.numberOfShards {
             beatsControl!.numberOfShards = beats
         }
-
-        defaults = NSUserDefaults.standardUserDefaults()
     }
 
     // FIXME: This makes more sense as a computed property
@@ -127,11 +126,11 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
     func flashScreen() {
         backgroundButton!.layer.opacity = 0.02
         backgroundButton!.backgroundColor = UIColor.whiteColor()
-        var opacityAnimation: CABasicAnimation = CABasicAnimation(keyPath: "opacity")
+        let opacityAnimation: CABasicAnimation = CABasicAnimation(keyPath: "opacity")
         opacityAnimation.fromValue = 0.8
         opacityAnimation.toValue = 0.0
 
-        opacityAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        opacityAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         opacityAnimation.fillMode = kCAFillModeForwards
         opacityAnimation.removedOnCompletion = true
         opacityAnimation.duration = 0.10
@@ -162,6 +161,7 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
         }
 
         commonSignaturesIndex++
+
     }
 
     // MARK: Overlay Controls
