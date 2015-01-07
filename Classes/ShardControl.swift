@@ -106,7 +106,7 @@ import UIKit
     private func addSublayers(count: Int) {
         for var i = 0; i < count; i++ {
             var tempLayer = ShardLayer()
-            tempLayer.frame = frame;
+            tempLayer.frame = frame
             tempLayer.contentsScale = UIScreen.mainScreen().scale
             layer.addSublayer(tempLayer)
             layers.append(tempLayer)
@@ -179,7 +179,7 @@ import UIKit
                 activeShard = activeShard! + 1
             }
         } else {
-            activeShard = 0;
+            activeShard = 0
         }
     }
 

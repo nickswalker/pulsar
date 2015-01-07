@@ -74,7 +74,7 @@ class ShardLayer: CALayer {
     }
 
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder);
+        super.init(coder: aDecoder)
         commonInit()
     }
 
@@ -87,27 +87,27 @@ class ShardLayer: CALayer {
 
     override func drawInContext(ctx: CGContextRef) {
         // Create the path
-        var center = CGPoint(x: bounds.size.width / 2, y: bounds.size.height / 2);
-        var radius: CGFloat = 500;
+        var center = CGPoint(x: bounds.size.width / 2, y: bounds.size.height / 2)
+        var radius: CGFloat = 500
 
         var newPath = CGPathCreateMutable()
         CGPathMoveToPoint(newPath, nil, center.x, center.y)
         var x1 = Double(center.x) + Double(cosf(Float(startAngle)) * 70)
         var y1 = Double(center.y) + Double(sinf(Float(startAngle)) * 70)
-        var p1 = CGPoint(x: x1, y: y1);
-        CGPathAddLineToPoint(newPath, nil, p1.x, p1.y);
+        var p1 = CGPoint(x: x1, y: y1)
+        CGPathAddLineToPoint(newPath, nil, p1.x, p1.y)
 
         var clockwise = endAngle < startAngle
-        CGPathAddArc(newPath, nil, center.x, center.y, radius, startAngle, endAngle, clockwise);
+        CGPathAddArc(newPath, nil, center.x, center.y, radius, startAngle, endAngle, clockwise)
 
         CGContextAddPath(ctx, newPath)
 
         // Color it
-        CGContextSetFillColorWithColor(ctx, fillColor.CGColor);
-        CGContextSetStrokeColorWithColor(ctx, strokeColor.CGColor);
-        CGContextSetLineWidth(ctx, strokeWidth);
+        CGContextSetFillColorWithColor(ctx, fillColor.CGColor)
+        CGContextSetStrokeColorWithColor(ctx, strokeColor.CGColor)
+        CGContextSetLineWidth(ctx, strokeWidth)
 
-        CGContextDrawPath(ctx, kCGPathFillStroke);
+        CGContextDrawPath(ctx, kCGPathFillStroke)
 
         self.path = newPath
     }

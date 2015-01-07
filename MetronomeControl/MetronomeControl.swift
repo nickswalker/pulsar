@@ -84,7 +84,7 @@ import UIKit
         self.addSubview(runningSwitch)
 
         runningSwitch.setTranslatesAutoresizingMaskIntoConstraints(false)
-        //setTranslatesAutoresizingMaskIntoConstraints(false);
+        //setTranslatesAutoresizingMaskIntoConstraints(false)
 
         addConstraint(NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: bpmControl, attribute: .Top, multiplier: 1.0, constant: 0))
         addConstraint(NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: runningSwitch, attribute: .CenterX, multiplier: 1.0, constant: 1.0))
@@ -98,7 +98,7 @@ import UIKit
     }
 
     override public func tintColorDidChange() {
-        let isInactive = self.tintAdjustmentMode == .Dimmed;
+        let isInactive = self.tintAdjustmentMode == .Dimmed
         if isInactive {
             runningSwitch.onTintColor = UIColor.grayColor()
         } else {

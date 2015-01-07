@@ -87,7 +87,7 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
     //MARK: MetronomeControlDelegate
 
     func bpmChanged(sender: SlideStepper) {
-        timer.bpm = sender.value;
+        timer.bpm = sender.value
     }
 
     func switchToggled(sender: UISwitch) {
@@ -193,7 +193,7 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
 
     func quickSettingsViewControllerDidFinish() {
         controls!.tintAdjustmentMode = .Normal
-        quickSettingsOverlayController = nil;
+        quickSettingsOverlayController = nil
     }
 
     // MARK: Appearance

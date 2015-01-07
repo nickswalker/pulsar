@@ -14,9 +14,9 @@ import UIKit
                 }
 
                 if (self.animated) {
-                    UIView.animateWithDuration(0.3, animations: update);
+                    UIView.animateWithDuration(0.3, animations: update)
                 } else {
-                    update();
+                    update()
                 }
             } else {
                 let update = {
@@ -25,9 +25,9 @@ import UIKit
                     self.setTitleColor(self.tintColor, forState: .Normal)
                 }
                 if (self.animated) {
-                    UIView.animateWithDuration(0.3, animations: update);
+                    UIView.animateWithDuration(0.3, animations: update)
                 } else {
-                    update();
+                    update()
                 }
             }
         }
@@ -65,7 +65,7 @@ import UIKit
     }
 
     override func tintColorDidChange() {
-        let isInactive = self.tintAdjustmentMode == .Dimmed;
+        let isInactive = self.tintAdjustmentMode == .Dimmed
         if isInactive {
             // modify subviews to look disabled
         } else {

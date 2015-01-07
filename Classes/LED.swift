@@ -3,7 +3,7 @@ import AVFoundation
 
 @objc class LED {
     class func flash() {
-        let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo);
+        let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         if device != nil {
             if device.hasTorch && device.torchAvailable {
                 if (device.hasTorch) {

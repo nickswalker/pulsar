@@ -29,19 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UISegmentedControl.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 15)!], forState: .Normal)
         NSUserDefaults.standardUserDefaults().registerDefaults(defaultPreferences)
 
-
-        // Optional: automatically send uncaught exceptions to Google Analytics.
-        //GAI.sharedInstance().trackUncaughtExceptions = true
-
-        // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-        //GAI.sharedInstance().dispatchInterval = 20
-
-        // Optional: set Logger to VERBOSE for debug information.
-        //GAI.sharedInstance().logger().setLogLevel();
-
-        // Initialize tracker.
-        //GAI.sharedInstance().trackerWithTrackingId("UA-30066313-2")
-
         window!.tintColor = myTintColor
         return true
     }

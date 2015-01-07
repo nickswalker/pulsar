@@ -15,7 +15,7 @@ import QuartzCore
 
 func executionTimeInterval(block: () -> ()) -> CFTimeInterval {
     let start = CACurrentMediaTime()
-    block();
+    block()
     let end = CACurrentMediaTime()
     return end - start
 }

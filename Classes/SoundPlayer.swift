@@ -88,7 +88,7 @@ import AVFoundation
         var file = AVAudioFile(forReading: url, error: nil)
         var buffer = AVAudioPCMBuffer(PCMFormat: file.processingFormat, frameCapacity: UInt32(file.length))
         file.readIntoBuffer(buffer, error: nil)
-        return buffer;
+        return buffer
 
     }
 }

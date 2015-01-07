@@ -49,8 +49,8 @@ let triplet = [1, 5, 9]
     // This method is invoked from the driver thread
     func startBackgroundTimerOperation() {
         // Give the sound thread high priority to keep the timing steady.
-        NSThread.setThreadPriority(1.0);
-        var continuePlaying = true;
+        NSThread.setThreadPriority(1.0)
+        var continuePlaying = true
         var currentTime = NSDate()
 
         while (NSThread.currentThread().cancelled == false) {
@@ -59,15 +59,15 @@ let triplet = [1, 5, 9]
             dispatch_async(dispatch_get_main_queue(), {
                 self.interval()
             })
-            var targetTime = NSDate(timeIntervalSinceNow: self.intervalDuration);
+            var targetTime = NSDate(timeIntervalSinceNow: self.intervalDuration)
             currentTime = NSDate()
 
             //Block here until currentTime is later than the targetTime
             while continuePlaying && (currentTime.compare(targetTime) != NSComparisonResult.OrderedDescending) {
                 if (NSThread.currentThread().cancelled == true) {
-                    continuePlaying = false;
+                    continuePlaying = false
                 }
-                NSThread.sleepForTimeInterval(0.001);
+                NSThread.sleepForTimeInterval(0.001)
                 currentTime = NSDate()
             }
         }
@@ -84,8 +84,8 @@ let triplet = [1, 5, 9]
         if timerThread != nil {
             timerThread!.cancel()
         }
-        currentBeatPart = 0;
-        timerThread = nil;
+        currentBeatPart = 0
+        timerThread = nil
     }
 
     public func interval() {
