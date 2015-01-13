@@ -16,7 +16,7 @@ protocol MPCSerializable {
 }
 
 enum Event: String {
-    case StartGame = "StartGame",
+    case StartSession = "StartSession",
     Answer = "Answer",
     CancelAnswer = "CancelAnswer",
     Vote = "Vote",

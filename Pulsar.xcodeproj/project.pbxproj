@@ -7,67 +7,144 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		014C3C241932A87D0095AB67 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B54513179828B300A4F4E0 /* iPhone.storyboard */; };
-		014E89D817C3178300B17C47 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 014E89D717C3178300B17C47 /* Settings.bundle */; };
-		01B54523179828B300A4F4E0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B54522179828B300A4F4E0 /* Images.xcassets */; };
-		D40988EB1A5658AE0091CAE8 /* CommonTimeSignatures.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4A426BF19881E9C00E7C435 /* CommonTimeSignatures.plist */; };
-		D4389AE31986D3AE00F064CA /* MetronomeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D7BC6196D95EE006DE741 /* MetronomeControl.swift */; };
-		D4389AE41986D3B600F064CA /* SlideStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D7B9F196D9034006DE741 /* SlideStepper.swift */; };
-		D439822F19A4FEBA007DFE42 /* accent.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822519A4FEBA007DFE42 /* accent.wav */; };
-		D439823019A4FEBA007DFE42 /* beat.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822619A4FEBA007DFE42 /* beat.wav */; };
-		D439823119A4FEBA007DFE42 /* digitalAccent.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822719A4FEBA007DFE42 /* digitalAccent.wav */; };
-		D439823219A4FEBA007DFE42 /* digitalBeat.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822819A4FEBA007DFE42 /* digitalBeat.wav */; };
-		D439823319A4FEBA007DFE42 /* digitalDivision.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822919A4FEBA007DFE42 /* digitalDivision.wav */; };
-		D439823419A4FEBA007DFE42 /* digitalSubdivision.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822A19A4FEBA007DFE42 /* digitalSubdivision.wav */; };
-		D439823519A4FEBA007DFE42 /* digitalTriplet.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822B19A4FEBA007DFE42 /* digitalTriplet.wav */; };
-		D439823619A4FEBA007DFE42 /* division.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822C19A4FEBA007DFE42 /* division.wav */; };
-		D439823719A4FEBA007DFE42 /* subdivision.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822D19A4FEBA007DFE42 /* subdivision.wav */; };
-		D439823819A4FEBA007DFE42 /* triplet.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822E19A4FEBA007DFE42 /* triplet.wav */; };
-		D45740A119A3D45D00CB1C70 /* MetronomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45740A019A3D45D00CB1C70 /* MetronomeView.swift */; };
-		D457545E19859B9B00967641 /* QuickSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D457545D19859B9B00967641 /* QuickSettingsViewController.swift */; };
-		D45EDCB71A54D4DC004B7FD4 /* ControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A0618F19869CB400ADCCC5 /* ControlsView.swift */; };
-		D45EDCB91A55D83B004B7FD4 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45EDCB81A55D83B004B7FD4 /* Launch Screen.xib */; };
-		D46DB8F319844F7100A5820B /* MetronomeControl.h in Headers */ = {isa = PBXBuildFile; fileRef = D46DB8F219844F7100A5820B /* MetronomeControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D46DB90319844F7100A5820B /* MetronomeControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46DB8EE19844F7100A5820B /* MetronomeControl.framework */; };
-		D46DB90419844F7100A5820B /* MetronomeControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D46DB8EE19844F7100A5820B /* MetronomeControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		D49B39151986A4DE001D7919 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B39141986A4DE001D7919 /* ToggleButton.swift */; };
-		D4ADD330196EF80A0040DFF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F42E20196C370600BB847F /* AppDelegate.swift */; };
-		D4ADD331196EF80A0040DFF3 /* DeltaTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F42E24196C423800BB847F /* DeltaTracker.swift */; };
-		D4ADD332196EF80A0040DFF3 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F42E28196C838B00BB847F /* Timer.swift */; };
-		D4ADD333196EF80A0040DFF3 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463FCF91968DBE200606FFD /* SoundPlayer.swift */; };
-		D4ADD334196EF80A0040DFF3 /* LED.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ADD32E196EE3E40040DFF3 /* LED.swift */; };
-		D4ADD335196EF80A0040DFF3 /* MetronomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F42E22196C414200BB847F /* MetronomeViewController.swift */; };
-		D4ADD336196EF80A0040DFF3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D586BC196B422400B9CC8F /* SettingsViewController.swift */; };
-		D4AE76D21986901500E513E9 /* QuickSettingsControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4AE76D11986901500E513E9 /* QuickSettingsControlsView.xib */; };
-		D4EBBAE71986D45E00050FBC /* ShardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EBBAE51986D45E00050FBC /* ShardControl.swift */; };
-		D4EBBAE81986D45E00050FBC /* ShardLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EBBAE61986D45E00050FBC /* ShardLayer.swift */; };
+		D49C99221A65D49100202544 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C98FD1A65D49100202544 /* AppDelegate.swift */; };
+		D49C99231A65D49100202544 /* CommonTimeSignatures.plist in Resources */ = {isa = PBXBuildFile; fileRef = D49C98FE1A65D49100202544 /* CommonTimeSignatures.plist */; };
+		D49C99241A65D49100202544 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C98FF1A65D49100202544 /* ConnectionManager.swift */; };
+		D49C99251A65D49100202544 /* ControlPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99001A65D49100202544 /* ControlPanel.swift */; };
+		D49C99261A65D49100202544 /* DeltaTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99011A65D49100202544 /* DeltaTracker.swift */; };
+		D49C99271A65D49100202544 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D49C99021A65D49100202544 /* Images.xcassets */; };
+		D49C99281A65D49100202544 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D49C99031A65D49100202544 /* Info.plist */; };
+		D49C99291A65D49100202544 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D49C99041A65D49100202544 /* InfoPlist.strings */; };
+		D49C992A1A65D49100202544 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D49C99051A65D49100202544 /* iPhone.storyboard */; };
+		D49C992B1A65D49100202544 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D49C99061A65D49100202544 /* Launch Screen.xib */; };
+		D49C992C1A65D49100202544 /* LED.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99071A65D49100202544 /* LED.swift */; };
+		D49C992D1A65D49100202544 /* MetronomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99081A65D49100202544 /* MetronomeView.swift */; };
+		D49C992E1A65D49100202544 /* MetronomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99091A65D49100202544 /* MetronomeViewController.swift */; };
+		D49C992F1A65D49100202544 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C990A1A65D49100202544 /* Player.swift */; };
+		D49C99301A65D49100202544 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C990B1A65D49100202544 /* PlayerCell.swift */; };
+		D49C99311A65D49100202544 /* QuickSettingsControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D49C990D1A65D49100202544 /* QuickSettingsControlsView.xib */; };
+		D49C99321A65D49100202544 /* QuickSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C990E1A65D49100202544 /* QuickSettingsViewController.swift */; };
+		D49C99341A65D49100202544 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D49C99101A65D49100202544 /* Settings.bundle */; };
+		D49C99351A65D49100202544 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99111A65D49100202544 /* SettingsViewController.swift */; };
+		D49C99361A65D49100202544 /* ShardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99121A65D49100202544 /* ShardControl.swift */; };
+		D49C99371A65D49100202544 /* ShardLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99131A65D49100202544 /* ShardLayer.swift */; };
+		D49C99381A65D49100202544 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99141A65D49100202544 /* SoundPlayer.swift */; };
+		D49C99391A65D49100202544 /* accent.wav in Resources */ = {isa = PBXBuildFile; fileRef = D49C99161A65D49100202544 /* accent.wav */; };
+		D49C993A1A65D49100202544 /* beat.wav in Resources */ = {isa = PBXBuildFile; fileRef = D49C99171A65D49100202544 /* beat.wav */; };
+		D49C993B1A65D49100202544 /* digitalAccent.wav in Resources */ = {isa = PBXBuildFile; fileRef = D49C99181A65D49100202544 /* digitalAccent.wav */; };
+		D49C993C1A65D49100202544 /* digitalBeat.wav in Resources */ = {isa = PBXBuildFile; fileRef = D49C99191A65D49100202544 /* digitalBeat.wav */; };
+		D49C993D1A65D49100202544 /* digitalDivision.wav in Resources */ = {isa = PBXBuildFile; fileRef = D49C991A1A65D49100202544 /* digitalDivision.wav */; };
+		D49C993E1A65D49100202544 /* digitalSubdivision.wav in Resources */ = {isa = PBXBuildFile; fileRef = D49C991B1A65D49100202544 /* digitalSubdivision.wav */; };
+		D49C993F1A65D49100202544 /* digitalTriplet.wav in Resources */ = {isa = PBXBuildFile; fileRef = D49C991C1A65D49100202544 /* digitalTriplet.wav */; };
+		D49C99401A65D49100202544 /* division.wav in Resources */ = {isa = PBXBuildFile; fileRef = D49C991D1A65D49100202544 /* division.wav */; };
+		D49C99411A65D49100202544 /* subdivision.wav in Resources */ = {isa = PBXBuildFile; fileRef = D49C991E1A65D49100202544 /* subdivision.wav */; };
+		D49C99421A65D49100202544 /* triplet.wav in Resources */ = {isa = PBXBuildFile; fileRef = D49C991F1A65D49100202544 /* triplet.wav */; };
+		D49C99431A65D49100202544 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99201A65D49100202544 /* Timer.swift */; };
+		D49C99441A65D49100202544 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99211A65D49100202544 /* ToggleButton.swift */; };
+		D49C99491A65D4DC00202544 /* PeerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49C98EC1A65D43800202544 /* PeerKit.framework */; };
+		D49C994A1A65D4DC00202544 /* PeerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D49C98EC1A65D43800202544 /* PeerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D49C99511A65D4E500202544 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49C98F61A65D44900202544 /* Cartography.framework */; };
+		D49C99521A65D4E500202544 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D49C98F61A65D44900202544 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D49C99881A65D56D00202544 /* MetronomeControl.h in Headers */ = {isa = PBXBuildFile; fileRef = D49C99871A65D56D00202544 /* MetronomeControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D49C998E1A65D56D00202544 /* MetronomeControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49C99831A65D56D00202544 /* MetronomeControl.framework */; };
+		D49C99971A65D56D00202544 /* MetronomeControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99961A65D56D00202544 /* MetronomeControlTests.swift */; };
+		D49C999A1A65D56D00202544 /* MetronomeControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49C99831A65D56D00202544 /* MetronomeControl.framework */; };
+		D49C999B1A65D56D00202544 /* MetronomeControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D49C99831A65D56D00202544 /* MetronomeControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D49C99A41A65D5A200202544 /* MetronomeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99A21A65D5A200202544 /* MetronomeControl.swift */; };
+		D49C99A51A65D5A200202544 /* SlideStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99A31A65D5A200202544 /* SlideStepper.swift */; };
+		D49C99A61A65D62400202544 /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C990F1A65D49100202544 /* SessionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D46DB90119844F7100A5820B /* PBXContainerItemProxy */ = {
+		D49C98EB1A65D43800202544 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 01B544F4179828B300A4F4E0 /* Project object */;
+			containerPortal = D442B09D1A65D37B00AD493B /* PeerKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E89FD6C01A0C3CDC00C2FEF7;
+			remoteInfo = PeerKit;
+		};
+		D49C98ED1A65D43800202544 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D442B09D1A65D37B00AD493B /* PeerKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E89FD6CB1A0C3CDC00C2FEF7;
+			remoteInfo = PeerKitTests;
+		};
+		D49C98F51A65D44900202544 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D442B08E1A65D37600AD493B /* Cartography.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 54C96A11195063CD000CDD27;
+			remoteInfo = "Cartography-iOS";
+		};
+		D49C98F71A65D44900202544 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D442B08E1A65D37600AD493B /* Cartography.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 54C96A1C195063CD000CDD27;
+			remoteInfo = "Cartography-iOS-Tests";
+		};
+		D49C98F91A65D44900202544 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D442B08E1A65D37600AD493B /* Cartography.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 54F6A838195C20C100313D24;
+			remoteInfo = "Cartography-Mac";
+		};
+		D49C98FB1A65D44900202544 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D442B08E1A65D37600AD493B /* Cartography.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 54F6A842195C20C200313D24;
+			remoteInfo = "Cartography-Mac-Tests";
+		};
+		D49C994B1A65D4DC00202544 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D442B09D1A65D37B00AD493B /* PeerKit.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D46DB8ED19844F7100A5820B;
+			remoteGlobalIDString = E89FD6BF1A0C3CDC00C2FEF7;
+			remoteInfo = PeerKit;
+		};
+		D49C99531A65D4E500202544 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D442B08E1A65D37600AD493B /* Cartography.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 54C96A10195063CD000CDD27;
+			remoteInfo = "Cartography-iOS";
+		};
+		D49C998F1A65D56D00202544 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D442B0611A65D34E00AD493B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D49C99821A65D56D00202544;
 			remoteInfo = MetronomeControl;
 		};
-		D46DB90519844F7100A5820B /* PBXContainerItemProxy */ = {
+		D49C99911A65D56D00202544 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 01B544F4179828B300A4F4E0 /* Project object */;
+			containerPortal = D442B0611A65D34E00AD493B /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D46DB8ED19844F7100A5820B;
+			remoteGlobalIDString = D442B06A1A65D36900AD493B;
+			remoteInfo = pulsar;
+		};
+		D49C99981A65D56D00202544 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D442B0611A65D34E00AD493B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D49C99821A65D56D00202544;
 			remoteInfo = MetronomeControl;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D44D7BC2196D9589006DE741 /* Embed Frameworks */ = {
+		D442B0AA1A65D39700AD493B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D46DB90419844F7100A5820B /* MetronomeControl.framework in Embed Frameworks */,
+				D49C994A1A65D4DC00202544 /* PeerKit.framework in Embed Frameworks */,
+				D49C999B1A65D56D00202544 /* MetronomeControl.framework in Embed Frameworks */,
+				D49C99521A65D4E500202544 /* Cartography.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,233 +152,265 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		014E89D717C3178300B17C47 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		01B544FC179828B300A4F4E0 /* Pulsar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pulsar.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		01B54509179828B300A4F4E0 /* Pulsar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pulsar-Info.plist"; sourceTree = "<group>"; };
-		01B5450B179828B300A4F4E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		01B54514179828B300A4F4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhone.storyboard; sourceTree = "<group>"; };
-		01B54522179828B300A4F4E0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D439822519A4FEBA007DFE42 /* accent.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = accent.wav; path = Sounds/accent.wav; sourceTree = "<group>"; };
-		D439822619A4FEBA007DFE42 /* beat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = beat.wav; path = Sounds/beat.wav; sourceTree = "<group>"; };
-		D439822719A4FEBA007DFE42 /* digitalAccent.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = digitalAccent.wav; path = Sounds/digitalAccent.wav; sourceTree = "<group>"; };
-		D439822819A4FEBA007DFE42 /* digitalBeat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = digitalBeat.wav; path = Sounds/digitalBeat.wav; sourceTree = "<group>"; };
-		D439822919A4FEBA007DFE42 /* digitalDivision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = digitalDivision.wav; path = Sounds/digitalDivision.wav; sourceTree = "<group>"; };
-		D439822A19A4FEBA007DFE42 /* digitalSubdivision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = digitalSubdivision.wav; path = Sounds/digitalSubdivision.wav; sourceTree = "<group>"; };
-		D439822B19A4FEBA007DFE42 /* digitalTriplet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = digitalTriplet.wav; path = Sounds/digitalTriplet.wav; sourceTree = "<group>"; };
-		D439822C19A4FEBA007DFE42 /* division.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = division.wav; path = Sounds/division.wav; sourceTree = "<group>"; };
-		D439822D19A4FEBA007DFE42 /* subdivision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = subdivision.wav; path = Sounds/subdivision.wav; sourceTree = "<group>"; };
-		D439822E19A4FEBA007DFE42 /* triplet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = triplet.wav; path = Sounds/triplet.wav; sourceTree = "<group>"; };
-		D44D7B9F196D9034006DE741 /* SlideStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideStepper.swift; sourceTree = "<group>"; };
-		D44D7BC6196D95EE006DE741 /* MetronomeControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetronomeControl.swift; sourceTree = "<group>"; };
-		D45740A019A3D45D00CB1C70 /* MetronomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetronomeView.swift; sourceTree = "<group>"; };
-		D457545D19859B9B00967641 /* QuickSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickSettingsViewController.swift; sourceTree = "<group>"; };
-		D45EDCB81A55D83B004B7FD4 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
-		D463FCF91968DBE200606FFD /* SoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
-		D46DB8EE19844F7100A5820B /* MetronomeControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MetronomeControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D46DB8F119844F7100A5820B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D46DB8F219844F7100A5820B /* MetronomeControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetronomeControl.h; sourceTree = "<group>"; };
-		D49B39141986A4DE001D7919 /* ToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
-		D4A0618F19869CB400ADCCC5 /* ControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlsView.swift; sourceTree = "<group>"; };
-		D4A426BF19881E9C00E7C435 /* CommonTimeSignatures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CommonTimeSignatures.plist; sourceTree = "<group>"; };
-		D4ADD32E196EE3E40040DFF3 /* LED.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LED.swift; sourceTree = "<group>"; };
-		D4AE76D11986901500E513E9 /* QuickSettingsControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickSettingsControlsView.xib; sourceTree = "<group>"; };
-		D4D586BC196B422400B9CC8F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		D4EBBAE51986D45E00050FBC /* ShardControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShardControl.swift; path = Classes/ShardControl.swift; sourceTree = SOURCE_ROOT; };
-		D4EBBAE61986D45E00050FBC /* ShardLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShardLayer.swift; path = Classes/ShardLayer.swift; sourceTree = SOURCE_ROOT; };
-		D4F42E20196C370600BB847F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D4F42E22196C414200BB847F /* MetronomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetronomeViewController.swift; sourceTree = "<group>"; };
-		D4F42E24196C423800BB847F /* DeltaTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeltaTracker.swift; sourceTree = "<group>"; };
-		D4F42E28196C838B00BB847F /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		D442B06B1A65D36900AD493B /* pulsar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pulsar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D442B06F1A65D36900AD493B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Classes/Info.plist; sourceTree = "<group>"; };
+		D442B08E1A65D37600AD493B /* Cartography.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cartography.xcodeproj; path = Vendor/Cartography/Cartography.xcodeproj; sourceTree = "<group>"; };
+		D442B09D1A65D37B00AD493B /* PeerKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PeerKit.xcodeproj; path = Vendor/PeerKit/PeerKit.xcodeproj; sourceTree = "<group>"; };
+		D49C98FD1A65D49100202544 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Classes/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		D49C98FE1A65D49100202544 /* CommonTimeSignatures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CommonTimeSignatures.plist; path = Classes/CommonTimeSignatures.plist; sourceTree = SOURCE_ROOT; };
+		D49C98FF1A65D49100202544 /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionManager.swift; path = Classes/ConnectionManager.swift; sourceTree = SOURCE_ROOT; };
+		D49C99001A65D49100202544 /* ControlPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ControlPanel.swift; path = Classes/ControlPanel.swift; sourceTree = SOURCE_ROOT; };
+		D49C99011A65D49100202544 /* DeltaTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeltaTracker.swift; path = Classes/DeltaTracker.swift; sourceTree = SOURCE_ROOT; };
+		D49C99021A65D49100202544 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Classes/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		D49C99031A65D49100202544 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Classes/Info.plist; sourceTree = SOURCE_ROOT; };
+		D49C99041A65D49100202544 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = Classes/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		D49C99051A65D49100202544 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = iPhone.storyboard; path = Classes/iPhone.storyboard; sourceTree = SOURCE_ROOT; };
+		D49C99061A65D49100202544 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "Classes/Launch Screen.xib"; sourceTree = SOURCE_ROOT; };
+		D49C99071A65D49100202544 /* LED.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LED.swift; path = Classes/LED.swift; sourceTree = SOURCE_ROOT; };
+		D49C99081A65D49100202544 /* MetronomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MetronomeView.swift; path = Classes/MetronomeView.swift; sourceTree = SOURCE_ROOT; };
+		D49C99091A65D49100202544 /* MetronomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MetronomeViewController.swift; path = Classes/MetronomeViewController.swift; sourceTree = SOURCE_ROOT; };
+		D49C990A1A65D49100202544 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Classes/Player.swift; sourceTree = SOURCE_ROOT; };
+		D49C990B1A65D49100202544 /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerCell.swift; path = Classes/PlayerCell.swift; sourceTree = SOURCE_ROOT; };
+		D49C990D1A65D49100202544 /* QuickSettingsControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuickSettingsControlsView.xib; path = Classes/QuickSettingsControlsView.xib; sourceTree = SOURCE_ROOT; };
+		D49C990E1A65D49100202544 /* QuickSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickSettingsViewController.swift; path = Classes/QuickSettingsViewController.swift; sourceTree = SOURCE_ROOT; };
+		D49C990F1A65D49100202544 /* SessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionViewController.swift; path = Classes/SessionViewController.swift; sourceTree = SOURCE_ROOT; };
+		D49C99101A65D49100202544 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Classes/Settings.bundle; sourceTree = SOURCE_ROOT; };
+		D49C99111A65D49100202544 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Classes/SettingsViewController.swift; sourceTree = SOURCE_ROOT; };
+		D49C99121A65D49100202544 /* ShardControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShardControl.swift; path = Classes/ShardControl.swift; sourceTree = SOURCE_ROOT; };
+		D49C99131A65D49100202544 /* ShardLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShardLayer.swift; path = Classes/ShardLayer.swift; sourceTree = SOURCE_ROOT; };
+		D49C99141A65D49100202544 /* SoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundPlayer.swift; path = Classes/SoundPlayer.swift; sourceTree = SOURCE_ROOT; };
+		D49C99161A65D49100202544 /* accent.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = accent.wav; sourceTree = "<group>"; };
+		D49C99171A65D49100202544 /* beat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beat.wav; sourceTree = "<group>"; };
+		D49C99181A65D49100202544 /* digitalAccent.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = digitalAccent.wav; sourceTree = "<group>"; };
+		D49C99191A65D49100202544 /* digitalBeat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = digitalBeat.wav; sourceTree = "<group>"; };
+		D49C991A1A65D49100202544 /* digitalDivision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = digitalDivision.wav; sourceTree = "<group>"; };
+		D49C991B1A65D49100202544 /* digitalSubdivision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = digitalSubdivision.wav; sourceTree = "<group>"; };
+		D49C991C1A65D49100202544 /* digitalTriplet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = digitalTriplet.wav; sourceTree = "<group>"; };
+		D49C991D1A65D49100202544 /* division.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = division.wav; sourceTree = "<group>"; };
+		D49C991E1A65D49100202544 /* subdivision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = subdivision.wav; sourceTree = "<group>"; };
+		D49C991F1A65D49100202544 /* triplet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = triplet.wav; sourceTree = "<group>"; };
+		D49C99201A65D49100202544 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = Classes/Timer.swift; sourceTree = SOURCE_ROOT; };
+		D49C99211A65D49100202544 /* ToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToggleButton.swift; path = Classes/ToggleButton.swift; sourceTree = SOURCE_ROOT; };
+		D49C99831A65D56D00202544 /* MetronomeControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MetronomeControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D49C99861A65D56D00202544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D49C99871A65D56D00202544 /* MetronomeControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetronomeControl.h; sourceTree = "<group>"; };
+		D49C998D1A65D56D00202544 /* MetronomeControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetronomeControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D49C99951A65D56D00202544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D49C99961A65D56D00202544 /* MetronomeControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeControlTests.swift; sourceTree = "<group>"; };
+		D49C99A21A65D5A200202544 /* MetronomeControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetronomeControl.swift; sourceTree = "<group>"; };
+		D49C99A31A65D5A200202544 /* SlideStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideStepper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		01B544F9179828B300A4F4E0 /* Frameworks */ = {
+		D442B0681A65D36900AD493B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D46DB90319844F7100A5820B /* MetronomeControl.framework in Frameworks */,
+				D49C99491A65D4DC00202544 /* PeerKit.framework in Frameworks */,
+				D49C999A1A65D56D00202544 /* MetronomeControl.framework in Frameworks */,
+				D49C99511A65D4E500202544 /* Cartography.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D46DB8EA19844F7100A5820B /* Frameworks */ = {
+		D49C997F1A65D56D00202544 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D49C998A1A65D56D00202544 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D49C998E1A65D56D00202544 /* MetronomeControl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0167864617A439C100F71527 /* Sounds */ = {
+		D442B0601A65D34E00AD493B = {
 			isa = PBXGroup;
 			children = (
-				D439822519A4FEBA007DFE42 /* accent.wav */,
-				D439822619A4FEBA007DFE42 /* beat.wav */,
-				D439822719A4FEBA007DFE42 /* digitalAccent.wav */,
-				D439822819A4FEBA007DFE42 /* digitalBeat.wav */,
-				D439822919A4FEBA007DFE42 /* digitalDivision.wav */,
-				D439822A19A4FEBA007DFE42 /* digitalSubdivision.wav */,
-				D439822B19A4FEBA007DFE42 /* digitalTriplet.wav */,
-				D439822C19A4FEBA007DFE42 /* division.wav */,
-				D439822D19A4FEBA007DFE42 /* subdivision.wav */,
-				D439822E19A4FEBA007DFE42 /* triplet.wav */,
-			);
-			name = Sounds;
-			sourceTree = "<group>";
-		};
-		01B544F3179828B300A4F4E0 = {
-			isa = PBXGroup;
-			children = (
-				D4644DD6197E248E00B9FF15 /* Shard Control */,
-				D46DB8EF19844F7100A5820B /* MetronomeControl */,
-				01B54508179828B300A4F4E0 /* Supporting Files */,
-				01B54507179828B300A4F4E0 /* iOS */,
-				01B544FD179828B300A4F4E0 /* Products */,
+				D442B09D1A65D37B00AD493B /* PeerKit.xcodeproj */,
+				D442B08E1A65D37600AD493B /* Cartography.xcodeproj */,
+				D442B06D1A65D36900AD493B /* pulsar */,
+				D49C99841A65D56D00202544 /* MetronomeControl */,
+				D49C99931A65D56D00202544 /* MetronomeControlTests */,
+				D442B06C1A65D36900AD493B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		01B544FD179828B300A4F4E0 /* Products */ = {
+		D442B06C1A65D36900AD493B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				01B544FC179828B300A4F4E0 /* Pulsar.app */,
-				D46DB8EE19844F7100A5820B /* MetronomeControl.framework */,
+				D442B06B1A65D36900AD493B /* pulsar.app */,
+				D49C99831A65D56D00202544 /* MetronomeControl.framework */,
+				D49C998D1A65D56D00202544 /* MetronomeControlTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		01B54507179828B300A4F4E0 /* iOS */ = {
+		D442B06D1A65D36900AD493B /* pulsar */ = {
 			isa = PBXGroup;
 			children = (
-				D45EDCB81A55D83B004B7FD4 /* Launch Screen.xib */,
-				D4F42E20196C370600BB847F /* AppDelegate.swift */,
-				01B54513179828B300A4F4E0 /* iPhone.storyboard */,
-				D48158CE1A5494B20040AD08 /* Views */,
-				D48158CD1A5494AA0040AD08 /* View Controllers */,
-				D4B8667E19721670000535F6 /* Helpers */,
+				D49C98FD1A65D49100202544 /* AppDelegate.swift */,
+				D49C98FE1A65D49100202544 /* CommonTimeSignatures.plist */,
+				D49C98FF1A65D49100202544 /* ConnectionManager.swift */,
+				D49C99001A65D49100202544 /* ControlPanel.swift */,
+				D49C99011A65D49100202544 /* DeltaTracker.swift */,
+				D49C99021A65D49100202544 /* Images.xcassets */,
+				D49C99031A65D49100202544 /* Info.plist */,
+				D49C99041A65D49100202544 /* InfoPlist.strings */,
+				D49C99051A65D49100202544 /* iPhone.storyboard */,
+				D49C99061A65D49100202544 /* Launch Screen.xib */,
+				D49C99071A65D49100202544 /* LED.swift */,
+				D49C99081A65D49100202544 /* MetronomeView.swift */,
+				D49C99091A65D49100202544 /* MetronomeViewController.swift */,
+				D49C990A1A65D49100202544 /* Player.swift */,
+				D49C990B1A65D49100202544 /* PlayerCell.swift */,
+				D49C990D1A65D49100202544 /* QuickSettingsControlsView.xib */,
+				D49C990E1A65D49100202544 /* QuickSettingsViewController.swift */,
+				D49C990F1A65D49100202544 /* SessionViewController.swift */,
+				D49C99101A65D49100202544 /* Settings.bundle */,
+				D49C99111A65D49100202544 /* SettingsViewController.swift */,
+				D49C99121A65D49100202544 /* ShardControl.swift */,
+				D49C99131A65D49100202544 /* ShardLayer.swift */,
+				D49C99141A65D49100202544 /* SoundPlayer.swift */,
+				D49C99151A65D49100202544 /* Sounds */,
+				D49C99201A65D49100202544 /* Timer.swift */,
+				D49C99211A65D49100202544 /* ToggleButton.swift */,
+				D442B06E1A65D36900AD493B /* Supporting Files */,
 			);
-			name = iOS;
-			path = Classes;
+			path = pulsar;
 			sourceTree = "<group>";
 		};
-		01B54508179828B300A4F4E0 /* Supporting Files */ = {
+		D442B06E1A65D36900AD493B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D4A426BF19881E9C00E7C435 /* CommonTimeSignatures.plist */,
-				01B54522179828B300A4F4E0 /* Images.xcassets */,
-				01B5450A179828B300A4F4E0 /* InfoPlist.strings */,
-				01B54509179828B300A4F4E0 /* Pulsar-Info.plist */,
-				014E89D717C3178300B17C47 /* Settings.bundle */,
-				0167864617A439C100F71527 /* Sounds */,
+				D442B06F1A65D36900AD493B /* Info.plist */,
 			);
 			name = "Supporting Files";
-			path = Classes;
 			sourceTree = "<group>";
 		};
-		D4644DD6197E248E00B9FF15 /* Shard Control */ = {
+		D49C98E71A65D43800202544 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4EBBAE51986D45E00050FBC /* ShardControl.swift */,
-				D4EBBAE61986D45E00050FBC /* ShardLayer.swift */,
+				D49C98EC1A65D43800202544 /* PeerKit.framework */,
+				D49C98EE1A65D43800202544 /* PeerKitTests.xctest */,
 			);
-			name = "Shard Control";
-			path = MetronomeControlKit;
+			name = Products;
 			sourceTree = "<group>";
 		};
-		D46DB8EF19844F7100A5820B /* MetronomeControl */ = {
+		D49C98EF1A65D44800202544 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D44D7BC6196D95EE006DE741 /* MetronomeControl.swift */,
-				D44D7B9F196D9034006DE741 /* SlideStepper.swift */,
-				D46DB8F219844F7100A5820B /* MetronomeControl.h */,
-				D46DB8F019844F7100A5820B /* Supporting Files */,
+				D49C98F61A65D44900202544 /* Cartography.framework */,
+				D49C98F81A65D44900202544 /* Cartography-iOS-Tests.xctest */,
+				D49C98FA1A65D44900202544 /* Cartography.framework */,
+				D49C98FC1A65D44900202544 /* Cartography-Mac-Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D49C99151A65D49100202544 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D49C99161A65D49100202544 /* accent.wav */,
+				D49C99171A65D49100202544 /* beat.wav */,
+				D49C99181A65D49100202544 /* digitalAccent.wav */,
+				D49C99191A65D49100202544 /* digitalBeat.wav */,
+				D49C991A1A65D49100202544 /* digitalDivision.wav */,
+				D49C991B1A65D49100202544 /* digitalSubdivision.wav */,
+				D49C991C1A65D49100202544 /* digitalTriplet.wav */,
+				D49C991D1A65D49100202544 /* division.wav */,
+				D49C991E1A65D49100202544 /* subdivision.wav */,
+				D49C991F1A65D49100202544 /* triplet.wav */,
+			);
+			name = Sounds;
+			path = Classes/Sounds;
+			sourceTree = SOURCE_ROOT;
+		};
+		D49C99841A65D56D00202544 /* MetronomeControl */ = {
+			isa = PBXGroup;
+			children = (
+				D49C99A21A65D5A200202544 /* MetronomeControl.swift */,
+				D49C99A31A65D5A200202544 /* SlideStepper.swift */,
+				D49C99871A65D56D00202544 /* MetronomeControl.h */,
+				D49C99851A65D56D00202544 /* Supporting Files */,
 			);
 			path = MetronomeControl;
 			sourceTree = "<group>";
 		};
-		D46DB8F019844F7100A5820B /* Supporting Files */ = {
+		D49C99851A65D56D00202544 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D46DB8F119844F7100A5820B /* Info.plist */,
+				D49C99861A65D56D00202544 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D48158CD1A5494AA0040AD08 /* View Controllers */ = {
+		D49C99931A65D56D00202544 /* MetronomeControlTests */ = {
 			isa = PBXGroup;
 			children = (
-				D4F42E22196C414200BB847F /* MetronomeViewController.swift */,
-				D457545D19859B9B00967641 /* QuickSettingsViewController.swift */,
-				D4D586BC196B422400B9CC8F /* SettingsViewController.swift */,
+				D49C99961A65D56D00202544 /* MetronomeControlTests.swift */,
+				D49C99941A65D56D00202544 /* Supporting Files */,
 			);
-			name = "View Controllers";
+			path = MetronomeControlTests;
 			sourceTree = "<group>";
 		};
-		D48158CE1A5494B20040AD08 /* Views */ = {
+		D49C99941A65D56D00202544 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D4AE76D11986901500E513E9 /* QuickSettingsControlsView.xib */,
-				D4A0618F19869CB400ADCCC5 /* ControlsView.swift */,
-				D45740A019A3D45D00CB1C70 /* MetronomeView.swift */,
-				D49B39141986A4DE001D7919 /* ToggleButton.swift */,
+				D49C99951A65D56D00202544 /* Info.plist */,
 			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		D4B8667E19721670000535F6 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				D4F42E28196C838B00BB847F /* Timer.swift */,
-				D4F42E24196C423800BB847F /* DeltaTracker.swift */,
-				D4ADD32E196EE3E40040DFF3 /* LED.swift */,
-				D463FCF91968DBE200606FFD /* SoundPlayer.swift */,
-			);
-			name = Helpers;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		D46DB8EB19844F7100A5820B /* Headers */ = {
+		D49C99801A65D56D00202544 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D46DB8F319844F7100A5820B /* MetronomeControl.h in Headers */,
+				D49C99881A65D56D00202544 /* MetronomeControl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		01B544FB179828B300A4F4E0 /* Pulsar */ = {
+		D442B06A1A65D36900AD493B /* pulsar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 01B5453A179828B400A4F4E0 /* Build configuration list for PBXNativeTarget "Pulsar" */;
+			buildConfigurationList = D442B0881A65D36A00AD493B /* Build configuration list for PBXNativeTarget "pulsar" */;
 			buildPhases = (
-				0192E30617A1A9E100DE45EC /* Bump Build Number */,
-				01B544F8179828B300A4F4E0 /* Sources */,
-				01B544F9179828B300A4F4E0 /* Frameworks */,
-				01B544FA179828B300A4F4E0 /* Resources */,
-				D44D7BC2196D9589006DE741 /* Embed Frameworks */,
+				D442B0671A65D36900AD493B /* Sources */,
+				D442B0681A65D36900AD493B /* Frameworks */,
+				D442B0691A65D36900AD493B /* Resources */,
+				D442B0AA1A65D39700AD493B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D46DB90219844F7100A5820B /* PBXTargetDependency */,
-				D46DB90619844F7100A5820B /* PBXTargetDependency */,
+				D49C994C1A65D4DC00202544 /* PBXTargetDependency */,
+				D49C99541A65D4E500202544 /* PBXTargetDependency */,
+				D49C99991A65D56D00202544 /* PBXTargetDependency */,
 			);
-			name = Pulsar;
-			productName = Ticker;
-			productReference = 01B544FC179828B300A4F4E0 /* Pulsar.app */;
+			name = pulsar;
+			productName = pulsar;
+			productReference = D442B06B1A65D36900AD493B /* pulsar.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D46DB8ED19844F7100A5820B /* MetronomeControl */ = {
+		D49C99821A65D56D00202544 /* MetronomeControl */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D46DB90B19844F7100A5820B /* Build configuration list for PBXNativeTarget "MetronomeControl" */;
+			buildConfigurationList = D49C999C1A65D56D00202544 /* Build configuration list for PBXNativeTarget "MetronomeControl" */;
 			buildPhases = (
-				D46DB8E919844F7100A5820B /* Sources */,
-				D46DB8EA19844F7100A5820B /* Frameworks */,
-				D46DB8EB19844F7100A5820B /* Headers */,
-				D46DB8EC19844F7100A5820B /* Resources */,
+				D49C997E1A65D56D00202544 /* Sources */,
+				D49C997F1A65D56D00202544 /* Frameworks */,
+				D49C99801A65D56D00202544 /* Headers */,
+				D49C99811A65D56D00202544 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -309,28 +418,49 @@
 			);
 			name = MetronomeControl;
 			productName = MetronomeControl;
-			productReference = D46DB8EE19844F7100A5820B /* MetronomeControl.framework */;
+			productReference = D49C99831A65D56D00202544 /* MetronomeControl.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		D49C998C1A65D56D00202544 /* MetronomeControlTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D49C999F1A65D56D00202544 /* Build configuration list for PBXNativeTarget "MetronomeControlTests" */;
+			buildPhases = (
+				D49C99891A65D56D00202544 /* Sources */,
+				D49C998A1A65D56D00202544 /* Frameworks */,
+				D49C998B1A65D56D00202544 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D49C99901A65D56D00202544 /* PBXTargetDependency */,
+				D49C99921A65D56D00202544 /* PBXTargetDependency */,
+			);
+			name = MetronomeControlTests;
+			productName = MetronomeControlTests;
+			productReference = D49C998D1A65D56D00202544 /* MetronomeControlTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		01B544F4179828B300A4F4E0 /* Project object */ = {
+		D442B0611A65D34E00AD493B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = "Nick Walker";
+				LastUpgradeCheck = 0620;
 				TargetAttributes = {
-					01B544FB179828B300A4F4E0 = {
-						DevelopmentTeam = 2627WG76ES;
+					D442B06A1A65D36900AD493B = {
+						CreatedOnToolsVersion = 6.2;
 					};
-					D46DB8ED19844F7100A5820B = {
-						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 2627WG76ES;
+					D49C99821A65D56D00202544 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					D49C998C1A65D56D00202544 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = D442B06A1A65D36900AD493B;
 					};
 				};
 			};
-			buildConfigurationList = 01B544F7179828B300A4F4E0 /* Build configuration list for PBXProject "Pulsar" */;
+			buildConfigurationList = D442B0641A65D34E00AD493B /* Build configuration list for PBXProject "pulsar" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -338,42 +468,107 @@
 				en,
 				Base,
 			);
-			mainGroup = 01B544F3179828B300A4F4E0;
-			productRefGroup = 01B544FD179828B300A4F4E0 /* Products */;
+			mainGroup = D442B0601A65D34E00AD493B;
+			productRefGroup = D442B06C1A65D36900AD493B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D49C98EF1A65D44800202544 /* Products */;
+					ProjectRef = D442B08E1A65D37600AD493B /* Cartography.xcodeproj */;
+				},
+				{
+					ProductGroup = D49C98E71A65D43800202544 /* Products */;
+					ProjectRef = D442B09D1A65D37B00AD493B /* PeerKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
-				01B544FB179828B300A4F4E0 /* Pulsar */,
-				D46DB8ED19844F7100A5820B /* MetronomeControl */,
+				D442B06A1A65D36900AD493B /* pulsar */,
+				D49C99821A65D56D00202544 /* MetronomeControl */,
+				D49C998C1A65D56D00202544 /* MetronomeControlTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		D49C98EC1A65D43800202544 /* PeerKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PeerKit.framework;
+			remoteRef = D49C98EB1A65D43800202544 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D49C98EE1A65D43800202544 /* PeerKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PeerKitTests.xctest;
+			remoteRef = D49C98ED1A65D43800202544 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D49C98F61A65D44900202544 /* Cartography.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Cartography.framework;
+			remoteRef = D49C98F51A65D44900202544 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D49C98F81A65D44900202544 /* Cartography-iOS-Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Cartography-iOS-Tests.xctest";
+			remoteRef = D49C98F71A65D44900202544 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D49C98FA1A65D44900202544 /* Cartography.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Cartography.framework;
+			remoteRef = D49C98F91A65D44900202544 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D49C98FC1A65D44900202544 /* Cartography-Mac-Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Cartography-Mac-Tests.xctest";
+			remoteRef = D49C98FB1A65D44900202544 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
-		01B544FA179828B300A4F4E0 /* Resources */ = {
+		D442B0691A65D36900AD493B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D439823719A4FEBA007DFE42 /* subdivision.wav in Resources */,
-				D40988EB1A5658AE0091CAE8 /* CommonTimeSignatures.plist in Resources */,
-				D439823519A4FEBA007DFE42 /* digitalTriplet.wav in Resources */,
-				014C3C241932A87D0095AB67 /* iPhone.storyboard in Resources */,
-				D439823819A4FEBA007DFE42 /* triplet.wav in Resources */,
-				D439823619A4FEBA007DFE42 /* division.wav in Resources */,
-				D439823119A4FEBA007DFE42 /* digitalAccent.wav in Resources */,
-				D439823319A4FEBA007DFE42 /* digitalDivision.wav in Resources */,
-				D4AE76D21986901500E513E9 /* QuickSettingsControlsView.xib in Resources */,
-				D439823419A4FEBA007DFE42 /* digitalSubdivision.wav in Resources */,
-				D439822F19A4FEBA007DFE42 /* accent.wav in Resources */,
-				D439823219A4FEBA007DFE42 /* digitalBeat.wav in Resources */,
-				D439823019A4FEBA007DFE42 /* beat.wav in Resources */,
-				D45EDCB91A55D83B004B7FD4 /* Launch Screen.xib in Resources */,
-				014E89D817C3178300B17C47 /* Settings.bundle in Resources */,
-				01B54523179828B300A4F4E0 /* Images.xcassets in Resources */,
+				D49C993A1A65D49100202544 /* beat.wav in Resources */,
+				D49C993E1A65D49100202544 /* digitalSubdivision.wav in Resources */,
+				D49C993D1A65D49100202544 /* digitalDivision.wav in Resources */,
+				D49C99421A65D49100202544 /* triplet.wav in Resources */,
+				D49C993C1A65D49100202544 /* digitalBeat.wav in Resources */,
+				D49C99341A65D49100202544 /* Settings.bundle in Resources */,
+				D49C99311A65D49100202544 /* QuickSettingsControlsView.xib in Resources */,
+				D49C993F1A65D49100202544 /* digitalTriplet.wav in Resources */,
+				D49C99391A65D49100202544 /* accent.wav in Resources */,
+				D49C99231A65D49100202544 /* CommonTimeSignatures.plist in Resources */,
+				D49C99411A65D49100202544 /* subdivision.wav in Resources */,
+				D49C99291A65D49100202544 /* InfoPlist.strings in Resources */,
+				D49C99271A65D49100202544 /* Images.xcassets in Resources */,
+				D49C99281A65D49100202544 /* Info.plist in Resources */,
+				D49C992A1A65D49100202544 /* iPhone.storyboard in Resources */,
+				D49C99401A65D49100202544 /* division.wav in Resources */,
+				D49C993B1A65D49100202544 /* digitalAccent.wav in Resources */,
+				D49C992B1A65D49100202544 /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D46DB8EC19844F7100A5820B /* Resources */ = {
+		D49C99811A65D56D00202544 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D49C998B1A65D56D00202544 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -382,92 +577,96 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		0192E30617A1A9E100DE45EC /* Bump Build Number */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bump Build Number";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${PROJECT_DIR}/Tools/bump_build_number.sh \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		01B544F8179828B300A4F4E0 /* Sources */ = {
+		D442B0671A65D36900AD493B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4ADD330196EF80A0040DFF3 /* AppDelegate.swift in Sources */,
-				D45740A119A3D45D00CB1C70 /* MetronomeView.swift in Sources */,
-				D4EBBAE81986D45E00050FBC /* ShardLayer.swift in Sources */,
-				D4ADD331196EF80A0040DFF3 /* DeltaTracker.swift in Sources */,
-				D4ADD332196EF80A0040DFF3 /* Timer.swift in Sources */,
-				D457545E19859B9B00967641 /* QuickSettingsViewController.swift in Sources */,
-				D4ADD333196EF80A0040DFF3 /* SoundPlayer.swift in Sources */,
-				D49B39151986A4DE001D7919 /* ToggleButton.swift in Sources */,
-				D4EBBAE71986D45E00050FBC /* ShardControl.swift in Sources */,
-				D45EDCB71A54D4DC004B7FD4 /* ControlsView.swift in Sources */,
-				D4ADD334196EF80A0040DFF3 /* LED.swift in Sources */,
-				D4ADD335196EF80A0040DFF3 /* MetronomeViewController.swift in Sources */,
-				D4ADD336196EF80A0040DFF3 /* SettingsViewController.swift in Sources */,
+				D49C99251A65D49100202544 /* ControlPanel.swift in Sources */,
+				D49C99221A65D49100202544 /* AppDelegate.swift in Sources */,
+				D49C99241A65D49100202544 /* ConnectionManager.swift in Sources */,
+				D49C99301A65D49100202544 /* PlayerCell.swift in Sources */,
+				D49C99441A65D49100202544 /* ToggleButton.swift in Sources */,
+				D49C99A61A65D62400202544 /* SessionViewController.swift in Sources */,
+				D49C992D1A65D49100202544 /* MetronomeView.swift in Sources */,
+				D49C99321A65D49100202544 /* QuickSettingsViewController.swift in Sources */,
+				D49C992F1A65D49100202544 /* Player.swift in Sources */,
+				D49C99431A65D49100202544 /* Timer.swift in Sources */,
+				D49C99261A65D49100202544 /* DeltaTracker.swift in Sources */,
+				D49C992C1A65D49100202544 /* LED.swift in Sources */,
+				D49C99381A65D49100202544 /* SoundPlayer.swift in Sources */,
+				D49C99361A65D49100202544 /* ShardControl.swift in Sources */,
+				D49C992E1A65D49100202544 /* MetronomeViewController.swift in Sources */,
+				D49C99371A65D49100202544 /* ShardLayer.swift in Sources */,
+				D49C99351A65D49100202544 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D46DB8E919844F7100A5820B /* Sources */ = {
+		D49C997E1A65D56D00202544 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4389AE41986D3B600F064CA /* SlideStepper.swift in Sources */,
-				D4389AE31986D3AE00F064CA /* MetronomeControl.swift in Sources */,
+				D49C99A41A65D5A200202544 /* MetronomeControl.swift in Sources */,
+				D49C99A51A65D5A200202544 /* SlideStepper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D49C99891A65D56D00202544 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D49C99971A65D56D00202544 /* MetronomeControlTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D46DB90219844F7100A5820B /* PBXTargetDependency */ = {
+		D49C994C1A65D4DC00202544 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D46DB8ED19844F7100A5820B /* MetronomeControl */;
-			targetProxy = D46DB90119844F7100A5820B /* PBXContainerItemProxy */;
+			name = PeerKit;
+			targetProxy = D49C994B1A65D4DC00202544 /* PBXContainerItemProxy */;
 		};
-		D46DB90619844F7100A5820B /* PBXTargetDependency */ = {
+		D49C99541A65D4E500202544 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D46DB8ED19844F7100A5820B /* MetronomeControl */;
-			targetProxy = D46DB90519844F7100A5820B /* PBXContainerItemProxy */;
+			name = "Cartography-iOS";
+			targetProxy = D49C99531A65D4E500202544 /* PBXContainerItemProxy */;
+		};
+		D49C99901A65D56D00202544 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D49C99821A65D56D00202544 /* MetronomeControl */;
+			targetProxy = D49C998F1A65D56D00202544 /* PBXContainerItemProxy */;
+		};
+		D49C99921A65D56D00202544 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D442B06A1A65D36900AD493B /* pulsar */;
+			targetProxy = D49C99911A65D56D00202544 /* PBXContainerItemProxy */;
+		};
+		D49C99991A65D56D00202544 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D49C99821A65D56D00202544 /* MetronomeControl */;
+			targetProxy = D49C99981A65D56D00202544 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		01B5450A179828B300A4F4E0 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01B5450B179828B300A4F4E0 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		01B54513179828B300A4F4E0 /* iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01B54514179828B300A4F4E0 /* Base */,
-			);
-			name = iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		01B54538179828B400A4F4E0 /* Debug */ = {
+		D442B0651A65D34E00AD493B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		D442B0661A65D34E00AD493B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		D442B0891A65D36A00AD493B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -479,9 +678,12 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -490,19 +692,64 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_FILE = Classes/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		01B54539179828B400A4F4E0 /* Release */ = {
+		D442B08A1A65D36A00AD493B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Classes/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D49C999D1A65D56D00202544 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -517,174 +764,222 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		01B5453B179828B400A4F4E0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_MODULES_AUTOLINK = YES;
-				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos7.0]" = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos7.0]" = "iPhone Developer: Nick Walker (77YL974MZ8)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Classes/Pulsar-Prefix.pch";
-				HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
-				INFOPLIST_FILE = "Classes/Pulsar-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Classes/Support/Analytics";
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = Pulsar;
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SYMROOT = "$(PROJECT_DIR)/build";
-				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Classes/Support/finch/Finch\"/**";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		01B5453C179828B400A4F4E0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_MODULES_AUTOLINK = YES;
-				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos7.0]" = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos7.0]" = "iPhone Developer: Nick Walker (77YL974MZ8)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Classes/Pulsar-Prefix.pch";
-				HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
-				"HEADER_SEARCH_PATHS[arch=*]" = "$(BUILT_PRODUCTS_DIR)/**";
-				INFOPLIST_FILE = "Classes/Pulsar-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Classes/Support/Analytics";
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = Pulsar;
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SYMROOT = "$(PROJECT_DIR)/build";
-				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "";
-				"USER_HEADER_SEARCH_PATHS[arch=*]" = "$(BUILT_PRODUCTS_DIR)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		D46DB90719844F7100A5820B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos7.0]" = "iPhone Developer: Nick Walker (77YL974MZ8)";
+				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MetronomeControl/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		D46DB90819844F7100A5820B /* Release */ = {
+		D49C999E1A65D56D00202544 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos7.0]" = "iPhone Developer: Nick Walker (77YL974MZ8)";
+				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MetronomeControl/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D49C99A01A65D56D00202544 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = MetronomeControlTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pulsar.app/pulsar";
+			};
+			name = Debug;
+		};
+		D49C99A11A65D56D00202544 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = MetronomeControlTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pulsar.app/pulsar";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		01B544F7179828B300A4F4E0 /* Build configuration list for PBXProject "Pulsar" */ = {
+		D442B0641A65D34E00AD493B /* Build configuration list for PBXProject "pulsar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				01B54538179828B400A4F4E0 /* Debug */,
-				01B54539179828B400A4F4E0 /* Release */,
+				D442B0651A65D34E00AD493B /* Debug */,
+				D442B0661A65D34E00AD493B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		01B5453A179828B400A4F4E0 /* Build configuration list for PBXNativeTarget "Pulsar" */ = {
+		D442B0881A65D36A00AD493B /* Build configuration list for PBXNativeTarget "pulsar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				01B5453B179828B400A4F4E0 /* Debug */,
-				01B5453C179828B400A4F4E0 /* Release */,
+				D442B0891A65D36A00AD493B /* Debug */,
+				D442B08A1A65D36A00AD493B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D46DB90B19844F7100A5820B /* Build configuration list for PBXNativeTarget "MetronomeControl" */ = {
+		D49C999C1A65D56D00202544 /* Build configuration list for PBXNativeTarget "MetronomeControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D46DB90719844F7100A5820B /* Debug */,
-				D46DB90819844F7100A5820B /* Release */,
+				D49C999D1A65D56D00202544 /* Debug */,
+				D49C999E1A65D56D00202544 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+		};
+		D49C999F1A65D56D00202544 /* Build configuration list for PBXNativeTarget "MetronomeControlTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D49C99A01A65D56D00202544 /* Debug */,
+				D49C99A11A65D56D00202544 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 01B544F4179828B300A4F4E0 /* Project object */;
+	rootObject = D442B0611A65D34E00AD493B /* Project object */;
 }

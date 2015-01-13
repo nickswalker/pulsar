@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class ControlsView: UIView {
+class ControlPanel: UIView {
 
     override init() {
         super.init()

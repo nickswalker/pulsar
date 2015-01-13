@@ -16,6 +16,7 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
     @IBOutlet var beatsControl: ShardControl?
     @IBOutlet var quickSettingsButton: UIButton?
     @IBOutlet var settingsButton: UIButton?
+    @IBOutlet var sessionButton: UIButton?
 
     var overlayController: QuickSettingsViewController?
     var led = LED()
@@ -168,11 +169,14 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showSettings" {
             toggleRunningState(false)
-            // FIXME: Need a way to turn it off that's not so invasive
 
-            var viewControllers = segue.destinationViewController.viewControllers as Array
-            var settingsViewController: SettingsViewController = viewControllers[0] as SettingsViewController
+            let viewControllers = segue.destinationViewController.viewControllers as Array
+            let settingsViewController = viewControllers[0] as SettingsViewController
             settingsViewController.delegate = self
+        }
+        else if segue.identifier == "showSession" {
+            let sessionViewController = segue.destinationViewController as SessionViewController
+            sessionViewController.modalPresentationStyle = .OverCurrentContext
         }
     }
 

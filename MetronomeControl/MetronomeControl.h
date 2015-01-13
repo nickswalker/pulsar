@@ -2,8 +2,8 @@
 //  MetronomeControl.h
 //  MetronomeControl
 //
-//  Created by Nick Walker on 7/26/14.
-//  Copyright (c) 2014 Nick Walker. All rights reserved.
+//  Created by Nick Walker on 1/13/15.
+//
 //
 
 #import <UIKit/UIKit.h>

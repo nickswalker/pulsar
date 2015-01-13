@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14C81f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rQl-PL-IFJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14C94b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rQl-PL-IFJ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -17,6 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0FJ-Ky-pSe" userLabel="Shard View" customClass="ShardControl" customModule="Pulsar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="numberOfShards">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMX-aB-L4e" userLabel="Background Button">
                                 <rect key="frame" x="-9" y="0.0" width="618" height="600"/>
                                 <gestureRecognizers/>
@@ -33,15 +42,6 @@
                                     <outletCollection property="gestureRecognizers" destination="gbt-UG-KTR" appends="YES" id="D4g-kN-wbD"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0FJ-Ky-pSe" userLabel="Shard View" customClass="ShardControl" customModule="Pulsar" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="numberOfShards">
-                                        <integer key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <view autoresizesSubviews="NO" opaque="NO" contentMode="center" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="XxR-Jg-CVn" userLabel="Controls" customClass="MetronomeControl" customModule="MetronomeControl">
                                 <rect key="frame" x="250" y="200" width="100" height="200"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -93,9 +93,36 @@
                                     <action selector="presentQuickSettings" destination="rQl-PL-IFJ" eventType="touchUpInside" id="S8I-EE-u4c"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgJ-A9-OUc" userLabel="Info Button">
+                                <rect key="frame" x="270" y="560" width="60" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="b7v-Il-Wdw"/>
+                                    <constraint firstAttribute="height" constant="40" id="cg6-cG-Q9E"/>
+                                    <constraint firstAttribute="width" constant="60" id="kfR-qB-FkP"/>
+                                    <constraint firstAttribute="height" constant="40" id="vRx-Y2-4IX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="SESSION">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="b7v-Il-Wdw"/>
+                                        <exclude reference="cg6-cG-Q9E"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <segue destination="qNd-eP-7cM" kind="presentation" identifier="showSession" id="FdS-xb-hlr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.25277549342105265" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="jdt-oJ-EyC" firstAttribute="top" secondItem="RgJ-A9-OUc" secondAttribute="bottom" id="6TF-1c-WYu"/>
                             <constraint firstAttribute="centerX" secondItem="XxR-Jg-CVn" secondAttribute="centerX" id="6br-1L-5D5"/>
                             <constraint firstAttribute="bottom" secondItem="0FJ-Ky-pSe" secondAttribute="bottom" id="6w0-os-WkA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PMX-aB-L4e" secondAttribute="trailing" constant="-25" id="7mz-M3-QA4"/>
@@ -108,6 +135,7 @@
                             <constraint firstAttribute="trailing" secondItem="gGa-VU-yN3" secondAttribute="trailing" id="eQA-fh-mTX"/>
                             <constraint firstItem="0FJ-Ky-pSe" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" id="hXF-01-ae4"/>
                             <constraint firstItem="0FJ-Ky-pSe" firstAttribute="top" secondItem="l9E-07-oys" secondAttribute="top" id="lqu-d5-39a"/>
+                            <constraint firstAttribute="centerX" secondItem="RgJ-A9-OUc" secondAttribute="centerX" id="rAv-n1-Z8K"/>
                             <constraint firstItem="PMX-aB-L4e" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leadingMargin" constant="-25" id="v8w-Dp-phv"/>
                             <constraint firstAttribute="centerY" secondItem="XxR-Jg-CVn" secondAttribute="centerY" id="xRs-le-Ema"/>
                             <constraint firstItem="jdt-oJ-EyC" firstAttribute="top" secondItem="Cu6-43-IhF" secondAttribute="bottom" id="yh9-CR-QFg"/>
@@ -124,15 +152,16 @@
                         <outlet property="beatsControl" destination="0FJ-Ky-pSe" id="CaB-4O-DNh"/>
                         <outlet property="controls" destination="XxR-Jg-CVn" id="sGS-1A-cgv"/>
                         <outlet property="quickSettingsButton" destination="Cu6-43-IhF" id="fo4-Hr-TIn"/>
+                        <outlet property="sessionButton" destination="RgJ-A9-OUc" id="dTc-kp-0mC"/>
                         <outlet property="settingsButton" destination="gGa-VU-yN3" id="SHw-8h-n6K"/>
                     </connections>
                 </viewController>
-                <tapGestureRecognizer id="gbt-UG-KTR" userLabel="Match BPM">
+                <tapGestureRecognizer numberOfTouchesRequired="2" id="gbt-UG-KTR" userLabel="Match BPM">
                     <connections>
                         <action selector="matchBpm:" destination="rQl-PL-IFJ" id="CV5-bo-0Zd"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer numberOfTouchesRequired="2" id="PZF-At-fYK" userLabel="Cycle Signature">
+                <tapGestureRecognizer numberOfTouchesRequired="3" id="PZF-At-fYK" userLabel="Cycle Signature">
                     <connections>
                         <action selector="cycleTimeSignature:" destination="rQl-PL-IFJ" id="QiE-0w-guc"/>
                     </connections>
@@ -293,6 +322,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFz-yP-wNz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="795" y="192.25352112676055"/>
+        </scene>
+        <!--Session View Controller-->
+        <scene sceneID="4FK-Ju-vx6">
+            <objects>
+                <collectionViewController id="qNd-eP-7cM" customClass="SessionViewController" customModule="Pulsar" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="jLq-go-6Va">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HLX-w8-0yM">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="DmB-0J-LXb" customClass="PlayerCell" customModule="Pulsar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="qNd-eP-7cM" id="s3O-JJ-F6c"/>
+                            <outlet property="delegate" destination="qNd-eP-7cM" id="h9P-CE-gIQ"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="CFe-Ge-kaS"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cs9-L1-Ysi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="533" y="898"/>
         </scene>
     </scenes>
 </document>
