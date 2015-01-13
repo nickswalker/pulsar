@@ -107,7 +107,7 @@ import UIKit
         for var i = 0; i < count; i++ {
             var tempLayer = ShardLayer()
             tempLayer.frame = frame
-            tempLayer.contentsScale = UIScreen.mainScreen().scale
+            //tempLayer.contentsScale = UIScreen.mainScreen().scale
             layer.addSublayer(tempLayer)
             layers.append(tempLayer)
         }
@@ -137,27 +137,24 @@ import UIKit
     override public func tintColorDidChange() {
         super.tintColorDidChange()
         for layer in layers {
-            layer.tintColor = tintColor
+            layer.tintColor = tintColor.CGColor
         }
     }
 
     private func adjustSublayerAngles() {
         //Set the angle on all shards
         let theta: CGFloat = (CGFloat(M_PI) * 2) / CGFloat(numberOfShards)
-        //FIXME: This is causing problems with the IBDesignable agent
-        let accents = defaults.objectForKey("accents") as NSArray
         for var i = 0; i < layers.count; ++i {
             let targetLayer = layers[i]
+
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
             targetLayer.frame = frame
-            //We'll offset by pi to start the sectors in the upper left corner
+            CATransaction.commit()
+            CATransaction.setAnimationDuration(8.0)
+            //We'll offset by pi to start the sectors in the center-left
             targetLayer.startAngle = theta * CGFloat(i) + CGFloat(M_PI)
             targetLayer.endAngle = theta * CGFloat(i + 1) + CGFloat(M_PI)
-
-            if accents[i] as NSNumber == 1 {
-                //layer.accent = true
-            }
-
-            targetLayer.setNeedsDisplay()
 
         }
     }
@@ -205,10 +202,12 @@ import UIKit
             for var i = 0; i < layers.count; i++ {
                 var targetLayer = layers[i]
                 if targetLayer == targetShard {
-                    var accents = defaults.objectForKey("accents") as NSArray
-                    var accentsCopy = accents.mutableCopy() as NSMutableArray
-                    accentsCopy[i] = targetShard.accent ? 1 : 0
-                    defaults.setObject(accentsCopy, forKey: "accents")
+                    var accents = UInt16(defaults.objectForKey("accents") as Int)
+                    let value: UInt16 = targetShard.accent ? 1 : 0
+                    let mask = value << UInt16(i)
+                    let masked = ~mask & accents
+                    accents = mask | masked
+                    defaults.setObject(Int(accents), forKey: "accents")
                     defaults.synchronize()
                     break
                 }

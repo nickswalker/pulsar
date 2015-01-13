@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                   "vibrate": false,
                                   "master": false,
                                   "bpm": 60,
-                                  "accents": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                                  "accents": 0b10,
                                   "timeSignature": [4, 4],
                                   "beat": true,
                                   "division": true,
