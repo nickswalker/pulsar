@@ -18,28 +18,17 @@ import UIKit
     }
 
     public var activeShard: Int? {
-        get {
-            for var i = 0; i < layers.count; ++i {
-                let target = layers[i]
-                if target.active {
-                    return i
-                }
-            }
-            return nil
-        }
-        set(newValue) {
+        willSet(newValue) {
             //Deactivate all because only one can be active at a time
-            for layer in layers {
-                layer.active = false
-                //targetLayer.thing = !targetLayer.thing
+            if activeShard != nil {
+                layers[activeShard!].active = false
             }
             //Activate the correct one
             if newValue != nil {
                 let targetLayer = layers[newValue!]
                 targetLayer.active = true
-                //targetLayer.thing = !targetLayer.thing
             }
-
+            self.activeShard = newValue
         }
     }
 
@@ -136,13 +125,12 @@ import UIKit
 
     override public func tintColorDidChange() {
         super.tintColorDidChange()
-        for layer in layers {
-            layer.tintColor = tintColor.CGColor
-        }
+        ShardLayer.ClassMembers.accentFillColor = tintColor.colorWithAlphaComponent(0.04).CGColor
     }
 
     private func adjustSublayerAngles() {
         //Set the angle on all shards
+        let accents = UInt16(defaults.objectForKey("accents") as UInt)
         let theta: CGFloat = (CGFloat(M_PI) * 2) / CGFloat(numberOfShards)
         for var i = 0; i < layers.count; ++i {
             let targetLayer = layers[i]
@@ -151,10 +139,16 @@ import UIKit
             CATransaction.setDisableActions(true)
             targetLayer.frame = frame
             CATransaction.commit()
-            CATransaction.setAnimationDuration(8.0)
+            CATransaction.setAnimationDuration(1.0)
             //We'll offset by pi to start the sectors in the center-left
             targetLayer.startAngle = theta * CGFloat(i) + CGFloat(M_PI)
             targetLayer.endAngle = theta * CGFloat(i + 1) + CGFloat(M_PI)
+
+
+            if accents & UInt16(1 << i) > 0 {
+                targetLayer.accent = true
+            }
+            targetLayer.flashStroke()
 
         }
     }
@@ -192,24 +186,25 @@ import UIKit
     }
 
     func handleDoubleTap(recognizer: UIGestureRecognizer) {
-        var targetShard: ShardLayer
+        var targetShard: ShardLayer?
         if recognizer.state == .Ended {
             let point = recognizer.locationInView(self)
-            targetShard = layer.hitTest(point) as ShardLayer
-            targetShard.accent = !targetShard.accent
-            targetShard.setNeedsDisplay()
-
-            for var i = 0; i < layers.count; i++ {
-                var targetLayer = layers[i]
-                if targetLayer == targetShard {
-                    var accents = UInt16(defaults.objectForKey("accents") as Int)
-                    let value: UInt16 = targetShard.accent ? 1 : 0
-                    let mask = value << UInt16(i)
-                    let masked = ~mask & accents
-                    accents = mask | masked
-                    defaults.setObject(Int(accents), forKey: "accents")
-                    defaults.synchronize()
-                    break
+            targetShard = layer.hitTest(point) as? ShardLayer
+            if targetShard != nil {
+                targetShard!.accent = !targetShard!.accent
+                targetShard!.setNeedsDisplay()
+                for var i = 0; i < layers.count; i++ {
+                    var targetLayer = layers[i]
+                    if targetLayer == targetShard {
+                        let accents = UInt16(defaults.objectForKey("accents") as UInt)
+                        let value: UInt16 = targetShard!.accent ? 1 : 0
+                        let shifted: UInt16 = value << UInt16(i)
+                        let mask:UInt16 = ~(1 << UInt16(i))
+                        let newAccents = (accents & mask) | shifted
+                        defaults.setObject(UInt(newAccents), forKey: "accents")
+                        defaults.synchronize()
+                        break
+                    }
                 }
             }
         }

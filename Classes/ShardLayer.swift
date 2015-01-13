@@ -5,17 +5,16 @@ import UIKit
 @objc internal class ShardLayer: CALayer {
 
     @NSManaged var fillColor: CGColor
-    private var strokeColor = ClassMembers.normalStrokeColor
+    @NSManaged var strokeColor: CGColor
     private let strokeWidth: CGFloat = 2
 
     @NSManaged var startAngle: CGFloat
     @NSManaged var endAngle: CGFloat
-
-    var tintColor: CGColor = ClassMembers.defaultTintColor {
-        didSet(newValue){
-            ClassMembers.accentFillColor = UIColor(CGColor: newValue).colorWithAlphaComponent(0.025).CGColor
-        }
-    }
+    private let radius: CGFloat = {
+        let halfWidth = CGRectGetMidX(UIScreen.mainScreen().bounds)
+        let halfHeight = CGRectGetMidY(UIScreen.mainScreen().bounds)
+        return hypot(halfWidth, halfHeight)
+    }()
 
     struct ClassMembers {
         static let customPropertyKeys: [String] = {
@@ -28,8 +27,8 @@ import UIKit
             }
             return keys
         }()
-        static let normalStrokeColor = UIColor(red: 1, green: 0, blue: 1, alpha: 1.025).CGColor
-        static let animatedStrokeColor = UIColor(red: 1, green: 0, blue: 1, alpha: 1.1).CGColor
+        static let normalStrokeColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.05).CGColor
+        static let animatedStrokeColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.15).CGColor
         static let normalFillColor = UIColor.clearColor().CGColor
         static let activeFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.05).CGColor
         static var accentFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.025).CGColor
@@ -42,21 +41,30 @@ import UIKit
         willSet(newValue) {
             if newValue == true {
                 let newColor = accent ? ClassMembers.accentActiveFillColor : ClassMembers.activeFillColor
+                CATransaction.begin()
+                CATransaction.setDisableActions(true)
                 fillColor = newColor
+                CATransaction.commit()
             } else {
+                CATransaction.begin()
+                CATransaction.setAnimationDuration(0.3)
                 let newColor = accent ? ClassMembers.accentFillColor : ClassMembers.normalFillColor
                 fillColor = newColor
+                CATransaction.commit()
             }
 
         }
     }
     var accent: Bool = false {
         willSet(newValue) {
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(0.5)
             if newValue == true {
                 fillColor = ClassMembers.accentFillColor
             } else {
                 fillColor = ClassMembers.normalFillColor
             }
+            CATransaction.commit()
         }
     }
     override init() {
@@ -82,6 +90,7 @@ import UIKit
 
     func commonInit() {
         fillColor = ClassMembers.normalFillColor
+        strokeColor = ClassMembers.normalStrokeColor
         startAngle = 0.0
         endAngle = 0.0
     }
@@ -89,21 +98,18 @@ import UIKit
     // MARK: Drawing
 
     override func drawInContext(ctx: CGContextRef) {
-        var test = 0
-        let presentation = presentationLayer() as? ShardLayer
-
         // Create the path
-        var center = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
-        var radius: CGFloat = 500
+        let center = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
+
 
         var newPath = CGPathCreateMutable()
         CGPathMoveToPoint(newPath, nil, center.x, center.y)
-        var x1 = Double(center.x) + Double(cosf(Float(startAngle)) * 70)
-        var y1 = Double(center.y) + Double(sinf(Float(startAngle)) * 70)
-        var p1 = CGPoint(x: x1, y: y1)
+        let x1 = Double(center.x) + Double(cosf(Float(startAngle)) * 70)
+        let y1 = Double(center.y) + Double(sinf(Float(startAngle)) * 70)
+        let p1 = CGPoint(x: x1, y: y1)
         CGPathAddLineToPoint(newPath, nil, p1.x, p1.y)
 
-        var clockwise = endAngle < startAngle
+        let clockwise = endAngle < startAngle
         CGPathAddArc(newPath, nil, center.x, center.y, radius, startAngle, endAngle, clockwise)
 
         CGContextAddPath(ctx, newPath)
@@ -125,19 +131,31 @@ import UIKit
 
         let presentation = presentationLayer() as? ShardLayer
         switch (event) {
+            case "strokeColor":
+                animation.fromValue = presentation?.strokeColor
+                return animation
             case "startAngle":
-                fallthrough
+                animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                animation.fromValue = presentation?.startAngle
+                return animation
             case "endAngle":
-                let flashStroke = CAKeyframeAnimation(keyPath: "strokeColor")
-                flashStroke.values = [ClassMembers.normalStrokeColor, ClassMembers.animatedStrokeColor, ClassMembers.normalStrokeColor]
-                flashStroke.duration = animation.duration
-                addAnimation(flashStroke, forKey: "strokeColor")
                 animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                 animation.fromValue = presentation?.endAngle
                 return animation
             default:
                 return super.actionForKey(event)
         }
+    }
+
+    func flashStroke(){
+        let strokeFlash = CAKeyframeAnimation(keyPath: "strokeColor")
+        strokeFlash.values = [ClassMembers.normalStrokeColor,
+            ClassMembers.animatedStrokeColor,
+            ClassMembers.normalStrokeColor]
+        strokeFlash.duration = 1.0
+        strokeFlash.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+
+        addAnimation(strokeFlash, forKey: "strokeColor")
     }
 
     override class func needsDisplayForKey(key: String!) -> Bool {
