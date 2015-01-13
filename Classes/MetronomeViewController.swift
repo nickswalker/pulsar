@@ -18,7 +18,6 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
     @IBOutlet var settingsButton: UIButton?
 
     var overlayController: QuickSettingsViewController?
-    var led = LED()
     var player = SoundPlayer()
     var bpmTracker = DeltaTracker()
     var timer = Timer()
@@ -26,9 +25,14 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
     var commonTimeSignatures: [AnyObject]!
     var defaults = NSUserDefaults.standardUserDefaults()
     var commonSignaturesIndex = 0
+    var opacityAnimation: () -> () = {}
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        opacityAnimation  = {
+            self.backgroundButton!.backgroundColor = UIColor.clearColor()
+        }
+        backgroundButton!.backgroundColor = UIColor.clearColor()
         var path = NSBundle.mainBundle().pathForResource("CommonTimeSignatures", ofType: "plist")
         commonTimeSignatures = NSArray(contentsOfFile: path!)!
         controls!.delegate = self
@@ -58,8 +62,9 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
     //@discussion listens to the timer emitting beatParts.
     func intervalWasFired(notification: NSNotification) {
         // FIXME: This is going to need to be faster. Too much branching
-        let part: Int = Int(notification.userInfo?["beatPart"] as NSNumber)
-        if find(onTheBeat, part) != nil {
+        let part = notification.userInfo!["beatPart"] as Int
+        let beatPart:UInt16 = UInt16(part)
+        if (beatPart & BeatPartMeanings.OnTheBeat.rawValue) > 0 {
             beatsControl!.activateNext()
             if defaults.boolForKey("beat") {
                 player.playBeat()
@@ -67,19 +72,22 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
             if defaults.boolForKey("screenFlash") {
                 flashScreen()
             }
+            if defaults.boolForKey("ledFlash") {
+                LED.flash()
+            }
             if beatsControl!.activeIsAccent() {
                 player.playAccent()
                 flashScreen()
             }
-        } else if find(division, part) != nil {
+        } else if (beatPart & BeatPartMeanings.Division.rawValue) > 0 {
             if defaults.boolForKey("division") {
                 player.playDivision()
             }
-        } else if find(subDivision, part) != nil {
+        } else if (beatPart & BeatPartMeanings.SubDivision.rawValue) > 0 {
             if defaults.boolForKey("subdivision") {
                 player.playSubdivision()
             }
-        } else if find(triplet, part) != nil {
+        } else if (beatPart & BeatPartMeanings.Triplet.rawValue) > 0 {
             if defaults.boolForKey("triplet") {
                 player.playTriplet()
             }
@@ -124,17 +132,8 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
     }
 
     func flashScreen() {
-        backgroundButton!.layer.opacity = 0.02
         backgroundButton!.backgroundColor = UIColor.whiteColor()
-        let opacityAnimation: CABasicAnimation = CABasicAnimation(keyPath: "opacity")
-        opacityAnimation.fromValue = 0.8
-        opacityAnimation.toValue = 0.0
-
-        opacityAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        opacityAnimation.fillMode = kCAFillModeForwards
-        opacityAnimation.removedOnCompletion = true
-        opacityAnimation.duration = 0.10
-        backgroundButton!.layer.addAnimation(opacityAnimation, forKey: "animation")
+        UIView.animateWithDuration(0.1, animations: opacityAnimation)
     }
 
     //MARK: Gesture Controls

@@ -4,14 +4,15 @@ let maxBPM = 300
 let minBPM = 20
 let partsPerBeat = 12
 let secondsInMinute = 60
-// FIXME: Beat part meanings. This might work as a class. The timer would emit beatPart objects that have .divison .subdivision .triplet set
-let onTheBeat = [1]
-let division = [7]
-let subDivision = [4, 10]
-let triplet = [1, 5, 9]
-//Beats one measure and all possible sub intervals for a BPM
 
-// FIXME: Has to have objc attribute or NSThread methods won't be able to see it
+public enum BeatPartMeanings: UInt16 {
+    case OnTheBeat = 0b10,
+         Division = 0b10000000,
+         SubDivision = 0b10000010000,
+         Triplet = 0b1000100010
+}
+
+//Beats one measure and all possible sub intervals for a BPM
 
 @objc public class Timer {
 
@@ -93,7 +94,9 @@ let triplet = [1, 5, 9]
         if currentBeatPart > partsPerBeat {
             currentBeatPart = 1
         }
-        NSNotificationCenter.defaultCenter().postNotificationName("interval", object: nil, userInfo: ["beatPart": currentBeatPart])
+
+        let part: Int = 1 << (currentBeatPart)
+        NSNotificationCenter.defaultCenter().postNotificationName("interval", object: nil, userInfo: ["beatPart": part])
         currentBeatPart++
     }
 

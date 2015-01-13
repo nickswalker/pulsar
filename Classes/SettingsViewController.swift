@@ -9,9 +9,8 @@ class SettingsViewController: UITableViewController, UITableViewDataSource {
     var delegate: SettingsViewControllerDelegate?
     var defaults: NSUserDefaults
     @IBOutlet var screenFlashControl: UISwitch?
-    //@IBOutlet var ledFlashControl : UISwitch?
+    @IBOutlet var ledFlashControl : UISwitch?
     @IBOutlet var digitalVoiceControl: UISwitch?
-    @IBOutlet var masterControl: UISwitch?
 
 
     override init(style: UITableViewStyle) {
@@ -28,7 +27,7 @@ class SettingsViewController: UITableViewController, UITableViewDataSource {
         // Make switches reflect defaults
         self.defaults = NSUserDefaults.standardUserDefaults()
         screenFlashControl!.on = defaults.boolForKey("screenFlash")
-        //ledFlashControl!.on = defaults.boolForKey("ledFlash")
+        ledFlashControl!.on = defaults.boolForKey("ledFlash")
         digitalVoiceControl!.on = defaults.boolForKey("digitalVoice")
 
     }
@@ -45,8 +44,8 @@ class SettingsViewController: UITableViewController, UITableViewDataSource {
         switch sender {
             case screenFlashControl!:
                 key = "screenFlash"
-//        case ledFlashControl!:
-//            key = "ledFlash"
+            case ledFlashControl!:
+                key = "ledFlash"
             case digitalVoiceControl!:
                 key = "digitalVoice"
             default:

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14C81f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rQl-PL-IFJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14C94b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rQl-PL-IFJ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -174,21 +174,33 @@
                                                 </switch>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="dyq-G0-Ntk" firstAttribute="leading" secondItem="D0U-AA-nx7" secondAttribute="leadingMargin" id="1hJ-LX-aRD"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="hr2-oX-r9F" secondAttribute="trailing" constant="20" id="gp1-Yw-dlz">
                                                     <variation key="widthClass=compact" constant="10"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerY" secondItem="hr2-oX-r9F" secondAttribute="centerY" id="llt-Wb-sli"/>
                                                 <constraint firstItem="dyq-G0-Ntk" firstAttribute="leading" secondItem="D0U-AA-nx7" secondAttribute="leadingMargin" id="prX-PI-mc4">
-                                                    <variation key="widthClass=compact" constant="7"/>
-                                                    <variation key="widthClass=regular" constant="7"/>
+                                                    <variation key="widthClass=compact" constant="0.0"/>
+                                                    <variation key="widthClass=regular" constant="0.0"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerY" secondItem="dyq-G0-Ntk" secondAttribute="centerY" id="z8I-BD-QZa"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="1hJ-LX-aRD"/>
+                                                </mask>
+                                            </variation>
                                             <variation key="widthClass=regular">
                                                 <mask key="constraints">
                                                     <include reference="prX-PI-mc4"/>
                                                     <include reference="z8I-BD-QZa"/>
                                                     <include reference="llt-Wb-sli"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=regular">
+                                                <mask key="constraints">
+                                                    <include reference="1hJ-LX-aRD"/>
+                                                    <exclude reference="prX-PI-mc4"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -200,21 +212,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Digital Voice" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kp4-i3-ULH">
-                                                    <rect key="frame" x="15" y="10" width="98" height="23.5"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <switch opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Rkl-7Z-k53">
                                                     <rect key="frame" x="523" y="6" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="settingChanged:" destination="fzf-sl-JNw" eventType="valueChanged" id="9Kk-MP-sKC"/>
                                                     </connections>
                                                 </switch>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flash LED on Beat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kp4-i3-ULH">
+                                                    <rect key="frame" x="8" y="10" width="140" height="23.5"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Kp4-i3-ULH" firstAttribute="leading" secondItem="1WY-TC-ypA" secondAttribute="leadingMargin" constant="7" id="dld-lm-O3E"/>
+                                                <constraint firstItem="Kp4-i3-ULH" firstAttribute="leading" secondItem="1WY-TC-ypA" secondAttribute="leadingMargin" id="dld-lm-O3E"/>
                                                 <constraint firstAttribute="centerY" secondItem="Rkl-7Z-k53" secondAttribute="centerY" id="jKz-dd-1W8"/>
                                                 <constraint firstAttribute="centerY" secondItem="Kp4-i3-ULH" secondAttribute="centerY" id="lAr-nX-yLo"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Rkl-7Z-k53" secondAttribute="trailing" constant="20" id="x0J-e0-ekC">
@@ -231,6 +243,58 @@
                                                     <include reference="dld-lm-O3E"/>
                                                     <include reference="lAr-nX-yLo"/>
                                                     <include reference="jKz-dd-1W8"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="KpY-MT-hjB">
+                                        <rect key="frame" x="0.0" y="279" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KpY-MT-hjB" id="N9V-CE-3Le">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Digital Voice" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fs3-6Y-xh4">
+                                                    <rect key="frame" x="8" y="10" width="161.5" height="23.5"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Wo6-dm-1a7">
+                                                    <rect key="frame" x="523" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="settingChanged:" destination="fzf-sl-JNw" eventType="valueChanged" id="xot-ig-nap"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Fs3-6Y-xh4" firstAttribute="leading" secondItem="N9V-CE-3Le" secondAttribute="leadingMargin" id="207-zj-Pfz">
+                                                    <variation key="widthClass=compact" constant="0.0"/>
+                                                    <variation key="widthClass=regular" constant="0.0"/>
+                                                </constraint>
+                                                <constraint firstItem="Fs3-6Y-xh4" firstAttribute="leading" secondItem="N9V-CE-3Le" secondAttribute="leadingMargin" id="L9L-gS-MPr"/>
+                                                <constraint firstAttribute="centerY" secondItem="Fs3-6Y-xh4" secondAttribute="centerY" id="Qr7-ou-slB"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Wo6-dm-1a7" secondAttribute="trailing" constant="20" id="bM9-gF-QGv">
+                                                    <variation key="widthClass=compact" constant="10"/>
+                                                </constraint>
+                                                <constraint firstAttribute="centerY" secondItem="Wo6-dm-1a7" secondAttribute="centerY" id="rtg-MM-0RI"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="L9L-gS-MPr"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="widthClass=regular">
+                                                <mask key="constraints">
+                                                    <include reference="207-zj-Pfz"/>
+                                                    <include reference="Qr7-ou-slB"/>
+                                                    <include reference="rtg-MM-0RI"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=regular">
+                                                <mask key="constraints">
+                                                    <exclude reference="207-zj-Pfz"/>
+                                                    <include reference="L9L-gS-MPr"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -268,7 +332,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="digitalVoiceControl" destination="Rkl-7Z-k53" id="LOe-B4-Vtu"/>
+                        <outlet property="digitalVoiceControl" destination="Wo6-dm-1a7" id="M1I-09-3ur"/>
+                        <outlet property="ledFlashControl" destination="Rkl-7Z-k53" id="EeA-Oh-zO9"/>
                         <outlet property="screenFlashControl" destination="hr2-oX-r9F" id="rBB-FU-Lx8"/>
                     </connections>
                 </tableViewController>
