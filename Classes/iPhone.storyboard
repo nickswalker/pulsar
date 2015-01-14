@@ -8,16 +8,16 @@
         <!--Metronome View Controller-->
         <scene sceneID="rV5-Y2-ghB">
             <objects>
-                <viewController storyboardIdentifier="mainView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rQl-PL-IFJ" customClass="MetronomeViewController" customModule="Pulsar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rQl-PL-IFJ" customClass="MetronomeViewController" customModule="pulsar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HcC-wE-6za"/>
                         <viewControllerLayoutGuide type="bottom" id="jdt-oJ-EyC"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="l9E-07-oys" userLabel="Parent View" customClass="MetronomeView" customModule="Pulsar" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="l9E-07-oys" userLabel="Parent View" customClass="MetronomeView" customModule="pulsar" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0FJ-Ky-pSe" userLabel="Shard View" customClass="ShardControl" customModule="Pulsar" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0FJ-Ky-pSe" userLabel="Shard View" customClass="ShardControl" customModule="pulsar" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -116,7 +116,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="qNd-eP-7cM" kind="presentation" identifier="showSession" id="FdS-xb-hlr"/>
+                                    <action selector="presentSessionController" destination="rQl-PL-IFJ" eventType="touchUpInside" id="iFY-6h-jH0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -173,7 +173,7 @@
         <!--Settings-->
         <scene sceneID="dwV-NU-HVh">
             <objects>
-                <tableViewController extendedLayoutIncludesOpaqueBars="YES" clearsSelectionOnViewWillAppear="NO" id="fzf-sl-JNw" customClass="SettingsViewController" customModule="Pulsar" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController extendedLayoutIncludesOpaqueBars="YES" clearsSelectionOnViewWillAppear="NO" id="fzf-sl-JNw" customClass="SettingsViewController" customModule="pulsar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" dataMode="static" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="PIc-WD-sIN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -322,41 +322,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFz-yP-wNz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="795" y="192.25352112676055"/>
-        </scene>
-        <!--Session View Controller-->
-        <scene sceneID="4FK-Ju-vx6">
-            <objects>
-                <collectionViewController id="qNd-eP-7cM" customClass="SessionViewController" customModule="Pulsar" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="jLq-go-6Va">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HLX-w8-0yM">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="DmB-0J-LXb" customClass="PlayerCell" customModule="Pulsar" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="qNd-eP-7cM" id="s3O-JJ-F6c"/>
-                            <outlet property="delegate" destination="qNd-eP-7cM" id="h9P-CE-gIQ"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" id="CFe-Ge-kaS"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cs9-L1-Ysi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="533" y="898"/>
         </scene>
     </scenes>
 </document>

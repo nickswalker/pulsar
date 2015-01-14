@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import PeerKit
 import MultipeerConnectivity
+import PeerKit
 
 protocol MPCSerializable {
     var mpcSerialized: NSData { get }
@@ -17,11 +17,9 @@ protocol MPCSerializable {
 
 enum Event: String {
     case StartSession = "StartSession",
-    Answer = "Answer",
-    CancelAnswer = "CancelAnswer",
-    Vote = "Vote",
-    NextCard = "NextCard",
-    EndGame = "EndGame"
+    ChangeBPM = "ChangeBPM",
+    ChangeBeats = "ChangeBeats",
+    EndSession = "EndSession"
 }
 
 struct ConnectionManager {

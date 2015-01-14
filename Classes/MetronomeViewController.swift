@@ -9,7 +9,7 @@ typealias NoteValue = MetronomeControl.NoteValue
 let accentOnFirstBeat = [1]
 
 class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
-        MetronomeControlDelegate, QuickSettingsViewControllerDelegate {
+        MetronomeControlDelegate, QuickSettingsViewControllerDelegate, SessionCreationDelegate {
 
     @IBOutlet var backgroundButton: UIButton?
     @IBOutlet var controls: MetronomeControl?
@@ -18,7 +18,8 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
     @IBOutlet var settingsButton: UIButton?
     @IBOutlet var sessionButton: UIButton?
 
-    var overlayController: QuickSettingsViewController?
+    var quickSettings: QuickSettingsViewController?
+    var sessionController: SessionViewController?
     var led = LED()
     var player = SoundPlayer()
     var bpmTracker = DeltaTracker()
@@ -180,16 +181,34 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
         }
     }
 
+    @IBAction func presentSessionController() {
+        let window = UIApplication.sharedApplication().keyWindow!
+
+        sessionController = SessionViewController()
+        controls!.tintAdjustmentMode = .Dimmed
+        sessionController!.delegate = self
+        window.addSubview(sessionController!.view)
+        sessionController!.animateIn()
+    }
+
     @IBAction func presentQuickSettings() {
         let window = UIApplication.sharedApplication().keyWindow!
 
-        overlayController = QuickSettingsViewController(nibName:"QuickSettingsControlsView", bundle: NSBundle.mainBundle())
+        quickSettings = QuickSettingsViewController(nibName:"QuickSettingsPanel", bundle: NSBundle.mainBundle())
         controls!.tintAdjustmentMode = .Dimmed
-        overlayController!.delegate = self
-        window.addSubview(overlayController!.view)
-        overlayController!.animateIn()
+        quickSettings!.delegate = self
+        window.addSubview(quickSettings!.view)
+        quickSettings!.animateIn()
     }
 
+    func sessionCreated() {
+        //Configure
+    }
+
+    func sessionViewControllerDidFinish(){
+        controls!.tintAdjustmentMode = .Normal
+        sessionController = nil
+    }
     func settingsViewControllerDidFinish() {
         player = SoundPlayer() //In case the voice changed, we'll reload the sounds
         dismissViewControllerAnimated(true, completion: nil)
@@ -197,7 +216,7 @@ class MetronomeViewController: UIViewController, SettingsViewControllerDelegate,
 
     func quickSettingsViewControllerDidFinish() {
         controls!.tintAdjustmentMode = .Normal
-        overlayController = nil
+        quickSettings = nil
     }
 
     // MARK: Appearance

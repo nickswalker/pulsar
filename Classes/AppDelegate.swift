@@ -1,9 +1,7 @@
 import UIKit
 import Foundation
-import PeerKit
 
 let myTintColor = UIColor(red: 0.0941, green: 0.741, blue: 0.27, alpha: 1)
-//UIColor(red: 0.655, green: 0.203, blue: 0.807, alpha: 1)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
