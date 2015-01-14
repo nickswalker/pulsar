@@ -5,7 +5,8 @@ protocol BackgroundViewDelegate {
     func viewWasTapped()
 }
 
-protocol QuickSettingsViewControllerDelegate {
+protocol QuickSettingsDelegate {
+    func settingChangedForKey(key: String, value: AnyObject)
     func quickSettingsViewControllerDidFinish()
 }
 
@@ -19,30 +20,19 @@ public class QuickSettingsViewController: UIViewController, BackgroundViewDelega
     @IBOutlet var beatsControl: UIStepper?
     @IBOutlet var beatsControlLabel: UILabel?
 
-    var defaults = NSUserDefaults.standardUserDefaults()
-
     private class HideBackgroundView: UIView {
         var delegate: BackgroundViewDelegate?
         override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-            if let target = delegate {
-                target.viewWasTapped()
-            }
+            delegate?.viewWasTapped()
         }
     }
 
     public override func viewWillAppear(animated: Bool) {
-        beatControl!.on = defaults.boolForKey("beat")
-        divisionControl!.on = defaults.boolForKey("division")
-        subdivisionControl!.on = defaults.boolForKey("subdivision")
-        tripletControl!.on = defaults.boolForKey("triplet")
-        let timeSignature = defaults.objectForKey("timeSignature") as NSArray
-        let currentBeats = timeSignature[0] as NSNumber
-        beatsControlLabel!.text = Int(currentBeats).description
-        beatsControl!.value = Double(currentBeats)
+
 
     }
     private var overlayView = HideBackgroundView()
-    var delegate: QuickSettingsViewControllerDelegate?
+    var delegate: QuickSettingsDelegate?
 
     func animateIn() {
         let controlAreaHeight: CGFloat = view.frame.height
@@ -116,14 +106,12 @@ public class QuickSettingsViewController: UIViewController, BackgroundViewDelega
             }
         }()
 
-        defaults.setBool(sender.on, forKey: key)
-        defaults.synchronize()
+        delegate?.settingChangedForKey(key, value: sender.on)
     }
 
     @IBAction func beatsChanged(sender: UIStepper) {
         beatsControlLabel?.text = Int(sender.value).description
-        let currentTimeSignature = defaults.objectForKey("timeSignature") as NSArray
-        defaults.setObject([Int(sender.value), currentTimeSignature[1]], forKey: "timeSignature")
+        delegate?.settingChangedForKey("beats", value: Int(sender.value))
     }
 
     func viewWasTapped() {

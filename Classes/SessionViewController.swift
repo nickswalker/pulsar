@@ -1,17 +1,8 @@
-//
-//  MenuViewController.swift
-//  CardsAgainst
-//
-//  Created by JP Simard on 10/25/14.
-//  Copyright (c) 2014 JP Simard. All rights reserved.
-//
-
 import UIKit
 import Cartography
 
 protocol SessionCreationDelegate {
-    func sessionCreated()
-    func sessionViewControllerDidFinish()
+    func sessionViewControllerDidFinish(sessionCreated: Bool, initiated: Bool)
 }
 
 final class SessionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, BackgroundViewDelegate {
@@ -27,7 +18,9 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
 
     private var overlayView = HideBackgroundView()
 
+    private var managementMode = false
     private var playersLabel = UILabel()
+    private var actionButton = UIButton()
     private var instructionLabel = UILabel()
     private var separator = UIView()
     private var collectionView = UICollectionView(frame: CGRectZero,
@@ -38,7 +31,12 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ConnectionManager.start()
+        if !ConnectionManager.inSession {
+            ConnectionManager.start()
+        } else {
+            managementMode = true
+        }
+        
         let screenFrame = UIScreen.mainScreen().bounds
 
         let space: CGFloat = 150.0
@@ -61,16 +59,11 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
         ConnectionManager.onDisconnect { _ in
             self.updatePlayers()
         }
-        ConnectionManager.onEvent(.StartSession) { _, object in
-            let dict = object as [String: NSData]
-            self.delegate?.sessionCreated()
-        }
     }
 
     override func viewWillDisappear(animated: Bool) {
         ConnectionManager.onConnect(nil)
         ConnectionManager.onDisconnect(nil)
-        ConnectionManager.onEvent(.StartSession, run: nil)
 
         super.viewWillDisappear(animated)
     }
@@ -78,6 +71,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
     // MARK: UI
 
     func viewWasTapped() {
+        delegate?.sessionViewControllerDidFinish(ConnectionManager.otherPlayers.count != 0, initiated: false)
         animateOut()
     }
 
@@ -94,9 +88,9 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
     func setupPlayersLabel() {
         // Button
         playersLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        playersLabel.font = UIFont(name: "AvenirNext-Medium", size: 17)
+        playersLabel.font = UIFont(name: "AvenirNext-Medium", size: 15)
         playersLabel.textColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
-        playersLabel.text = "Waiting For Players"
+        playersLabel.text = "Players"
         view.addSubview(playersLabel)
 
         // Layout
@@ -109,6 +103,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
         instructionLabel.font = UIFont(name: "AvenirNext-Regular", size: 15)
         instructionLabel.textColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         instructionLabel.text = "Have your friends open the session pane to begin"
+        instructionLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         instructionLabel.textAlignment = .Center
 
         view.addSubview(instructionLabel)
@@ -116,6 +111,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
         layout(instructionLabel){ label in
             label.centerY == label.superview!.centerY
             label.centerX == label.superview!.centerX
+            label.width == label.superview!.width - 50
         }
     }
 
@@ -129,7 +125,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
         layout(separator, playersLabel) { separator, playersLabel in
             separator.top == playersLabel.bottom + 10
             separator.centerX == separator.superview!.centerX
-            separator.width == separator.superview!.width - 40
+            separator.width == separator.superview!.width - 30
             separator.height == (1 / Float(UIScreen.mainScreen().scale))
         }
     }
@@ -155,18 +151,45 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
             collectionView.right == separator.right
             collectionView.bottom == collectionView.superview!.bottom
         }
+
+        actionButton.enabled = false
+
+        actionButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        actionButton.setTitle("Waiting for Players", forState: .Disabled)
+        actionButton.setTitle("Begin Session", forState: .Normal)
+        if managementMode {
+            actionButton.setTitle("Leave Session", forState: .Normal)
+            actionButton.enabled = true
+        }
+        actionButton.setTitleColor(UIColor.blackColor().colorWithAlphaComponent(0.5), forState: .Normal)
+        actionButton.setTitleColor(UIColor.blackColor().colorWithAlphaComponent(0.25), forState: .Disabled)
+        actionButton.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 15)
+        actionButton.titleLabel!.textAlignment = .Center
+        actionButton.addTarget(self, action: "actionButtonTapped", forControlEvents: .TouchUpInside)
+
+        view.addSubview(actionButton)
+        layout(actionButton) {
+            button in
+            button.bottom == button.superview!.bottom - 15
+            button.centerX == button.superview!.centerX
+        }
     }
 
     // MARK: Actions
 
-    func startSession() {
-
+    func actionButtonTapped() {
+        if managementMode {
+            delegate?.sessionViewControllerDidFinish(false, initiated: false)
+        }
+        else {
+            delegate?.sessionViewControllerDidFinish(true, initiated: true)
+        }
+        animateOut()
     }
 
     // MARK: Multipeer
 
     func updatePlayers() {
-        playersLabel.enabled = (ConnectionManager.otherPlayers.count > 0)
         collectionView.reloadData()
     }
 
@@ -175,11 +198,11 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let count = ConnectionManager.otherPlayers.count
         if count > 0 {
-            playersLabel.text = "Players"
             instructionLabel.hidden = true
+            actionButton.enabled = true
         } else {
-            playersLabel.text = "Waiting for Players"
             instructionLabel.hidden = false
+            actionButton.enabled = false
         }
         return ConnectionManager.otherPlayers.count
     }
@@ -188,9 +211,6 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PlayerCell.reuseID, forIndexPath: indexPath) as PlayerCell
         cell.label.text = ConnectionManager.otherPlayers[indexPath.row].name
         return cell
-    }
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
     }
 
     //MARK: Animation
@@ -245,9 +265,6 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
                 succeeeded in self.view.removeFromSuperview()
                 self.view.userInteractionEnabled = false
         })
-        if delegate != nil {
-            delegate!.sessionViewControllerDidFinish()
-        }
         
     }
 }

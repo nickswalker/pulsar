@@ -10,6 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
 
+        SoundPlayer.setup()
         UIApplication.sharedApplication().statusBarStyle = .LightContent
 
         let defaultPreferences = ["screenFlash": true,
@@ -18,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                   "master": false,
                                   "bpm": 60,
                                   "accents": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                                  "timeSignature": [4, 4],
+                                  "beats": 4,
                                   "beat": true,
                                   "division": true,
                                   "subdivision": false,
@@ -51,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(application: UIApplication) {
+        ConnectionManager.stop()
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 

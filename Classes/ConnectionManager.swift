@@ -19,7 +19,9 @@ enum Event: String {
     case StartSession = "StartSession",
     ChangeBPM = "ChangeBPM",
     ChangeBeats = "ChangeBeats",
-    EndSession = "EndSession"
+    Start = "Start",
+    Stop = "Stop",
+    LeftSession = "LeftSession"
 }
 
 struct ConnectionManager {
@@ -42,10 +44,18 @@ struct ConnectionManager {
 
     static var allPlayers: [Player] { return [Player.getMe()] + ConnectionManager.otherPlayers }
 
+    static var inSession: Bool {
+        return PeerKit.session != nil
+    }
+
     // MARK: Start
 
     static func start() {
         PeerKit.transceive("us-pulsar")
+    }
+    static func stop(){
+        PeerKit.stopTranscieving()
+        PeerKit.session = nil
     }
 
     // MARK: Event Handling

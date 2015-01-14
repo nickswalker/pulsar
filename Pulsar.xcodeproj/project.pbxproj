@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D46452F51A660FFC0012BCEE /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46452F41A660FFC0012BCEE /* MenuViewController.swift */; };
 		D488E4AB1A65FE3600A9E3E6 /* PeerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C19FC01A65FBC10065AB8F /* PeerKit.framework */; };
 		D488E4AC1A65FE3600A9E3E6 /* PeerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4C19FC01A65FBC10065AB8F /* PeerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D488E4B01A65FE4100A9E3E6 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C19FE81A65FBD00065AB8F /* Cartography.framework */; };
@@ -51,6 +50,7 @@
 		D49C99A41A65D5A200202544 /* MetronomeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99A21A65D5A200202544 /* MetronomeControl.swift */; };
 		D49C99A51A65D5A200202544 /* SlideStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99A31A65D5A200202544 /* SlideStepper.swift */; };
 		D49C99A61A65D62400202544 /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C990F1A65D49100202544 /* SessionViewController.swift */; };
+		D4BE46851A665B3700716F88 /* MPCInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE46841A665B3700716F88 /* MPCInt.swift */; };
 		D4C19FED1A65FBD00065AB8F /* Cartography.h in Headers */ = {isa = PBXBuildFile; fileRef = D4C19FEC1A65FBD00065AB8F /* Cartography.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4EA9A8B1A65FC5100E4DFF9 /* PeerKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C19F9D1A65FB720065AB8F /* PeerKit.swift */; };
 		D4EA9A8C1A65FC5100E4DFF9 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C19F9E1A65FB720065AB8F /* Advertiser.swift */; };
@@ -119,7 +119,6 @@
 /* Begin PBXFileReference section */
 		D442B06B1A65D36900AD493B /* pulsar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pulsar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D442B06F1A65D36900AD493B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Classes/Info.plist; sourceTree = "<group>"; };
-		D46452F41A660FFC0012BCEE /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Classes/MenuViewController.swift; sourceTree = SOURCE_ROOT; };
 		D49C98FD1A65D49100202544 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Classes/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		D49C98FE1A65D49100202544 /* CommonTimeSignatures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CommonTimeSignatures.plist; path = Classes/CommonTimeSignatures.plist; sourceTree = SOURCE_ROOT; };
 		D49C98FF1A65D49100202544 /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionManager.swift; path = Classes/ConnectionManager.swift; sourceTree = SOURCE_ROOT; };
@@ -161,6 +160,7 @@
 		D49C99961A65D56D00202544 /* MetronomeControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeControlTests.swift; sourceTree = "<group>"; };
 		D49C99A21A65D5A200202544 /* MetronomeControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetronomeControl.swift; sourceTree = "<group>"; };
 		D49C99A31A65D5A200202544 /* SlideStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideStepper.swift; sourceTree = "<group>"; };
+		D4BE46841A665B3700716F88 /* MPCInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCInt.swift; sourceTree = SOURCE_ROOT; };
 		D4C19F9C1A65FB720065AB8F /* PeerKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PeerKit.h; sourceTree = "<group>"; };
 		D4C19F9D1A65FB720065AB8F /* PeerKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeerKit.swift; sourceTree = "<group>"; };
 		D4C19F9E1A65FB720065AB8F /* Advertiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
@@ -283,7 +283,6 @@
 			isa = PBXGroup;
 			children = (
 				D49C990F1A65D49100202544 /* SessionViewController.swift */,
-				D46452F41A660FFC0012BCEE /* MenuViewController.swift */,
 				D49C99091A65D49100202544 /* MetronomeViewController.swift */,
 				D49C990E1A65D49100202544 /* QuickSettingsViewController.swift */,
 				D49C99111A65D49100202544 /* SettingsViewController.swift */,
@@ -300,6 +299,7 @@
 				D49C99071A65D49100202544 /* LED.swift */,
 				D49C990A1A65D49100202544 /* Player.swift */,
 				D49C99201A65D49100202544 /* Timer.swift */,
+				D4BE46841A665B3700716F88 /* MPCInt.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -661,6 +661,7 @@
 			files = (
 				D49C99251A65D49100202544 /* BlurBackground.swift in Sources */,
 				D49C99221A65D49100202544 /* AppDelegate.swift in Sources */,
+				D4BE46851A665B3700716F88 /* MPCInt.swift in Sources */,
 				D49C99241A65D49100202544 /* ConnectionManager.swift in Sources */,
 				D49C99301A65D49100202544 /* PlayerCell.swift in Sources */,
 				D49C99441A65D49100202544 /* ToggleButton.swift in Sources */,
@@ -672,7 +673,6 @@
 				D49C99261A65D49100202544 /* DeltaTracker.swift in Sources */,
 				D49C992C1A65D49100202544 /* LED.swift in Sources */,
 				D49C99381A65D49100202544 /* SoundPlayer.swift in Sources */,
-				D46452F51A660FFC0012BCEE /* MenuViewController.swift in Sources */,
 				D49C99361A65D49100202544 /* ShardControl.swift in Sources */,
 				D49C992E1A65D49100202544 /* MetronomeViewController.swift in Sources */,
 				D49C99371A65D49100202544 /* ShardLayer.swift in Sources */,

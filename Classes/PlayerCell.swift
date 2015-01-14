@@ -27,10 +27,11 @@ class PlayerCell: UICollectionViewCell {
 
     private func setupLabel() {
         // Label
-        label.font = UIFont(name: "AvenirNext-Regular", size: 21)
+        label.font = UIFont(name: "AvenirNext-Regular", size: 18)
+        label.textAlignment = .Center
         contentView.addSubview(label)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
-        label.textColor = UIColor.grayColor()
+        label.textColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
 
         // Layout
         layout(label) { label in
