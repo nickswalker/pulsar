@@ -2,7 +2,6 @@ import UIKit
 import Foundation
 
 let myTintColor = UIColor(red: 0.0941, green: 0.741, blue: 0.27, alpha: 1)
-//UIColor(red: 0.655, green: 0.203, blue: 0.807, alpha: 1)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -11,13 +10,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
 
+        SoundPlayer.setup()
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+
         let defaultPreferences = ["screenFlash": true,
                                   "ledFlash": false,
                                   "vibrate": false,
-                                  "master": false,
                                   "bpm": 60,
                                   "accents": 0b10,
-                                  "timeSignature": [4, 4],
+                                  "beats": 4,
                                   "beat": true,
                                   "division": true,
                                   "subdivision": false,
@@ -50,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(application: UIApplication) {
+        ConnectionManager.stop()
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 

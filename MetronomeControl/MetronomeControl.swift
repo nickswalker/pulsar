@@ -1,6 +1,3 @@
-import Foundation
-import UIKit
-
 @objc public protocol MetronomeControlDelegate {
     func switchToggled(sender: UISwitch)
     func bpmChanged(sender: SlideStepper)

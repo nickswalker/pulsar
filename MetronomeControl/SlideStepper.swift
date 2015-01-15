@@ -1,6 +1,3 @@
-import Foundation
-import UIKit
-
 public class SlideStepper: UIControl {
 
     private let labelFontSize = 84

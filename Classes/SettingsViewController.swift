@@ -1,12 +1,12 @@
 import Foundation
 import MultipeerConnectivity
 
-protocol SettingsViewControllerDelegate {
+protocol SettingsDelegate {
     func settingsViewControllerDidFinish()
 }
 
 class SettingsViewController: UITableViewController, UITableViewDataSource {
-    var delegate: SettingsViewControllerDelegate?
+    var delegate: SettingsDelegate?
     var defaults: NSUserDefaults
     @IBOutlet var screenFlashControl: UISwitch?
     @IBOutlet var ledFlashControl : UISwitch?
