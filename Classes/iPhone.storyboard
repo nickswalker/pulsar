@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14C94b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rQl-PL-IFJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14C99d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rQl-PL-IFJ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -25,23 +25,13 @@
                                         <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMX-aB-L4e" userLabel="Background Button">
-                                <rect key="frame" x="-9" y="0.0" width="618" height="600"/>
-                                <gestureRecognizers/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="PZF-At-fYK" appends="YES" id="zsk-Zx-qpJ"/>
-                                    <outletCollection property="gestureRecognizers" destination="gbt-UG-KTR" appends="YES" id="D4g-kN-wbD"/>
+                                    <outletCollection property="gestureRecognizers" destination="gbt-UG-KTR" appends="YES" id="w4A-9J-YJV"/>
+                                    <outletCollection property="gestureRecognizers" destination="PZF-At-fYK" appends="YES" id="u66-aD-ZqO"/>
+                                    <outletCollection property="gestureRecognizers" destination="hRg-vQ-UEZ" appends="YES" id="a5H-Hi-LF4"/>
+                                    <outletCollection property="gestureRecognizers" destination="07W-gw-Xju" appends="YES" id="A0U-zN-rP7"/>
                                 </connections>
-                            </button>
+                            </view>
                             <view autoresizesSubviews="NO" opaque="NO" contentMode="center" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="XxR-Jg-CVn" userLabel="Controls" customClass="MetronomeControl" customModule="MetronomeControl">
                                 <rect key="frame" x="250" y="200" width="100" height="200"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -126,34 +116,19 @@
                             <constraint firstItem="jdt-oJ-EyC" firstAttribute="top" secondItem="RgJ-A9-OUc" secondAttribute="bottom" id="6TF-1c-WYu"/>
                             <constraint firstAttribute="centerX" secondItem="XxR-Jg-CVn" secondAttribute="centerX" id="6br-1L-5D5"/>
                             <constraint firstAttribute="bottom" secondItem="0FJ-Ky-pSe" secondAttribute="bottom" id="6w0-os-WkA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="PMX-aB-L4e" secondAttribute="trailing" constant="-25" id="7mz-M3-QA4"/>
                             <constraint firstItem="Cu6-43-IhF" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" id="8Tq-Bv-2fd"/>
-                            <constraint firstItem="PMX-aB-L4e" firstAttribute="top" secondItem="l9E-07-oys" secondAttribute="topMargin" id="FU8-dm-cNz"/>
                             <constraint firstAttribute="bottom" secondItem="gGa-VU-yN3" secondAttribute="bottom" id="IaG-O6-oTR"/>
-                            <constraint firstItem="jdt-oJ-EyC" firstAttribute="top" secondItem="PMX-aB-L4e" secondAttribute="bottom" constant="20" symbolic="YES" id="MQx-9l-jYe"/>
                             <constraint firstAttribute="trailing" secondItem="0FJ-Ky-pSe" secondAttribute="trailing" id="Qdh-ne-NzR"/>
-                            <constraint firstItem="jdt-oJ-EyC" firstAttribute="top" secondItem="PMX-aB-L4e" secondAttribute="bottom" id="djF-mG-DLm"/>
                             <constraint firstAttribute="trailing" secondItem="gGa-VU-yN3" secondAttribute="trailing" id="eQA-fh-mTX"/>
                             <constraint firstItem="0FJ-Ky-pSe" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" id="hXF-01-ae4"/>
                             <constraint firstItem="0FJ-Ky-pSe" firstAttribute="top" secondItem="l9E-07-oys" secondAttribute="top" id="lqu-d5-39a"/>
                             <constraint firstAttribute="centerX" secondItem="RgJ-A9-OUc" secondAttribute="centerX" id="rAv-n1-Z8K"/>
-                            <constraint firstItem="PMX-aB-L4e" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leadingMargin" constant="-25" id="v8w-Dp-phv"/>
                             <constraint firstAttribute="centerY" secondItem="XxR-Jg-CVn" secondAttribute="centerY" id="xRs-le-Ema"/>
                             <constraint firstItem="jdt-oJ-EyC" firstAttribute="top" secondItem="Cu6-43-IhF" secondAttribute="bottom" id="yh9-CR-QFg"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="MQx-9l-jYe"/>
-                            </mask>
-                        </variation>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="hRg-vQ-UEZ" appends="YES" id="HpP-56-jYj"/>
-                            <outletCollection property="gestureRecognizers" destination="07W-gw-Xju" appends="YES" id="GMi-5q-PrW"/>
-                        </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
-                        <outlet property="backgroundButton" destination="PMX-aB-L4e" id="And-SP-MYk"/>
                         <outlet property="beatsControl" destination="0FJ-Ky-pSe" id="CaB-4O-DNh"/>
                         <outlet property="controls" destination="XxR-Jg-CVn" id="sGS-1A-cgv"/>
                         <outlet property="quickSettingsButton" destination="Cu6-43-IhF" id="fo4-Hr-TIn"/>
@@ -172,12 +147,12 @@
                     </connections>
                 </tapGestureRecognizer>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4L-l5-tyG" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="hRg-vQ-UEZ">
+                <swipeGestureRecognizer cancelsTouchesInView="NO" direction="right" id="hRg-vQ-UEZ" userLabel="Right Swipe">
                     <connections>
                         <action selector="didSwipeRight" destination="rQl-PL-IFJ" id="zvK-uz-iOu"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="07W-gw-Xju" userLabel="Left Swipe">
+                <swipeGestureRecognizer cancelsTouchesInView="NO" direction="left" id="07W-gw-Xju" userLabel="Left Swipe">
                     <connections>
                         <action selector="didSwipeLeft" destination="rQl-PL-IFJ" id="g76-Ik-nQ2"/>
                     </connections>
@@ -205,7 +180,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flash Screen on Beat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyq-G0-Ntk">
-                                                    <rect key="frame" x="8" y="10" width="161.5" height="23.5"/>
+                                                    <rect key="frame" x="15" y="10.5" width="161.5" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -218,7 +193,7 @@
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="dyq-G0-Ntk" firstAttribute="leading" secondItem="D0U-AA-nx7" secondAttribute="leadingMargin" id="1hJ-LX-aRD"/>
+                                                <constraint firstItem="dyq-G0-Ntk" firstAttribute="leading" secondItem="D0U-AA-nx7" secondAttribute="leadingMargin" constant="7" id="1hJ-LX-aRD"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="hr2-oX-r9F" secondAttribute="trailing" constant="20" id="gp1-Yw-dlz">
                                                     <variation key="widthClass=compact" constant="10"/>
                                                 </constraint>
@@ -231,7 +206,7 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="1hJ-LX-aRD"/>
+                                                    <exclude reference="prX-PI-mc4"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=regular">
@@ -263,14 +238,14 @@
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flash LED on Beat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kp4-i3-ULH">
-                                                    <rect key="frame" x="8" y="10" width="140" height="23.5"/>
+                                                    <rect key="frame" x="15" y="10" width="140" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Kp4-i3-ULH" firstAttribute="leading" secondItem="1WY-TC-ypA" secondAttribute="leadingMargin" id="dld-lm-O3E"/>
+                                                <constraint firstItem="Kp4-i3-ULH" firstAttribute="leading" secondItem="1WY-TC-ypA" secondAttribute="leadingMargin" constant="7" id="dld-lm-O3E"/>
                                                 <constraint firstAttribute="centerY" secondItem="Rkl-7Z-k53" secondAttribute="centerY" id="jKz-dd-1W8"/>
                                                 <constraint firstAttribute="centerY" secondItem="Kp4-i3-ULH" secondAttribute="centerY" id="lAr-nX-yLo"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Rkl-7Z-k53" secondAttribute="trailing" constant="20" id="x0J-e0-ekC">
@@ -298,8 +273,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Digital Voice" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fs3-6Y-xh4">
-                                                    <rect key="frame" x="8" y="10" width="161.5" height="23.5"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Digital Voice" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fs3-6Y-xh4">
+                                                    <rect key="frame" x="15" y="10" width="98" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -312,7 +287,7 @@
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Fs3-6Y-xh4" firstAttribute="leading" secondItem="N9V-CE-3Le" secondAttribute="leadingMargin" id="207-zj-Pfz">
+                                                <constraint firstItem="Fs3-6Y-xh4" firstAttribute="leading" secondItem="N9V-CE-3Le" secondAttribute="leadingMargin" constant="7" id="207-zj-Pfz">
                                                     <variation key="widthClass=compact" constant="0.0"/>
                                                     <variation key="widthClass=regular" constant="0.0"/>
                                                 </constraint>

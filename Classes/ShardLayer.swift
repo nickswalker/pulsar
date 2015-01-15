@@ -7,14 +7,11 @@ import UIKit
     @NSManaged var fillColor: CGColor
     @NSManaged var strokeColor: CGColor
     private let strokeWidth: CGFloat = 2
+    private var center: CGPoint = CGPoint()
 
     @NSManaged var startAngle: CGFloat
     @NSManaged var endAngle: CGFloat
-    private let radius: CGFloat = {
-        let halfWidth = CGRectGetMidX(UIScreen.mainScreen().bounds)
-        let halfHeight = CGRectGetMidY(UIScreen.mainScreen().bounds)
-        return hypot(halfWidth, halfHeight)
-    }()
+    @NSManaged var radius: CGFloat
 
     struct ClassMembers {
         static let customPropertyKeys: [String] = {
@@ -27,8 +24,9 @@ import UIKit
             }
             return keys
         }()
-        static let normalStrokeColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.05).CGColor
-        static let animatedStrokeColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.15).CGColor
+
+        static let normalStrokeColor = UIColor(white: 0.3, alpha: 1.0).CGColor
+        static let animatedStrokeColor = UIColor(white: 0.5, alpha: 1.0).CGColor
         static let normalFillColor = UIColor.clearColor().CGColor
         static let activeFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.05).CGColor
         static var accentFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.025).CGColor
@@ -93,19 +91,19 @@ import UIKit
         strokeColor = ClassMembers.normalStrokeColor
         startAngle = 0.0
         endAngle = 0.0
+        radius = 0.0
     }
 
     // MARK: Drawing
 
     override func drawInContext(ctx: CGContextRef) {
         // Create the path
-        let center = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
-
-
+         center = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
         var newPath = CGPathCreateMutable()
+
         CGPathMoveToPoint(newPath, nil, center.x, center.y)
-        let x1 = Double(center.x) + Double(cosf(Float(startAngle)) * 70)
-        let y1 = Double(center.y) + Double(sinf(Float(startAngle)) * 70)
+        let x1 = Double(center.x) + Double(cos(startAngle) * radius)
+        let y1 = Double(center.y) + Double(sin(startAngle) * radius)
         let p1 = CGPoint(x: x1, y: y1)
         CGPathAddLineToPoint(newPath, nil, p1.x, p1.y)
 
@@ -131,6 +129,10 @@ import UIKit
 
         let presentation = presentationLayer() as? ShardLayer
         switch (event) {
+            case "radius":
+                animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                animation.fromValue = presentation?.radius
+            return animation
             case "strokeColor":
                 animation.fromValue = presentation?.strokeColor
                 return animation

@@ -21,6 +21,7 @@ import UIKit
         willSet(newValue) {
             //Deactivate all because only one can be active at a time
             if activeShard != nil {
+                // FIX ME: At slow tempos the active shard may have been removed by the time the next beat happens. Bounds check the array first.
                 layers[activeShard!].active = false
             }
             //Activate the correct one
@@ -54,7 +55,15 @@ import UIKit
         }
     }
 
-    private let sideLength: CGFloat = 500
+    var radius: CGFloat = 0.0 {
+        didSet(oldValue){
+            for layer in layers {
+                CATransaction.begin()
+                CATransaction.setAnimationDuration(1.0)
+                layer.radius = radius
+            }
+        }
+    }
     private let doubleTapRecognizer = UITapGestureRecognizer()
     private let defaults = NSUserDefaults.standardUserDefaults()
     private var layers = [ShardLayer]()
@@ -74,6 +83,7 @@ import UIKit
     private func commonInit() {
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.addTarget(self, action: "handleDoubleTap:")
+    
         addGestureRecognizer(doubleTapRecognizer)
         setupShards()
     }
@@ -96,7 +106,8 @@ import UIKit
         for var i = 0; i < count; i++ {
             var tempLayer = ShardLayer()
             tempLayer.frame = frame
-            //tempLayer.contentsScale = UIScreen.mainScreen().scale
+            tempLayer.radius = radius
+            tempLayer.contentsScale = contentScaleFactor
             layer.addSublayer(tempLayer)
             layers.append(tempLayer)
         }
@@ -125,7 +136,7 @@ import UIKit
 
     override public func tintColorDidChange() {
         super.tintColorDidChange()
-        ShardLayer.ClassMembers.accentFillColor = tintColor.colorWithAlphaComponent(0.04).CGColor
+        ShardLayer.ClassMembers.accentFillColor = tintColor.colorWithAlphaComponent(0.05).CGColor
     }
 
     private func adjustSublayerAngles() {
@@ -138,12 +149,12 @@ import UIKit
             CATransaction.begin()
             CATransaction.setDisableActions(true)
             targetLayer.frame = frame
+            targetLayer.contentsScale = contentScaleFactor
             CATransaction.commit()
             CATransaction.setAnimationDuration(1.0)
             //We'll offset by pi to start the sectors in the center-left
             targetLayer.startAngle = theta * CGFloat(i) + CGFloat(M_PI)
             targetLayer.endAngle = theta * CGFloat(i + 1) + CGFloat(M_PI)
-
 
             if accents & UInt16(1 << i) > 0 {
                 targetLayer.accent = true

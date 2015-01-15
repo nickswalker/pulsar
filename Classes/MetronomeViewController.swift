@@ -11,7 +11,6 @@ let accentOnFirstBeat = [1]
 class MetronomeViewController: UIViewController, SettingsDelegate,
         MetronomeControlDelegate, QuickSettingsDelegate, SessionCreationDelegate {
 
-    @IBOutlet var backgroundButton: UIButton?
     @IBOutlet var controls: MetronomeControl?
     @IBOutlet var beatsControl: ShardControl?
     @IBOutlet var quickSettingsButton: UIButton?
@@ -23,7 +22,6 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     var bpmTracker = DeltaTracker()
     var timer = Timer()
     var timeSignatureTracker = DeltaTracker()
-    var commonTimeSignatures: [AnyObject]!
     var defaults = NSUserDefaults.standardUserDefaults()
 	var opacityAnimation: () -> () = {}
 	var commonSignaturesIndex: Int? = nil {
@@ -57,11 +55,9 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         opacityAnimation  = {
-            self.backgroundButton!.backgroundColor = UIColor.clearColor()
+            self.view.backgroundColor = UIColor(red: 0.25, green: 0.25, blue: 0.25, alpha: 1.0)
         }
-        backgroundButton!.backgroundColor = UIColor.clearColor()
         var path = NSBundle.mainBundle().pathForResource("CommonTimeSignatures", ofType: "plist")
-        commonTimeSignatures = NSArray(contentsOfFile: path!)!
         controls!.delegate = self
 
         NSNotificationCenter.defaultCenter().addObserver(self,
@@ -86,6 +82,11 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     override func viewDidAppear(animated: Bool) {
         beatsControl!.frame = view.frame
         beatsControl!.numberOfShards = beatsControl!.numberOfShards
+        let halfWidth = CGRectGetMidX(UIScreen.mainScreen().bounds)
+        let halfHeight = CGRectGetMidY(UIScreen.mainScreen().bounds)
+        let radius = hypot(halfWidth, halfHeight)
+
+        beatsControl!.radius = radius
     }
 
     //@discussion listens to the timer emitting beatParts.
@@ -159,7 +160,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     }
 
 	private func flashScreen(){
-        backgroundButton!.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.whiteColor()
         UIView.animateWithDuration(0.1, animations: opacityAnimation)
     }
 
@@ -186,10 +187,12 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
     }
     @IBAction func didSwipeLeft(){
-        beatsControl?.numberOfShards--
+        beatsControl!.numberOfShards--
+        defaults.setInteger(beatsControl!.numberOfShards, forKey: "beats")
     }
     @IBAction func didSwipeRight(){
-        beatsControl?.numberOfShards++
+        beatsControl!.numberOfShards++
+        defaults.setInteger(beatsControl!.numberOfShards, forKey: "beats")
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

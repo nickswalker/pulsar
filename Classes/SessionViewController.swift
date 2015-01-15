@@ -220,7 +220,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
         let controlAreaHeight: CGFloat = view.frame.height
         view.userInteractionEnabled = true
 
-        overlayView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+        overlayView.backgroundColor = UIColor(white: 0, alpha: 0.2)
         overlayView.frame = UIScreen.mainScreen().bounds
         overlayView.alpha = 0
         overlayView.delegate = self
