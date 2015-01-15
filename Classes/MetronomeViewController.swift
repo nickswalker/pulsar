@@ -26,7 +26,17 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     var timeSignatureTracker = DeltaTracker()
     var commonTimeSignatures: [AnyObject]!
     var defaults = NSUserDefaults.standardUserDefaults()
-    var commonSignaturesIndex = 0
+    var commonSignaturesIndex: Int? = nil {
+        willSet(newValue){
+            if newValue != nil {
+                if newValue > Configuration.commonConfigurations.count - 1 {
+                    self.commonSignaturesIndex = 0
+                }
+                let config = Configuration.commonConfigurations[newValue!]
+                beatsControl!.numberOfShards = config.beats
+            }
+        }
+    }
 
     private var running: Bool = false {
         willSet(newValue){
@@ -71,7 +81,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
     override func viewDidAppear(animated: Bool) {
         beatsControl!.frame = view.frame
-        beatsControl!.layer.layoutSublayers()
+        beatsControl!.numberOfShards = beatsControl!.numberOfShards
     }
 
     //@discussion listens to the timer emitting beatParts.
@@ -175,12 +185,14 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         if delta > 2 {
             commonSignaturesIndex = 0
         }
-        if commonSignaturesIndex > 6 {
-            commonSignaturesIndex = 0
-        }
+        commonSignaturesIndex!++
 
-        commonSignaturesIndex++
-
+    }
+    @IBAction func didSwipeLeft(){
+        beatsControl?.numberOfShards--
+    }
+    @IBAction func didSwipeRight(){
+        beatsControl?.numberOfShards++
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

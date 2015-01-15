@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14C94b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rQl-PL-IFJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14C99d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rQl-PL-IFJ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -121,6 +121,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.25277549342105265" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="jdt-oJ-EyC" firstAttribute="top" secondItem="RgJ-A9-OUc" secondAttribute="bottom" id="6TF-1c-WYu"/>
                             <constraint firstAttribute="centerX" secondItem="XxR-Jg-CVn" secondAttribute="centerX" id="6br-1L-5D5"/>
@@ -145,6 +146,10 @@
                                 <exclude reference="MQx-9l-jYe"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="hRg-vQ-UEZ" appends="YES" id="HpP-56-jYj"/>
+                            <outletCollection property="gestureRecognizers" destination="07W-gw-Xju" appends="YES" id="GMi-5q-PrW"/>
+                        </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
@@ -167,6 +172,16 @@
                     </connections>
                 </tapGestureRecognizer>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4L-l5-tyG" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="hRg-vQ-UEZ">
+                    <connections>
+                        <action selector="didSwipeRight" destination="rQl-PL-IFJ" id="zvK-uz-iOu"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="07W-gw-Xju" userLabel="Left Swipe">
+                    <connections>
+                        <action selector="didSwipeLeft" destination="rQl-PL-IFJ" id="g76-Ik-nQ2"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-87" y="192"/>
         </scene>

@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaultPreferences = ["screenFlash": true,
                                   "ledFlash": false,
                                   "vibrate": false,
-                                  "master": false,
                                   "bpm": 60,
                                   "accents": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                                   "beats": 4,

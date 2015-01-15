@@ -12,7 +12,6 @@
 		D488E4B01A65FE4100A9E3E6 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C19FE81A65FBD00065AB8F /* Cartography.framework */; };
 		D488E4B11A65FE4100A9E3E6 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4C19FE81A65FBD00065AB8F /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D49C99221A65D49100202544 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C98FD1A65D49100202544 /* AppDelegate.swift */; };
-		D49C99231A65D49100202544 /* CommonTimeSignatures.plist in Resources */ = {isa = PBXBuildFile; fileRef = D49C98FE1A65D49100202544 /* CommonTimeSignatures.plist */; };
 		D49C99241A65D49100202544 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C98FF1A65D49100202544 /* ConnectionManager.swift */; };
 		D49C99251A65D49100202544 /* BlurBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99001A65D49100202544 /* BlurBackground.swift */; };
 		D49C99261A65D49100202544 /* DeltaTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C99011A65D49100202544 /* DeltaTracker.swift */; };
@@ -52,6 +51,7 @@
 		D49C99A61A65D62400202544 /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C990F1A65D49100202544 /* SessionViewController.swift */; };
 		D4BE46851A665B3700716F88 /* MPCInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE46841A665B3700716F88 /* MPCInt.swift */; };
 		D4C19FED1A65FBD00065AB8F /* Cartography.h in Headers */ = {isa = PBXBuildFile; fileRef = D4C19FEC1A65FBD00065AB8F /* Cartography.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D4C2986F1A6753CB00A87612 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C2986E1A6753CB00A87612 /* Configuration.swift */; };
 		D4EA9A8B1A65FC5100E4DFF9 /* PeerKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C19F9D1A65FB720065AB8F /* PeerKit.swift */; };
 		D4EA9A8C1A65FC5100E4DFF9 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C19F9E1A65FB720065AB8F /* Advertiser.swift */; };
 		D4EA9A8D1A65FC5100E4DFF9 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C19F9F1A65FB720065AB8F /* Browser.swift */; };
@@ -120,7 +120,6 @@
 		D442B06B1A65D36900AD493B /* pulsar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pulsar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D442B06F1A65D36900AD493B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Classes/Info.plist; sourceTree = "<group>"; };
 		D49C98FD1A65D49100202544 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Classes/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
-		D49C98FE1A65D49100202544 /* CommonTimeSignatures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CommonTimeSignatures.plist; path = Classes/CommonTimeSignatures.plist; sourceTree = SOURCE_ROOT; };
 		D49C98FF1A65D49100202544 /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionManager.swift; path = Classes/ConnectionManager.swift; sourceTree = SOURCE_ROOT; };
 		D49C99001A65D49100202544 /* BlurBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlurBackground.swift; path = Classes/BlurBackground.swift; sourceTree = SOURCE_ROOT; };
 		D49C99011A65D49100202544 /* DeltaTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeltaTracker.swift; path = Classes/DeltaTracker.swift; sourceTree = SOURCE_ROOT; };
@@ -191,6 +190,7 @@
 		D4C19FE81A65FBD00065AB8F /* Cartography.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4C19FEB1A65FBD00065AB8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4C19FEC1A65FBD00065AB8F /* Cartography.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Cartography.h; path = ../../../Cartography/Cartography.h; sourceTree = "<group>"; };
+		D4C2986E1A6753CB00A87612 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,7 +272,6 @@
 				D49C99151A65D49100202544 /* Sounds */,
 				D49C99041A65D49100202544 /* InfoPlist.strings */,
 				D49C99101A65D49100202544 /* Settings.bundle */,
-				D49C98FE1A65D49100202544 /* CommonTimeSignatures.plist */,
 				D49C99021A65D49100202544 /* Images.xcassets */,
 				D442B06F1A65D36900AD493B /* Info.plist */,
 			);
@@ -300,6 +299,7 @@
 				D49C990A1A65D49100202544 /* Player.swift */,
 				D49C99201A65D49100202544 /* Timer.swift */,
 				D4BE46841A665B3700716F88 /* MPCInt.swift */,
+				D4C2986E1A6753CB00A87612 /* Configuration.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -496,6 +496,7 @@
 				D442B0681A65D36900AD493B /* Frameworks */,
 				D442B0691A65D36900AD493B /* Resources */,
 				D442B0AA1A65D39700AD493B /* Embed Frameworks */,
+				D4C2986C1A674A8F00A87612 /* Bump Build Number */,
 			);
 			buildRules = (
 			);
@@ -620,7 +621,6 @@
 				D49C99311A65D49100202544 /* QuickSettingsPanel.xib in Resources */,
 				D49C993F1A65D49100202544 /* digitalTriplet.wav in Resources */,
 				D49C99391A65D49100202544 /* accent.wav in Resources */,
-				D49C99231A65D49100202544 /* CommonTimeSignatures.plist in Resources */,
 				D49C99411A65D49100202544 /* subdivision.wav in Resources */,
 				D49C99291A65D49100202544 /* InfoPlist.strings in Resources */,
 				D49C99271A65D49100202544 /* Images.xcassets in Resources */,
@@ -654,6 +654,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D4C2986C1A674A8F00A87612 /* Bump Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bump Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# xcode-build-bump.sh\n# @desc Auto-increment the build number every time the project is run.\n# @usage\n# 1. Select: your Target in Xcode\n# 2. Select: Build Phases Tab\n# 3. Select: Add Build Phase -> Add Run Script\n# 4. Paste code below in to new \"Run Script\" section\n# 5. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n# 6. Insure that your starting build number is set to a whole integer and not a float (e.g. 1, not 1.0)\n\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D442B0671A65D36900AD493B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -669,6 +686,7 @@
 				D49C992D1A65D49100202544 /* MetronomeView.swift in Sources */,
 				D49C99321A65D49100202544 /* QuickSettingsViewController.swift in Sources */,
 				D49C992F1A65D49100202544 /* Player.swift in Sources */,
+				D4C2986F1A6753CB00A87612 /* Configuration.swift in Sources */,
 				D49C99431A65D49100202544 /* Timer.swift in Sources */,
 				D49C99261A65D49100202544 /* DeltaTracker.swift in Sources */,
 				D49C992C1A65D49100202544 /* LED.swift in Sources */,

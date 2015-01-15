@@ -103,6 +103,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
         instructionLabel.font = UIFont(name: "AvenirNext-Regular", size: 15)
         instructionLabel.textColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         instructionLabel.text = "Have your friends open the session pane to begin"
+        instructionLabel.numberOfLines = 2
         instructionLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         instructionLabel.textAlignment = .Center
 
