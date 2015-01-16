@@ -9,8 +9,12 @@
 /* Begin PBXBuildFile section */
 		014E89D817C3178300B17C47 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 014E89D717C3178300B17C47 /* Settings.bundle */; };
 		01B54523179828B300A4F4E0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B54522179828B300A4F4E0 /* Images.xcassets */; };
-		D4389AE31986D3AE00F064CA /* MetronomeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D7BC6196D95EE006DE741 /* MetronomeControl.swift */; };
-		D4389AE41986D3B600F064CA /* SlideStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D7B9F196D9034006DE741 /* SlideStepper.swift */; };
+		D4099B071A68966000BF3AD7 /* LabeledSlideStepper.h in Headers */ = {isa = PBXBuildFile; fileRef = D4099B061A68966000BF3AD7 /* LabeledSlideStepper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D4099B191A68966000BF3AD7 /* LabeledSlideStepper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4099B021A68966000BF3AD7 /* LabeledSlideStepper.framework */; };
+		D4099B1A1A68966000BF3AD7 /* LabeledSlideStepper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4099B021A68966000BF3AD7 /* LabeledSlideStepper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4099B261A68969800BF3AD7 /* LabeledSlideStepper.h in Headers */ = {isa = PBXBuildFile; fileRef = D4099B221A68969800BF3AD7 /* LabeledSlideStepper.h */; };
+		D4099B271A68969800BF3AD7 /* LabeledSlideStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4099B231A68969800BF3AD7 /* LabeledSlideStepper.swift */; };
+		D4099B281A68969800BF3AD7 /* SlideStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4099B241A68969800BF3AD7 /* SlideStepper.swift */; };
 		D439822F19A4FEBA007DFE42 /* accent.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822519A4FEBA007DFE42 /* accent.wav */; };
 		D439823019A4FEBA007DFE42 /* beat.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822619A4FEBA007DFE42 /* beat.wav */; };
 		D439823119A4FEBA007DFE42 /* digitalAccent.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822719A4FEBA007DFE42 /* digitalAccent.wav */; };
@@ -24,9 +28,6 @@
 		D45740A119A3D45D00CB1C70 /* MetronomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45740A019A3D45D00CB1C70 /* MetronomeView.swift */; };
 		D457545E19859B9B00967641 /* QuickSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D457545D19859B9B00967641 /* QuickSettingsViewController.swift */; };
 		D45EDCB91A55D83B004B7FD4 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45EDCB81A55D83B004B7FD4 /* Launch Screen.xib */; };
-		D46DB8F319844F7100A5820B /* MetronomeControl.h in Headers */ = {isa = PBXBuildFile; fileRef = D46DB8F219844F7100A5820B /* MetronomeControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D46DB90319844F7100A5820B /* MetronomeControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46DB8EE19844F7100A5820B /* MetronomeControl.framework */; };
-		D46DB90419844F7100A5820B /* MetronomeControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D46DB8EE19844F7100A5820B /* MetronomeControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		D49B39151986A4DE001D7919 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B39141986A4DE001D7919 /* ToggleButton.swift */; };
 		D4ADD330196EF80A0040DFF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F42E20196C370600BB847F /* AppDelegate.swift */; };
 		D4ADD331196EF80A0040DFF3 /* DeltaTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F42E24196C423800BB847F /* DeltaTracker.swift */; };
@@ -80,19 +81,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D46DB90119844F7100A5820B /* PBXContainerItemProxy */ = {
+		D4099B171A68966000BF3AD7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 01B544F4179828B300A4F4E0 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D46DB8ED19844F7100A5820B;
-			remoteInfo = MetronomeControl;
-		};
-		D46DB90519844F7100A5820B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 01B544F4179828B300A4F4E0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D46DB8ED19844F7100A5820B;
-			remoteInfo = MetronomeControl;
+			remoteGlobalIDString = D4099B011A68966000BF3AD7;
+			remoteInfo = LabeledSlideStepper;
 		};
 		D4C298A91A6784A700A87612 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -117,8 +111,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D46DB90419844F7100A5820B /* MetronomeControl.framework in Embed Frameworks */,
 				D4C298AC1A6784A700A87612 /* PeerKit.framework in Embed Frameworks */,
+				D4099B1A1A68966000BF3AD7 /* LabeledSlideStepper.framework in Embed Frameworks */,
 				D4C298D01A67850F00A87612 /* Cartography.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -130,6 +124,15 @@
 		014E89D717C3178300B17C47 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		01B544FC179828B300A4F4E0 /* pulsar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pulsar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B54522179828B300A4F4E0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D4099B021A68966000BF3AD7 /* LabeledSlideStepper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LabeledSlideStepper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4099B051A68966000BF3AD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4099B061A68966000BF3AD7 /* LabeledSlideStepper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabeledSlideStepper.h; sourceTree = "<group>"; };
+		D4099B141A68966000BF3AD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4099B151A68966000BF3AD7 /* LabeledSlideStepperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledSlideStepperTests.swift; sourceTree = "<group>"; };
+		D4099B211A68969800BF3AD7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = LabeledSlideStepper/Info.plist; sourceTree = SOURCE_ROOT; };
+		D4099B221A68969800BF3AD7 /* LabeledSlideStepper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LabeledSlideStepper.h; path = LabeledSlideStepper/LabeledSlideStepper.h; sourceTree = SOURCE_ROOT; };
+		D4099B231A68969800BF3AD7 /* LabeledSlideStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabeledSlideStepper.swift; path = LabeledSlideStepper/LabeledSlideStepper.swift; sourceTree = SOURCE_ROOT; };
+		D4099B241A68969800BF3AD7 /* SlideStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideStepper.swift; path = LabeledSlideStepper/SlideStepper.swift; sourceTree = SOURCE_ROOT; };
 		D439822519A4FEBA007DFE42 /* accent.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = accent.wav; path = Sounds/accent.wav; sourceTree = "<group>"; };
 		D439822619A4FEBA007DFE42 /* beat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = beat.wav; path = Sounds/beat.wav; sourceTree = "<group>"; };
 		D439822719A4FEBA007DFE42 /* digitalAccent.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = digitalAccent.wav; path = Sounds/digitalAccent.wav; sourceTree = "<group>"; };
@@ -140,15 +143,10 @@
 		D439822C19A4FEBA007DFE42 /* division.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = division.wav; path = Sounds/division.wav; sourceTree = "<group>"; };
 		D439822D19A4FEBA007DFE42 /* subdivision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = subdivision.wav; path = Sounds/subdivision.wav; sourceTree = "<group>"; };
 		D439822E19A4FEBA007DFE42 /* triplet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = triplet.wav; path = Sounds/triplet.wav; sourceTree = "<group>"; };
-		D44D7B9F196D9034006DE741 /* SlideStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideStepper.swift; sourceTree = "<group>"; };
-		D44D7BC6196D95EE006DE741 /* MetronomeControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetronomeControl.swift; sourceTree = "<group>"; };
 		D45740A019A3D45D00CB1C70 /* MetronomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetronomeView.swift; sourceTree = "<group>"; };
 		D457545D19859B9B00967641 /* QuickSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickSettingsViewController.swift; sourceTree = "<group>"; };
 		D45EDCB81A55D83B004B7FD4 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		D463FCF91968DBE200606FFD /* SoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
-		D46DB8EE19844F7100A5820B /* MetronomeControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MetronomeControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D46DB8F119844F7100A5820B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D46DB8F219844F7100A5820B /* MetronomeControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetronomeControl.h; sourceTree = "<group>"; };
 		D49B39141986A4DE001D7919 /* ToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		D4ADD32E196EE3E40040DFF3 /* LED.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LED.swift; sourceTree = "<group>"; };
 		D4C298701A6782DB00A87612 /* QuickSettingsPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickSettingsPanel.xib; sourceTree = "<group>"; };
@@ -206,13 +204,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D46DB90319844F7100A5820B /* MetronomeControl.framework in Frameworks */,
 				D4C298AB1A6784A700A87612 /* PeerKit.framework in Frameworks */,
+				D4099B191A68966000BF3AD7 /* LabeledSlideStepper.framework in Frameworks */,
 				D4C298CF1A67850F00A87612 /* Cartography.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D46DB8EA19844F7100A5820B /* Frameworks */ = {
+		D4099AFE1A68966000BF3AD7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -259,11 +257,13 @@
 				D4C298871A67843300A87612 /* PeerKit */,
 				D4C298741A67840900A87612 /* Cartography */,
 				D4644DD6197E248E00B9FF15 /* Shard Control */,
-				D46DB8EF19844F7100A5820B /* MetronomeControl */,
+				D46DB8EF19844F7100A5820B /* LabeledSlideStepper */,
 				01B54508179828B300A4F4E0 /* Supporting Files */,
 				01B54507179828B300A4F4E0 /* iOS */,
 				D4C298951A6784A700A87612 /* PeerKit */,
 				D4C298B91A67850F00A87612 /* Cartography */,
+				D4099B031A68966000BF3AD7 /* LabeledSlideStepper */,
+				D4099B121A68966000BF3AD7 /* LabeledSlideStepperTests */,
 				01B544FD179828B300A4F4E0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -272,9 +272,9 @@
 			isa = PBXGroup;
 			children = (
 				01B544FC179828B300A4F4E0 /* pulsar.app */,
-				D46DB8EE19844F7100A5820B /* MetronomeControl.framework */,
 				D4C298941A6784A700A87612 /* PeerKit.framework */,
 				D4C298B81A67850F00A87612 /* Cartography.framework */,
+				D4099B021A68966000BF3AD7 /* LabeledSlideStepper.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -305,6 +305,40 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		D4099B031A68966000BF3AD7 /* LabeledSlideStepper */ = {
+			isa = PBXGroup;
+			children = (
+				D4099B061A68966000BF3AD7 /* LabeledSlideStepper.h */,
+				D4099B041A68966000BF3AD7 /* Supporting Files */,
+			);
+			path = LabeledSlideStepper;
+			sourceTree = "<group>";
+		};
+		D4099B041A68966000BF3AD7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D4099B051A68966000BF3AD7 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D4099B121A68966000BF3AD7 /* LabeledSlideStepperTests */ = {
+			isa = PBXGroup;
+			children = (
+				D4099B151A68966000BF3AD7 /* LabeledSlideStepperTests.swift */,
+				D4099B131A68966000BF3AD7 /* Supporting Files */,
+			);
+			path = LabeledSlideStepperTests;
+			sourceTree = "<group>";
+		};
+		D4099B131A68966000BF3AD7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D4099B141A68966000BF3AD7 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D4644DD6197E248E00B9FF15 /* Shard Control */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,23 +349,16 @@
 			path = MetronomeControlKit;
 			sourceTree = "<group>";
 		};
-		D46DB8EF19844F7100A5820B /* MetronomeControl */ = {
+		D46DB8EF19844F7100A5820B /* LabeledSlideStepper */ = {
 			isa = PBXGroup;
 			children = (
-				D44D7BC6196D95EE006DE741 /* MetronomeControl.swift */,
-				D44D7B9F196D9034006DE741 /* SlideStepper.swift */,
-				D46DB8F219844F7100A5820B /* MetronomeControl.h */,
-				D46DB8F019844F7100A5820B /* Supporting Files */,
+				D4099B211A68969800BF3AD7 /* Info.plist */,
+				D4099B221A68969800BF3AD7 /* LabeledSlideStepper.h */,
+				D4099B231A68969800BF3AD7 /* LabeledSlideStepper.swift */,
+				D4099B241A68969800BF3AD7 /* SlideStepper.swift */,
 			);
+			name = LabeledSlideStepper;
 			path = MetronomeControl;
-			sourceTree = "<group>";
-		};
-		D46DB8F019844F7100A5820B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D46DB8F119844F7100A5820B /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		D48158CD1A5494AA0040AD08 /* View Controllers */ = {
@@ -450,11 +477,12 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		D46DB8EB19844F7100A5820B /* Headers */ = {
+		D4099AFF1A68966000BF3AD7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D46DB8F319844F7100A5820B /* MetronomeControl.h in Headers */,
+				D4099B261A68969800BF3AD7 /* LabeledSlideStepper.h in Headers */,
+				D4099B071A68966000BF3AD7 /* LabeledSlideStepper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,32 +520,31 @@
 			buildRules = (
 			);
 			dependencies = (
-				D46DB90219844F7100A5820B /* PBXTargetDependency */,
-				D46DB90619844F7100A5820B /* PBXTargetDependency */,
 				D4C298AA1A6784A700A87612 /* PBXTargetDependency */,
 				D4C298CE1A67850F00A87612 /* PBXTargetDependency */,
+				D4099B181A68966000BF3AD7 /* PBXTargetDependency */,
 			);
 			name = Pulsar;
 			productName = Ticker;
 			productReference = 01B544FC179828B300A4F4E0 /* pulsar.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D46DB8ED19844F7100A5820B /* MetronomeControl */ = {
+		D4099B011A68966000BF3AD7 /* LabeledSlideStepper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D46DB90B19844F7100A5820B /* Build configuration list for PBXNativeTarget "MetronomeControl" */;
+			buildConfigurationList = D4099B1B1A68966000BF3AD7 /* Build configuration list for PBXNativeTarget "LabeledSlideStepper" */;
 			buildPhases = (
-				D46DB8E919844F7100A5820B /* Sources */,
-				D46DB8EA19844F7100A5820B /* Frameworks */,
-				D46DB8EB19844F7100A5820B /* Headers */,
-				D46DB8EC19844F7100A5820B /* Resources */,
+				D4099AFD1A68966000BF3AD7 /* Sources */,
+				D4099AFE1A68966000BF3AD7 /* Frameworks */,
+				D4099AFF1A68966000BF3AD7 /* Headers */,
+				D4099B001A68966000BF3AD7 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = MetronomeControl;
-			productName = MetronomeControl;
-			productReference = D46DB8EE19844F7100A5820B /* MetronomeControl.framework */;
+			name = LabeledSlideStepper;
+			productName = LabeledSlideStepper;
+			productReference = D4099B021A68966000BF3AD7 /* LabeledSlideStepper.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D4C298931A6784A700A87612 /* PeerKit */ = {
@@ -568,8 +595,8 @@
 					01B544FB179828B300A4F4E0 = {
 						DevelopmentTeam = 2627WG76ES;
 					};
-					D46DB8ED19844F7100A5820B = {
-						CreatedOnToolsVersion = 6.0;
+					D4099B011A68966000BF3AD7 = {
+						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = 2627WG76ES;
 					};
 					D4C298931A6784A700A87612 = {
@@ -596,9 +623,9 @@
 			projectRoot = "";
 			targets = (
 				01B544FB179828B300A4F4E0 /* Pulsar */,
-				D46DB8ED19844F7100A5820B /* MetronomeControl */,
 				D4C298931A6784A700A87612 /* PeerKit */,
 				D4C298B71A67850F00A87612 /* Cartography */,
+				D4099B011A68966000BF3AD7 /* LabeledSlideStepper */,
 			);
 		};
 /* End PBXProject section */
@@ -626,7 +653,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D46DB8EC19844F7100A5820B /* Resources */ = {
+		D4099B001A68966000BF3AD7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -695,12 +722,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D46DB8E919844F7100A5820B /* Sources */ = {
+		D4099AFD1A68966000BF3AD7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4389AE41986D3B600F064CA /* SlideStepper.swift in Sources */,
-				D4389AE31986D3AE00F064CA /* MetronomeControl.swift in Sources */,
+				D4099B271A68969800BF3AD7 /* LabeledSlideStepper.swift in Sources */,
+				D4099B281A68969800BF3AD7 /* SlideStepper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -742,15 +769,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D46DB90219844F7100A5820B /* PBXTargetDependency */ = {
+		D4099B181A68966000BF3AD7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D46DB8ED19844F7100A5820B /* MetronomeControl */;
-			targetProxy = D46DB90119844F7100A5820B /* PBXContainerItemProxy */;
-		};
-		D46DB90619844F7100A5820B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D46DB8ED19844F7100A5820B /* MetronomeControl */;
-			targetProxy = D46DB90519844F7100A5820B /* PBXContainerItemProxy */;
+			target = D4099B011A68966000BF3AD7 /* LabeledSlideStepper */;
+			targetProxy = D4099B171A68966000BF3AD7 /* PBXContainerItemProxy */;
 		};
 		D4C298AA1A6784A700A87612 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -898,9 +920,10 @@
 			};
 			name = Release;
 		};
-		D46DB90719844F7100A5820B /* Debug */ = {
+		D4099B1C1A68966000BF3AD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -917,8 +940,9 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = MetronomeControl/Info.plist;
+				INFOPLIST_FILE = LabeledSlideStepper/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -929,13 +953,15 @@
 			};
 			name = Debug;
 		};
-		D46DB90819844F7100A5820B /* Release */ = {
+		D4099B1D1A68966000BF3AD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos7.0]" = "iPhone Developer: Nick Walker (77YL974MZ8)";
+				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -944,8 +970,9 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = MetronomeControl/Info.plist;
+				INFOPLIST_FILE = LabeledSlideStepper/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1096,14 +1123,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D46DB90B19844F7100A5820B /* Build configuration list for PBXNativeTarget "MetronomeControl" */ = {
+		D4099B1B1A68966000BF3AD7 /* Build configuration list for PBXNativeTarget "LabeledSlideStepper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D46DB90719844F7100A5820B /* Debug */,
-				D46DB90819844F7100A5820B /* Release */,
+				D4099B1C1A68966000BF3AD7 /* Debug */,
+				D4099B1D1A68966000BF3AD7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		D4C298AD1A6784A700A87612 /* Build configuration list for PBXNativeTarget "PeerKit" */ = {
 			isa = XCConfigurationList;
@@ -1112,6 +1138,7 @@
 				D4C298AF1A6784A700A87612 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D4C298D11A67850F00A87612 /* Build configuration list for PBXNativeTarget "Cartography" */ = {
 			isa = XCConfigurationList;
@@ -1120,6 +1147,7 @@
 				D4C298D31A67850F00A87612 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

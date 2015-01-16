@@ -1,17 +1,14 @@
 import Foundation
 import UIKit
 import QuartzCore
-import MetronomeControl
-
-typealias TimeSignature = MetronomeControl.TimeSignature
-typealias NoteValue = MetronomeControl.NoteValue
+import LabeledSlideStepper
 
 let accentOnFirstBeat = [1]
 
 class MetronomeViewController: UIViewController, SettingsDelegate,
-        MetronomeControlDelegate, QuickSettingsDelegate, SessionCreationDelegate {
+        LabeledSlideStepperDelegate, QuickSettingsDelegate, SessionCreationDelegate, ShardControlDelegate {
 
-    @IBOutlet var controls: MetronomeControl?
+    @IBOutlet var bpmControl: LabeledSlideStepper?
     @IBOutlet var beatsControl: ShardControl?
     @IBOutlet var quickSettingsButton: UIButton?
     @IBOutlet var settingsButton: UIButton?
@@ -40,13 +37,13 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         willSet(newValue){
             if newValue == true {
                 timer.start()
-                controls!.running = true
+                bpmControl!.running = true
                 UIApplication.sharedApplication().idleTimerDisabled = true
 
             } else {
                 beatsControl!.activeShard = nil
                 timer.stop()
-                controls!.running = false
+                bpmControl!.running = false
                 UIApplication.sharedApplication().idleTimerDisabled = false
             }
         }
@@ -55,10 +52,10 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         opacityAnimation  = {
-            self.view.backgroundColor = UIColor(red: 0.25, green: 0.25, blue: 0.25, alpha: 1.0)
+            self.view.backgroundColor = UIColor(white: 0.25, alpha: 1.0)
         }
         var path = NSBundle.mainBundle().pathForResource("CommonTimeSignatures", ofType: "plist")
-        controls!.delegate = self
+        bpmControl!.delegate = self
 
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector: "intervalWasFired:",
@@ -71,9 +68,13 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
         let beats = defaults.integerForKey("beats")
         beatsControl!.numberOfShards = beats
+        let accents = UInt(defaults.integerForKey("accents"))
+        beatsControl!.activated = accents
+        beatsControl!.delegate = self
 
         let bpm = defaults.integerForKey("bpm")
-        controls!.bpm = bpm
+        bpmControl!.bpm = bpm
+        timer.bpm = bpm
 
         setupSessionEventHandlers()
 
@@ -81,7 +82,6 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
     override func viewDidAppear(animated: Bool) {
         beatsControl!.frame = view.frame
-        beatsControl!.numberOfShards = beatsControl!.numberOfShards
         let halfWidth = CGRectGetMidX(UIScreen.mainScreen().bounds)
         let halfHeight = CGRectGetMidY(UIScreen.mainScreen().bounds)
         let radius = hypot(halfWidth, halfHeight)
@@ -100,14 +100,14 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
                 SoundPlayer.playBeat()
             }
             if defaults.boolForKey("screenFlash") {
-                flashScreen()
+                beatsControl?.flashBackground()
             }
             if defaults.boolForKey("ledFlash") {
                 LED.flash()
             }
             if beatsControl!.activeIsAccent() {
                 SoundPlayer.playAccent()
-                flashScreen()
+                beatsControl!.flashBackground()
             }
         } else if (beatPart & BeatPartMeanings.Division.rawValue) > 0 {
             if defaults.boolForKey("division") {
@@ -159,12 +159,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         }
     }
 
-	private func flashScreen(){
-        view.backgroundColor = UIColor.whiteColor()
-        UIView.animateWithDuration(0.1, animations: opacityAnimation)
-    }
-
-    //MARK: Gesture Controls
+    //MARK: Gestures
 
     private let maxTimeBetweenTaps = 20.0
 
@@ -175,7 +170,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         } else if ((Double(secondsInMinute) / delta) < maxTimeBetweenTaps) {
             return
         }
-        controls!.bpm = Int(Double(secondsInMinute) / (delta))
+        bpmControl!.bpm = Int(Double(secondsInMinute) / (delta))
     }
 
     @IBAction func cycleTimeSignature(sender: AnyObject) {
@@ -202,15 +197,18 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
             let viewControllers = segue.destinationViewController.viewControllers as Array
             let settingsViewController = viewControllers[0] as SettingsViewController
             settingsViewController.delegate = self
+            settingsViewController.screenFlashControl!.on = defaults.boolForKey("screenFlash")
+            settingsViewController.ledFlashControl!.on = defaults.boolForKey("ledFlash")
+            settingsViewController.digitalVoiceControl!.on = defaults.boolForKey("digitalVoice")
         }
     }
-    // MARK: Overlay Controls
+
+    // MARK: Overlays
 
     @IBAction func presentSessionController() {
         let window = UIApplication.sharedApplication().keyWindow!
-
         sessionController = SessionViewController()
-        controls!.tintAdjustmentMode = .Dimmed
+        bpmControl!.tintAdjustmentMode = .Dimmed
         sessionController!.delegate = self
         window.addSubview(sessionController!.view)
         sessionController!.animateIn()
@@ -218,7 +216,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
     @IBAction func presentQuickSettings() {
         let window = UIApplication.sharedApplication().keyWindow!
-        controls!.tintAdjustmentMode = .Dimmed
+        bpmControl!.tintAdjustmentMode = .Dimmed
         quickSettings = QuickSettingsViewController(nibName:"QuickSettingsPanel", bundle: NSBundle.mainBundle())
 
         quickSettings!.delegate = self
@@ -235,13 +233,13 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
 
     func sessionViewControllerDidFinish(sessionCreated: Bool, initiated: Bool){
-        controls!.tintAdjustmentMode = .Normal
+        bpmControl!.tintAdjustmentMode = .Normal
         sessionController = nil
         if !sessionCreated {
             ConnectionManager.stop()
         }
         else if initiated {
-            let initialConfig: [String: MPCSerializable] = ["bpm": MPCInt(value: self.controls!.bpm), "beats": MPCInt(value: beatsControl!.numberOfShards)]
+            let initialConfig: [String: MPCSerializable] = ["bpm": MPCInt(value: self.bpmControl!.bpm), "beats": MPCInt(value: beatsControl!.numberOfShards)]
             ConnectionManager.sendEvent(.StartSession, object: initialConfig)
             ConnectionManager.sendEvent(.Start, object: ["hello": MPCInt(value: 10)])
         }
@@ -253,13 +251,17 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     }
 
     func quickSettingsViewControllerDidFinish() {
-        controls!.tintAdjustmentMode = .Normal
+        bpmControl!.tintAdjustmentMode = .Normal
         quickSettings = nil
     }
 
     func settingChangedForKey(key: String, value: AnyObject) {
         defaults.setValue(value, forKey: key)
         defaults.synchronize()
+    }
+
+    func activatedShardsChanged() {
+        defaults.setInteger(Int(beatsControl!.activated), forKey: "accents")
     }
 
     // MARK: Appearance
@@ -277,7 +279,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
             let bpm = MPCInt(mpcSerialized: dict["bpm"]!).value
             let beats = MPCInt(mpcSerialized: dict["beats"]!).value
             self.timer.bpm = bpm
-            self.controls!.bpm = bpm
+            self.bpmControl!.bpm = bpm
             self.beatsControl!.numberOfShards = beats
             if self.sessionController != nil {
                 //This may cause a bug if the other person starts a session very soon after the first
@@ -298,7 +300,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
             let bpm = MPCInt(mpcSerialized: dict["bpm"]!).value
             self.timer.bpm = bpm
-            self.controls!.bpm = bpm
+            self.bpmControl!.bpm = bpm
         })
         ConnectionManager.onEvent(.Start, run: {
             peerID, object in

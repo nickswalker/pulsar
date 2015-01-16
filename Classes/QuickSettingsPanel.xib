@@ -74,10 +74,10 @@
                     </connections>
                 </button>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LKF-cV-dd9">
-                    <rect key="frame" x="236" y="152" width="220" height="40"/>
+                    <rect key="frame" x="271" y="152" width="150" height="40"/>
                     <subviews>
                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" continuous="NO" autorepeat="NO" value="4" minimumValue="1" maximumValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="CeJ-wh-XrK">
-                            <rect key="frame" x="111" y="5" width="94" height="29"/>
+                            <rect key="frame" x="50" y="5" width="94" height="29"/>
                             <connections>
                                 <action selector="beatsChanged:" destination="-1" eventType="valueChanged" id="Gyp-9n-hhc"/>
                             </connections>
@@ -90,20 +90,13 @@
                         </label>
                     </subviews>
                     <constraints>
+                        <constraint firstAttribute="width" constant="150" id="8NI-9e-zG6"/>
                         <constraint firstAttribute="height" constant="40" id="Hzo-0x-FQy"/>
-                        <constraint firstItem="en9-uN-nNb" firstAttribute="top" secondItem="LKF-cV-dd9" secondAttribute="top" id="MZi-dr-Yqr"/>
+                        <constraint firstItem="CeJ-wh-XrK" firstAttribute="leading" secondItem="en9-uN-nNb" secondAttribute="trailing" constant="25" id="L7I-Kd-cJE"/>
                         <constraint firstAttribute="centerY" secondItem="en9-uN-nNb" secondAttribute="centerY" id="bjQ-Du-aay"/>
-                        <constraint firstAttribute="trailing" secondItem="CeJ-wh-XrK" secondAttribute="trailing" constant="15" id="fuv-OX-HA3"/>
                         <constraint firstAttribute="centerY" secondItem="CeJ-wh-XrK" secondAttribute="centerY" id="lIM-MF-ZTP"/>
-                        <constraint firstItem="CeJ-wh-XrK" firstAttribute="top" secondItem="LKF-cV-dd9" secondAttribute="top" id="ttu-0s-0ai"/>
                         <constraint firstItem="en9-uN-nNb" firstAttribute="leading" secondItem="LKF-cV-dd9" secondAttribute="leading" constant="15" id="xGz-WN-4I7"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="MZi-dr-Yqr"/>
-                            <exclude reference="ttu-0s-0ai"/>
-                        </mask>
-                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aVw-pw-OyO" customClass="UIVisualEffectView">
                     <rect key="frame" x="0.0" y="0.0" width="486" height="288"/>
@@ -138,19 +131,13 @@
                 <constraint firstItem="oco-gg-ab9" firstAttribute="top" secondItem="hOh-lh-RGT" secondAttribute="bottom" constant="10" id="N2G-UH-nnr"/>
                 <constraint firstAttribute="centerX" secondItem="hOh-lh-RGT" secondAttribute="centerX" id="QR5-6c-gkI"/>
                 <constraint firstItem="hdj-mF-j3j" firstAttribute="leading" secondItem="oco-gg-ab9" secondAttribute="trailing" constant="8" id="QXb-EW-Aj0"/>
-                <constraint firstAttribute="centerY" secondItem="LKF-cV-dd9" secondAttribute="centerY" id="QZj-59-Afq"/>
                 <constraint firstItem="GJv-S4-JnB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="UGz-qa-rkD"/>
-                <constraint firstAttribute="centerY" secondItem="jj6-Xm-1xY" secondAttribute="centerY" id="Wi4-6D-7z9"/>
                 <constraint firstItem="T4d-BX-QGf" firstAttribute="leading" secondItem="GJv-S4-JnB" secondAttribute="trailing" constant="8" id="Ybi-A2-yAc"/>
                 <constraint firstItem="oco-gg-ab9" firstAttribute="width" secondItem="T4d-BX-QGf" secondAttribute="width" id="bc3-4E-nHA"/>
-                <constraint firstItem="jj6-Xm-1xY" firstAttribute="top" secondItem="GJv-S4-JnB" secondAttribute="bottom" constant="20" id="cbH-Ra-Lcu"/>
                 <constraint firstAttribute="bottom" secondItem="aVw-pw-OyO" secondAttribute="bottom" id="e1J-NU-nsD"/>
-                <constraint firstItem="LKF-cV-dd9" firstAttribute="top" secondItem="T4d-BX-QGf" secondAttribute="bottom" constant="15" id="hfD-9R-s4k"/>
                 <constraint firstItem="hdj-mF-j3j" firstAttribute="top" secondItem="hOh-lh-RGT" secondAttribute="bottom" constant="10" id="hg1-iI-Lul"/>
                 <constraint firstItem="aVw-pw-OyO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="iJj-RY-E6Q"/>
                 <constraint firstItem="jj6-Xm-1xY" firstAttribute="centerY" secondItem="LKF-cV-dd9" secondAttribute="centerY" priority="250" id="oPD-Sm-RJO"/>
-                <constraint firstItem="T4d-BX-QGf" firstAttribute="leading" secondItem="LKF-cV-dd9" secondAttribute="leading" id="th1-vj-YPR"/>
-                <constraint firstItem="T4d-BX-QGf" firstAttribute="trailing" secondItem="LKF-cV-dd9" secondAttribute="trailing" id="toJ-w3-w3k"/>
                 <constraint firstItem="hOh-lh-RGT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="wX0-XH-ThQ"/>
                 <constraint firstItem="oco-gg-ab9" firstAttribute="width" secondItem="GJv-S4-JnB" secondAttribute="width" id="zQC-rt-dyw"/>
                 <constraint firstAttribute="trailing" secondItem="aVw-pw-OyO" secondAttribute="trailing" id="zq2-Pb-7YW"/>
@@ -160,12 +147,6 @@
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="aVw-pw-OyO"/>
-                </mask>
-                <mask key="constraints">
-                    <exclude reference="Wi4-6D-7z9"/>
-                    <exclude reference="cbH-Ra-Lcu"/>
-                    <exclude reference="QZj-59-Afq"/>
-                    <exclude reference="hfD-9R-s4k"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="552" y="393"/>

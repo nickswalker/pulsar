@@ -6,12 +6,12 @@ import UIKit
 
     @NSManaged var fillColor: CGColor
     @NSManaged var strokeColor: CGColor
-    private let strokeWidth: CGFloat = 2
-    private var center: CGPoint = CGPoint()
-
     @NSManaged var startAngle: CGFloat
     @NSManaged var endAngle: CGFloat
     @NSManaged var radius: CGFloat
+
+    private let strokeWidth: CGFloat = 2
+    private var center: CGPoint = CGPoint()
 
     struct ClassMembers {
         static let customPropertyKeys: [String] = {
@@ -98,7 +98,7 @@ import UIKit
 
     override func drawInContext(ctx: CGContextRef) {
         // Create the path
-         center = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
+        center = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
         var newPath = CGPathCreateMutable()
 
         CGPathMoveToPoint(newPath, nil, center.x, center.y)
@@ -137,11 +137,11 @@ import UIKit
                 animation.fromValue = presentation?.strokeColor
                 return animation
             case "startAngle":
-                animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
                 animation.fromValue = presentation?.startAngle
                 return animation
             case "endAngle":
-                animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
                 animation.fromValue = presentation?.endAngle
                 return animation
             default:
@@ -155,7 +155,7 @@ import UIKit
             ClassMembers.animatedStrokeColor,
             ClassMembers.normalStrokeColor]
         strokeFlash.duration = 1.0
-        strokeFlash.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        strokeFlash.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
 
         addAnimation(strokeFlash, forKey: "strokeColor")
     }

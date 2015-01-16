@@ -1,41 +1,13 @@
-@objc public protocol MetronomeControlDelegate {
+@objc public protocol LabeledSlideStepperDelegate {
     func switchToggled(sender: UISwitch)
     func bpmChanged(sender: SlideStepper)
 }
 
-@IBDesignable public class MetronomeControl: UIControl {
-
-    public enum NoteValue: Int {
-        case whole = 1,
-             half = 2,
-             quarter = 4,
-             eigth = 8,
-             sixteenth = 16,
-             thirtysecond = 32
-
-        func doubleValue() -> Double {
-            return 1.0 / Double(self.rawValue)
-        }
-
-    }
-
-    public struct TimeSignature {
-        public var beatsInABar: Int
-        public var noteValueForBeat: NoteValue
-
-        public init(_ beatsInABar: Int, _ noteValueForBeat: NoteValue) {
-            self.beatsInABar = beatsInABar
-            self.noteValueForBeat = noteValueForBeat
-        }
-        public init(beatsInABar: Int, noteValueForBeat: NoteValue) {
-            self.beatsInABar = beatsInABar
-            self.noteValueForBeat = noteValueForBeat
-        }
-    }
+@IBDesignable public class LabeledSlideStepper: UIControl {
 
     var bpmControl = SlideStepper()
 
-    public var delegate: MetronomeControlDelegate? {
+    public var delegate: LabeledSlideStepperDelegate? {
         didSet {
             runningSwitch.addTarget(delegate, action: "switchToggled:", forControlEvents: .ValueChanged)
             bpmControl.addTarget(delegate, action: "bpmChanged:", forControlEvents: .ValueChanged)

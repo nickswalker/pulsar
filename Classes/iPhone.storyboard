@@ -32,7 +32,7 @@
                                     <outletCollection property="gestureRecognizers" destination="07W-gw-Xju" appends="YES" id="A0U-zN-rP7"/>
                                 </connections>
                             </view>
-                            <view autoresizesSubviews="NO" opaque="NO" contentMode="center" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="XxR-Jg-CVn" userLabel="Controls" customClass="MetronomeControl" customModule="MetronomeControl">
+                            <view autoresizesSubviews="NO" opaque="NO" contentMode="center" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="XxR-Jg-CVn" userLabel="Controls" customClass="LabeledSlideStepper" customModule="LabeledSlideStepper">
                                 <rect key="frame" x="250" y="200" width="100" height="200"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
@@ -130,7 +130,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="beatsControl" destination="0FJ-Ky-pSe" id="CaB-4O-DNh"/>
-                        <outlet property="controls" destination="XxR-Jg-CVn" id="sGS-1A-cgv"/>
+                        <outlet property="bpmControl" destination="XxR-Jg-CVn" id="k9N-Sh-EbW"/>
                         <outlet property="quickSettingsButton" destination="Cu6-43-IhF" id="fo4-Hr-TIn"/>
                         <outlet property="sessionButton" destination="RgJ-A9-OUc" id="dTc-kp-0mC"/>
                         <outlet property="settingsButton" destination="gGa-VU-yN3" id="SHw-8h-n6K"/>

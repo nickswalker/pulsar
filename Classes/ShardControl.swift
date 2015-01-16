@@ -1,6 +1,10 @@
 import Foundation
 import UIKit
 
+public protocol ShardControlDelegate {
+    func activatedShardsChanged()
+}
+
 @IBDesignable @objc public class ShardControl: UIControl {
 
     @IBInspectable public var numberOfShards: Int = 6 {
@@ -55,7 +59,7 @@ import UIKit
         }
     }
 
-    var radius: CGFloat = 0.0 {
+    public var radius: CGFloat = 0.0 {
         didSet(oldValue){
             for layer in layers {
                 CATransaction.begin()
@@ -64,9 +68,17 @@ import UIKit
             }
         }
     }
+
+    public var activated: UInt = 0b0 {
+        didSet(oldValue){
+            delegate?.activatedShardsChanged()
+        }
+    }
+
+    public var delegate: ShardControlDelegate?
     private let doubleTapRecognizer = UITapGestureRecognizer()
-    private let defaults = NSUserDefaults.standardUserDefaults()
     private var layers = [ShardLayer]()
+    private var backgroundFlashLayer = CALayer()
 
     // MARK: Init
 
@@ -83,9 +95,19 @@ import UIKit
     private func commonInit() {
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.addTarget(self, action: "handleDoubleTap:")
-    
+
+        layer.insertSublayer(backgroundFlashLayer, atIndex: 0)
         addGestureRecognizer(doubleTapRecognizer)
+
         setupShards()
+    }
+    public override func layoutSublayersOfLayer(layer: CALayer!) {
+        if layer == self.layer {
+            adjustSublayerAngles()
+            backgroundFlashLayer.frame = layer.frame
+        } else {
+            super.layoutSublayersOfLayer(layer)
+        }
     }
 
     private func setupShards() {
@@ -141,7 +163,7 @@ import UIKit
 
     private func adjustSublayerAngles() {
         //Set the angle on all shards
-        let accents = UInt16(defaults.objectForKey("accents") as UInt)
+        let accents = activated
         let theta: CGFloat = (CGFloat(M_PI) * 2) / CGFloat(numberOfShards)
         for var i = 0; i < layers.count; ++i {
             let targetLayer = layers[i]
@@ -156,7 +178,7 @@ import UIKit
             targetLayer.startAngle = theta * CGFloat(i) + CGFloat(M_PI)
             targetLayer.endAngle = theta * CGFloat(i + 1) + CGFloat(M_PI)
 
-            if accents & UInt16(1 << i) > 0 {
+            if accents & UInt(1 << i) > 0 {
                 targetLayer.accent = true
             }
             targetLayer.flashStroke()
@@ -196,6 +218,18 @@ import UIKit
         return false
     }
 
+    func flashBackground(){
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        backgroundFlashLayer.backgroundColor = UIColor.whiteColor().CGColor
+        CATransaction.commit()
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(0.2)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut))
+        backgroundFlashLayer.backgroundColor = UIColor.clearColor().CGColor
+        CATransaction.commit()
+    }
+
     func handleDoubleTap(recognizer: UIGestureRecognizer) {
         var targetShard: ShardLayer?
         if recognizer.state == .Ended {
@@ -207,13 +241,11 @@ import UIKit
                 for var i = 0; i < layers.count; i++ {
                     var targetLayer = layers[i]
                     if targetLayer == targetShard {
-                        let accents = UInt16(defaults.objectForKey("accents") as UInt)
-                        let value: UInt16 = targetShard!.accent ? 1 : 0
-                        let shifted: UInt16 = value << UInt16(i)
-                        let mask:UInt16 = ~(1 << UInt16(i))
-                        let newAccents = (accents & mask) | shifted
-                        defaults.setObject(UInt(newAccents), forKey: "accents")
-                        defaults.synchronize()
+                        let value: UInt = targetShard!.accent ? 1 : 0
+                        let shifted: UInt = value << UInt(i)
+                        let mask:UInt = ~(1 << UInt(i))
+                        let newAccents = (activated & mask) | shifted
+                        activated = newAccents
                         break
                     }
                 }
