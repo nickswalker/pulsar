@@ -8,15 +8,13 @@ public protocol ShardControlDelegate {
 @IBDesignable @objc public class ShardControl: UIControl {
 
     @IBInspectable public var numberOfShards: Int = 6 {
-        willSet(newValue) {
-            if newValue < minShards {
+        didSet {
+            if numberOfShards < minShards {
                 self.numberOfShards = minShards
             }
-            if newValue > maxShards {
+            if numberOfShards > maxShards {
                 self.numberOfShards = maxShards
             }
-        }
-        didSet {
             setupShards()
         }
     }
@@ -25,8 +23,10 @@ public protocol ShardControlDelegate {
         willSet(newValue) {
             //Deactivate all because only one can be active at a time
             if activeShard != nil {
-                // FIX ME: At slow tempos the active shard may have been removed by the time the next beat happens. Bounds check the array first.
-                layers[activeShard!].active = false
+                //At slow tempos the active shard may have been removed by the time the next beat happens. Bounds check the array first.
+                if activeShard < layers.count {
+                    layers[activeShard!].active = false
+                }
             }
             //Activate the correct one
             if newValue != nil {

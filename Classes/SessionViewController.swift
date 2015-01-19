@@ -1,8 +1,13 @@
 import UIKit
 import Cartography
 
+enum SessionEvent {
+    case Initiated,
+         Left,
+         Joined
+}
 protocol SessionCreationDelegate {
-    func sessionViewControllerDidFinish(sessionCreated: Bool, initiated: Bool)
+    func sessionViewControllerDidFinish(event: SessionEvent?)
 }
 
 final class SessionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, BackgroundViewDelegate {
@@ -56,7 +61,8 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
         ConnectionManager.onConnect { _ in
             self.updatePlayers()
         }
-        ConnectionManager.onDisconnect { _ in
+        ConnectionManager.onDisconnect { peerID in
+            println(peerID)
             self.updatePlayers()
         }
     }
@@ -71,8 +77,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
     // MARK: UI
 
     func viewWasTapped() {
-        delegate?.sessionViewControllerDidFinish(ConnectionManager.otherPlayers.count != 0, initiated: false)
-        animateOut()
+        delegate?.sessionViewControllerDidFinish(nil)
     }
 
     func setupBackground() {
@@ -180,17 +185,21 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
 
     func actionButtonTapped() {
         if managementMode {
-            delegate?.sessionViewControllerDidFinish(false, initiated: false)
+            delegate?.sessionViewControllerDidFinish(.Left)
         }
         else {
-            delegate?.sessionViewControllerDidFinish(true, initiated: true)
+            delegate?.sessionViewControllerDidFinish(.Initiated)
         }
-        animateOut()
     }
 
     // MARK: Multipeer
 
     func updatePlayers() {
+        if ConnectionManager.aloneInSession {
+            //ConnectionManager.stop()
+            //ConnectionManager.start()
+            managementMode = false
+        }
         collectionView.reloadData()
     }
 

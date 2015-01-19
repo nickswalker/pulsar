@@ -47,6 +47,9 @@ struct ConnectionManager {
     static var inSession: Bool {
         return PeerKit.session != nil
     }
+    static var aloneInSession: Bool {
+        return ConnectionManager.otherPlayers.count == 0
+    }
 
     // MARK: Start
 
@@ -56,6 +59,7 @@ struct ConnectionManager {
     static func stop(){
         PeerKit.stopTranscieving()
         PeerKit.session = nil
+        
     }
 
     // MARK: Event Handling

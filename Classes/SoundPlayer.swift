@@ -16,10 +16,11 @@ import AVFoundation
         static var division = AVAudioPCMBuffer()
         static var subdivision = AVAudioPCMBuffer()
         static var triplet = AVAudioPCMBuffer()
+        static var digitalVoice = false
     }
 
     class func setup(){
-        digitalVoice(false)
+        digitalVoice(ClassMembers.digitalVoice)
         attachAndConnectNodeToMainMixer(ClassMembers.accentPlayer)
         attachAndConnectNodeToMainMixer(ClassMembers.beatPlayer)
         attachAndConnectNodeToMainMixer(ClassMembers.divisionPlayer)
@@ -35,6 +36,7 @@ import AVFoundation
     }
 
     class func digitalVoice(value: Bool){
+        ClassMembers.digitalVoice = value
         if value {
             ClassMembers.accent = fillWithFile("digitalAccent")
             ClassMembers.beat = fillWithFile("digitalBeat")
@@ -48,6 +50,10 @@ import AVFoundation
             ClassMembers.subdivision = fillWithFile("subdivision")
             ClassMembers.triplet = fillWithFile("triplet")
         }
+    }
+
+    class func getDigitalVoice() -> Bool {
+        return ClassMembers.digitalVoice
     }
 
     class func playBeat() {

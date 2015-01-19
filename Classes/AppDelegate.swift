@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                   "ledFlash": false,
                                   "vibrate": false,
                                   "bpm": 60,
-                                  "accents": 0b10,
+                                  "accents": 0b1,
                                   "beats": 4,
                                   "beat": true,
                                   "division": true,

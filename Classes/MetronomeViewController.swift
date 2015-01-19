@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import QuartzCore
 import LabeledSlideStepper
+import PeerKit
 
 let accentOnFirstBeat = [1]
 
@@ -22,12 +23,12 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     var defaults = NSUserDefaults.standardUserDefaults()
 	var opacityAnimation: () -> () = {}
 	var commonSignaturesIndex: Int? = nil {
-        willSet(newValue){
-            if newValue != nil {
-                if newValue > Configuration.commonConfigurations.count - 1 {
+        didSet{
+            if commonSignaturesIndex != nil {
+                if commonSignaturesIndex > Configuration.commonConfigurations.count - 1 {
                     self.commonSignaturesIndex = 0
                 }
-                let config = Configuration.commonConfigurations[newValue!]
+                let config = Configuration.commonConfigurations[commonSignaturesIndex!]
                 beatsControl!.numberOfShards = config.beats
             }
         }
@@ -157,6 +158,10 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
                 ConnectionManager.sendEvent(.ChangeBeats, object: change)
             }
         }
+        let digital = defaults.boolForKey("digitalVoice")
+        if  digital != SoundPlayer.getDigitalVoice() {
+            SoundPlayer.digitalVoice(digital)
+        }
     }
 
     //MARK: Gestures
@@ -177,8 +182,9 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         let delta = timeSignatureTracker.benchmark()
         if delta > 2 {
             commonSignaturesIndex = 0
+        } else {
+            commonSignaturesIndex!++
         }
-        commonSignaturesIndex!++
 
     }
     @IBAction func didSwipeLeft(){
@@ -197,9 +203,9 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
             let viewControllers = segue.destinationViewController.viewControllers as Array
             let settingsViewController = viewControllers[0] as SettingsViewController
             settingsViewController.delegate = self
-            settingsViewController.screenFlashControl!.on = defaults.boolForKey("screenFlash")
-            settingsViewController.ledFlashControl!.on = defaults.boolForKey("ledFlash")
-            settingsViewController.digitalVoiceControl!.on = defaults.boolForKey("digitalVoice")
+            settingsViewController.screenFlash = defaults.boolForKey("screenFlash")
+            settingsViewController.ledFlash = defaults.boolForKey("ledFlash")
+            settingsViewController.digitalVoice = defaults.boolForKey("digitalVoice")
         }
     }
 
@@ -232,16 +238,22 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     }
 
 
-    func sessionViewControllerDidFinish(sessionCreated: Bool, initiated: Bool){
+    func sessionViewControllerDidFinish(event: SessionEvent?){
         bpmControl!.tintAdjustmentMode = .Normal
+        sessionController!.animateOut()
         sessionController = nil
-        if !sessionCreated {
+        if event == nil {
             ConnectionManager.stop()
-        }
-        else if initiated {
-            let initialConfig: [String: MPCSerializable] = ["bpm": MPCInt(value: self.bpmControl!.bpm), "beats": MPCInt(value: beatsControl!.numberOfShards)]
-            ConnectionManager.sendEvent(.StartSession, object: initialConfig)
-            ConnectionManager.sendEvent(.Start, object: ["hello": MPCInt(value: 10)])
+        } else {
+            switch event! {
+                case .Initiated:
+                    let initialConfig: [String: MPCSerializable] = ["bpm": MPCInt(value: self.bpmControl!.bpm), "beats": MPCInt(value: beatsControl!.numberOfShards)]
+                    ConnectionManager.sendEvent(.StartSession, object: initialConfig)
+                case .Left:
+                    ConnectionManager.stop()
+                default:
+                    let test = true
+            }
         }
 
     }
@@ -284,7 +296,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
             if self.sessionController != nil {
                 //This may cause a bug if the other person starts a session very soon after the first
                 //person does. The SessionController will be already removed from the view or being animated.
-                self.sessionController!.delegate?.sessionViewControllerDidFinish(true, initiated: false)
+                self.sessionController!.delegate?.sessionViewControllerDidFinish(.Joined)
             }
         })
         ConnectionManager.onEvent(.ChangeBeats, run: {
