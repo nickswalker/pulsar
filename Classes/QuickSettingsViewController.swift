@@ -12,13 +12,13 @@ protocol QuickSettingsDelegate {
 
 public class QuickSettingsViewController: UIViewController, BackgroundViewDelegate {
 
-    @IBOutlet var blurBackground: UIVisualEffectView?
-    @IBOutlet var beatControl: ToggleButton?
-    @IBOutlet var divisionControl: ToggleButton?
-    @IBOutlet var subdivisionControl: ToggleButton?
-    @IBOutlet var tripletControl: ToggleButton?
-    @IBOutlet var beatsControl: UIStepper?
-    @IBOutlet var beatsControlLabel: UILabel?
+    @IBOutlet weak var blurBackground: UIVisualEffectView!
+    @IBOutlet weak var beatControl: ToggleButton!
+    @IBOutlet weak var divisionControl: ToggleButton!
+    @IBOutlet weak var subdivisionControl: ToggleButton!
+    @IBOutlet weak var tripletControl: ToggleButton!
+    @IBOutlet weak var beatsControl: UIStepper!
+    @IBOutlet weak var beatsControlLabel: UILabel!
 
     private class HideBackgroundView: UIView {
         var delegate: BackgroundViewDelegate?
@@ -93,13 +93,13 @@ public class QuickSettingsViewController: UIViewController, BackgroundViewDelega
     @IBAction func settingChanged(sender: ToggleButton) {
         let key: String = {
             switch sender {
-                case self.beatControl!:
+                case self.beatControl:
                     return "beat"
-                case self.divisionControl! :
+                case self.divisionControl :
                     return "division"
-                case self.subdivisionControl! :
+                case self.subdivisionControl :
                     return "subdivision"
-                case self.tripletControl! :
+                case self.tripletControl :
                     return "triplet"
                 default:
                     abort()

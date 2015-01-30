@@ -3,36 +3,37 @@ import MultipeerConnectivity
 
 protocol SettingsDelegate {
     func settingChangedForKey(key: String, value: AnyObject)
-    func settingsViewControllerDidFinish()
 }
 
 class SettingsViewController: UITableViewController, UITableViewDataSource {
     var delegate: SettingsDelegate?
     var screenFlash: Bool = false
-    var ledFlash: Bool = false
+    var ledFlashOnBeat: Bool = false
+    var ledFlashOnAccent: Bool = false
     var digitalVoice: Bool = false
-    @IBOutlet var screenFlashControl: UISwitch?
-    @IBOutlet var ledFlashControl : UISwitch?
-    @IBOutlet var digitalVoiceControl: UISwitch?
+    @IBOutlet weak var screenFlashControl: UISwitch!
+    @IBOutlet weak var ledFlashOnBeatControl : UISwitch!
+    @IBOutlet weak var ledFlashOnAccentControl : UISwitch!
+    @IBOutlet weak var digitalVoiceControl: UISwitch!
 
     override func viewDidLoad() {
-        screenFlashControl!.on = screenFlash
-        ledFlashControl!.on = ledFlash
-        digitalVoiceControl!.on = digitalVoice
-    }
-
-    @IBAction func done(sender: AnyObject) {
-        delegate?.settingsViewControllerDidFinish()
+        screenFlashControl.on = screenFlash
+        ledFlashOnAccentControl.on = ledFlashOnBeat
+        ledFlashOnBeatControl.on = ledFlashOnAccent
+        digitalVoiceControl.on = digitalVoice
+        
     }
 
     @IBAction func settingChanged(sender: UISwitch) {
         let key: String = {
             switch sender {
-                case self.screenFlashControl!:
+                case self.screenFlashControl:
                     return "screenFlash"
-                case self.ledFlashControl!:
-                    return "ledFlash"
-                case self.digitalVoiceControl!:
+                case self.ledFlashOnBeatControl:
+                    return "ledFlashOnBeat"
+                case self.ledFlashOnAccentControl:
+                    return "ledFlashOnAccent"
+                case self.digitalVoiceControl:
                     return "digitalVoice"
                 default:
                     abort()
@@ -43,7 +44,7 @@ class SettingsViewController: UITableViewController, UITableViewDataSource {
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1   {
-            UIApplication.sharedApplication().openURL(NSURL(string: "http://pulsar.nickwalker.us")!)
+            UIApplication.sharedApplication().openURL(NSURL(string: "http://nickwalker.us/pulsar")!)
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
@@ -53,5 +54,23 @@ class SettingsViewController: UITableViewController, UITableViewDataSource {
             cell.selectionStyle = .None
         }
         return cell
+    }
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if !LED.hasLED() && (indexPath.row == 1 || indexPath.row == 2) {
+            return 0
+        }
+        else
+        {
+            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        }
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showAbout" {
+            let destination = segue.destinationViewController.view as UIWebView
+            let file = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("about", ofType: "html")!)
+            destination.loadRequest(NSURLRequest(URL: file!))
+
+        }
     }
 }

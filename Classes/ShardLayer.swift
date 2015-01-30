@@ -11,7 +11,7 @@ import UIKit
     @NSManaged var radius: CGFloat
 
     private let strokeWidth: CGFloat = 2
-    private var center: CGPoint = CGPoint()
+    var center: CGPoint = CGPoint()
 
     struct ClassMembers {
         static let customPropertyKeys: [String] = {
@@ -58,9 +58,14 @@ import UIKit
             CATransaction.begin()
             CATransaction.setAnimationDuration(0.5)
             if newValue == true {
-                fillColor = ClassMembers.accentFillColor
+                let newColor = active ? ClassMembers.accentActiveFillColor : ClassMembers.accentFillColor
+
+                fillColor = newColor
             } else {
-                fillColor = ClassMembers.normalFillColor
+                let newColor = active ? ClassMembers.activeFillColor : ClassMembers.normalFillColor
+
+                fillColor = newColor
+
             }
             CATransaction.commit()
         }
@@ -78,6 +83,7 @@ import UIKit
                 let value: AnyObject? = shard.valueForKey(property)
                 setValue(value, forKey: property)
             }
+            center = shard.center
         }
     }
 
@@ -94,11 +100,15 @@ import UIKit
         radius = 0.0
     }
 
+    override func layoutSublayers() {
+        center = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
+    }
+
     // MARK: Drawing
 
     override func drawInContext(ctx: CGContextRef) {
         // Create the path
-        center = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
+
         var newPath = CGPathCreateMutable()
 
         CGPathMoveToPoint(newPath, nil, center.x, center.y)
@@ -124,6 +134,7 @@ import UIKit
 
     override func actionForKey(event: String!) -> CAAction! {
         let animation = CABasicAnimation(keyPath: event)
+        animation.removedOnCompletion = true
         animation.duration = CATransaction.animationDuration()
         animation.timingFunction = CATransaction.animationTimingFunction()
 

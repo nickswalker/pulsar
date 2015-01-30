@@ -65,6 +65,7 @@ public protocol ShardControlDelegate {
                 CATransaction.begin()
                 CATransaction.setAnimationDuration(1.0)
                 layer.radius = radius
+                CATransaction.commit()
             }
         }
     }
@@ -95,20 +96,28 @@ public protocol ShardControlDelegate {
     private func commonInit() {
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.addTarget(self, action: "handleDoubleTap:")
-
+        autoresizesSubviews = true
         layer.insertSublayer(backgroundFlashLayer, atIndex: 0)
         addGestureRecognizer(doubleTapRecognizer)
 
         setupShards()
     }
     public override func layoutSublayersOfLayer(layer: CALayer!) {
+
         if layer == self.layer {
-            adjustSublayerAngles()
+            for targetLayer in layers {
+                CATransaction.begin()
+                CATransaction.setDisableActions(true)
+                targetLayer.frame = frame
+                targetLayer.contentsScale = contentScaleFactor
+                CATransaction.commit()
+            }
             backgroundFlashLayer.frame = layer.frame
         } else {
             super.layoutSublayersOfLayer(layer)
         }
     }
+
 
     private func setupShards() {
         //Adjust numbers as needed
@@ -121,18 +130,22 @@ public protocol ShardControlDelegate {
             var toRemove = currentNumber - numberOfShards
             removeSublayers(toRemove)
         }
-        adjustSublayerAngles()
     }
 
     private func addSublayers(count: Int) {
+
         for var i = 0; i < count; i++ {
             var tempLayer = ShardLayer()
             tempLayer.frame = frame
             tempLayer.radius = radius
+            tempLayer.endAngle = CGFloat(M_PI) * 3
+            tempLayer.startAngle = CGFloat(M_PI) * 3
             tempLayer.contentsScale = contentScaleFactor
             layer.addSublayer(tempLayer)
+            layer.insertSublayer(tempLayer, atIndex: 0)
             layers.append(tempLayer)
         }
+        adjustSublayerAngles()
     }
 
     /**
@@ -143,9 +156,20 @@ public protocol ShardControlDelegate {
     private func removeSublayers(count: Int) {
         for var i = 0; i < count; i++ {
             var targetLayer = layers.last!
-            targetLayer.removeFromSuperlayer()
-            layers.removeLast()
+            CATransaction.begin()
+            CATransaction.setCompletionBlock({
+                targetLayer.removeFromSuperlayer()
+
+            })
+            CATransaction.setAnimationDuration(0.8)
+            targetLayer.endAngle = CGFloat(M_PI) * 3
+            targetLayer.startAngle = CGFloat(M_PI) * 3
+
+            CATransaction.commit()
+
+            self.layers.removeLast()
         }
+        adjustSublayerAngles()
     }
 
     //MARK: Overrides
@@ -165,18 +189,16 @@ public protocol ShardControlDelegate {
         //Set the angle on all shards
         let accents = activated
         let theta: CGFloat = (CGFloat(M_PI) * 2) / CGFloat(numberOfShards)
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(0.8)
         for var i = 0; i < layers.count; ++i {
             let targetLayer = layers[i]
 
-            CATransaction.begin()
-            CATransaction.setDisableActions(true)
-            targetLayer.frame = frame
-            targetLayer.contentsScale = contentScaleFactor
-            CATransaction.commit()
-            CATransaction.setAnimationDuration(1.0)
+
             //We'll offset by pi to start the sectors in the center-left
             targetLayer.startAngle = theta * CGFloat(i) + CGFloat(M_PI)
             targetLayer.endAngle = theta * CGFloat(i + 1) + CGFloat(M_PI)
+
 
             if accents & UInt(1 << i) > 0 {
                 targetLayer.accent = true
@@ -184,6 +206,7 @@ public protocol ShardControlDelegate {
             targetLayer.flashStroke()
 
         }
+            CATransaction.commit()
     }
 
     public func addShard() {

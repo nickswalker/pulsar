@@ -14,7 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
 
         let defaultPreferences = ["screenFlash": true,
-                                  "ledFlash": false,
+                                  "ledFlashOnAccent": false,
+            "ledFlashOnBeat": false,
                                   "vibrate": false,
                                   "bpm": 60,
                                   "accents": 0b1,
@@ -22,8 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                   "beat": true,
                                   "division": true,
                                   "subdivision": false,
-                                  "triplet": false
+                                  "triplet": false,
+                                  "firstLaunch": true
         ]
+
+
 
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "AvenirNext-DemiBold", size: 17)!]
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 17)!], forState: .Normal)
@@ -31,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSUserDefaults.standardUserDefaults().registerDefaults(defaultPreferences)
 
         window!.tintColor = myTintColor
+
         return true
     }
 

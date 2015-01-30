@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C99d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6724" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuickSettingsViewController" customModule="pulsar" customModuleProvider="target">
@@ -37,8 +37,8 @@
                         </mask>
                     </variation>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oco-gg-ab9" customClass="ToggleButton" customModule="pulsar" customModuleProvider="target">
-                    <rect key="frame" x="8" y="40" width="220" height="34"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oco-gg-ab9" customClass="ToggleButton" customModule="pulsar" customModuleProvider="target">
+                    <rect key="frame" x="8" y="41" width="220" height="34"/>
                     <state key="normal" title="Beat">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -46,8 +46,8 @@
                         <action selector="settingChanged:" destination="-1" eventType="valueChanged" id="qM9-lc-hXS"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdj-mF-j3j" customClass="ToggleButton" customModule="pulsar" customModuleProvider="target">
-                    <rect key="frame" x="236" y="40" width="220" height="34"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdj-mF-j3j" customClass="ToggleButton" customModule="pulsar" customModuleProvider="target">
+                    <rect key="frame" x="236" y="41" width="220" height="34"/>
                     <state key="normal" title="Division">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -55,8 +55,8 @@
                         <action selector="settingChanged:" destination="-1" eventType="valueChanged" id="Oic-K3-dde"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJv-S4-JnB" customClass="ToggleButton" customModule="pulsar" customModuleProvider="target">
-                    <rect key="frame" x="8" y="82" width="220" height="34"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJv-S4-JnB" customClass="ToggleButton" customModule="pulsar" customModuleProvider="target">
+                    <rect key="frame" x="8" y="83" width="220" height="34"/>
                     <state key="normal" title="Subdivison">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -64,8 +64,8 @@
                         <action selector="settingChanged:" destination="-1" eventType="valueChanged" id="Y3G-Wf-dAl"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4d-BX-QGf" customClass="ToggleButton" customModule="pulsar" customModuleProvider="target">
-                    <rect key="frame" x="236" y="82" width="220" height="34"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4d-BX-QGf" customClass="ToggleButton" customModule="pulsar" customModuleProvider="target">
+                    <rect key="frame" x="236" y="83" width="220" height="34"/>
                     <state key="normal" title="Triplet">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -77,13 +77,16 @@
                     <rect key="frame" x="271" y="152" width="150" height="40"/>
                     <subviews>
                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" continuous="NO" autorepeat="NO" value="4" minimumValue="1" maximumValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="CeJ-wh-XrK">
-                            <rect key="frame" x="50" y="5" width="94" height="29"/>
+                            <rect key="frame" x="40" y="5" width="94" height="29"/>
                             <connections>
                                 <action selector="beatsChanged:" destination="-1" eventType="valueChanged" id="Gyp-9n-hhc"/>
                             </connections>
                         </stepper>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="en9-uN-nNb">
-                            <rect key="frame" x="15" y="9" width="10" height="24"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="en9-uN-nNb">
+                            <rect key="frame" x="0.0" y="8" width="25" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="Cok-jG-ysa"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -91,11 +94,11 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="8NI-9e-zG6"/>
+                        <constraint firstItem="en9-uN-nNb" firstAttribute="leading" secondItem="LKF-cV-dd9" secondAttribute="leading" id="CoX-rX-TrD"/>
                         <constraint firstAttribute="height" constant="40" id="Hzo-0x-FQy"/>
-                        <constraint firstItem="CeJ-wh-XrK" firstAttribute="leading" secondItem="en9-uN-nNb" secondAttribute="trailing" constant="25" id="L7I-Kd-cJE"/>
+                        <constraint firstItem="CeJ-wh-XrK" firstAttribute="leading" secondItem="en9-uN-nNb" secondAttribute="trailing" constant="15" id="L7I-Kd-cJE"/>
                         <constraint firstAttribute="centerY" secondItem="en9-uN-nNb" secondAttribute="centerY" id="bjQ-Du-aay"/>
                         <constraint firstAttribute="centerY" secondItem="CeJ-wh-XrK" secondAttribute="centerY" id="lIM-MF-ZTP"/>
-                        <constraint firstItem="en9-uN-nNb" firstAttribute="leading" secondItem="LKF-cV-dd9" secondAttribute="leading" constant="15" id="xGz-WN-4I7"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aVw-pw-OyO" customClass="UIVisualEffectView">
