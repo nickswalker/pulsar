@@ -73,6 +73,9 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         beatsControl.activated = accents
         beatsControl.delegate = self
 
+        addKerning(settingsButton)
+        addKerning(quickSettingsButton)
+
 
         let bpm = defaults.integerForKey("bpm")
         bpmControl.bpm = bpm
@@ -302,6 +305,16 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     // MARK: Appearance
     override func preferredStatusBarStyle() -> (UIStatusBarStyle) {
         return .LightContent
+    }
+    
+    private func addKerning(button: UIButton){
+        let string = button.titleLabel?.attributedText.mutableCopy() as NSMutableAttributedString
+        string.addAttribute(NSKernAttributeName, value: 1.0, range: NSMakeRange(0, string.length))
+        button.setAttributedTitle(string, forState: .Normal)
+        let insetAmount: CGFloat = 4.0;
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
+        button.contentEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
+    
     }
 
     // MARK: Sessions

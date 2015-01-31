@@ -41,6 +41,7 @@
 		D4ADD334196EF80A0040DFF3 /* LED.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ADD32E196EE3E40040DFF3 /* LED.swift */; };
 		D4ADD335196EF80A0040DFF3 /* MetronomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F42E22196C414200BB847F /* MetronomeViewController.swift */; };
 		D4ADD336196EF80A0040DFF3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D586BC196B422400B9CC8F /* SettingsViewController.swift */; };
+		D4BED45C1A7C739E0088A8A5 /* BackgroundLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BED45B1A7C739E0088A8A5 /* BackgroundLayer.swift */; };
 		D4C298711A6782DB00A87612 /* QuickSettingsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C298701A6782DB00A87612 /* QuickSettingsPanel.xib */; };
 		D4C298731A67831700A87612 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4C298721A67831700A87612 /* iPhone.storyboard */; };
 		D4C298D81A67856300A87612 /* BlurBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C298D71A67856300A87612 /* BlurBackground.swift */; };
@@ -158,6 +159,7 @@
 		D463FCF91968DBE200606FFD /* SoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
 		D49B39141986A4DE001D7919 /* ToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		D4ADD32E196EE3E40040DFF3 /* LED.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LED.swift; sourceTree = "<group>"; };
+		D4BED45B1A7C739E0088A8A5 /* BackgroundLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundLayer.swift; sourceTree = SOURCE_ROOT; };
 		D4C298701A6782DB00A87612 /* QuickSettingsPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickSettingsPanel.xib; sourceTree = "<group>"; };
 		D4C298721A67831700A87612 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		D4C298751A67840900A87612 /* Cartography.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cartography.h; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 			children = (
 				D4EBBAE51986D45E00050FBC /* ShardControl.swift */,
 				D4EBBAE61986D45E00050FBC /* ShardLayer.swift */,
+				D4BED45B1A7C739E0088A8A5 /* BackgroundLayer.swift */,
 			);
 			name = "Shard Control";
 			path = MetronomeControlKit;
@@ -747,6 +750,7 @@
 				D4ADD333196EF80A0040DFF3 /* SoundPlayer.swift in Sources */,
 				D49B39151986A4DE001D7919 /* ToggleButton.swift in Sources */,
 				D4C298DE1A67859800A87612 /* Configuration.swift in Sources */,
+				D4BED45C1A7C739E0088A8A5 /* BackgroundLayer.swift in Sources */,
 				D4ADD334196EF80A0040DFF3 /* LED.swift in Sources */,
 				D4ADD335196EF80A0040DFF3 /* MetronomeViewController.swift in Sources */,
 				D4C298E11A6788B100A87612 /* ConnectionManager.swift in Sources */,

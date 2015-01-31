@@ -177,7 +177,7 @@ import UIKit
     }
 
     override func hitTest(p: CGPoint) -> CALayer! {
-        if CGPathContainsPoint(path, nil, p, true) {
+        if CGPathContainsPoint(path, nil, p, false) {
             return self
         } else {
             return nil

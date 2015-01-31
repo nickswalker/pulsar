@@ -79,7 +79,7 @@ public protocol ShardControlDelegate {
     public var delegate: ShardControlDelegate?
     private let doubleTapRecognizer = UITapGestureRecognizer()
     private var layers = [ShardLayer]()
-    private var backgroundFlashLayer = CALayer()
+    private var backgroundFlashLayer = BackgroundLayer()
 
     // MARK: Init
 
@@ -142,7 +142,7 @@ public protocol ShardControlDelegate {
             tempLayer.startAngle = CGFloat(M_PI) * 3
             tempLayer.contentsScale = contentScaleFactor
             layer.addSublayer(tempLayer)
-            layer.insertSublayer(tempLayer, atIndex: 0)
+            layer.insertSublayer(tempLayer, atIndex: 1) //Above the backgroundlayer but below the other shards
             layers.append(tempLayer)
         }
         adjustSublayerAngles()
@@ -260,7 +260,6 @@ public protocol ShardControlDelegate {
             targetShard = layer.hitTest(point) as? ShardLayer
             if targetShard != nil {
                 targetShard!.accent = !targetShard!.accent
-                targetShard!.setNeedsDisplay()
                 for var i = 0; i < layers.count; i++ {
                     var targetLayer = layers[i]
                     if targetLayer == targetShard {
