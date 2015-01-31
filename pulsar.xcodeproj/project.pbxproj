@@ -11,7 +11,6 @@
 		01B54523179828B300A4F4E0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B54522179828B300A4F4E0 /* Images.xcassets */; };
 		D405BB641A75A8FC0018E0BF /* TimerDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = D405BB631A75A8FC0018E0BF /* TimerDriver.m */; };
 		D405BB651A75AA950018E0BF /* TimerDriver.h in Sources */ = {isa = PBXBuildFile; fileRef = D405BB611A75A4800018E0BF /* TimerDriver.h */; };
-		D4099B071A68966000BF3AD7 /* LabeledSlideStepper.h in Headers */ = {isa = PBXBuildFile; fileRef = D4099B061A68966000BF3AD7 /* LabeledSlideStepper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4099B191A68966000BF3AD7 /* LabeledSlideStepper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4099B021A68966000BF3AD7 /* LabeledSlideStepper.framework */; };
 		D4099B1A1A68966000BF3AD7 /* LabeledSlideStepper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4099B021A68966000BF3AD7 /* LabeledSlideStepper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4099B261A68969800BF3AD7 /* LabeledSlideStepper.h in Headers */ = {isa = PBXBuildFile; fileRef = D4099B221A68969800BF3AD7 /* LabeledSlideStepper.h */; };
@@ -61,7 +60,6 @@
 		D4FDD05E1A75E2CF00157349 /* PeerKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C2988C1A67843300A87612 /* PeerKit.swift */; };
 		D4FDD05F1A75E2CF00157349 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C2988D1A67843300A87612 /* Session.swift */; };
 		D4FDD0601A75E2CF00157349 /* Transceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C2988E1A67843300A87612 /* Transceiver.swift */; };
-		D4FDD06C1A75E33400157349 /* Cartography.h in Headers */ = {isa = PBXBuildFile; fileRef = D4FDD06B1A75E33400157349 /* Cartography.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4FDD07E1A75E33400157349 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4FDD0671A75E33300157349 /* Cartography.framework */; };
 		D4FDD07F1A75E33400157349 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4FDD0671A75E33300157349 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4FDD0861A75E37100157349 /* Cartography.h in Headers */ = {isa = PBXBuildFile; fileRef = D4C298751A67840900A87612 /* Cartography.h */; };
@@ -132,10 +130,6 @@
 		D405BB631A75A8FC0018E0BF /* TimerDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerDriver.m; sourceTree = "<group>"; };
 		D405BB661A75B6D70018E0BF /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		D4099B021A68966000BF3AD7 /* LabeledSlideStepper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LabeledSlideStepper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4099B051A68966000BF3AD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4099B061A68966000BF3AD7 /* LabeledSlideStepper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabeledSlideStepper.h; sourceTree = "<group>"; };
-		D4099B141A68966000BF3AD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4099B151A68966000BF3AD7 /* LabeledSlideStepperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledSlideStepperTests.swift; sourceTree = "<group>"; };
 		D4099B211A68969800BF3AD7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = LabeledSlideStepper/Info.plist; sourceTree = SOURCE_ROOT; };
 		D4099B221A68969800BF3AD7 /* LabeledSlideStepper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LabeledSlideStepper.h; path = LabeledSlideStepper/LabeledSlideStepper.h; sourceTree = SOURCE_ROOT; };
 		D4099B231A68969800BF3AD7 /* LabeledSlideStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabeledSlideStepper.swift; path = LabeledSlideStepper/LabeledSlideStepper.swift; sourceTree = SOURCE_ROOT; };
@@ -205,10 +199,6 @@
 		D4F42E28196C838B00BB847F /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		D4FDD03C1A75E29000157349 /* PeerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PeerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4FDD0671A75E33300157349 /* Cartography.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4FDD06A1A75E33400157349 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4FDD06B1A75E33400157349 /* Cartography.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cartography.h; sourceTree = "<group>"; };
-		D4FDD0791A75E33400157349 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4FDD07A1A75E33400157349 /* CartographyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartographyTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,18 +256,11 @@
 		01B544F3179828B300A4F4E0 = {
 			isa = PBXGroup;
 			children = (
-				D4C298871A67843300A87612 /* PeerKit */,
-				D4C298741A67840900A87612 /* Cartography */,
+				D47624291A7D343600D68812 /* Vendor */,
 				D4644DD6197E248E00B9FF15 /* Shard Control */,
 				D46DB8EF19844F7100A5820B /* LabeledSlideStepper */,
-				01B54508179828B300A4F4E0 /* Supporting Files */,
 				01B54507179828B300A4F4E0 /* iOS */,
-				D4099B031A68966000BF3AD7 /* LabeledSlideStepper */,
-				D4099B121A68966000BF3AD7 /* LabeledSlideStepperTests */,
-				D4FDD0681A75E33400157349 /* Cartography */,
-				D4FDD0771A75E33400157349 /* CartographyTests */,
 				01B544FD179828B300A4F4E0 /* Products */,
-				D42B23D01A773BBD0003251D /* BWWalkthrough */,
 			);
 			sourceTree = "<group>";
 		};
@@ -302,6 +285,7 @@
 				D48158CE1A5494B20040AD08 /* Views */,
 				D48158CD1A5494AA0040AD08 /* View Controllers */,
 				D4B8667E19721670000535F6 /* Helpers */,
+				01B54508179828B300A4F4E0 /* Supporting Files */,
 			);
 			name = iOS;
 			path = Classes;
@@ -316,41 +300,6 @@
 				0167864617A439C100F71527 /* Sounds */,
 			);
 			name = "Supporting Files";
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		D4099B031A68966000BF3AD7 /* LabeledSlideStepper */ = {
-			isa = PBXGroup;
-			children = (
-				D4099B061A68966000BF3AD7 /* LabeledSlideStepper.h */,
-				D4099B041A68966000BF3AD7 /* Supporting Files */,
-			);
-			path = LabeledSlideStepper;
-			sourceTree = "<group>";
-		};
-		D4099B041A68966000BF3AD7 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D4099B051A68966000BF3AD7 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D4099B121A68966000BF3AD7 /* LabeledSlideStepperTests */ = {
-			isa = PBXGroup;
-			children = (
-				D4099B151A68966000BF3AD7 /* LabeledSlideStepperTests.swift */,
-				D4099B131A68966000BF3AD7 /* Supporting Files */,
-			);
-			path = LabeledSlideStepperTests;
-			sourceTree = "<group>";
-		};
-		D4099B131A68966000BF3AD7 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D4099B141A68966000BF3AD7 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		D42B23D01A773BBD0003251D /* BWWalkthrough */ = {
@@ -360,7 +309,7 @@
 				D42B23D21A773BBD0003251D /* BWWalkthroughViewController.swift */,
 			);
 			name = BWWalkthrough;
-			path = Vendor/BWWalkthrough/BWWalkthrough;
+			path = ../Vendor/BWWalkthrough/BWWalkthrough;
 			sourceTree = "<group>";
 		};
 		D4644DD6197E248E00B9FF15 /* Shard Control */ = {
@@ -384,6 +333,17 @@
 			);
 			name = LabeledSlideStepper;
 			path = MetronomeControl;
+			sourceTree = "<group>";
+		};
+		D47624291A7D343600D68812 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				D4C298871A67843300A87612 /* PeerKit */,
+				D4C298741A67840900A87612 /* Cartography */,
+				D42B23D01A773BBD0003251D /* BWWalkthrough */,
+			);
+			name = Vendor;
+			path = Cartography;
 			sourceTree = "<group>";
 		};
 		D48158CD1A5494AA0040AD08 /* View Controllers */ = {
@@ -452,7 +412,7 @@
 				D4C298861A67840900A87612 /* ViewUtils.swift */,
 			);
 			name = Cartography;
-			path = Vendor/Cartography/Cartography;
+			path = ../Vendor/Cartography/Cartography;
 			sourceTree = "<group>";
 		};
 		D4C298871A67843300A87612 /* PeerKit */ = {
@@ -467,7 +427,7 @@
 				D4C2988E1A67843300A87612 /* Transceiver.swift */,
 			);
 			name = PeerKit;
-			path = Vendor/PeerKit/PeerKit;
+			path = ../Vendor/PeerKit/PeerKit;
 			sourceTree = "<group>";
 		};
 		D4C298961A6784A700A87612 /* Supporting Files */ = {
@@ -479,40 +439,6 @@
 			path = ../../../PeerKit;
 			sourceTree = "<group>";
 		};
-		D4FDD0681A75E33400157349 /* Cartography */ = {
-			isa = PBXGroup;
-			children = (
-				D4FDD06B1A75E33400157349 /* Cartography.h */,
-				D4FDD0691A75E33400157349 /* Supporting Files */,
-			);
-			path = Cartography;
-			sourceTree = "<group>";
-		};
-		D4FDD0691A75E33400157349 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D4FDD06A1A75E33400157349 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D4FDD0771A75E33400157349 /* CartographyTests */ = {
-			isa = PBXGroup;
-			children = (
-				D4FDD07A1A75E33400157349 /* CartographyTests.swift */,
-				D4FDD0781A75E33400157349 /* Supporting Files */,
-			);
-			path = CartographyTests;
-			sourceTree = "<group>";
-		};
-		D4FDD0781A75E33400157349 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D4FDD0791A75E33400157349 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -521,7 +447,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4099B261A68969800BF3AD7 /* LabeledSlideStepper.h in Headers */,
-				D4099B071A68966000BF3AD7 /* LabeledSlideStepper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,7 +462,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4FDD06C1A75E33400157349 /* Cartography.h in Headers */,
 				D4FDD0861A75E37100157349 /* Cartography.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
