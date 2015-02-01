@@ -75,6 +75,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
         addKerning(settingsButton)
         addKerning(quickSettingsButton)
+        addKerning(sessionButton)
 
 
         let bpm = defaults.integerForKey("bpm")
@@ -212,12 +213,10 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
     }
     @IBAction func didSwipeLeft(){
-        beatsControl.numberOfShards--
-        defaults.setInteger(beatsControl!.numberOfShards, forKey: "beats")
+        defaults.setInteger(beatsControl!.numberOfShards - 1, forKey: "beats")
     }
     @IBAction func didSwipeRight(){
-        beatsControl.numberOfShards++
-        defaults.setInteger(beatsControl!.numberOfShards, forKey: "beats")
+        defaults.setInteger(beatsControl!.numberOfShards + 1, forKey: "beats")
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -334,6 +333,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
                 //person does. The SessionController will be already removed from the view or being animated.
                 self.sessionController!.delegate?.sessionViewControllerDidFinish(.Joined)
             }
+            ConnectionManager.heartBeat()
         })
         ConnectionManager.onEvent(.ChangeBeats, run: {
             peerID, object in
@@ -359,6 +359,19 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         ConnectionManager.onEvent(.Stop, run: {
             peerID, object in
             self.running = false
+        })
+        ConnectionManager.onEvent(.Heartbeat, run: {
+            peerID, object in
+            let packet:[String: MPCSerializable] = ["HeartbeatResponse": MPCInt(value: Int(mach_absolute_time()))]
+            ConnectionManager.sendEvent(.HeartbeatResponse, object: packet)
+
+        })
+        ConnectionManager.onEvent(.HeartbeatResponse, run: {
+            peerID, object in
+            let dict = object as [String: NSData]
+            let senderTime: Int = MPCInt(mpcSerialized: dict["HeartbeatResponse"]!).value
+            ConnectionManager.latency[peerID] = Int(ConnectionManager.lastHeartbeatTime) - senderTime
+            println(ConnectionManager.lastHeartbeatTime - senderTime)
         })
     }
 }

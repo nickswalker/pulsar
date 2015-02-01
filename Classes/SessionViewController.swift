@@ -38,7 +38,9 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
         super.viewDidLoad()
         if !ConnectionManager.inSession {
             ConnectionManager.start()
-        } else {
+            
+        }
+        if !ConnectionManager.aloneInSession {
             managementMode = true
         }
         
@@ -58,12 +60,16 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        ConnectionManager.onConnect { _ in
+        ConnectionManager.onConnect { peerID in
+            println("Connected: \(peerID)")
             self.updatePlayers()
         }
         ConnectionManager.onDisconnect { peerID in
-            println(peerID)
+            println("Disconnected: \(peerID)")
             self.updatePlayers()
+            if ConnectionManager.aloneInSession {
+                println("Session is empty")
+            }
         }
     }
 

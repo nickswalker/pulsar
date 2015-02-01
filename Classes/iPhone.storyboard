@@ -91,6 +91,28 @@
                                     <action selector="presentQuickSettings" destination="rQl-PL-IFJ" eventType="touchUpInside" id="S8I-EE-u4c"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3MM-OJ-ZQ7" userLabel="Info Button">
+                                <rect key="frame" x="265" y="280" width="70" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="OWm-cR-Kmm"/>
+                                    <constraint firstAttribute="height" constant="40" id="XZ1-rN-y7z"/>
+                                </constraints>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="SESSION">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="14" name="AvenirNext-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="presentSessionController" destination="rQl-PL-IFJ" eventType="touchUpInside" id="mFy-4u-5jQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.25277549342105265" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -100,8 +122,10 @@
                             <constraint firstItem="Cu6-43-IhF" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" id="8Tq-Bv-2fd"/>
                             <constraint firstAttribute="bottom" secondItem="gGa-VU-yN3" secondAttribute="bottom" id="IaG-O6-oTR"/>
                             <constraint firstAttribute="trailing" secondItem="0FJ-Ky-pSe" secondAttribute="trailing" id="Qdh-ne-NzR"/>
+                            <constraint firstAttribute="centerX" secondItem="3MM-OJ-ZQ7" secondAttribute="centerX" id="ZEd-rB-31k"/>
                             <constraint firstAttribute="trailing" secondItem="gGa-VU-yN3" secondAttribute="trailing" id="eQA-fh-mTX"/>
                             <constraint firstItem="0FJ-Ky-pSe" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" id="hXF-01-ae4"/>
+                            <constraint firstItem="jdt-oJ-EyC" firstAttribute="top" secondItem="3MM-OJ-ZQ7" secondAttribute="bottom" id="k3P-IB-rNJ"/>
                             <constraint firstItem="0FJ-Ky-pSe" firstAttribute="top" secondItem="l9E-07-oys" secondAttribute="top" id="lqu-d5-39a"/>
                             <constraint firstAttribute="centerY" secondItem="XxR-Jg-CVn" secondAttribute="centerY" id="xRs-le-Ema"/>
                             <constraint firstItem="jdt-oJ-EyC" firstAttribute="top" secondItem="Cu6-43-IhF" secondAttribute="bottom" id="yh9-CR-QFg"/>
@@ -112,6 +136,7 @@
                         <outlet property="beatsControl" destination="0FJ-Ky-pSe" id="CaB-4O-DNh"/>
                         <outlet property="bpmControl" destination="XxR-Jg-CVn" id="k9N-Sh-EbW"/>
                         <outlet property="quickSettingsButton" destination="Cu6-43-IhF" id="fo4-Hr-TIn"/>
+                        <outlet property="sessionButton" destination="3MM-OJ-ZQ7" id="NNY-63-UjN"/>
                         <outlet property="settingsButton" destination="gGa-VU-yN3" id="SHw-8h-n6K"/>
                     </connections>
                 </viewController>

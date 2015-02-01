@@ -21,7 +21,9 @@ enum Event: String {
     ChangeBeats = "ChangeBeats",
     Start = "Start",
     Stop = "Stop",
-    LeftSession = "LeftSession"
+    LeftSession = "LeftSession",
+    Heartbeat = "Heartbeat",
+    HeartbeatResponse = "HeartbeatResponse"
 }
 
 struct ConnectionManager {
@@ -47,9 +49,13 @@ struct ConnectionManager {
     static var inSession: Bool {
         return PeerKit.session != nil
     }
+
     static var aloneInSession: Bool {
         return ConnectionManager.otherPlayers.count == 0
     }
+
+    static var latency = [MCPeerID: Int]()
+    static var lastHeartbeatTime: Int = 0
 
     // MARK: Start
 
@@ -58,7 +64,6 @@ struct ConnectionManager {
     }
     static func stop(){
         PeerKit.stopTranscieving()
-        PeerKit.session = nil
         
     }
 
@@ -80,6 +85,13 @@ struct ConnectionManager {
         }
     }
 
+    static func heartBeat(){
+        ConnectionManager.lastHeartbeatTime = Int(mach_absolute_time())
+        let packet:[String: MPCSerializable] = ["Heartbeat": MPCInt(value: lastHeartbeatTime)]
+        ConnectionManager.sendEvent(.Heartbeat, object: packet)
+    }
+
+    
     // MARK: Sending
 
     static func sendEvent(event: Event, object: [String: MPCSerializable]? = nil, toPeers peers: [MCPeerID]? = PeerKit.session?.connectedPeers as [MCPeerID]?) {
