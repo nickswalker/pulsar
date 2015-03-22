@@ -17,10 +17,10 @@ DerivedData
 *.hmap
 project.xcworkspace
 
-build/*
-Sounds
-Branding
-Classes/Support/*
-Vendor/*
-Cartography/*
-PeerKit/*
+build/
+Sounds/
+Branding/
+Vendor/
+Cartography/
+PeerKit/
+Pods/

@@ -14,7 +14,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
 
     private class HideBackgroundView: UIView {
         var delegate: BackgroundViewDelegate?
-        override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        private override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
             delegate?.viewWasTapped()
         }
     }
@@ -144,7 +144,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
 
     func setupCollectionView() {
         // Collection View
-        let cvLayout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
+        let cvLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         cvLayout.itemSize = CGSize(width: separator.frame.size.width, height: 50)
         cvLayout.minimumLineSpacing = 0
         collectionView.dataSource = self
@@ -224,7 +224,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PlayerCell.reuseID, forIndexPath: indexPath) as PlayerCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PlayerCell.reuseID, forIndexPath: indexPath) as! PlayerCell
         cell.label.text = ConnectionManager.otherPlayers[indexPath.row].name
         return cell
     }
@@ -251,7 +251,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
 
         //Insert right beneath the controls panel
         let index = view.superview!.subviews.count - 2
-        view.superview!.insertSubview(overlayView, aboveSubview: view.superview!.subviews[index] as UIView)
+        view.superview!.insertSubview(overlayView, aboveSubview: view.superview!.subviews[index] as! UIView)
         UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: {
             self.overlayView.alpha = 1
             }, completion: nil)

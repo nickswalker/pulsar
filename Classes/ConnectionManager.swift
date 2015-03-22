@@ -32,14 +32,14 @@ struct ConnectionManager {
 
     static var peers: [MCPeerID] {
         if let session = PeerKit.session {
-            return session.connectedPeers as [MCPeerID]
+            return session.connectedPeers as! [MCPeerID]
         }
         return [MCPeerID]()
     }
 
     static var otherPlayers: [Player] {
         if let session = PeerKit.session {
-            return (session.connectedPeers as [MCPeerID]).map { Player(peer: $0) }
+            return (session.connectedPeers as! [MCPeerID]).map { Player(peer: $0) }
         }
         return [Player]()
     }
@@ -63,7 +63,7 @@ struct ConnectionManager {
         PeerKit.transceive("us-pulsar")
     }
     static func stop(){
-        PeerKit.stopTranscieving()
+        PeerKit.stopTransceiving()
         
     }
 
@@ -94,7 +94,7 @@ struct ConnectionManager {
     
     // MARK: Sending
 
-    static func sendEvent(event: Event, object: [String: MPCSerializable]? = nil, toPeers peers: [MCPeerID]? = PeerKit.session?.connectedPeers as [MCPeerID]?) {
+    static func sendEvent(event: Event, object: [String: MPCSerializable]? = nil, toPeers peers: [MCPeerID]? = PeerKit.session?.connectedPeers as! [MCPeerID]?) {
         var anyObject: [String: NSData]?
         if let object = object {
             anyObject = [String: NSData]()

@@ -67,7 +67,7 @@ class SettingsViewController: UITableViewController, UITableViewDataSource {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showAbout" {
-            let destination = segue.destinationViewController.view as UIWebView
+            let destination = segue.destinationViewController.view as! UIWebView
             let file = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("about", ofType: "html")!)
             destination.loadRequest(NSURLRequest(URL: file!))
 

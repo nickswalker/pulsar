@@ -20,7 +20,7 @@ struct MPCInt: MPCSerializable {
     }
 
     init(mpcSerialized: NSData) {
-        let value = NSKeyedUnarchiver.unarchiveObjectWithData(mpcSerialized) as Int
+        let value = NSKeyedUnarchiver.unarchiveObjectWithData(mpcSerialized) as! Int
         self.init(value: value)
     }
 }
