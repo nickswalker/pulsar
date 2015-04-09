@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "01B544FB179828B300A4F4E0"
-               BuildableName = "Pulsar.temp_caseinsensitive_rename.app"
+               BuildableName = "Pulsar.app"
                BlueprintName = "Pulsar"
                ReferencedContainer = "container:Pulsar.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "01B544FB179828B300A4F4E0"
-            BuildableName = "Pulsar.temp_caseinsensitive_rename.app"
+            BuildableName = "Pulsar.app"
             BlueprintName = "Pulsar"
             ReferencedContainer = "container:Pulsar.xcodeproj">
          </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "01B544FB179828B300A4F4E0"
-            BuildableName = "Pulsar.temp_caseinsensitive_rename.app"
+            BuildableName = "Pulsar.app"
             BlueprintName = "Pulsar"
             ReferencedContainer = "container:Pulsar.xcodeproj">
          </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "01B544FB179828B300A4F4E0"
-            BuildableName = "Pulsar.temp_caseinsensitive_rename.app"
+            BuildableName = "Pulsar.app"
             BlueprintName = "Pulsar"
             ReferencedContainer = "container:Pulsar.xcodeproj">
          </BuildableReference>

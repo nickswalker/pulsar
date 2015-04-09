@@ -11,7 +11,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
 
-        Mixpanel.sharedInstanceWithToken(Config.mixPanelToken)
+        let mixpanel = Mixpanel.sharedInstanceWithToken(Config.mixPanelToken)
+        mixpanel.track("Launched")
         SoundPlayer.setup()
         UIApplication.sharedApplication().statusBarStyle = .LightContent
 

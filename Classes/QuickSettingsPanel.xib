@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7525" systemVersion="14D98g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuickSettingsViewController" customModule="pulsar" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuickSettingsViewController" customModule="Pulsar" customModuleProvider="target">
             <connections>
                 <outlet property="beatControl" destination="oco-gg-ab9" id="aP8-Cl-0lH"/>
                 <outlet property="beatsControl" destination="CeJ-wh-XrK" id="xnO-54-DQ6"/>
@@ -17,7 +17,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BlurBackground" customModule="pulsar" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BlurBackground" customModule="Pulsar" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="464" height="202"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -37,7 +37,7 @@
                         </mask>
                     </variation>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oco-gg-ab9" customClass="ToggleButton" customModule="pulsar" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oco-gg-ab9" customClass="ToggleButton" customModule="Pulsar" customModuleProvider="target">
                     <rect key="frame" x="8" y="41" width="220" height="34"/>
                     <state key="normal" title="Beat">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -46,7 +46,7 @@
                         <action selector="settingChanged:" destination="-1" eventType="valueChanged" id="qM9-lc-hXS"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdj-mF-j3j" customClass="ToggleButton" customModule="pulsar" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdj-mF-j3j" customClass="ToggleButton" customModule="Pulsar" customModuleProvider="target">
                     <rect key="frame" x="236" y="41" width="220" height="34"/>
                     <state key="normal" title="Division">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -55,7 +55,7 @@
                         <action selector="settingChanged:" destination="-1" eventType="valueChanged" id="Oic-K3-dde"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJv-S4-JnB" customClass="ToggleButton" customModule="pulsar" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJv-S4-JnB" customClass="ToggleButton" customModule="Pulsar" customModuleProvider="target">
                     <rect key="frame" x="8" y="83" width="220" height="34"/>
                     <state key="normal" title="Subdivison">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -64,7 +64,7 @@
                         <action selector="settingChanged:" destination="-1" eventType="valueChanged" id="Y3G-Wf-dAl"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4d-BX-QGf" customClass="ToggleButton" customModule="pulsar" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4d-BX-QGf" customClass="ToggleButton" customModule="Pulsar" customModuleProvider="target">
                     <rect key="frame" x="236" y="83" width="220" height="34"/>
                     <state key="normal" title="Triplet">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

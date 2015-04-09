@@ -2,12 +2,10 @@ import AVFoundation
 
 class LED {
 
-    private struct ClassMembers{
-        static let device: AVCaptureDevice? = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-    }
+    static let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
 
     class func flash() {
-        let device = ClassMembers.device
+        let device = LED.device
         if device!.torchAvailable {
             dispatch_async(dispatch_get_main_queue(), {
                 device!.lockForConfiguration(nil)
@@ -20,12 +18,12 @@ class LED {
     }
 
     class func hasLED() -> Bool {
-        if ClassMembers.device != nil {
-            return ClassMembers.device!.hasFlash
+        if LED.device != nil {
+            return LED.device!.hasFlash
         }
         else {
             return false
         }
-        }
+    }
 
 }

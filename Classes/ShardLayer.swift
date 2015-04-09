@@ -13,7 +13,6 @@ import UIKit
     private let strokeWidth: CGFloat = 2
     var center: CGPoint = CGPoint()
 
-    struct ClassMembers {
         static let customPropertyKeys: [String] = {
             var count: UInt32 = 0
             var keys = [String]()
@@ -25,20 +24,19 @@ import UIKit
             return keys
         }()
 
-        static let normalStrokeColor = UIColor(white: 0.3, alpha: 1.0).CGColor
-        static let animatedStrokeColor = UIColor(white: 0.5, alpha: 1.0).CGColor
-        static let normalFillColor = UIColor.clearColor().CGColor
-        static let activeFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.05).CGColor
-        static var accentFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.025).CGColor
-        static let accentActiveFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.1).CGColor
-        static let defaultTintColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.025).CGColor
-    }
+    static let normalStrokeColor = UIColor(white: 0.3, alpha: 1.0).CGColor
+    static let animatedStrokeColor = UIColor(white: 0.5, alpha: 1.0).CGColor
+    static let normalFillColor = UIColor.clearColor().CGColor
+    static let activeFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.05).CGColor
+    static var accentFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.025).CGColor
+    static let accentActiveFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.1).CGColor
+    static let defaultTintColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.025).CGColor
 
     var path: CGPath? = nil
     var active: Bool = false {
         willSet(newValue) {
             if newValue == true {
-                let newColor = accent ? ClassMembers.accentActiveFillColor : ClassMembers.activeFillColor
+                let newColor = accent ? ShardLayer.accentActiveFillColor : ShardLayer.activeFillColor
                 CATransaction.begin()
                 CATransaction.setDisableActions(true)
                 fillColor = newColor
@@ -46,7 +44,7 @@ import UIKit
             } else {
                 CATransaction.begin()
                 CATransaction.setAnimationDuration(0.3)
-                let newColor = accent ? ClassMembers.accentFillColor : ClassMembers.normalFillColor
+                let newColor = accent ? ShardLayer.accentFillColor : ShardLayer.normalFillColor
                 fillColor = newColor
                 CATransaction.commit()
             }
@@ -58,11 +56,11 @@ import UIKit
             CATransaction.begin()
             CATransaction.setAnimationDuration(0.5)
             if newValue == true {
-                let newColor = active ? ClassMembers.accentActiveFillColor : ClassMembers.accentFillColor
+                let newColor = active ? ShardLayer.accentActiveFillColor : ShardLayer.accentFillColor
 
                 fillColor = newColor
             } else {
-                let newColor = active ? ClassMembers.activeFillColor : ClassMembers.normalFillColor
+                let newColor = active ? ShardLayer.activeFillColor : ShardLayer.normalFillColor
 
                 fillColor = newColor
 
@@ -79,7 +77,7 @@ import UIKit
         super.init(layer: layer)
         if layer is ShardLayer {
             let shard = layer as! ShardLayer
-            for property in ClassMembers.customPropertyKeys {
+            for property in ShardLayer.customPropertyKeys {
                 let value: AnyObject? = shard.valueForKey(property)
                 setValue(value, forKey: property)
             }
@@ -93,8 +91,8 @@ import UIKit
     }
 
     func commonInit() {
-        fillColor = ClassMembers.normalFillColor
-        strokeColor = ClassMembers.normalStrokeColor
+        fillColor = ShardLayer.normalFillColor
+        strokeColor = ShardLayer.normalStrokeColor
         startAngle = 0.0
         endAngle = 0.0
         radius = 0.0
@@ -129,7 +127,7 @@ import UIKit
 
         CGContextSaveGState(ctx)
             // configure context the same as uipath
-            CGContextSetLineWidth(ctx, 1.0);
+            CGContextSetLineWidth(ctx, 2.0);
             CGContextSetLineJoin(ctx, kCGLineJoinMiter);
             CGContextSetLineCap(ctx, kCGLineCapButt);
             CGContextSetMiterLimit(ctx, 10);
@@ -172,9 +170,18 @@ import UIKit
 
     func flashStroke(){
         let strokeFlash = CAKeyframeAnimation(keyPath: "strokeColor")
-        strokeFlash.values = [ClassMembers.normalStrokeColor,
-            ClassMembers.animatedStrokeColor,
-            ClassMembers.normalStrokeColor]
+
+        //Get presentation layer
+        let pres = self.presentationLayer() as? ShardLayer
+        let currentStrokeColor: CGColor
+        if pres != nil{
+            currentStrokeColor = pres!.strokeColor
+        } else {
+            currentStrokeColor = ShardLayer.normalStrokeColor
+        }
+        strokeFlash.values = [currentStrokeColor,
+            ShardLayer.animatedStrokeColor,
+            ShardLayer.normalStrokeColor]
         strokeFlash.duration = 1.0
         strokeFlash.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
 
@@ -182,7 +189,7 @@ import UIKit
     }
 
     override class func needsDisplayForKey(key: String!) -> Bool {
-        let exists = contains(ClassMembers.customPropertyKeys, key)
+        let exists = contains(ShardLayer.customPropertyKeys, key)
         return exists || superclass()!.needsDisplayForKey(key)
     }
 
