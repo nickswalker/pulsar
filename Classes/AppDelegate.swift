@@ -1,5 +1,6 @@
 import UIKit
 import Foundation
+import Mixpanel
 
 let myTintColor = UIColor(red: 0.0941, green: 0.741, blue: 0.27, alpha: 1)
 
@@ -10,6 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
 
+        Mixpanel.sharedInstanceWithToken(Config.mixPanelToken)
         SoundPlayer.setup()
         UIApplication.sharedApplication().statusBarStyle = .LightContent
 
@@ -26,8 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                   "triplet": false,
                                   "firstLaunch": true
         ]
-
-
 
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "AvenirNext-DemiBold", size: 17)!]
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 17)!], forState: .Normal)

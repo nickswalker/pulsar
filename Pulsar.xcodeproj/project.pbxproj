@@ -10,9 +10,6 @@
 		014E89D817C3178300B17C47 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 014E89D717C3178300B17C47 /* Settings.bundle */; };
 		01B54523179828B300A4F4E0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B54522179828B300A4F4E0 /* Images.xcassets */; };
 		D402DB521ABF578C00EBCDE0 /* BWWalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D402DB501ABF578C00EBCDE0 /* BWWalkthroughPageViewController.swift */; };
-		D402DB531ABF578C00EBCDE0 /* BWWalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D402DB511ABF578C00EBCDE0 /* BWWalkthroughViewController.swift */; };
-		D402DB541ABF582B00EBCDE0 /* PeerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D402DB451ABF56ED00EBCDE0 /* PeerKit.framework */; };
-		D402DB551ABF582B00EBCDE0 /* PeerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D402DB451ABF56ED00EBCDE0 /* PeerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D405BB641A75A8FC0018E0BF /* TimerDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = D405BB631A75A8FC0018E0BF /* TimerDriver.m */; };
 		D405BB651A75AA950018E0BF /* TimerDriver.h in Sources */ = {isa = PBXBuildFile; fileRef = D405BB611A75A4800018E0BF /* TimerDriver.h */; };
 		D4099B191A68966000BF3AD7 /* LabeledSlideStepper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4099B021A68966000BF3AD7 /* LabeledSlideStepper.framework */; };
@@ -53,32 +50,13 @@
 		D4C298FE1A67895500A87612 /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C298FD1A67895500A87612 /* SessionViewController.swift */; };
 		D4C299001A67897200A87612 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C298FF1A67897200A87612 /* PlayerCell.swift */; };
 		D4C299011A67904800A87612 /* ShardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EBBAE51986D45E00050FBC /* ShardControl.swift */; };
+		D4CA5D521AD600B9001D2356 /* BWWalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D402DB511ABF578C00EBCDE0 /* BWWalkthroughViewController.swift */; };
 		D4EBBAE81986D45E00050FBC /* ShardLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EBBAE61986D45E00050FBC /* ShardLayer.swift */; };
+		D4FC8B5A1AD5EEB100E4BAE6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC8B591AD5EEB100E4BAE6 /* Config.swift */; };
 		EE4893C8E1CB033F715AD98C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 676012170234711D3FD14B14 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D402DB441ABF56ED00EBCDE0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D402DB3F1ABF56ED00EBCDE0 /* PeerKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E89FD6C01A0C3CDC00C2FEF7;
-			remoteInfo = PeerKit;
-		};
-		D402DB461ABF56ED00EBCDE0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D402DB3F1ABF56ED00EBCDE0 /* PeerKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E89FD6CB1A0C3CDC00C2FEF7;
-			remoteInfo = PeerKitTests;
-		};
-		D402DB561ABF582B00EBCDE0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D402DB3F1ABF56ED00EBCDE0 /* PeerKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E89FD6BF1A0C3CDC00C2FEF7;
-			remoteInfo = PeerKit;
-		};
 		D4099B171A68966000BF3AD7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 01B544F4179828B300A4F4E0 /* Project object */;
@@ -96,7 +74,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D4099B1A1A68966000BF3AD7 /* LabeledSlideStepper.framework in Embed Frameworks */,
-				D402DB551ABF582B00EBCDE0 /* PeerKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,10 +82,9 @@
 
 /* Begin PBXFileReference section */
 		014E89D717C3178300B17C47 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		01B544FC179828B300A4F4E0 /* pulsar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pulsar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		01B544FC179828B300A4F4E0 /* Pulsar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pulsar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B54522179828B300A4F4E0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		676012170234711D3FD14B14 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D402DB3F1ABF56ED00EBCDE0 /* PeerKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PeerKit.xcodeproj; path = Vendor/PeerKit/PeerKit.xcodeproj; sourceTree = SOURCE_ROOT; };
 		D402DB501ABF578C00EBCDE0 /* BWWalkthroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BWWalkthroughPageViewController.swift; path = Vendor/BWWalkthrough/BWWalkthrough/BWWalkthroughPageViewController.swift; sourceTree = SOURCE_ROOT; };
 		D402DB511ABF578C00EBCDE0 /* BWWalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BWWalkthroughViewController.swift; path = Vendor/BWWalkthrough/BWWalkthrough/BWWalkthroughViewController.swift; sourceTree = SOURCE_ROOT; };
 		D405BB5F1A75A43C0018E0BF /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -138,7 +114,7 @@
 		D463FCF91968DBE200606FFD /* SoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
 		D49B39141986A4DE001D7919 /* ToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		D4ADD32E196EE3E40040DFF3 /* LED.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LED.swift; sourceTree = "<group>"; };
-		D4BED45B1A7C739E0088A8A5 /* BackgroundLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundLayer.swift; sourceTree = SOURCE_ROOT; };
+		D4BED45B1A7C739E0088A8A5 /* BackgroundLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundLayer.swift; path = Classes/BackgroundLayer.swift; sourceTree = SOURCE_ROOT; };
 		D4C298701A6782DB00A87612 /* QuickSettingsPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickSettingsPanel.xib; sourceTree = "<group>"; };
 		D4C298721A67831700A87612 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		D4C298D71A67856300A87612 /* BlurBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurBackground.swift; sourceTree = "<group>"; };
@@ -156,6 +132,7 @@
 		D4F42E22196C414200BB847F /* MetronomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetronomeViewController.swift; sourceTree = "<group>"; };
 		D4F42E24196C423800BB847F /* DeltaTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeltaTracker.swift; sourceTree = "<group>"; };
 		D4F42E28196C838B00BB847F /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		D4FC8B591AD5EEB100E4BAE6 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Classes/Config.swift; sourceTree = SOURCE_ROOT; };
 		EF35C038E1D2141B41F1DB8B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F7ECE106C45E6E0803D521A0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,7 +144,6 @@
 			files = (
 				D4099B191A68966000BF3AD7 /* LabeledSlideStepper.framework in Frameworks */,
 				EE4893C8E1CB033F715AD98C /* Pods.framework in Frameworks */,
-				D402DB541ABF582B00EBCDE0 /* PeerKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +177,7 @@
 		01B544F3179828B300A4F4E0 = {
 			isa = PBXGroup;
 			children = (
+				D4FC8B591AD5EEB100E4BAE6 /* Config.swift */,
 				D47624291A7D343600D68812 /* Vendor */,
 				D4644DD6197E248E00B9FF15 /* Shard Control */,
 				D46DB8EF19844F7100A5820B /* LabeledSlideStepper */,
@@ -214,7 +191,7 @@
 		01B544FD179828B300A4F4E0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				01B544FC179828B300A4F4E0 /* pulsar.app */,
+				01B544FC179828B300A4F4E0 /* Pulsar.app */,
 				D4099B021A68966000BF3AD7 /* LabeledSlideStepper.framework */,
 			);
 			name = Products;
@@ -265,15 +242,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D402DB401ABF56ED00EBCDE0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D402DB451ABF56ED00EBCDE0 /* PeerKit.framework */,
-				D402DB471ABF56ED00EBCDE0 /* PeerKitTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		D4644DD6197E248E00B9FF15 /* Shard Control */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,7 +270,6 @@
 			children = (
 				D402DB501ABF578C00EBCDE0 /* BWWalkthroughPageViewController.swift */,
 				D402DB511ABF578C00EBCDE0 /* BWWalkthroughViewController.swift */,
-				D402DB3F1ABF56ED00EBCDE0 /* PeerKit.xcodeproj */,
 			);
 			name = Vendor;
 			path = Cartography;
@@ -381,11 +348,10 @@
 			);
 			dependencies = (
 				D4099B181A68966000BF3AD7 /* PBXTargetDependency */,
-				D402DB571ABF582B00EBCDE0 /* PBXTargetDependency */,
 			);
 			name = Pulsar;
 			productName = Ticker;
-			productReference = 01B544FC179828B300A4F4E0 /* pulsar.app */;
+			productReference = 01B544FC179828B300A4F4E0 /* Pulsar.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D4099B011A68966000BF3AD7 /* LabeledSlideStepper */ = {
@@ -424,7 +390,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 01B544F7179828B300A4F4E0 /* Build configuration list for PBXProject "pulsar" */;
+			buildConfigurationList = 01B544F7179828B300A4F4E0 /* Build configuration list for PBXProject "Pulsar" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -435,12 +401,6 @@
 			mainGroup = 01B544F3179828B300A4F4E0;
 			productRefGroup = 01B544FD179828B300A4F4E0 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = D402DB401ABF56ED00EBCDE0 /* Products */;
-					ProjectRef = D402DB3F1ABF56ED00EBCDE0 /* PeerKit.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				01B544FB179828B300A4F4E0 /* Pulsar */,
@@ -448,23 +408,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		D402DB451ABF56ED00EBCDE0 /* PeerKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = PeerKit.framework;
-			remoteRef = D402DB441ABF56ED00EBCDE0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D402DB471ABF56ED00EBCDE0 /* PeerKitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = PeerKitTests.xctest;
-			remoteRef = D402DB461ABF56ED00EBCDE0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		01B544FA179828B300A4F4E0 /* Resources */ = {
@@ -568,6 +511,7 @@
 			files = (
 				D4ADD330196EF80A0040DFF3 /* AppDelegate.swift in Sources */,
 				D4C299001A67897200A87612 /* PlayerCell.swift in Sources */,
+				D4CA5D521AD600B9001D2356 /* BWWalkthroughViewController.swift in Sources */,
 				D45740A119A3D45D00CB1C70 /* MetronomeView.swift in Sources */,
 				D4C298DC1A67858B00A87612 /* MPCInt.swift in Sources */,
 				D4C298FE1A67895500A87612 /* SessionViewController.swift in Sources */,
@@ -578,6 +522,7 @@
 				D402DB521ABF578C00EBCDE0 /* BWWalkthroughPageViewController.swift in Sources */,
 				D457545E19859B9B00967641 /* QuickSettingsViewController.swift in Sources */,
 				D4ADD333196EF80A0040DFF3 /* SoundPlayer.swift in Sources */,
+				D4FC8B5A1AD5EEB100E4BAE6 /* Config.swift in Sources */,
 				D49B39151986A4DE001D7919 /* ToggleButton.swift in Sources */,
 				D4C298DE1A67859800A87612 /* Configuration.swift in Sources */,
 				D4BED45C1A7C739E0088A8A5 /* BackgroundLayer.swift in Sources */,
@@ -586,7 +531,6 @@
 				D4C298E11A6788B100A87612 /* ConnectionManager.swift in Sources */,
 				D4C298D81A67856300A87612 /* BlurBackground.swift in Sources */,
 				D4C298FC1A67893100A87612 /* Player.swift in Sources */,
-				D402DB531ABF578C00EBCDE0 /* BWWalkthroughViewController.swift in Sources */,
 				D4C299011A67904800A87612 /* ShardControl.swift in Sources */,
 				D405BB651A75AA950018E0BF /* TimerDriver.h in Sources */,
 				D4ADD336196EF80A0040DFF3 /* SettingsViewController.swift in Sources */,
@@ -605,11 +549,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D402DB571ABF582B00EBCDE0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PeerKit;
-			targetProxy = D402DB561ABF582B00EBCDE0 /* PBXContainerItemProxy */;
-		};
 		D4099B181A68966000BF3AD7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D4099B011A68966000BF3AD7 /* LabeledSlideStepper */;
@@ -713,7 +652,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = pulsar;
+				PRODUCT_NAME = Pulsar;
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/Bridging-Header.h";
@@ -748,7 +687,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = pulsar;
+				PRODUCT_NAME = Pulsar;
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/Bridging-Header.h";
@@ -824,7 +763,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		01B544F7179828B300A4F4E0 /* Build configuration list for PBXProject "pulsar" */ = {
+		01B544F7179828B300A4F4E0 /* Build configuration list for PBXProject "Pulsar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				01B54538179828B400A4F4E0 /* Debug */,

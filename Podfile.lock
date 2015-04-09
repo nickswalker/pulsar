@@ -1,20 +1,33 @@
 PODS:
   - Cartography (0.2.1)
+  - Mixpanel (2.7.3):
+    - Mixpanel/MPCategoryHelpers (= 2.7.3)
+  - Mixpanel/MPCategoryHelpers (2.7.3)
+  - PeerKit (1.0)
 
 DEPENDENCIES:
   - Cartography (from `https://github.com/robb/Cartography.git`, branch `xcode6-3`)
+  - Mixpanel
+  - PeerKit (from `https://github.com/nickswalker/PeerKit.git`)
 
 EXTERNAL SOURCES:
   Cartography:
     :branch: xcode6-3
     :git: https://github.com/robb/Cartography.git
+  PeerKit:
+    :git: https://github.com/nickswalker/PeerKit.git
 
 CHECKOUT OPTIONS:
   Cartography:
     :commit: a3c53908d4b1e0a386fcdaefc221826515c3671c
     :git: https://github.com/robb/Cartography.git
+  PeerKit:
+    :commit: 39fe02867cf9fdf8ce9623125768672df2947077
+    :git: https://github.com/nickswalker/PeerKit.git
 
 SPEC CHECKSUMS:
   Cartography: bfd61a6b2f784ed20fff698c6119ee0dda2da9ea
+  Mixpanel: 1d387d76800e07e953958c62c97fea27f13632dd
+  PeerKit: d4d32fd512b6b222e3b1498da9ba3fcb3ff75c92
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.36.3

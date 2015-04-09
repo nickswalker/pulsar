@@ -1,11 +1,3 @@
-//
-//  MPCAttributedString.swift
-//  CardsAgainst
-//
-//  Created by JP Simard on 11/3/14.
-//  Copyright (c) 2014 JP Simard. All rights reserved.
-//
-
 import UIKit
 
 struct MPCInt: MPCSerializable {
