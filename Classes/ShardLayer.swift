@@ -20,7 +20,7 @@ import UIKit
             let properties = class_copyPropertyList(ShardLayer.self, &count)
             for var i: UInt32 = 0; i < count; i++ {
                 let property = property_getName(properties[Int(i)])
-                keys.append(NSString(CString: property, encoding: NSUTF8StringEncoding)!)
+                keys.append(NSString(CString: property, encoding: NSUTF8StringEncoding)! as String)
             }
             return keys
         }()
@@ -78,7 +78,7 @@ import UIKit
     override init!(layer: AnyObject!) {
         super.init(layer: layer)
         if layer is ShardLayer {
-            let shard = layer as ShardLayer
+            let shard = layer as! ShardLayer
             for property in ClassMembers.customPropertyKeys {
                 let value: AnyObject? = shard.valueForKey(property)
                 setValue(value, forKey: property)
@@ -127,7 +127,17 @@ import UIKit
         CGContextSetStrokeColorWithColor(ctx, strokeColor)
         CGContextSetLineWidth(ctx, strokeWidth)
 
-        CGContextDrawPath(ctx, kCGPathFillStroke)
+        CGContextSaveGState(ctx)
+            // configure context the same as uipath
+            CGContextSetLineWidth(ctx, 1.0);
+            CGContextSetLineJoin(ctx, kCGLineJoinMiter);
+            CGContextSetLineCap(ctx, kCGLineCapButt);
+            CGContextSetMiterLimit(ctx, 10);
+            CGContextSetFlatness(ctx, 0.6);
+            CGContextDrawPath(ctx, kCGPathFillStroke)
+            CGContextRestoreGState(ctx);
+
+
 
         path = newPath
     }

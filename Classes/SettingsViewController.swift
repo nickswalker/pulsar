@@ -1,5 +1,6 @@
 import Foundation
 import MultipeerConnectivity
+import Mixpanel
 
 protocol SettingsDelegate {
     func settingChangedForKey(key: String, value: AnyObject)
@@ -40,6 +41,9 @@ class SettingsViewController: UITableViewController, UITableViewDataSource {
             }
         }()
 
+        let mixpanel = Mixpanel.sharedInstance()
+
+        mixpanel.track("Changed Setting", properties:["Setting": key])
         delegate?.settingChangedForKey(key, value: sender.on)
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -67,7 +71,7 @@ class SettingsViewController: UITableViewController, UITableViewDataSource {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showAbout" {
-            let destination = segue.destinationViewController.view as UIWebView
+            let destination = segue.destinationViewController.view as! UIWebView
             let file = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("about", ofType: "html")!)
             destination.loadRequest(NSURLRequest(URL: file!))
 

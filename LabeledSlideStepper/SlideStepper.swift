@@ -26,11 +26,6 @@ public class SlideStepper: UIControl {
     }
     private var recognizer = UIPanGestureRecognizer()
 
-    override init() {
-        super.init(frame: CGRect(x: 0, y: 0, width: 180, height: 140))
-        commonInit()
-    }
-
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
