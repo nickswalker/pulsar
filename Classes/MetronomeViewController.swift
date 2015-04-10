@@ -75,7 +75,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
         addKerning(settingsButton)
         addKerning(quickSettingsButton)
-        addKerning(sessionButton)
+        //addKerning(sessionButton)
 
 
         let bpm = defaults.integerForKey("bpm")
