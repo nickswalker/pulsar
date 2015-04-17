@@ -75,6 +75,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
         addKerning(settingsButton)
         addKerning(quickSettingsButton)
+        //addKerning(sessionButton)
 
 
         let bpm = defaults.integerForKey("bpm")
@@ -96,8 +97,8 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         if defaults.boolForKey("firstLaunch") {
             // Get view controllers and build the walkthrough
             let stb = UIStoryboard(name: "Walkthrough", bundle: nil)
-            let walkthrough = stb.instantiateViewControllerWithIdentifier("master") as BWWalkthroughViewController
-            let page_one = stb.instantiateViewControllerWithIdentifier("basics") as UIViewController
+            let walkthrough = stb.instantiateViewControllerWithIdentifier("master") as! BWWalkthroughViewController
+            let page_one = stb.instantiateViewControllerWithIdentifier("basics") as! UIViewController
 
             // Attach the pages to the master
             //walkthrough.delegate = self
@@ -114,7 +115,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
     //@discussion listens to the timer emitting beatParts.
     func intervalWasFired(notification: NSNotification) {
-        let part = notification.userInfo!["beatPart"] as Int
+        let part = notification.userInfo!["beatPart"] as! Int
         let beatPart = UInt16(part)
         if (beatPart & BeatPartMeanings.OnTheBeat.rawValue) > 0 {
             beatsControl.activateNext()
@@ -212,12 +213,10 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
     }
     @IBAction func didSwipeLeft(){
-        beatsControl.numberOfShards--
-        defaults.setInteger(beatsControl!.numberOfShards, forKey: "beats")
+        defaults.setInteger(beatsControl!.numberOfShards - 1, forKey: "beats")
     }
     @IBAction func didSwipeRight(){
-        beatsControl.numberOfShards++
-        defaults.setInteger(beatsControl!.numberOfShards, forKey: "beats")
+        defaults.setInteger(beatsControl!.numberOfShards + 1, forKey: "beats")
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -225,7 +224,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
             running = false
 
             let viewControllers = segue.destinationViewController.viewControllers as Array
-            let settingsViewController = viewControllers[0] as SettingsViewController
+            let settingsViewController = viewControllers[0] as! SettingsViewController
             settingsViewController.delegate = self
             settingsViewController.screenFlash = defaults.boolForKey("screenFlash")
             settingsViewController.ledFlashOnBeat = defaults.boolForKey("ledFlashOnBeat")
@@ -284,7 +283,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     }
 
     @IBAction func unwindViewController(sender: UIStoryboardSegue){
-        let source = sender.sourceViewController as UIViewController
+        let source = sender.sourceViewController as! UIViewController
         dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -308,7 +307,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     }
     
     private func addKerning(button: UIButton){
-        let string = button.titleLabel?.attributedText.mutableCopy() as NSMutableAttributedString
+        let string = button.titleLabel?.attributedText.mutableCopy() as! NSMutableAttributedString
         string.addAttribute(NSKernAttributeName, value: 1.0, range: NSMakeRange(0, string.length))
         button.setAttributedTitle(string, forState: .Normal)
         let insetAmount: CGFloat = 4.0;
@@ -322,7 +321,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     private func setupSessionEventHandlers(){
         ConnectionManager.onEvent(.StartSession, run: {
             peerID, object in
-            let dict = object as [String: NSData]
+            let dict = object as! [String: NSData]
 
             let bpm = MPCInt(mpcSerialized: dict["bpm"]!).value
             let beats = MPCInt(mpcSerialized: dict["beats"]!).value
@@ -334,17 +333,18 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
                 //person does. The SessionController will be already removed from the view or being animated.
                 self.sessionController!.delegate?.sessionViewControllerDidFinish(.Joined)
             }
+            ConnectionManager.heartBeat()
         })
         ConnectionManager.onEvent(.ChangeBeats, run: {
             peerID, object in
-            let dict = object as [String: NSData]
+            let dict = object as! [String: NSData]
 
             let beats = MPCInt(mpcSerialized: dict["beats"]!).value
             self.beatsControl!.numberOfShards = beats
         })
         ConnectionManager.onEvent(.ChangeBPM, run: {
             peerID, object in
-            let dict = object as [String: NSData]
+            let dict = object as! [String: NSData]
 
             let bpm = MPCInt(mpcSerialized: dict["bpm"]!).value
             self.timer.bpm = bpm
@@ -359,6 +359,19 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         ConnectionManager.onEvent(.Stop, run: {
             peerID, object in
             self.running = false
+        })
+        ConnectionManager.onEvent(.Heartbeat, run: {
+            peerID, object in
+            let packet:[String: MPCSerializable] = ["HeartbeatResponse": MPCInt(value: Int(mach_absolute_time()))]
+            ConnectionManager.sendEvent(.HeartbeatResponse, object: packet)
+
+        })
+        ConnectionManager.onEvent(.HeartbeatResponse, run: {
+            peerID, object in
+            let dict = object as! [String: NSData]
+            let senderTime: Int = MPCInt(mpcSerialized: dict["HeartbeatResponse"]!).value
+            ConnectionManager.latency[peerID] = Int(ConnectionManager.lastHeartbeatTime) - senderTime
+            println(ConnectionManager.lastHeartbeatTime - senderTime)
         })
     }
 }

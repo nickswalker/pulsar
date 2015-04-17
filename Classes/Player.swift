@@ -1,11 +1,3 @@
-//
-//  Player.swift
-//  CardsAgainst
-//
-//  Created by JP Simard on 11/2/14.
-//  Copyright (c) 2014 JP Simard. All rights reserved.
-//
-
 import Foundation
 import MultipeerConnectivity
 import PeerKit
@@ -30,7 +22,7 @@ struct Player: Hashable, Equatable, MPCSerializable {
     }
 
     init(mpcSerialized: NSData) {
-        name = NSString(data: mpcSerialized, encoding: NSUTF8StringEncoding)!
+        name = NSString(data: mpcSerialized, encoding: NSUTF8StringEncoding)! as String
         me = (name == myName)
     }
 

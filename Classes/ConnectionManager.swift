@@ -1,11 +1,3 @@
-//
-//  ConnectionManager.swift
-//  CardsAgainst
-//
-//  Created by JP Simard on 11/2/14.
-//  Copyright (c) 2014 JP Simard. All rights reserved.
-//
-
 import Foundation
 import MultipeerConnectivity
 import PeerKit
@@ -21,7 +13,9 @@ enum Event: String {
     ChangeBeats = "ChangeBeats",
     Start = "Start",
     Stop = "Stop",
-    LeftSession = "LeftSession"
+    LeftSession = "LeftSession",
+    Heartbeat = "Heartbeat",
+    HeartbeatResponse = "HeartbeatResponse"
 }
 
 struct ConnectionManager {
@@ -30,14 +24,14 @@ struct ConnectionManager {
 
     static var peers: [MCPeerID] {
         if let session = PeerKit.session {
-            return session.connectedPeers as [MCPeerID]
+            return session.connectedPeers as! [MCPeerID]
         }
         return [MCPeerID]()
     }
 
     static var otherPlayers: [Player] {
         if let session = PeerKit.session {
-            return (session.connectedPeers as [MCPeerID]).map { Player(peer: $0) }
+            return (session.connectedPeers as! [MCPeerID]).map { Player(peer: $0) }
         }
         return [Player]()
     }
@@ -47,9 +41,13 @@ struct ConnectionManager {
     static var inSession: Bool {
         return PeerKit.session != nil
     }
+
     static var aloneInSession: Bool {
         return ConnectionManager.otherPlayers.count == 0
     }
+
+    static var latency = [MCPeerID: Int]()
+    static var lastHeartbeatTime: Int = 0
 
     // MARK: Start
 
@@ -57,8 +55,7 @@ struct ConnectionManager {
         PeerKit.transceive("us-pulsar")
     }
     static func stop(){
-        PeerKit.stopTranscieving()
-        PeerKit.session = nil
+        PeerKit.stopTransceiving()
         
     }
 
@@ -80,9 +77,16 @@ struct ConnectionManager {
         }
     }
 
+    static func heartBeat(){
+        ConnectionManager.lastHeartbeatTime = Int(mach_absolute_time())
+        let packet:[String: MPCSerializable] = ["Heartbeat": MPCInt(value: lastHeartbeatTime)]
+        ConnectionManager.sendEvent(.Heartbeat, object: packet)
+    }
+
+    
     // MARK: Sending
 
-    static func sendEvent(event: Event, object: [String: MPCSerializable]? = nil, toPeers peers: [MCPeerID]? = PeerKit.session?.connectedPeers as [MCPeerID]?) {
+    static func sendEvent(event: Event, object: [String: MPCSerializable]? = nil, toPeers peers: [MCPeerID]? = PeerKit.session?.connectedPeers as! [MCPeerID]?) {
         var anyObject: [String: NSData]?
         if let object = object {
             anyObject = [String: NSData]()

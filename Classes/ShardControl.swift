@@ -182,7 +182,7 @@ public protocol ShardControlDelegate {
 
     override public func tintColorDidChange() {
         super.tintColorDidChange()
-        ShardLayer.ClassMembers.accentFillColor = tintColor.colorWithAlphaComponent(0.05).CGColor
+        ShardLayer.accentFillColor = tintColor.colorWithAlphaComponent(0.05).CGColor
     }
 
     private func adjustSublayerAngles() {

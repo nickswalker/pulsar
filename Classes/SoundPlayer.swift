@@ -3,77 +3,75 @@ import UIKit
 import AVFoundation
 
 @objc class SoundPlayer: NSObject {
-    private struct ClassMembers {
-        static var engine = AVAudioEngine()
-        static var accentPlayer = AVAudioPlayerNode()
-        static var beatPlayer = AVAudioPlayerNode()
-        static var divisionPlayer = AVAudioPlayerNode()
-        static var subdivisionPlayer = AVAudioPlayerNode()
-        static var tripletPlayer = AVAudioPlayerNode()
+    static var engine = AVAudioEngine()
+    static var accentPlayer = AVAudioPlayerNode()
+    static var beatPlayer = AVAudioPlayerNode()
+    static var divisionPlayer = AVAudioPlayerNode()
+    static var subdivisionPlayer = AVAudioPlayerNode()
+    static var tripletPlayer = AVAudioPlayerNode()
 
-        static var accent = AVAudioPCMBuffer()
-        static var beat = AVAudioPCMBuffer()
-        static var division = AVAudioPCMBuffer()
-        static var subdivision = AVAudioPCMBuffer()
-        static var triplet = AVAudioPCMBuffer()
-        static var digitalVoice = false
-    }
+    static var accent = AVAudioPCMBuffer()
+    static var beat = AVAudioPCMBuffer()
+    static var division = AVAudioPCMBuffer()
+    static var subdivision = AVAudioPCMBuffer()
+    static var triplet = AVAudioPCMBuffer()
+    static var digitalVoice = false
 
     class func setup(){
-        digitalVoice(ClassMembers.digitalVoice)
-        attachAndConnectNodeToMainMixer(ClassMembers.accentPlayer)
-        attachAndConnectNodeToMainMixer(ClassMembers.beatPlayer)
-        attachAndConnectNodeToMainMixer(ClassMembers.divisionPlayer)
-        attachAndConnectNodeToMainMixer(ClassMembers.subdivisionPlayer)
-        attachAndConnectNodeToMainMixer(ClassMembers.tripletPlayer)
-        ClassMembers.engine.startAndReturnError(nil)
-        ClassMembers.accentPlayer.play()
-        ClassMembers.beatPlayer.play()
-        ClassMembers.divisionPlayer.play()
-        ClassMembers.tripletPlayer.play()
-        ClassMembers.subdivisionPlayer.play()
+        digitalVoice(SoundPlayer.digitalVoice)
+        attachAndConnectNodeToMainMixer(SoundPlayer.accentPlayer)
+        attachAndConnectNodeToMainMixer(SoundPlayer.beatPlayer)
+        attachAndConnectNodeToMainMixer(SoundPlayer.divisionPlayer)
+        attachAndConnectNodeToMainMixer(SoundPlayer.subdivisionPlayer)
+        attachAndConnectNodeToMainMixer(SoundPlayer.tripletPlayer)
+        SoundPlayer.engine.startAndReturnError(nil)
+        SoundPlayer.accentPlayer.play()
+        SoundPlayer.beatPlayer.play()
+        SoundPlayer.divisionPlayer.play()
+        SoundPlayer.tripletPlayer.play()
+        SoundPlayer.subdivisionPlayer.play()
 
     }
 
     class func digitalVoice(value: Bool){
-        ClassMembers.digitalVoice = value
+        SoundPlayer.digitalVoice = value
         if value {
-            ClassMembers.accent = fillWithFile("digitalAccent")
-            ClassMembers.beat = fillWithFile("digitalBeat")
-            ClassMembers.division = fillWithFile("digitalDivision")
-            ClassMembers.subdivision = fillWithFile("digitalSubdivision")
-            ClassMembers.triplet = fillWithFile("digitalTriplet")
+            SoundPlayer.accent = fillWithFile("digitalAccent")
+            SoundPlayer.beat = fillWithFile("digitalBeat")
+            SoundPlayer.division = fillWithFile("digitalDivision")
+            SoundPlayer.subdivision = fillWithFile("digitalSubdivision")
+            SoundPlayer.triplet = fillWithFile("digitalTriplet")
         } else {
-            ClassMembers.accent = fillWithFile("accent")
-            ClassMembers.beat = fillWithFile("beat")
-            ClassMembers.division = fillWithFile("division")
-            ClassMembers.subdivision = fillWithFile("subdivision")
-            ClassMembers.triplet = fillWithFile("triplet")
+            SoundPlayer.accent = fillWithFile("accent")
+            SoundPlayer.beat = fillWithFile("beat")
+            SoundPlayer.division = fillWithFile("division")
+            SoundPlayer.subdivision = fillWithFile("subdivision")
+            SoundPlayer.triplet = fillWithFile("triplet")
         }
     }
 
     class func getDigitalVoice() -> Bool {
-        return ClassMembers.digitalVoice
+        return SoundPlayer.digitalVoice
     }
 
     class func playBeat() {
-        ClassMembers.beatPlayer.scheduleBuffer(ClassMembers.beat, atTime: nil, options: .Interrupts, completionHandler: nil)
+        SoundPlayer.beatPlayer.scheduleBuffer(SoundPlayer.beat, atTime: nil, options: .Interrupts, completionHandler: nil)
     }
 
     class func playAccent() {
-        ClassMembers.accentPlayer.scheduleBuffer(ClassMembers.accent, atTime: nil, options: .Interrupts, completionHandler: nil)
+        SoundPlayer.accentPlayer.scheduleBuffer(SoundPlayer.accent, atTime: nil, options: .Interrupts, completionHandler: nil)
     }
 
     class func playDivision() {
-        ClassMembers.divisionPlayer.scheduleBuffer(ClassMembers.division, atTime: nil, options: .Interrupts, completionHandler: nil)
+        SoundPlayer.divisionPlayer.scheduleBuffer(SoundPlayer.division, atTime: nil, options: .Interrupts, completionHandler: nil)
     }
 
     class func playSubdivision() {
-        ClassMembers.subdivisionPlayer.scheduleBuffer(ClassMembers.subdivision, atTime: nil, options: .Interrupts, completionHandler: nil)
+        SoundPlayer.subdivisionPlayer.scheduleBuffer(SoundPlayer.subdivision, atTime: nil, options: .Interrupts, completionHandler: nil)
     }
 
     class func playTriplet() {
-        ClassMembers.tripletPlayer.scheduleBuffer(ClassMembers.triplet, atTime: nil, options: .Interrupts, completionHandler: nil)
+        SoundPlayer.tripletPlayer.scheduleBuffer(SoundPlayer.triplet, atTime: nil, options: .Interrupts, completionHandler: nil)
     }
 
     class func vibrate() {
@@ -87,8 +85,8 @@ import AVFoundation
     }
 
     class private func attachAndConnectNodeToMainMixer(node: AVAudioNode) {
-        ClassMembers.engine.attachNode(node)
-        ClassMembers.engine.connect(node, to: ClassMembers.engine.mainMixerNode, format: getAudioFormat())
+        SoundPlayer.engine.attachNode(node)
+        SoundPlayer.engine.connect(node, to: SoundPlayer.engine.mainMixerNode, format: getAudioFormat())
     }
 
     class private func fillWithFile(fileName: String) -> (AVAudioPCMBuffer) {

@@ -1,5 +1,6 @@
 import Foundation
 import MultipeerConnectivity
+import Mixpanel
 
 protocol SettingsDelegate {
     func settingChangedForKey(key: String, value: AnyObject)
@@ -25,21 +26,23 @@ class SettingsViewController: UITableViewController, UITableViewDataSource {
     }
 
     @IBAction func settingChanged(sender: UISwitch) {
-        let key: String = {
-            switch sender {
-                case self.screenFlashControl:
-                    return "screenFlash"
-                case self.ledFlashOnBeatControl:
-                    return "ledFlashOnBeat"
-                case self.ledFlashOnAccentControl:
-                    return "ledFlashOnAccent"
-                case self.digitalVoiceControl:
-                    return "digitalVoice"
-                default:
-                    abort()
-            }
-        }()
+        let key: String
+        switch sender {
+            case self.screenFlashControl:
+                key = "screenFlash"
+            case self.ledFlashOnBeatControl:
+                key = "ledFlashOnBeat"
+            case self.ledFlashOnAccentControl:
+                key = "ledFlashOnAccent"
+            case self.digitalVoiceControl:
+                key = "digitalVoice"
+            default:
+                abort()
+        }
 
+        let mixpanel = Mixpanel.sharedInstance()
+
+        mixpanel.track("Setting changed", properties:["Setting": key])
         delegate?.settingChangedForKey(key, value: sender.on)
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -67,7 +70,7 @@ class SettingsViewController: UITableViewController, UITableViewDataSource {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showAbout" {
-            let destination = segue.destinationViewController.view as UIWebView
+            let destination = segue.destinationViewController.view as! UIWebView
             let file = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("about", ofType: "html")!)
             destination.loadRequest(NSURLRequest(URL: file!))
 

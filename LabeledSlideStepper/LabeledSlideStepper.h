@@ -1,11 +1,3 @@
-//
-//  LabeledSlideStepper.h
-//  LabeledSlideStepper
-//
-//  Created by Nick Walker on 1/15/15.
-//  Copyright (c) 2015 Nick Walker. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 
 //! Project version number for LabeledSlideStepper.
