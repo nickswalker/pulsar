@@ -34,7 +34,7 @@
     }
 
     required public init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
         commonInit()
     }
 
@@ -50,7 +50,7 @@
         self.addSubview(bpmControl)
         self.addSubview(runningSwitch)
 
-        runningSwitch.setTranslatesAutoresizingMaskIntoConstraints(false)
+        runningSwitch.translatesAutoresizingMaskIntoConstraints = false
         //setTranslatesAutoresizingMaskIntoConstraints(false)
 
         addConstraint(NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: bpmControl, attribute: .Top, multiplier: 1.0, constant: 0))

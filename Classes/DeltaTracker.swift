@@ -1,10 +1,10 @@
 import Foundation
 import QuartzCore
 
-@objc class DeltaTracker {
+class DeltaTracker {
     var lastTime = 0.0
     func benchmark() -> (Double) {
-        var currentTime = CACurrentMediaTime()
+        let currentTime = CACurrentMediaTime()
         let diff = currentTime - lastTime
 
         lastTime = currentTime // update for next call

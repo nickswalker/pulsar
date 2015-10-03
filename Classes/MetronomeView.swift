@@ -5,7 +5,7 @@ class MetronomeView: UIView {
     override func tintColorDidChange() {
         super.tintColorDidChange()
         for subview in subviews {
-            let subview = subview as! UIView
+            let subview = subview 
             subview.tintColor = UIApplication.sharedApplication().delegate!.window!!.tintColor
             if subview is UIButton {
                 let button = subview as! UIButton

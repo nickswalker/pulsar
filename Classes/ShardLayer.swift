@@ -73,7 +73,7 @@ import UIKit
         commonInit()
     }
 
-    override init!(layer: AnyObject!) {
+    override init(layer: AnyObject) {
         super.init(layer: layer)
         if layer is ShardLayer {
             let shard = layer as! ShardLayer
@@ -85,7 +85,7 @@ import UIKit
         }
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
@@ -107,7 +107,7 @@ import UIKit
     override func drawInContext(ctx: CGContextRef) {
         // Create the path
 
-        var newPath = CGPathCreateMutable()
+        let newPath = CGPathCreateMutable()
 
         CGPathMoveToPoint(newPath, nil, center.x, center.y)
         let x1 = Double(center.x) + Double(cos(startAngle) * radius)
@@ -128,11 +128,11 @@ import UIKit
         CGContextSaveGState(ctx)
             // configure context the same as uipath
             CGContextSetLineWidth(ctx, 2.0);
-            CGContextSetLineJoin(ctx, kCGLineJoinMiter);
-            CGContextSetLineCap(ctx, kCGLineCapButt);
+            CGContextSetLineJoin(ctx, CGLineJoin.Miter);
+            CGContextSetLineCap(ctx, CGLineCap.Butt);
             CGContextSetMiterLimit(ctx, 10);
             CGContextSetFlatness(ctx, 0.6);
-            CGContextDrawPath(ctx, kCGPathFillStroke)
+            CGContextDrawPath(ctx, CGPathDrawingMode.FillStroke)
             CGContextRestoreGState(ctx);
 
 
@@ -140,7 +140,7 @@ import UIKit
         path = newPath
     }
 
-    override func actionForKey(event: String!) -> CAAction! {
+    override func actionForKey(event: String) -> CAAction! {
         let animation = CABasicAnimation(keyPath: event)
         animation.removedOnCompletion = true
         animation.duration = CATransaction.animationDuration()
@@ -188,8 +188,8 @@ import UIKit
         addAnimation(strokeFlash, forKey: "strokeColor")
     }
 
-    override class func needsDisplayForKey(key: String!) -> Bool {
-        let exists = contains(ShardLayer.customPropertyKeys, key)
+    override class func needsDisplayForKey(key: String) -> Bool {
+        let exists = ShardLayer.customPropertyKeys.contains(key)
         return exists || superclass()!.needsDisplayForKey(key)
     }
 

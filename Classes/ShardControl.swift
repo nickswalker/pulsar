@@ -88,7 +88,7 @@ public protocol ShardControlDelegate {
         commonInit()
     }
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
@@ -102,7 +102,7 @@ public protocol ShardControlDelegate {
 
         setupShards()
     }
-    public override func layoutSublayersOfLayer(layer: CALayer!) {
+    public override func layoutSublayersOfLayer(layer: CALayer) {
 
         if layer == self.layer {
             for targetLayer in layers {
@@ -127,7 +127,7 @@ public protocol ShardControlDelegate {
             toAdd = numberOfShards - currentNumber
             addSublayers(toAdd)
         } else if numberOfShards < currentNumber {
-            var toRemove = currentNumber - numberOfShards
+            let toRemove = currentNumber - numberOfShards
             removeSublayers(toRemove)
         }
     }
@@ -135,7 +135,7 @@ public protocol ShardControlDelegate {
     private func addSublayers(count: Int) {
 
         for var i = 0; i < count; i++ {
-            var tempLayer = ShardLayer()
+            let tempLayer = ShardLayer()
             tempLayer.frame = frame
             tempLayer.radius = radius
             tempLayer.endAngle = CGFloat(M_PI) * 3
@@ -151,11 +151,11 @@ public protocol ShardControlDelegate {
     /**
     Removes from the end of the layers array
 
-    :param: count number to remove
+    - parameter count: number to remove
     */
     private func removeSublayers(count: Int) {
         for var i = 0; i < count; i++ {
-            var targetLayer = layers.last!
+            let targetLayer = layers.last!
             CATransaction.begin()
             CATransaction.setCompletionBlock({
                 targetLayer.removeFromSuperlayer()
@@ -261,7 +261,7 @@ public protocol ShardControlDelegate {
             if targetShard != nil {
                 targetShard!.accent = !targetShard!.accent
                 for var i = 0; i < layers.count; i++ {
-                    var targetLayer = layers[i]
+                    let targetLayer = layers[i]
                     if targetLayer == targetShard {
                         let value: UInt = targetShard!.accent ? 1 : 0
                         let shifted: UInt = value << UInt(i)

@@ -22,7 +22,7 @@ public class QuickSettingsViewController: UIViewController, BackgroundViewDelega
 
     private class HideBackgroundView: UIView {
         var delegate: BackgroundViewDelegate?
-        private override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        private override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
             delegate?.viewWasTapped()
         }
     }
@@ -54,7 +54,7 @@ public class QuickSettingsViewController: UIViewController, BackgroundViewDelega
 
         //Insert right beneath the controls panel
         let index = view.superview!.subviews.count - 2
-        view.superview!.insertSubview(overlayView, aboveSubview: view.superview!.subviews[index] as! UIView)
+        view.superview!.insertSubview(overlayView, aboveSubview: view.superview!.subviews[index] )
         UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: {
             self.overlayView.alpha = 1
         }, completion: nil)

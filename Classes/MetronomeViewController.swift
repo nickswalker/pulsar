@@ -98,7 +98,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
             // Get view controllers and build the walkthrough
             let stb = UIStoryboard(name: "Walkthrough", bundle: nil)
             let walkthrough = stb.instantiateViewControllerWithIdentifier("master") as! BWWalkthroughViewController
-            let page_one = stb.instantiateViewControllerWithIdentifier("basics") as! UIViewController
+            let page_one = stb.instantiateViewControllerWithIdentifier("basics") 
 
             // Attach the pages to the master
             //walkthrough.delegate = self
@@ -223,8 +223,8 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         if segue.identifier == "showSettings" {
             running = false
 
-            let viewControllers = segue.destinationViewController.viewControllers as Array
-            let settingsViewController = viewControllers[0] as! SettingsViewController
+            let viewController = segue.destinationViewController as! UINavigationController
+            let settingsViewController = viewController.viewControllers[0] as! SettingsViewController
             settingsViewController.delegate = self
             settingsViewController.screenFlash = defaults.boolForKey("screenFlash")
             settingsViewController.ledFlashOnBeat = defaults.boolForKey("ledFlashOnBeat")
@@ -283,7 +283,8 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     }
 
     @IBAction func unwindViewController(sender: UIStoryboardSegue){
-        let source = sender.sourceViewController as! UIViewController
+        let source = sender.sourceViewController
+        print("unwinding")
         dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -307,7 +308,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     }
     
     private func addKerning(button: UIButton){
-        let string = button.titleLabel?.attributedText.mutableCopy() as! NSMutableAttributedString
+        let string = button.titleLabel?.attributedText!.mutableCopy() as! NSMutableAttributedString
         string.addAttribute(NSKernAttributeName, value: 1.0, range: NSMakeRange(0, string.length))
         button.setAttributedTitle(string, forState: .Normal)
         let insetAmount: CGFloat = 4.0;
@@ -371,7 +372,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
             let dict = object as! [String: NSData]
             let senderTime: Int = MPCInt(mpcSerialized: dict["HeartbeatResponse"]!).value
             ConnectionManager.latency[peerID] = Int(ConnectionManager.lastHeartbeatTime) - senderTime
-            println(ConnectionManager.lastHeartbeatTime - senderTime)
+           print(ConnectionManager.lastHeartbeatTime - senderTime)
         })
     }
 }

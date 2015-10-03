@@ -24,7 +24,10 @@ import AVFoundation
         attachAndConnectNodeToMainMixer(SoundPlayer.divisionPlayer)
         attachAndConnectNodeToMainMixer(SoundPlayer.subdivisionPlayer)
         attachAndConnectNodeToMainMixer(SoundPlayer.tripletPlayer)
-        SoundPlayer.engine.startAndReturnError(nil)
+        do {
+            try SoundPlayer.engine.start()
+        } catch _ {
+        }
         SoundPlayer.accentPlayer.play()
         SoundPlayer.beatPlayer.play()
         SoundPlayer.divisionPlayer.play()
@@ -79,8 +82,8 @@ import AVFoundation
 
     class func getAudioFormat() -> (AVAudioFormat) {
         let url = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("beat", ofType: "wav")!)
-        let file = AVAudioFile(forReading: url, error: nil)
-        return file.processingFormat
+        let file = try? AVAudioFile(forReading: url)
+        return file!.processingFormat
 
     }
 
@@ -91,9 +94,12 @@ import AVFoundation
 
     class private func fillWithFile(fileName: String) -> (AVAudioPCMBuffer) {
         let url = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(fileName, ofType: "wav")!)
-        var file = AVAudioFile(forReading: url, error: nil)
-        var buffer = AVAudioPCMBuffer(PCMFormat: file.processingFormat, frameCapacity: UInt32(file.length))
-        file.readIntoBuffer(buffer, error: nil)
+        var file = try? AVAudioFile(forReading: url)
+        var buffer = AVAudioPCMBuffer(PCMFormat: file!.processingFormat, frameCapacity: UInt32(file!.length))
+        do {
+            try file!.readIntoBuffer(buffer)
+        } catch _ {
+        }
         return buffer
 
     }

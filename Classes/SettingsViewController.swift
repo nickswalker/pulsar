@@ -6,7 +6,7 @@ protocol SettingsDelegate {
     func settingChangedForKey(key: String, value: AnyObject)
 }
 
-class SettingsViewController: UITableViewController, UITableViewDataSource {
+class SettingsViewController: UITableViewController {
     var delegate: SettingsDelegate?
     var screenFlash: Bool = false
     var ledFlashOnBeat: Bool = false
@@ -72,7 +72,7 @@ class SettingsViewController: UITableViewController, UITableViewDataSource {
         if segue.identifier == "showAbout" {
             let destination = segue.destinationViewController.view as! UIWebView
             let file = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("about", ofType: "html")!)
-            destination.loadRequest(NSURLRequest(URL: file!))
+            destination.loadRequest(NSURLRequest(URL: file))
 
         }
     }

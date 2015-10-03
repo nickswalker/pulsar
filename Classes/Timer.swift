@@ -15,9 +15,9 @@ public enum BeatPartMeanings: UInt16 {
 
 //Beats one measure and all possible sub intervals for a BPM
 
-@objc public class Timer: IntervalDelegate {
+public class Timer: IntervalDelegate {
 
-    public func intervalTime() -> Double {
+    @objc public func intervalTime() -> Double {
         return intervalDuration
     }
     var on: Bool = false {
@@ -70,7 +70,7 @@ public enum BeatPartMeanings: UInt16 {
         timerDriver = nil
     }
 
-    public func interval() {
+    @objc public func interval() {
         var accent = false
         if currentBeatPart > partsPerBeat {
             currentBeatPart = 1

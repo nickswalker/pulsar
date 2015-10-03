@@ -36,7 +36,7 @@ import UIKit
         super.init(frame: frame)
         commonInit()
     }
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
@@ -50,7 +50,7 @@ import UIKit
         titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 15.0)
 
         addTarget(self, action: "touchDown", forControlEvents: .TouchDown)
-        addTarget(self, action: "cancel", forControlEvents: .TouchUpOutside | .TouchCancel)
+        addTarget(self, action: "cancel", forControlEvents: [.TouchUpOutside, .TouchCancel])
         tintAdjustmentMode = .Normal
     }
 

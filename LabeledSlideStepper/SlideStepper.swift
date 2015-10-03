@@ -27,7 +27,7 @@ public class SlideStepper: UIControl {
     private var recognizer = UIPanGestureRecognizer()
 
     required public init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
         commonInit()
     }
 
@@ -56,9 +56,10 @@ public class SlideStepper: UIControl {
         addSubview(label)
         addGestureRecognizer(recognizer)
 
-        stepper.setTranslatesAutoresizingMaskIntoConstraints(false)
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.setTranslatesAutoresizingMaskIntoConstraints(false)
+        stepper.translatesAutoresizingMaskIntoConstraints = false
+        stepper.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints = false
 
         addConstraint(NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: stepper, attribute: .CenterX, multiplier: 1.0, constant: 1.0))
         addConstraint(NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: label, attribute: .CenterX, multiplier: 1.0, constant: 1.0))

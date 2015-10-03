@@ -14,7 +14,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
 
     private class HideBackgroundView: UIView {
         var delegate: BackgroundViewDelegate?
-        private override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        private override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
             delegate?.viewWasTapped()
         }
     }
@@ -61,14 +61,14 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
         super.viewWillAppear(animated)
 
         ConnectionManager.onConnect { peerID in
-            println("Connected: \(peerID)")
+            print("Connected: \(peerID)")
             self.updatePlayers()
         }
         ConnectionManager.onDisconnect { peerID in
-            println("Disconnected: \(peerID)")
+            print("Disconnected: \(peerID)")
             self.updatePlayers()
             if ConnectionManager.aloneInSession {
-                println("Session is empty")
+                print("Session is empty")
             }
         }
     }
@@ -98,19 +98,19 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
 
     func setupPlayersLabel() {
         // Button
-        playersLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        playersLabel.translatesAutoresizingMaskIntoConstraints = false
         playersLabel.font = UIFont(name: "AvenirNext-Medium", size: 15)
         playersLabel.textColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         playersLabel.text = "Players"
         view.addSubview(playersLabel)
 
         // Layout
-        layout(playersLabel) { label in
+        constrain(playersLabel) { label in
             label.top == label.superview!.top + 14
             label.centerX == label.superview!.centerX
         }
 
-        instructionLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        instructionLabel.translatesAutoresizingMaskIntoConstraints = false
         instructionLabel.font = UIFont(name: "AvenirNext-Regular", size: 15)
         instructionLabel.textColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         instructionLabel.text = "Have your friends open the session pane to begin"
@@ -120,7 +120,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
 
         view.addSubview(instructionLabel)
         
-        layout(instructionLabel){ label in
+        constrain(instructionLabel){ label in
             label.centerY == label.superview!.centerY
             label.centerX == label.superview!.centerX
             label.width == label.superview!.width - 50
@@ -129,16 +129,16 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
 
     func setupSeparator() {
         // Separator
-        separator.setTranslatesAutoresizingMaskIntoConstraints(false)
+        separator.translatesAutoresizingMaskIntoConstraints = false
         separator.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.25)
         view.addSubview(separator)
 
         // Layout
-        layout(separator, playersLabel) { separator, playersLabel in
+        constrain(separator, playersLabel) { separator, playersLabel in
             separator.top == playersLabel.bottom + 10
             separator.centerX == separator.superview!.centerX
             separator.width == separator.superview!.width - 30
-            separator.height == (1 / Float(UIScreen.mainScreen().scale))
+            separator.height == 1.0
         }
     }
 
@@ -150,14 +150,14 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = UIColor.clearColor()
-        collectionView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.registerClass(PlayerCell.self,
             forCellWithReuseIdentifier: PlayerCell.reuseID)
         collectionView.alwaysBounceVertical = true
         view.addSubview(collectionView)
 
         // Layout
-        layout(collectionView, separator) { collectionView, separator in
+        constrain(collectionView, separator) { collectionView, separator in
             collectionView.top == separator.bottom
             collectionView.left == separator.left
             collectionView.right == separator.right
@@ -166,7 +166,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
 
         actionButton.enabled = false
 
-        actionButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        actionButton.translatesAutoresizingMaskIntoConstraints = false
         actionButton.setTitle("Waiting for Players", forState: .Disabled)
         actionButton.setTitle("Begin Session", forState: .Normal)
         if managementMode {
@@ -180,7 +180,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
         actionButton.addTarget(self, action: "actionButtonTapped", forControlEvents: .TouchUpInside)
 
         view.addSubview(actionButton)
-        layout(actionButton) {
+        constrain(actionButton) {
             button in
             button.bottom == button.superview!.bottom - 15
             button.centerX == button.superview!.centerX
@@ -251,7 +251,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
 
         //Insert right beneath the controls panel
         let index = view.superview!.subviews.count - 2
-        view.superview!.insertSubview(overlayView, aboveSubview: view.superview!.subviews[index] as! UIView)
+        view.superview!.insertSubview(overlayView, aboveSubview: view.superview!.subviews[index] )
         UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: {
             self.overlayView.alpha = 1
             }, completion: nil)

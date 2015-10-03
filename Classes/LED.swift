@@ -8,8 +8,14 @@ class LED {
         let device = LED.device
         if device!.torchAvailable {
             dispatch_async(dispatch_get_main_queue(), {
-                device!.lockForConfiguration(nil)
-                device!.setTorchModeOnWithLevel(0.1, error: nil)
+                do {
+                    try device!.lockForConfiguration()
+                } catch _ {
+                }
+                do {
+                    try device!.setTorchModeOnWithLevel(0.1)
+                } catch _ {
+                }
                 device!.torchMode = .Off
                 device!.unlockForConfiguration()
             })
