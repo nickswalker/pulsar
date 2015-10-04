@@ -6,7 +6,7 @@ let partsPerBeat = 12
 let secondsInMinute = 60
 
 
-public enum BeatPartMeanings: UInt16 {
+public enum BeatPartMeanings: UInt {
     case OnTheBeat = 0b10,
          Division = 0b10000000,
          SubDivision = 0b10000010000,
@@ -71,7 +71,6 @@ public class Timer: IntervalDelegate {
     }
 
     @objc public func interval() {
-        var accent = false
         if currentBeatPart > partsPerBeat {
             currentBeatPart = 1
         }

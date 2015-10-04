@@ -7,7 +7,7 @@ import PeerKit
 let accentOnFirstBeat = [1]
 
 class MetronomeViewController: UIViewController, SettingsDelegate,
-        LabeledSlideStepperDelegate, QuickSettingsDelegate, SessionCreationDelegate, ShardControlDelegate {
+        LabeledSlideStepperDelegate, QuickSettingsDelegate, SessionCreationDelegate, ShardControlDelegate, BWWalkthroughViewControllerDelegate {
 
     @IBOutlet weak var bpmControl: LabeledSlideStepper!
     @IBOutlet weak var beatsControl: ShardControl!
@@ -94,20 +94,10 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
         beatsControl.radius = radius
 
+        // For debugging. Force first launch behavior
+        //defaults.setBool(true, forKey: "firstLaunch")
         if defaults.boolForKey("firstLaunch") {
-            // Get view controllers and build the walkthrough
-            let stb = UIStoryboard(name: "Walkthrough", bundle: nil)
-            let walkthrough = stb.instantiateViewControllerWithIdentifier("master") as! BWWalkthroughViewController
-            let page_one = stb.instantiateViewControllerWithIdentifier("basics") 
-
-            // Attach the pages to the master
-            //walkthrough.delegate = self
-            walkthrough.addViewController(page_one)
-            walkthrough.view!.backgroundColor = UIColor(white: 0.0, alpha: 0.3)
-            walkthrough.modalPresentationStyle = .OverCurrentContext
-            walkthrough.modalTransitionStyle = .CrossDissolve
-
-            presentViewController(walkthrough, animated: true, completion: nil)
+            presentHelpOverlay()
             defaults.setBool(false, forKey: "firstLaunch")
         }
         
@@ -116,11 +106,11 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     //@discussion listens to the timer emitting beatParts.
     func intervalWasFired(notification: NSNotification) {
         let part = notification.userInfo!["beatPart"] as! Int
-        let beatPart = UInt16(part)
-        if (beatPart & BeatPartMeanings.OnTheBeat.rawValue) > 0 {
+        let beatPart = UInt(part)
+        if (beatPart & BeatPartMeanings.OnTheBeat.rawValue) != 0 {
             beatsControl.activateNext()
-            if defaults.boolForKey("beat") {
-                SoundPlayer.playBeat()
+            if defaults.boolForKey(PulseType.Beat.rawValue) {
+                SoundPlayer.schedule(.Beat)
             }
             if defaults.boolForKey("screenFlash") {
                 beatsControl?.flashBackground()
@@ -132,20 +122,20 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
                 if defaults.boolForKey("ledFlashOnAccent") {
                     LED.flash()
                 }
-                SoundPlayer.playAccent()
+                SoundPlayer.schedule(.Accent)
                 beatsControl.flashBackground()
             }
-        } else if (beatPart & BeatPartMeanings.Division.rawValue) > 0 {
-            if defaults.boolForKey("division") {
-                SoundPlayer.playDivision()
+        } else if (beatPart & BeatPartMeanings.Division.rawValue) != 0 {
+            if defaults.boolForKey(PulseType.Division.rawValue) {
+                SoundPlayer.schedule(.Division)
             }
-        } else if (beatPart & BeatPartMeanings.SubDivision.rawValue) > 0 {
-            if defaults.boolForKey("subdivision") {
-                SoundPlayer.playSubdivision()
+        } else if (beatPart & BeatPartMeanings.SubDivision.rawValue) != 0 {
+            if defaults.boolForKey(PulseType.Subdivision.rawValue) {
+                SoundPlayer.schedule(.Subdivision)
             }
-        } else if (beatPart & BeatPartMeanings.Triplet.rawValue) > 0 {
-            if defaults.boolForKey("triplet") {
-                SoundPlayer.playTriplet()
+        } else if (beatPart & BeatPartMeanings.Triplet.rawValue) != 0 {
+            if defaults.boolForKey(PulseType.Triplet.rawValue) {
+                SoundPlayer.schedule(.Triplet)
             }
         }
 
@@ -194,7 +184,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     private let maxTimeBetweenTaps = 20.0
 
     @IBAction func matchBpm(sender: AnyObject) {
-        var delta = bpmTracker.benchmark()
+        let delta = bpmTracker.benchmark()
         if delta == 0 {
             return
         } else if ((Double(secondsInMinute) / delta) < maxTimeBetweenTaps) {
@@ -251,10 +241,10 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
         quickSettings!.delegate = self
         window.addSubview(quickSettings!.view)
-        quickSettings!.beatControl.on = defaults.boolForKey("beat")
-        quickSettings!.divisionControl.on = defaults.boolForKey("division")
-        quickSettings!.subdivisionControl.on = defaults.boolForKey("subdivision")
-        quickSettings!.tripletControl.on = defaults.boolForKey("triplet")
+        quickSettings!.beatControl.on = defaults.boolForKey(PulseType.Beat.rawValue)
+        quickSettings!.divisionControl.on = defaults.boolForKey(PulseType.Division.rawValue)
+        quickSettings!.subdivisionControl.on = defaults.boolForKey(PulseType.Subdivision.rawValue)
+        quickSettings!.tripletControl.on = defaults.boolForKey(PulseType.Triplet.rawValue)
         let beats = defaults.integerForKey("beats")
         quickSettings!.beatsControlLabel.text = "\(beats)"
         quickSettings!.beatsControl.value = Double(beats)
@@ -276,15 +266,17 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
                 case .Left:
                     ConnectionManager.stop()
                 default:
-                    let test = true
+                    ()
             }
         }
 
     }
 
+    func walkthroughCloseButtonPressed() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
     @IBAction func unwindViewController(sender: UIStoryboardSegue){
-        let source = sender.sourceViewController
-        print("unwinding")
         dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -296,6 +288,26 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     func settingChangedForKey(key: String, value: AnyObject) {
         defaults.setValue(value, forKey: key)
         defaults.synchronize()
+    }
+    func shouldDisplayHelpOverlay() {
+        dismissViewControllerAnimated(true, completion: nil)
+        presentHelpOverlay()
+    }
+
+    func presentHelpOverlay(){
+        // Get view controllers and build the walkthrough
+        let stb = UIStoryboard(name: "Walkthrough", bundle: nil)
+        let walkthrough = stb.instantiateViewControllerWithIdentifier("master") as! BWWalkthroughViewController
+        let page_one = stb.instantiateViewControllerWithIdentifier("basics")
+
+        // Attach the pages to the master
+        walkthrough.delegate = self
+        walkthrough.addViewController(page_one)
+        walkthrough.view!.backgroundColor = UIColor(white: 0.0, alpha: 0.3)
+        walkthrough.modalPresentationStyle = .OverCurrentContext
+        walkthrough.modalTransitionStyle = .CrossDissolve
+
+        presentViewController(walkthrough, animated: true, completion: nil)
     }
 
     func activatedShardsChanged() {

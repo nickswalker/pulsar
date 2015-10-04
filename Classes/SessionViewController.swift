@@ -242,7 +242,6 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
 
         let deviceHeight: CGFloat = UIScreen.mainScreen().bounds.height
         let deviceWidth: CGFloat = UIScreen.mainScreen().bounds.width
-        let scale = UIScreen.mainScreen().scale
 
         let offscreenFrame = CGRect(x: 0, y: deviceHeight, width: deviceWidth, height: controlAreaHeight)
         let onscreenFrame = CGRect(x: 0, y: deviceHeight - controlAreaHeight, width: deviceWidth, height: controlAreaHeight)
@@ -268,7 +267,6 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
         let deviceWidth: CGFloat = UIScreen.mainScreen().bounds.width
 
         let offscreenFrame = CGRect(x: 0, y: deviceHeight, width: deviceWidth, height: controlAreaHeight)
-        let onscreenFrame = CGRect(x: 0, y: deviceHeight - controlAreaHeight, width: deviceWidth, height: controlAreaHeight)
 
         UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: {
             self.overlayView.alpha = 0

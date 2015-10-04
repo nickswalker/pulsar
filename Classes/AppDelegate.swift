@@ -23,10 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                   "bpm": 60,
                                   "accents": 0b1,
                                   "beats": 4,
-                                  "beat": true,
-                                  "division": true,
-                                  "subdivision": false,
-                                  "triplet": false,
+                                  PulseType.Beat.rawValue: true,
+                                  PulseType.Division.rawValue: true,
+                                  PulseType.Subdivision.rawValue: false,
+                                  PulseType.Triplet.rawValue: false,
                                   "firstLaunch": true
         ]
 

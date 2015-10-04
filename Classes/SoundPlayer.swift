@@ -2,7 +2,15 @@ import Foundation
 import UIKit
 import AVFoundation
 
-@objc class SoundPlayer: NSObject {
+enum PulseType: String {
+    case Accent,
+    Beat,
+    Division,
+    Subdivision,
+    Triplet
+}
+
+@objc final class SoundPlayer: NSObject {
     static var engine = AVAudioEngine()
     static var accentPlayer = AVAudioPlayerNode()
     static var beatPlayer = AVAudioPlayerNode()
@@ -10,12 +18,24 @@ import AVFoundation
     static var subdivisionPlayer = AVAudioPlayerNode()
     static var tripletPlayer = AVAudioPlayerNode()
 
+
     static var accent = AVAudioPCMBuffer()
     static var beat = AVAudioPCMBuffer()
     static var division = AVAudioPCMBuffer()
     static var subdivision = AVAudioPCMBuffer()
     static var triplet = AVAudioPCMBuffer()
     static var digitalVoice = false
+
+    static let buffers: [PulseType: AVAudioPCMBuffer] = [.Accent: accent,
+        .Beat: beat,
+        .Division: division,
+        .Subdivision: subdivision,
+        .Triplet: triplet]
+    static let players: [PulseType: AVAudioPlayerNode] = [.Accent: accentPlayer,
+        .Beat: beatPlayer,
+        .Division: divisionPlayer,
+        .Subdivision: subdivisionPlayer,
+        .Triplet: tripletPlayer]
 
     class func setup(){
         digitalVoice(SoundPlayer.digitalVoice)
@@ -57,24 +77,8 @@ import AVFoundation
         return SoundPlayer.digitalVoice
     }
 
-    class func playBeat() {
-        SoundPlayer.beatPlayer.scheduleBuffer(SoundPlayer.beat, atTime: nil, options: .Interrupts, completionHandler: nil)
-    }
-
-    class func playAccent() {
-        SoundPlayer.accentPlayer.scheduleBuffer(SoundPlayer.accent, atTime: nil, options: .Interrupts, completionHandler: nil)
-    }
-
-    class func playDivision() {
-        SoundPlayer.divisionPlayer.scheduleBuffer(SoundPlayer.division, atTime: nil, options: .Interrupts, completionHandler: nil)
-    }
-
-    class func playSubdivision() {
-        SoundPlayer.subdivisionPlayer.scheduleBuffer(SoundPlayer.subdivision, atTime: nil, options: .Interrupts, completionHandler: nil)
-    }
-
-    class func playTriplet() {
-        SoundPlayer.tripletPlayer.scheduleBuffer(SoundPlayer.triplet, atTime: nil, options: .Interrupts, completionHandler: nil)
+    class func schedule(type: PulseType) {
+        players[type]!.scheduleBuffer(buffers[type]!, atTime: nil, options: .Interrupts, completionHandler: nil)
     }
 
     class func vibrate() {
@@ -94,8 +98,8 @@ import AVFoundation
 
     class private func fillWithFile(fileName: String) -> (AVAudioPCMBuffer) {
         let url = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(fileName, ofType: "wav")!)
-        var file = try? AVAudioFile(forReading: url)
-        var buffer = AVAudioPCMBuffer(PCMFormat: file!.processingFormat, frameCapacity: UInt32(file!.length))
+        let file = try? AVAudioFile(forReading: url)
+        let buffer = AVAudioPCMBuffer(PCMFormat: file!.processingFormat, frameCapacity: UInt32(file!.length))
         do {
             try file!.readIntoBuffer(buffer)
         } catch _ {

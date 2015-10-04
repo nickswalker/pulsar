@@ -4,6 +4,7 @@ import Mixpanel
 
 protocol SettingsDelegate {
     func settingChangedForKey(key: String, value: AnyObject)
+    func shouldDisplayHelpOverlay()
 }
 
 class SettingsViewController: UITableViewController {
@@ -19,8 +20,8 @@ class SettingsViewController: UITableViewController {
 
     override func viewDidLoad() {
         screenFlashControl.on = screenFlash
-        ledFlashOnAccentControl.on = ledFlashOnBeat
-        ledFlashOnBeatControl.on = ledFlashOnAccent
+        ledFlashOnAccentControl.on = ledFlashOnAccent
+        ledFlashOnBeatControl.on = ledFlashOnBeat
         digitalVoiceControl.on = digitalVoice
         
     }
@@ -58,6 +59,7 @@ class SettingsViewController: UITableViewController {
         }
         return cell
     }
+    // Hide the LED related rows if we're on a device that doesn't have one
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if !LED.hasLED() && (indexPath.row == 1 || indexPath.row == 2) {
             return 0
@@ -75,5 +77,8 @@ class SettingsViewController: UITableViewController {
             destination.loadRequest(NSURLRequest(URL: file))
 
         }
+    }
+    @IBAction func didPressHelpButton(sender: UIButton){
+        delegate?.shouldDisplayHelpOverlay()
     }
 }

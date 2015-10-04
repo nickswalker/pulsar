@@ -140,7 +140,7 @@ import UIKit
         path = newPath
     }
 
-    override func actionForKey(event: String) -> CAAction! {
+    override func actionForKey(event: String) -> CAAction? {
         let animation = CABasicAnimation(keyPath: event)
         animation.removedOnCompletion = true
         animation.duration = CATransaction.animationDuration()
@@ -193,7 +193,7 @@ import UIKit
         return exists || superclass()!.needsDisplayForKey(key)
     }
 
-    override func hitTest(p: CGPoint) -> CALayer! {
+    override func hitTest(p: CGPoint) -> CALayer? {
         if CGPathContainsPoint(path, nil, p, false) {
             return self
         } else {

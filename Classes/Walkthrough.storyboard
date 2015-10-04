@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -18,8 +17,26 @@
                     <view key="view" contentMode="scaleToFill" id="c49-QR-OTb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0f-mY-KdZ">
+                                <rect key="frame" x="281" y="507" width="39" height="33"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
+                                <state key="normal" title="Got it">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="close:" destination="SKQ-az-qgB" eventType="touchUpInside" id="D7s-SV-Sfz"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="m0f-mY-KdZ" firstAttribute="centerX" secondItem="c49-QR-OTb" secondAttribute="centerX" id="gac-MF-tlU"/>
+                            <constraint firstItem="B8b-u4-Z8T" firstAttribute="top" secondItem="m0f-mY-KdZ" secondAttribute="bottom" constant="60" id="n8U-2C-2xp"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Re-Pf-saN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -125,18 +142,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxg-2Z-K8N">
-                                        <rect key="frame" x="130" y="223" width="39" height="33"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
-                                        <state key="normal" title="Got it">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="XnC-Nz-tH3" kind="unwind" unwindAction="unwindViewController:" id="lyn-nY-QeP"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double tap a shard to make it an accent" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOA-Tj-Jd5">
                                         <rect key="frame" x="0.0" y="160" width="300" height="47"/>
                                         <animations/>
@@ -149,16 +154,14 @@
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="fSf-4G-s4I" secondAttribute="centerX" id="0ho-st-6ZG"/>
                                     <constraint firstAttribute="centerX" secondItem="y2B-Ta-flI" secondAttribute="centerX" id="3nv-fz-UKY"/>
-                                    <constraint firstAttribute="bottom" secondItem="rxg-2Z-K8N" secondAttribute="bottom" id="454-MI-Pma"/>
+                                    <constraint firstAttribute="bottom" secondItem="IOA-Tj-Jd5" secondAttribute="bottom" id="3t0-TI-2b1"/>
                                     <constraint firstAttribute="centerX" secondItem="guD-7r-RQe" secondAttribute="centerX" id="6W1-Yt-fWz"/>
                                     <constraint firstItem="952-co-CeT" firstAttribute="top" secondItem="fSf-4G-s4I" secondAttribute="bottom" constant="8" id="9Wo-tx-c5k"/>
                                     <constraint firstAttribute="centerX" secondItem="IOA-Tj-Jd5" secondAttribute="centerX" id="CDA-QP-SUO"/>
                                     <constraint firstAttribute="centerX" secondItem="952-co-CeT" secondAttribute="centerX" id="CT5-y2-Ws6"/>
                                     <constraint firstItem="guD-7r-RQe" firstAttribute="top" secondItem="obH-dq-YKx" secondAttribute="top" id="HWt-SG-PIy"/>
                                     <constraint firstItem="IOA-Tj-Jd5" firstAttribute="leading" secondItem="obH-dq-YKx" secondAttribute="leading" id="Lbg-rY-f0z"/>
-                                    <constraint firstAttribute="centerX" secondItem="rxg-2Z-K8N" secondAttribute="centerX" id="OKL-ri-eNb"/>
                                     <constraint firstAttribute="trailing" secondItem="952-co-CeT" secondAttribute="trailing" id="TKQ-WS-DTx"/>
-                                    <constraint firstItem="rxg-2Z-K8N" firstAttribute="top" secondItem="IOA-Tj-Jd5" secondAttribute="bottom" constant="16" id="VV1-jc-xLP"/>
                                     <constraint firstItem="952-co-CeT" firstAttribute="leading" secondItem="obH-dq-YKx" secondAttribute="leading" id="Vjg-85-nt9"/>
                                     <constraint firstAttribute="width" constant="300" id="Xtl-iB-nWH"/>
                                     <constraint firstAttribute="trailing" secondItem="IOA-Tj-Jd5" secondAttribute="trailing" id="aYt-In-okS"/>
@@ -191,7 +194,6 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lkj-5k-kes" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="XnC-Nz-tH3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1427" y="465"/>
         </scene>

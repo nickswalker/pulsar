@@ -71,7 +71,6 @@ public class QuickSettingsViewController: UIViewController, BackgroundViewDelega
         let deviceWidth: CGFloat = UIScreen.mainScreen().bounds.width
 
         let offscreenFrame = CGRect(x: 0, y: deviceHeight, width: deviceWidth, height: controlAreaHeight)
-        let onscreenFrame = CGRect(x: 0, y: deviceHeight - controlAreaHeight, width: deviceWidth, height: controlAreaHeight)
 
         UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: {
             self.overlayView.alpha = 0
@@ -94,13 +93,13 @@ public class QuickSettingsViewController: UIViewController, BackgroundViewDelega
         let key: String = {
             switch sender {
                 case self.beatControl:
-                    return "beat"
+                    return PulseType.Beat.rawValue
                 case self.divisionControl :
-                    return "division"
+                    return PulseType.Division.rawValue
                 case self.subdivisionControl :
-                    return "subdivision"
+                    return PulseType.Subdivision.rawValue
                 case self.tripletControl :
-                    return "triplet"
+                    return PulseType.Triplet.rawValue
                 default:
                     abort()
             }

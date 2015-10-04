@@ -77,8 +77,8 @@ public class SlideStepper: UIControl {
     }
 
     func handlePan(recognizer: UIPanGestureRecognizer) {
-        var translation = recognizer.translationInView(self)
-        var affector = Double(-1.0 * translation.y / 8.5)
+        let translation = recognizer.translationInView(self)
+        let affector = Double(-1.0 * translation.y / 8.5)
         value = Int(Double(value) - affector)
         recognizer.setTranslation(CGPoint(x: 0, y: 0), inView: self)
         sendActionsForControlEvents(.ValueChanged)
