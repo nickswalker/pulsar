@@ -18,16 +18,16 @@
 		D4099B271A68969800BF3AD7 /* LabeledSlideStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4099B231A68969800BF3AD7 /* LabeledSlideStepper.swift */; };
 		D4099B281A68969800BF3AD7 /* SlideStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4099B241A68969800BF3AD7 /* SlideStepper.swift */; };
 		D42B23D61A773C720003251D /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42B23D51A773C720003251D /* Walkthrough.storyboard */; };
-		D439822F19A4FEBA007DFE42 /* accent.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822519A4FEBA007DFE42 /* accent.wav */; };
-		D439823019A4FEBA007DFE42 /* beat.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822619A4FEBA007DFE42 /* beat.wav */; };
-		D439823119A4FEBA007DFE42 /* digitalAccent.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822719A4FEBA007DFE42 /* digitalAccent.wav */; };
-		D439823219A4FEBA007DFE42 /* digitalBeat.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822819A4FEBA007DFE42 /* digitalBeat.wav */; };
-		D439823319A4FEBA007DFE42 /* digitalDivision.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822919A4FEBA007DFE42 /* digitalDivision.wav */; };
-		D439823419A4FEBA007DFE42 /* digitalSubdivision.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822A19A4FEBA007DFE42 /* digitalSubdivision.wav */; };
-		D439823519A4FEBA007DFE42 /* digitalTriplet.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822B19A4FEBA007DFE42 /* digitalTriplet.wav */; };
-		D439823619A4FEBA007DFE42 /* division.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822C19A4FEBA007DFE42 /* division.wav */; };
-		D439823719A4FEBA007DFE42 /* subdivision.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822D19A4FEBA007DFE42 /* subdivision.wav */; };
-		D439823819A4FEBA007DFE42 /* triplet.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822E19A4FEBA007DFE42 /* triplet.wav */; };
+		D439822F19A4FEBA007DFE42 /* Accent.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822519A4FEBA007DFE42 /* Accent.wav */; };
+		D439823019A4FEBA007DFE42 /* Beat.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822619A4FEBA007DFE42 /* Beat.wav */; };
+		D439823119A4FEBA007DFE42 /* digital-Accent.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822719A4FEBA007DFE42 /* digital-Accent.wav */; };
+		D439823219A4FEBA007DFE42 /* digital-Beat.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822819A4FEBA007DFE42 /* digital-Beat.wav */; };
+		D439823319A4FEBA007DFE42 /* digital-Division.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822919A4FEBA007DFE42 /* digital-Division.wav */; };
+		D439823419A4FEBA007DFE42 /* digital-Subdivision.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822A19A4FEBA007DFE42 /* digital-Subdivision.wav */; };
+		D439823519A4FEBA007DFE42 /* digital-Triplet.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822B19A4FEBA007DFE42 /* digital-Triplet.wav */; };
+		D439823619A4FEBA007DFE42 /* Division.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822C19A4FEBA007DFE42 /* Division.wav */; };
+		D439823719A4FEBA007DFE42 /* Subdivision.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822D19A4FEBA007DFE42 /* Subdivision.wav */; };
+		D439823819A4FEBA007DFE42 /* Triplet.wav in Resources */ = {isa = PBXBuildFile; fileRef = D439822E19A4FEBA007DFE42 /* Triplet.wav */; };
 		D45740A119A3D45D00CB1C70 /* MetronomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45740A019A3D45D00CB1C70 /* MetronomeView.swift */; };
 		D457545E19859B9B00967641 /* QuickSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D457545D19859B9B00967641 /* QuickSettingsViewController.swift */; };
 		D45EDCB91A55D83B004B7FD4 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45EDCB81A55D83B004B7FD4 /* Launch Screen.xib */; };
@@ -98,16 +98,16 @@
 		D4099B241A68969800BF3AD7 /* SlideStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideStepper.swift; path = LabeledSlideStepper/SlideStepper.swift; sourceTree = SOURCE_ROOT; };
 		D41BF90C1AAAB6C200FB77DD /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		D42B23D51A773C720003251D /* Walkthrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
-		D439822519A4FEBA007DFE42 /* accent.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = accent.wav; path = Sounds/accent.wav; sourceTree = "<group>"; };
-		D439822619A4FEBA007DFE42 /* beat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = beat.wav; path = Sounds/beat.wav; sourceTree = "<group>"; };
-		D439822719A4FEBA007DFE42 /* digitalAccent.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = digitalAccent.wav; path = Sounds/digitalAccent.wav; sourceTree = "<group>"; };
-		D439822819A4FEBA007DFE42 /* digitalBeat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = digitalBeat.wav; path = Sounds/digitalBeat.wav; sourceTree = "<group>"; };
-		D439822919A4FEBA007DFE42 /* digitalDivision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = digitalDivision.wav; path = Sounds/digitalDivision.wav; sourceTree = "<group>"; };
-		D439822A19A4FEBA007DFE42 /* digitalSubdivision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = digitalSubdivision.wav; path = Sounds/digitalSubdivision.wav; sourceTree = "<group>"; };
-		D439822B19A4FEBA007DFE42 /* digitalTriplet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = digitalTriplet.wav; path = Sounds/digitalTriplet.wav; sourceTree = "<group>"; };
-		D439822C19A4FEBA007DFE42 /* division.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = division.wav; path = Sounds/division.wav; sourceTree = "<group>"; };
-		D439822D19A4FEBA007DFE42 /* subdivision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = subdivision.wav; path = Sounds/subdivision.wav; sourceTree = "<group>"; };
-		D439822E19A4FEBA007DFE42 /* triplet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = triplet.wav; path = Sounds/triplet.wav; sourceTree = "<group>"; };
+		D439822519A4FEBA007DFE42 /* Accent.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Accent.wav; path = Sounds/Accent.wav; sourceTree = "<group>"; };
+		D439822619A4FEBA007DFE42 /* Beat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Beat.wav; path = Sounds/Beat.wav; sourceTree = "<group>"; };
+		D439822719A4FEBA007DFE42 /* digital-Accent.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "digital-Accent.wav"; path = "Sounds/digital-Accent.wav"; sourceTree = "<group>"; };
+		D439822819A4FEBA007DFE42 /* digital-Beat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "digital-Beat.wav"; path = "Sounds/digital-Beat.wav"; sourceTree = "<group>"; };
+		D439822919A4FEBA007DFE42 /* digital-Division.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "digital-Division.wav"; path = "Sounds/digital-Division.wav"; sourceTree = "<group>"; };
+		D439822A19A4FEBA007DFE42 /* digital-Subdivision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "digital-Subdivision.wav"; path = "Sounds/digital-Subdivision.wav"; sourceTree = "<group>"; };
+		D439822B19A4FEBA007DFE42 /* digital-Triplet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "digital-Triplet.wav"; path = "Sounds/digital-Triplet.wav"; sourceTree = "<group>"; };
+		D439822C19A4FEBA007DFE42 /* Division.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Division.wav; path = Sounds/Division.wav; sourceTree = "<group>"; };
+		D439822D19A4FEBA007DFE42 /* Subdivision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Subdivision.wav; path = Sounds/Subdivision.wav; sourceTree = "<group>"; };
+		D439822E19A4FEBA007DFE42 /* Triplet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Triplet.wav; path = Sounds/Triplet.wav; sourceTree = "<group>"; };
 		D45740A019A3D45D00CB1C70 /* MetronomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetronomeView.swift; sourceTree = "<group>"; };
 		D457545D19859B9B00967641 /* QuickSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickSettingsViewController.swift; sourceTree = "<group>"; };
 		D45EDCB81A55D83B004B7FD4 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
@@ -160,16 +160,16 @@
 		0167864617A439C100F71527 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				D439822519A4FEBA007DFE42 /* accent.wav */,
-				D439822619A4FEBA007DFE42 /* beat.wav */,
-				D439822719A4FEBA007DFE42 /* digitalAccent.wav */,
-				D439822819A4FEBA007DFE42 /* digitalBeat.wav */,
-				D439822919A4FEBA007DFE42 /* digitalDivision.wav */,
-				D439822A19A4FEBA007DFE42 /* digitalSubdivision.wav */,
-				D439822B19A4FEBA007DFE42 /* digitalTriplet.wav */,
-				D439822C19A4FEBA007DFE42 /* division.wav */,
-				D439822D19A4FEBA007DFE42 /* subdivision.wav */,
-				D439822E19A4FEBA007DFE42 /* triplet.wav */,
+				D439822519A4FEBA007DFE42 /* Accent.wav */,
+				D439822619A4FEBA007DFE42 /* Beat.wav */,
+				D439822719A4FEBA007DFE42 /* digital-Accent.wav */,
+				D439822819A4FEBA007DFE42 /* digital-Beat.wav */,
+				D439822919A4FEBA007DFE42 /* digital-Division.wav */,
+				D439822A19A4FEBA007DFE42 /* digital-Subdivision.wav */,
+				D439822B19A4FEBA007DFE42 /* digital-Triplet.wav */,
+				D439822C19A4FEBA007DFE42 /* Division.wav */,
+				D439822D19A4FEBA007DFE42 /* Subdivision.wav */,
+				D439822E19A4FEBA007DFE42 /* Triplet.wav */,
 			);
 			name = Sounds;
 			sourceTree = "<group>";
@@ -416,18 +416,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D439823719A4FEBA007DFE42 /* subdivision.wav in Resources */,
-				D439823519A4FEBA007DFE42 /* digitalTriplet.wav in Resources */,
-				D439823819A4FEBA007DFE42 /* triplet.wav in Resources */,
-				D439823619A4FEBA007DFE42 /* division.wav in Resources */,
-				D439823119A4FEBA007DFE42 /* digitalAccent.wav in Resources */,
-				D439823319A4FEBA007DFE42 /* digitalDivision.wav in Resources */,
-				D439823419A4FEBA007DFE42 /* digitalSubdivision.wav in Resources */,
+				D439823719A4FEBA007DFE42 /* Subdivision.wav in Resources */,
+				D439823519A4FEBA007DFE42 /* digital-Triplet.wav in Resources */,
+				D439823819A4FEBA007DFE42 /* Triplet.wav in Resources */,
+				D439823619A4FEBA007DFE42 /* Division.wav in Resources */,
+				D439823119A4FEBA007DFE42 /* digital-Accent.wav in Resources */,
+				D439823319A4FEBA007DFE42 /* digital-Division.wav in Resources */,
+				D439823419A4FEBA007DFE42 /* digital-Subdivision.wav in Resources */,
 				D4C298731A67831700A87612 /* iPhone.storyboard in Resources */,
 				D4C298711A6782DB00A87612 /* QuickSettingsPanel.xib in Resources */,
-				D439822F19A4FEBA007DFE42 /* accent.wav in Resources */,
-				D439823219A4FEBA007DFE42 /* digitalBeat.wav in Resources */,
-				D439823019A4FEBA007DFE42 /* beat.wav in Resources */,
+				D439822F19A4FEBA007DFE42 /* Accent.wav in Resources */,
+				D439823219A4FEBA007DFE42 /* digital-Beat.wav in Resources */,
+				D439823019A4FEBA007DFE42 /* Beat.wav in Resources */,
 				D45EDCB91A55D83B004B7FD4 /* Launch Screen.xib in Resources */,
 				D42B23D61A773C720003251D /* Walkthrough.storyboard in Resources */,
 				014E89D817C3178300B17C47 /* Settings.bundle in Resources */,

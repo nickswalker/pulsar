@@ -55,8 +55,11 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         opacityAnimation  = {
             self.view.backgroundColor = UIColor(white: 0.25, alpha: 1.0)
         }
-        var path = NSBundle.mainBundle().pathForResource("CommonTimeSignatures", ofType: "plist")
+
         bpmControl.delegate = self
+        beatsControl.delegate = self
+
+
 
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector: "intervalWasFired:",
@@ -67,23 +70,13 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         NSUserDefaultsDidChangeNotification, object: nil)
         defaults = NSUserDefaults.standardUserDefaults()
 
-        let beats = defaults.integerForKey("beats")
-        beatsControl.numberOfShards = beats
-        let accents = UInt(defaults.integerForKey("accents"))
-        beatsControl.activated = accents
-        beatsControl.delegate = self
+        updateSettingsFromUserDefaults()
 
         addKerning(settingsButton)
         addKerning(quickSettingsButton)
         //addKerning(sessionButton)
 
-
-        let bpm = defaults.integerForKey("bpm")
-        bpmControl.bpm = bpm
-        timer.bpm = bpm
-
         setupSessionEventHandlers()
-
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -165,6 +158,11 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     func updateSettingsFromUserDefaults() {
         //The defaults were changed externally: pull in the changes
         defaults.synchronize()
+
+        let bpm = defaults.integerForKey("bpm")
+        bpmControl.bpm = bpm
+        timer.bpm = bpm
+
         let beats = defaults.integerForKey("beats")
         if beats != beatsControl.numberOfShards {
             beatsControl.numberOfShards = beats
@@ -173,10 +171,13 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
                 ConnectionManager.sendEvent(.ChangeBeats, object: change)
             }
         }
+
+        let accents = UInt(defaults.integerForKey("accents"))
+        beatsControl.activated = accents
+
         let digital = defaults.boolForKey("digitalVoice")
-        if  digital != SoundPlayer.getDigitalVoice() {
-            SoundPlayer.digitalVoice(digital)
-        }
+        SoundPlayer.digitalVoice = digital
+
     }
 
     //MARK: Gestures
@@ -190,7 +191,8 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         } else if ((Double(secondsInMinute) / delta) < maxTimeBetweenTaps) {
             return
         }
-        bpmControl.bpm = Int(Double(secondsInMinute) / (delta))
+        let value = Int(Double(secondsInMinute) / (delta))
+        defaults.setInteger(value, forKey: "bpm")
     }
 
     @IBAction func cycleTimeSignature(sender: AnyObject) {

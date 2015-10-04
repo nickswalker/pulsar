@@ -72,7 +72,7 @@ public protocol ShardControlDelegate {
 
     public var activated: UInt = 0b0 {
         didSet(oldValue){
-            delegate?.activatedShardsChanged()
+            updateAccentDisplay()
         }
     }
 
@@ -132,8 +132,19 @@ public protocol ShardControlDelegate {
         }
     }
 
-    private func addSublayers(count: Int) {
+    private func updateAccentDisplay(){
+        for var i = 0; i < layers.count; ++i {
+            let targetLayer = layers[i]
 
+            if activated & UInt(1 << i) > 0 {
+                targetLayer.accent = true
+            } else {
+                targetLayer.accent = false
+            }
+        }
+    }
+
+    private func addSublayers(count: Int) {
         for var i = 0; i < count; i++ {
             let tempLayer = ShardLayer()
             tempLayer.frame = frame
@@ -159,7 +170,6 @@ public protocol ShardControlDelegate {
             CATransaction.begin()
             CATransaction.setCompletionBlock({
                 targetLayer.removeFromSuperlayer()
-
             })
             CATransaction.setAnimationDuration(0.8)
             targetLayer.endAngle = CGFloat(M_PI) * 3
@@ -194,11 +204,9 @@ public protocol ShardControlDelegate {
         for var i = 0; i < layers.count; ++i {
             let targetLayer = layers[i]
 
-
             //We'll offset by pi to start the sectors in the center-left
             targetLayer.startAngle = theta * CGFloat(i) + CGFloat(M_PI)
             targetLayer.endAngle = theta * CGFloat(i + 1) + CGFloat(M_PI)
-
 
             if accents & UInt(1 << i) > 0 {
                 targetLayer.accent = true
@@ -268,6 +276,7 @@ public protocol ShardControlDelegate {
                         let mask:UInt = ~(1 << UInt(i))
                         let newAccents = (activated & mask) | shifted
                         activated = newAccents
+                        delegate?.activatedShardsChanged()
                         break
                     }
                 }

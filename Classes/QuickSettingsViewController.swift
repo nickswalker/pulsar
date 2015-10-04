@@ -45,7 +45,6 @@ public class QuickSettingsViewController: UIViewController, BackgroundViewDelega
 
         let deviceHeight: CGFloat = UIScreen.mainScreen().bounds.height
         let deviceWidth: CGFloat = UIScreen.mainScreen().bounds.width
-        let scale = UIScreen.mainScreen().scale
 
         let offscreenFrame = CGRect(x: 0, y: deviceHeight, width: deviceWidth, height: controlAreaHeight)
         let onscreenFrame = CGRect(x: 0, y: deviceHeight - controlAreaHeight, width: deviceWidth, height: controlAreaHeight)

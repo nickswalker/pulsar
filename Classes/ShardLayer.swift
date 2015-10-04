@@ -57,11 +57,9 @@ import UIKit
             CATransaction.setAnimationDuration(0.5)
             if newValue == true {
                 let newColor = active ? ShardLayer.accentActiveFillColor : ShardLayer.accentFillColor
-
                 fillColor = newColor
             } else {
                 let newColor = active ? ShardLayer.activeFillColor : ShardLayer.normalFillColor
-
                 fillColor = newColor
 
             }
