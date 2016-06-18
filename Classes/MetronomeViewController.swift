@@ -62,11 +62,11 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
 
         NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: "intervalWasFired:",
+                                                         selector: #selector(MetronomeViewController.intervalWasFired(_:)),
                                                          name: "interval",
                                                          object: nil)
         //This gets fired whenever changes occur in QuickSettings
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSettingsFromUserDefaults", name:
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MetronomeViewController.updateSettingsFromUserDefaults), name:
         NSUserDefaultsDidChangeNotification, object: nil)
         defaults = NSUserDefaults.standardUserDefaults()
 
@@ -200,7 +200,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         if delta > 2 {
             commonSignaturesIndex = 0
         } else {
-            commonSignaturesIndex!++
+            commonSignaturesIndex! += 1
         }
 
     }

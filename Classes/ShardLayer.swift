@@ -17,7 +17,7 @@ import UIKit
             var count: UInt32 = 0
             var keys = [String]()
             let properties = class_copyPropertyList(ShardLayer.self, &count)
-            for var i: UInt32 = 0; i < count; i++ {
+            for i: UInt32 in 0 ..< count {
                 let property = property_getName(properties[Int(i)])
                 keys.append(NSString(CString: property, encoding: NSUTF8StringEncoding)! as String)
             }

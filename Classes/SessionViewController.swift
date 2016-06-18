@@ -177,7 +177,7 @@ final class SessionViewController: UIViewController, UICollectionViewDataSource,
         actionButton.setTitleColor(UIColor.blackColor().colorWithAlphaComponent(0.25), forState: .Disabled)
         actionButton.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 15)
         actionButton.titleLabel!.textAlignment = .Center
-        actionButton.addTarget(self, action: "actionButtonTapped", forControlEvents: .TouchUpInside)
+        actionButton.addTarget(self, action: #selector(SessionViewController.actionButtonTapped), forControlEvents: .TouchUpInside)
 
         view.addSubview(actionButton)
         constrain(actionButton) {

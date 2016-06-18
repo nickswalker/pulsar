@@ -49,8 +49,8 @@ import UIKit
         layer.actions = ["backgroundColor": NSNull(), "titleColor": NSNull()]
         titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 15.0)
 
-        addTarget(self, action: "touchDown", forControlEvents: .TouchDown)
-        addTarget(self, action: "cancel", forControlEvents: [.TouchUpOutside, .TouchCancel])
+        addTarget(self, action: #selector(ToggleButton.touchDown), forControlEvents: .TouchDown)
+        addTarget(self, action: #selector(ToggleButton.cancel), forControlEvents: [.TouchUpOutside, .TouchCancel])
         tintAdjustmentMode = .Normal
     }
 

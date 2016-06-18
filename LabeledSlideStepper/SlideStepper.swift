@@ -37,7 +37,7 @@ public class SlideStepper: UIControl {
     }
 
     func commonInit() {
-        recognizer.addTarget(self, action: "handlePan:")
+        recognizer.addTarget(self, action: #selector(handlePan))
         recognizer.maximumNumberOfTouches = 1
 
         label.textColor = UIColor.whiteColor()
@@ -45,7 +45,7 @@ public class SlideStepper: UIControl {
         label.font = UIFont(name: "AvenirNext-UltraLight", size: CGFloat(labelFontSize))
         label.text = "\(defaultValue)"
 
-        stepper.addTarget(self, action: "stepperValueChanged:", forControlEvents: .ValueChanged)
+        stepper.addTarget(self, action: #selector(stepperValueChanged), forControlEvents: .ValueChanged)
 
         stepper.maximumValue = Double(maximumValue)
         stepper.minimumValue = Double(minimumValue)

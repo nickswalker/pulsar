@@ -53,7 +53,7 @@
 		D4CA5D521AD600B9001D2356 /* BWWalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D402DB511ABF578C00EBCDE0 /* BWWalkthroughViewController.swift */; };
 		D4EBBAE81986D45E00050FBC /* ShardLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EBBAE61986D45E00050FBC /* ShardLayer.swift */; };
 		D4FC8B5A1AD5EEB100E4BAE6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC8B591AD5EEB100E4BAE6 /* Config.swift */; };
-		EE4893C8E1CB033F715AD98C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 676012170234711D3FD14B14 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E8200EA22F2B269069DDCC68 /* Pods_Pulsar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15762B7C46D22A55695191E /* Pods_Pulsar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +84,10 @@
 		014E89D717C3178300B17C47 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		01B544FC179828B300A4F4E0 /* Pulsar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pulsar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B54522179828B300A4F4E0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		37CFC6AB5114918187AD1F90 /* Pods-Pulsar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulsar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pulsar/Pods-Pulsar.debug.xcconfig"; sourceTree = "<group>"; };
 		676012170234711D3FD14B14 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD684A3C04BC841C058B3004 /* Pods-Pulsar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulsar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pulsar/Pods-Pulsar.release.xcconfig"; sourceTree = "<group>"; };
+		C15762B7C46D22A55695191E /* Pods_Pulsar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pulsar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D402DB501ABF578C00EBCDE0 /* BWWalkthroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BWWalkthroughPageViewController.swift; path = Vendor/BWWalkthrough/BWWalkthrough/BWWalkthroughPageViewController.swift; sourceTree = SOURCE_ROOT; };
 		D402DB511ABF578C00EBCDE0 /* BWWalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BWWalkthroughViewController.swift; path = Vendor/BWWalkthrough/BWWalkthrough/BWWalkthroughViewController.swift; sourceTree = SOURCE_ROOT; };
 		D405BB5F1A75A43C0018E0BF /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -133,8 +136,6 @@
 		D4F42E24196C423800BB847F /* DeltaTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeltaTracker.swift; sourceTree = "<group>"; };
 		D4F42E28196C838B00BB847F /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		D4FC8B591AD5EEB100E4BAE6 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Classes/Config.swift; sourceTree = SOURCE_ROOT; };
-		EF35C038E1D2141B41F1DB8B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		F7ECE106C45E6E0803D521A0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4099B191A68966000BF3AD7 /* LabeledSlideStepper.framework in Frameworks */,
-				EE4893C8E1CB033F715AD98C /* Pods.framework in Frameworks */,
+				E8200EA22F2B269069DDCC68 /* Pods_Pulsar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,8 +184,8 @@
 				D46DB8EF19844F7100A5820B /* LabeledSlideStepper */,
 				01B54507179828B300A4F4E0 /* iOS */,
 				01B544FD179828B300A4F4E0 /* Products */,
-				36F164692A9DFE0665206B6B /* Pods */,
 				4DA9B1985BBA49D696741AB0 /* Frameworks */,
+				1DBD9CC567660FBC1DD47A2B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -224,11 +225,11 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		36F164692A9DFE0665206B6B /* Pods */ = {
+		1DBD9CC567660FBC1DD47A2B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EF35C038E1D2141B41F1DB8B /* Pods.debug.xcconfig */,
-				F7ECE106C45E6E0803D521A0 /* Pods.release.xcconfig */,
+				37CFC6AB5114918187AD1F90 /* Pods-Pulsar.debug.xcconfig */,
+				AD684A3C04BC841C058B3004 /* Pods-Pulsar.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -238,6 +239,7 @@
 			children = (
 				D41BF90C1AAAB6C200FB77DD /* libPods.a */,
 				676012170234711D3FD14B14 /* Pods.framework */,
+				C15762B7C46D22A55695191E /* Pods_Pulsar.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -335,14 +337,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01B5453A179828B400A4F4E0 /* Build configuration list for PBXNativeTarget "Pulsar" */;
 			buildPhases = (
-				0DE307B7ED640A4E61D58B93 /* Check Pods Manifest.lock */,
+				209567FF2BE092760EE25D1C /* 📦 Check Pods Manifest.lock */,
 				0192E30617A1A9E100DE45EC /* Bump Build Number */,
 				01B544F8179828B300A4F4E0 /* Sources */,
 				01B544F9179828B300A4F4E0 /* Frameworks */,
 				01B544FA179828B300A4F4E0 /* Resources */,
 				D44D7BC2196D9589006DE741 /* Embed Frameworks */,
-				4FA17A08A683A7A2CDBFD5CF /* Copy Pods Resources */,
-				32737165E534BA57E3BCF06C /* Embed Pods Frameworks */,
+				D41C965E1D14EC010027D0C9 /* ShellScript */,
+				61AB1FEDCD6D35FFCB56FD42 /* 📦 Embed Pods Frameworks */,
+				49CD90663B6C902EF8E14E81 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -459,14 +462,14 @@
 			shellPath = /bin/sh;
 			shellScript = "${PROJECT_DIR}/Tools/bump_build_number.sh \"${INFOPLIST_FILE}\"";
 		};
-		0DE307B7ED640A4E61D58B93 /* Check Pods Manifest.lock */ = {
+		209567FF2BE092760EE25D1C /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,35 +477,48 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		32737165E534BA57E3BCF06C /* Embed Pods Frameworks */ = {
+		49CD90663B6C902EF8E14E81 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pulsar/Pods-Pulsar-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4FA17A08A683A7A2CDBFD5CF /* Copy Pods Resources */ = {
+		61AB1FEDCD6D35FFCB56FD42 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pulsar/Pods-Pulsar-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D41C965E1D14EC010027D0C9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\n# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\n# Updated with dSYM handling from http://yellowfeather.co.uk/blog/auto-incrementing-build-number-in-xcode-revisited/\n#\n\ngit=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list HEAD --count`\nif [ $CONFIGURATION = \"Debug\" ]; then\nbranchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi\necho \"Incremented the build number ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -634,7 +650,7 @@
 		};
 		01B5453B179828B400A4F4E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF35C038E1D2141B41F1DB8B /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 37CFC6AB5114918187AD1F90 /* Pods-Pulsar.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -671,7 +687,7 @@
 		};
 		01B5453C179828B400A4F4E0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7ECE106C45E6E0803D521A0 /* Pods.release.xcconfig */;
+			baseConfigurationReference = AD684A3C04BC841C058B3004 /* Pods-Pulsar.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

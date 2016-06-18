@@ -9,8 +9,8 @@
 
     public var delegate: LabeledSlideStepperDelegate? {
         didSet {
-            runningSwitch.addTarget(delegate, action: "switchToggled:", forControlEvents: .ValueChanged)
-            bpmControl.addTarget(delegate, action: "bpmChanged:", forControlEvents: .ValueChanged)
+            runningSwitch.addTarget(delegate, action: #selector(delegate?.switchToggled), forControlEvents: .ValueChanged)
+            bpmControl.addTarget(delegate, action: #selector(delegate?.bpmChanged(_:)), forControlEvents: .ValueChanged)
         }
     }
     var runningSwitch = UISwitch()

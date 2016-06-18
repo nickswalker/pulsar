@@ -1,9 +1,9 @@
 PODS:
   - Cartography (0.5.0)
-  - Mixpanel (2.8.3):
-    - Mixpanel/Mixpanel (= 2.8.3)
-  - Mixpanel/Mixpanel (2.8.3)
-  - PeerKit (1.1.0)
+  - Mixpanel (2.9.9):
+    - Mixpanel/Mixpanel (= 2.9.9)
+  - Mixpanel/Mixpanel (2.9.9)
+  - PeerKit (2.0.0)
 
 DEPENDENCIES:
   - Cartography (from `https://github.com/robb/Cartography.git`)
@@ -18,15 +18,17 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Cartography:
-    :commit: 2882fa4efd6447423882436dd45409e00c5956d9
+    :commit: 114a314ce43ff68255c16a70e4c53824c9ecd539
     :git: https://github.com/robb/Cartography.git
   PeerKit:
-    :commit: 80804c5551949e6f6fa6c1a91d7d85ae106509c8
+    :commit: c700719eca6de8b168b8aa73e918cd33ca9e85c6
     :git: https://github.com/jpsim/PeerKit
 
 SPEC CHECKSUMS:
-  Cartography: 314f5ed1495995760487161eeb7a8a0940d88ad3
-  Mixpanel: fd52e097ae0d27295d0595b2261c60b94d191fda
-  PeerKit: 7ab365c98a6b72211f280bfd51bae898b1f50f6f
+  Cartography: de3e85d2fc2d7288a2e7c89e1ac6cad08599d75e
+  Mixpanel: 818d1940c2d9402453b349545022a86968097f57
+  PeerKit: 0454b5708e5fd45a73d9a235716d45626500449b
 
-COCOAPODS: 0.39.0.beta.4
+PODFILE CHECKSUM: 34d3a175c69c9b22ce9d955a24751b519be7a6c9
+
+COCOAPODS: 1.0.0

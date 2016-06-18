@@ -95,7 +95,7 @@ public protocol ShardControlDelegate {
 
     private func commonInit() {
         doubleTapRecognizer.numberOfTapsRequired = 2
-        doubleTapRecognizer.addTarget(self, action: "handleDoubleTap:")
+        doubleTapRecognizer.addTarget(self, action: #selector(ShardControl.handleDoubleTap(_:)))
         autoresizesSubviews = true
         layer.insertSublayer(backgroundFlashLayer, atIndex: 0)
         addGestureRecognizer(doubleTapRecognizer)
@@ -133,7 +133,7 @@ public protocol ShardControlDelegate {
     }
 
     private func updateAccentDisplay(){
-        for var i = 0; i < layers.count; ++i {
+        for i in 0 ..< layers.count {
             let targetLayer = layers[i]
 
             if activated & UInt(1 << i) > 0 {
@@ -145,7 +145,7 @@ public protocol ShardControlDelegate {
     }
 
     private func addSublayers(count: Int) {
-        for var i = 0; i < count; i++ {
+        for _ in 0 ..< count {
             let tempLayer = ShardLayer()
             tempLayer.frame = frame
             tempLayer.radius = radius
@@ -165,7 +165,7 @@ public protocol ShardControlDelegate {
     - parameter count: number to remove
     */
     private func removeSublayers(count: Int) {
-        for var i = 0; i < count; i++ {
+        for i in 0 ..< count {
             let targetLayer = layers.last!
             CATransaction.begin()
             CATransaction.setCompletionBlock({
@@ -201,7 +201,7 @@ public protocol ShardControlDelegate {
         let theta: CGFloat = (CGFloat(M_PI) * 2) / CGFloat(numberOfShards)
         CATransaction.begin()
         CATransaction.setAnimationDuration(0.8)
-        for var i = 0; i < layers.count; ++i {
+        for i in 0 ..< layers.count {
             let targetLayer = layers[i]
 
             //We'll offset by pi to start the sectors in the center-left
@@ -268,7 +268,7 @@ public protocol ShardControlDelegate {
             targetShard = layer.hitTest(point) as? ShardLayer
             if targetShard != nil {
                 targetShard!.accent = !targetShard!.accent
-                for var i = 0; i < layers.count; i++ {
+                for i in 0 ..< layers.count {
                     let targetLayer = layers[i]
                     if targetLayer == targetShard {
                         let value: UInt = targetShard!.accent ? 1 : 0

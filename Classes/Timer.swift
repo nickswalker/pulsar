@@ -77,7 +77,7 @@ public class Timer: IntervalDelegate {
 
         let part: Int = 1 << (currentBeatPart)
         NSNotificationCenter.defaultCenter().postNotificationName("interval", object: nil, userInfo: ["beatPart": part])
-        currentBeatPart++
+        currentBeatPart += 1
     }
 
 
