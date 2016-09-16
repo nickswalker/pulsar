@@ -5,10 +5,10 @@ class BlurBackground: UIView {
 
     override func awakeFromNib() {
         let old = frame
-        let blurBackground = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight))
+        let blurBackground = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
         blurBackground.frame = old
         addSubview(blurBackground)
-        sendSubviewToBack(blurBackground)
+        sendSubview(toBack: blurBackground)
     }
 
 }

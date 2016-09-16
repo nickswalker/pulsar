@@ -52,38 +52,38 @@ enum PulseType: String {
     }
 
 
-    class func schedule(type: PulseType) {
-        players[type]!.scheduleBuffer(buffers[type]!, atTime: nil, options: .Interrupts, completionHandler: nil)
+    class func schedule(_ type: PulseType) {
+        players[type]!.scheduleBuffer(buffers[type]!, at: nil, options: .interrupts, completionHandler: nil)
     }
 
     class func vibrate() {
     }
 
     class func getAudioFormat() -> (AVAudioFormat) {
-        let url = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(PulseType.Beat.rawValue, ofType: "wav")!)
+        let url = URL(fileURLWithPath: Bundle.main.path(forResource: PulseType.Beat.rawValue, ofType: "wav")!)
         let file = try? AVAudioFile(forReading: url)
         return file!.processingFormat
 
     }
 
-    class private func attachAndConnectNodeToMainMixer(node: AVAudioNode) {
-        SoundPlayer.engine.attachNode(node)
+    class fileprivate func attachAndConnectNodeToMainMixer(_ node: AVAudioNode) {
+        SoundPlayer.engine.attach(node)
         SoundPlayer.engine.connect(node, to: SoundPlayer.engine.mainMixerNode, format: getAudioFormat())
     }
 
-    class private func fillWithFile(fileName: String) -> (AVAudioPCMBuffer) {
-        let url = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(fileName, ofType: "wav")!)
+    class fileprivate func fillWithFile(_ fileName: String) -> (AVAudioPCMBuffer) {
+        let url = URL(fileURLWithPath: Bundle.main.path(forResource: fileName, ofType: "wav")!)
         let file = try? AVAudioFile(forReading: url)
-        let buffer = AVAudioPCMBuffer(PCMFormat: file!.processingFormat, frameCapacity: UInt32(file!.length))
+        let buffer = AVAudioPCMBuffer(pcmFormat: file!.processingFormat, frameCapacity: UInt32(file!.length))
         do {
-            try file!.readIntoBuffer(buffer)
+            try file!.read(into: buffer)
         } catch _ {
         }
         return buffer
 
     }
 
-    class private func setVoice(voice: String?){
+    class fileprivate func setVoice(_ voice: String?){
         let prefix: String
         if voice != nil{
             prefix = "\(voice!)-"

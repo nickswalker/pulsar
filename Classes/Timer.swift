@@ -7,17 +7,17 @@ let secondsInMinute = 60
 
 
 public enum BeatPartMeanings: UInt {
-    case OnTheBeat = 0b10,
-         Division = 0b10000000,
-         SubDivision = 0b10000010000,
-         Triplet = 0b1000100010
+    case onTheBeat = 0b10,
+         division = 0b10000000,
+         subDivision = 0b10000010000,
+         triplet = 0b1000100010
 }
 
 //Beats one measure and all possible sub intervals for a BPM
 
-public class Timer: IntervalDelegate {
+open class Timer: IntervalDelegate {
 
-    @objc public func intervalTime() -> Double {
+    @objc open func intervalTime() -> Double {
         return intervalDuration
     }
     var on: Bool = false {
@@ -70,13 +70,13 @@ public class Timer: IntervalDelegate {
         timerDriver = nil
     }
 
-    @objc public func interval() {
+    @objc open func interval() {
         if currentBeatPart > partsPerBeat {
             currentBeatPart = 1
         }
 
         let part: Int = 1 << (currentBeatPart)
-        NSNotificationCenter.defaultCenter().postNotificationName("interval", object: nil, userInfo: ["beatPart": part])
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "interval"), object: nil, userInfo: ["beatPart": part])
         currentBeatPart += 1
     }
 

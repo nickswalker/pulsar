@@ -1,7 +1,5 @@
 target 'Pulsar' do
-pod 'Cartography',:git => "https://github.com/robb/Cartography.git"
-pod 'Mixpanel'
-pod 'PeerKit', :git => "https://github.com/jpsim/PeerKit"
+    pod 'Mixpanel-swift', :git => 'https://github.com/mixpanel/mixpanel-swift.git', :branch => 'swift3'
 end
 use_frameworks!
 

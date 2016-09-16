@@ -13,7 +13,7 @@ class DeltaTracker {
 
 }
 
-func executionTimeInterval(block: () -> ()) -> CFTimeInterval {
+func executionTimeInterval(_ block: () -> ()) -> CFTimeInterval {
     let start = CACurrentMediaTime()
     block()
     let end = CACurrentMediaTime()

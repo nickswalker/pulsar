@@ -10,22 +10,22 @@ import UIKit
                 let update = {
                     () -> () in
                     self.backgroundColor = self.tintColor
-                    self.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                    self.setTitleColor(UIColor.white, for: UIControlState())
                 }
 
                 if self.animated {
-                    UIView.animateWithDuration(0.2, animations: update)
+                    UIView.animate(withDuration: 0.2, animations: update)
                 } else {
                     update()
                 }
             } else {
                 let update = {
                     () -> () in
-                    self.backgroundColor = UIColor.clearColor()
-                    self.setTitleColor(self.tintColor, forState: .Normal)
+                    self.backgroundColor = UIColor.clear
+                    self.setTitleColor(self.tintColor, for: UIControlState())
                 }
                 if self.animated {
-                    UIView.animateWithDuration(0.2, animations: update)
+                    UIView.animate(withDuration: 0.2, animations: update)
                 } else {
                     update()
                 }
@@ -42,40 +42,40 @@ import UIKit
     }
 
     func commonInit() {
-        backgroundColor = UIColor.clearColor()
-        layer.borderColor = tintColor!.CGColor
+        backgroundColor = UIColor.clear
+        layer.borderColor = tintColor!.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 4.0
         layer.actions = ["backgroundColor": NSNull(), "titleColor": NSNull()]
         titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 15.0)
 
-        addTarget(self, action: #selector(ToggleButton.touchDown), forControlEvents: .TouchDown)
-        addTarget(self, action: #selector(ToggleButton.cancel), forControlEvents: [.TouchUpOutside, .TouchCancel])
-        tintAdjustmentMode = .Normal
+        addTarget(self, action: #selector(ToggleButton.touchDown), for: .touchDown)
+        addTarget(self, action: #selector(ToggleButton.cancel), for: [.touchUpOutside, .touchCancel])
+        tintAdjustmentMode = .normal
     }
 
     func touchDown() {
         on = !on
-        sendActionsForControlEvents(.ValueChanged)
+        sendActions(for: .valueChanged)
     }
 
     func cancel() {
         on = !on
-        sendActionsForControlEvents(.ValueChanged)
+        sendActions(for: .valueChanged)
     }
 
     override func tintColorDidChange() {
-        let isInactive = self.tintAdjustmentMode == .Dimmed
+        let isInactive = self.tintAdjustmentMode == .dimmed
         if isInactive {
             // modify subviews to look disabled
         } else {
-            layer.borderColor = tintColor!.CGColor
+            layer.borderColor = tintColor!.cgColor
             on = Bool(on)
 
         }
     }
 
-    override func intrinsicContentSize() -> CGSize {
+    override var intrinsicContentSize : CGSize {
         return CGSize(width: 88, height: 44)
     }
 }

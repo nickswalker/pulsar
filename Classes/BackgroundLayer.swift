@@ -3,10 +3,10 @@ import QuartzCore
 
 class BackgroundLayer: CALayer {
 
-    override func containsPoint(p: CGPoint) -> Bool {
+    override func contains(_ p: CGPoint) -> Bool {
         return false;
     }
-    override func hitTest(p: CGPoint) -> CALayer? {
+    override func hitTest(_ p: CGPoint) -> CALayer? {
         return nil;
     }
 }

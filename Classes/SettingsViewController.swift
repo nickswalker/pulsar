@@ -3,7 +3,7 @@ import MultipeerConnectivity
 import Mixpanel
 
 protocol SettingsDelegate {
-    func settingChangedForKey(key: String, value: AnyObject)
+    func settingChangedForKey(_ key: String, value: AnyObject)
     func shouldDisplayHelpOverlay()
 }
 
@@ -19,14 +19,14 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var digitalVoiceControl: UISwitch!
 
     override func viewDidLoad() {
-        screenFlashControl.on = screenFlash
-        ledFlashOnAccentControl.on = ledFlashOnAccent
-        ledFlashOnBeatControl.on = ledFlashOnBeat
-        digitalVoiceControl.on = digitalVoice
+        screenFlashControl.isOn = screenFlash
+        ledFlashOnAccentControl.isOn = ledFlashOnAccent
+        ledFlashOnBeatControl.isOn = ledFlashOnBeat
+        digitalVoiceControl.isOn = digitalVoice
         
     }
 
-    @IBAction func settingChanged(sender: UISwitch) {
+    @IBAction func settingChanged(_ sender: UISwitch) {
         let key: String
         switch sender {
             case self.screenFlashControl:
@@ -41,44 +41,44 @@ class SettingsViewController: UITableViewController {
                 abort()
         }
 
-        let mixpanel = Mixpanel.sharedInstance()
+        let mixpanel = Mixpanel.mainInstance()
 
-        mixpanel.track("Setting changed", properties:["Setting": key])
-        delegate?.settingChangedForKey(key, value: sender.on)
+        mixpanel.track(event: "Setting changed", properties:["Setting": key])
+        delegate?.settingChangedForKey(key, value: sender.isOn as AnyObject)
     }
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1   {
-            UIApplication.sharedApplication().openURL(NSURL(string: "https://nickwalker.us/pulsar")!)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).section == 1   {
+            UIApplication.shared.openURL(URL(string: "https://nickwalker.us/pulsar")!)
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        if indexPath.section == 0   {
-            cell.selectionStyle = .None
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        if (indexPath as NSIndexPath).section == 0   {
+            cell.selectionStyle = .none
         }
         return cell
     }
     // Hide the LED related rows if we're on a device that doesn't have one
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if !LED.hasLED() && (indexPath.row == 1 || indexPath.row == 2) {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if !LED.hasLED() && ((indexPath as NSIndexPath).row == 1 || (indexPath as NSIndexPath).row == 2) {
             return 0
         }
         else
         {
-            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+            return super.tableView(tableView, heightForRowAt: indexPath)
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showAbout" {
-            let destination = segue.destinationViewController.view as! UIWebView
-            let file = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("about", ofType: "html")!)
-            destination.loadRequest(NSURLRequest(URL: file))
+            let destination = segue.destination.view as! UIWebView
+            let file = URL(fileURLWithPath: Bundle.main.path(forResource: "about", ofType: "html")!)
+            destination.loadRequest(URLRequest(url: file))
 
         }
     }
-    @IBAction func didPressHelpButton(sender: UIButton){
+    @IBAction func didPressHelpButton(_ sender: UIButton){
         delegate?.shouldDisplayHelpOverlay()
     }
 }

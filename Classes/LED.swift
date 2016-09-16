@@ -2,12 +2,12 @@ import AVFoundation
 
 class LED {
 
-    static let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+    static let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
 
     class func flash() {
         let device = LED.device
-        if device!.torchAvailable {
-            dispatch_async(dispatch_get_main_queue(), {
+        if device!.isTorchAvailable {
+            DispatchQueue.main.async(execute: {
                 do {
                     try device!.lockForConfiguration()
                 } catch _ {
@@ -16,7 +16,7 @@ class LED {
                     try device!.setTorchModeOnWithLevel(0.1)
                 } catch _ {
                 }
-                device!.torchMode = .Off
+                device!.torchMode = .off
                 device!.unlockForConfiguration()
             })
 

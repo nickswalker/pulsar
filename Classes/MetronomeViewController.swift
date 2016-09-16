@@ -2,12 +2,32 @@ import Foundation
 import UIKit
 import QuartzCore
 import LabeledSlideStepper
-import PeerKit
+
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 let accentOnFirstBeat = [1]
 
 class MetronomeViewController: UIViewController, SettingsDelegate,
-        LabeledSlideStepperDelegate, QuickSettingsDelegate, SessionCreationDelegate, ShardControlDelegate, BWWalkthroughViewControllerDelegate {
+        LabeledSlideStepperDelegate, QuickSettingsDelegate, ShardControlDelegate, BWWalkthroughViewControllerDelegate {
 
     @IBOutlet weak var bpmControl: LabeledSlideStepper!
     @IBOutlet weak var beatsControl: ShardControl!
@@ -16,11 +36,10 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     @IBOutlet weak var sessionButton: UIButton!
 
     var quickSettings: QuickSettingsViewController?
-    var sessionController: SessionViewController?
     var bpmTracker = DeltaTracker()
     var timer = Timer()
     var timeSignatureTracker = DeltaTracker()
-    var defaults = NSUserDefaults.standardUserDefaults()
+    var defaults = UserDefaults.standard
 	var opacityAnimation: () -> () = {}
 	var commonSignaturesIndex: Int? = nil {
         didSet{
@@ -34,18 +53,18 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         }
     }
 
-    private var running: Bool = false {
+    fileprivate var running: Bool = false {
         willSet(newValue){
             if newValue == true {
                 timer.start()
                 bpmControl.running = true
-                UIApplication.sharedApplication().idleTimerDisabled = true
+                UIApplication.shared.isIdleTimerDisabled = true
 
             } else {
                 beatsControl.activeShard = nil
                 timer.stop()
                 bpmControl.running = false
-                UIApplication.sharedApplication().idleTimerDisabled = false
+                UIApplication.shared.isIdleTimerDisabled = false
             }
         }
     }
@@ -61,14 +80,14 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
 
 
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
                                                          selector: #selector(MetronomeViewController.intervalWasFired(_:)),
-                                                         name: "interval",
+                                                         name: NSNotification.Name(rawValue: "interval"),
                                                          object: nil)
         //This gets fired whenever changes occur in QuickSettings
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MetronomeViewController.updateSettingsFromUserDefaults), name:
-        NSUserDefaultsDidChangeNotification, object: nil)
-        defaults = NSUserDefaults.standardUserDefaults()
+        NotificationCenter.default.addObserver(self, selector: #selector(MetronomeViewController.updateSettingsFromUserDefaults), name:
+        UserDefaults.didChangeNotification, object: nil)
+        defaults = UserDefaults.standard
 
         updateSettingsFromUserDefaults()
 
@@ -76,58 +95,57 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         addKerning(quickSettingsButton)
         //addKerning(sessionButton)
 
-        setupSessionEventHandlers()
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         beatsControl.frame = view.frame
-        let halfWidth = CGRectGetMidX(UIScreen.mainScreen().bounds)
-        let halfHeight = CGRectGetMidY(UIScreen.mainScreen().bounds)
+        let halfWidth = UIScreen.main.bounds.midX
+        let halfHeight = UIScreen.main.bounds.midY
         let radius = hypot(halfWidth, halfHeight)
 
         beatsControl.radius = radius
 
         // For debugging. Force first launch behavior
         //defaults.setBool(true, forKey: "firstLaunch")
-        if defaults.boolForKey("firstLaunch") {
+        if defaults.bool(forKey: "firstLaunch") {
             presentHelpOverlay()
-            defaults.setBool(false, forKey: "firstLaunch")
+            defaults.set(false, forKey: "firstLaunch")
         }
         
     }
 
     //@discussion listens to the timer emitting beatParts.
-    func intervalWasFired(notification: NSNotification) {
-        let part = notification.userInfo!["beatPart"] as! Int
+    func intervalWasFired(_ notification: Notification) {
+        let part = (notification as NSNotification).userInfo!["beatPart"] as! Int
         let beatPart = UInt(part)
-        if (beatPart & BeatPartMeanings.OnTheBeat.rawValue) != 0 {
+        if (beatPart & BeatPartMeanings.onTheBeat.rawValue) != 0 {
             beatsControl.activateNext()
-            if defaults.boolForKey(PulseType.Beat.rawValue) {
+            if defaults.bool(forKey: PulseType.Beat.rawValue) {
                 SoundPlayer.schedule(.Beat)
             }
-            if defaults.boolForKey("screenFlash") {
+            if defaults.bool(forKey: "screenFlash") {
                 beatsControl?.flashBackground()
             }
-            if defaults.boolForKey("ledFlashOnBeat") {
+            if defaults.bool(forKey: "ledFlashOnBeat") {
                 LED.flash()
             }
             if beatsControl.activeIsAccent() {
-                if defaults.boolForKey("ledFlashOnAccent") {
+                if defaults.bool(forKey: "ledFlashOnAccent") {
                     LED.flash()
                 }
                 SoundPlayer.schedule(.Accent)
                 beatsControl.flashBackground()
             }
-        } else if (beatPart & BeatPartMeanings.Division.rawValue) != 0 {
-            if defaults.boolForKey(PulseType.Division.rawValue) {
+        } else if (beatPart & BeatPartMeanings.division.rawValue) != 0 {
+            if defaults.bool(forKey: PulseType.Division.rawValue) {
                 SoundPlayer.schedule(.Division)
             }
-        } else if (beatPart & BeatPartMeanings.SubDivision.rawValue) != 0 {
-            if defaults.boolForKey(PulseType.Subdivision.rawValue) {
+        } else if (beatPart & BeatPartMeanings.subDivision.rawValue) != 0 {
+            if defaults.bool(forKey: PulseType.Subdivision.rawValue) {
                 SoundPlayer.schedule(.Subdivision)
             }
-        } else if (beatPart & BeatPartMeanings.Triplet.rawValue) != 0 {
-            if defaults.boolForKey(PulseType.Triplet.rawValue) {
+        } else if (beatPart & BeatPartMeanings.triplet.rawValue) != 0 {
+            if defaults.bool(forKey: PulseType.Triplet.rawValue) {
                 SoundPlayer.schedule(.Triplet)
             }
         }
@@ -136,55 +154,42 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
     //MARK: MetronomeControlDelegate
 
-    func bpmChanged(sender: SlideStepper) {
+    func bpmChanged(_ sender: SlideStepper) {
         timer.bpm = sender.value
-        defaults.setObject(sender.value, forKey: "bpm")
+        defaults.set(sender.value, forKey: "bpm")
         defaults.synchronize()
-        if ConnectionManager.inSession {
-            let change: [String: MPCSerializable] = ["bpm": MPCInt(value: sender.value)]
-            ConnectionManager.sendEvent(.ChangeBPM, object: change)
-        }
     }
 
-    func switchToggled(sender: UISwitch) {
-        running = sender.on
-
-        if ConnectionManager.inSession {
-            let event: Event = sender.on ? .Start : .Stop
-            ConnectionManager.sendEvent(event, object: nil)
-        }
+    func switchToggled(_ sender: UISwitch) {
+        running = sender.isOn
     }
 
     func updateSettingsFromUserDefaults() {
         //The defaults were changed externally: pull in the changes
         defaults.synchronize()
 
-        let bpm = defaults.integerForKey("bpm")
+        let bpm = defaults.integer(forKey: "bpm")
         bpmControl.bpm = bpm
         timer.bpm = bpm
 
-        let beats = defaults.integerForKey("beats")
+        let beats = defaults.integer(forKey: "beats")
         if beats != beatsControl.numberOfShards {
             beatsControl.numberOfShards = beats
-            if ConnectionManager.inSession {
-                let change: [String: MPCSerializable] = ["beats": MPCInt(value: beats)]
-                ConnectionManager.sendEvent(.ChangeBeats, object: change)
-            }
         }
 
-        let accents = UInt(defaults.integerForKey("accents"))
+        let accents = UInt(defaults.integer(forKey: "accents"))
         beatsControl.activated = accents
 
-        let digital = defaults.boolForKey("digitalVoice")
+        let digital = defaults.bool(forKey: "digitalVoice")
         SoundPlayer.digitalVoice = digital
 
     }
 
     //MARK: Gestures
 
-    private let maxTimeBetweenTaps = 20.0
+    fileprivate let maxTimeBetweenTaps = 20.0
 
-    @IBAction func matchBpm(sender: AnyObject) {
+    @IBAction func matchBpm(_ sender: AnyObject) {
         let delta = bpmTracker.benchmark()
         if delta == 0 {
             return
@@ -192,10 +197,10 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
             return
         }
         let value = Int(Double(secondsInMinute) / (delta))
-        defaults.setInteger(value, forKey: "bpm")
+        defaults.set(value, forKey: "bpm")
     }
 
-    @IBAction func cycleTimeSignature(sender: AnyObject) {
+    @IBAction func cycleTimeSignature(_ sender: AnyObject) {
         let delta = timeSignatureTracker.benchmark()
         if delta > 2 {
             commonSignaturesIndex = 0
@@ -205,188 +210,105 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
 
     }
     @IBAction func didSwipeLeft(){
-        defaults.setInteger(beatsControl!.numberOfShards - 1, forKey: "beats")
+        defaults.set(beatsControl!.numberOfShards - 1, forKey: "beats")
     }
     @IBAction func didSwipeRight(){
-        defaults.setInteger(beatsControl!.numberOfShards + 1, forKey: "beats")
+        defaults.set(beatsControl!.numberOfShards + 1, forKey: "beats")
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSettings" {
             running = false
 
-            let viewController = segue.destinationViewController as! UINavigationController
+            let viewController = segue.destination as! UINavigationController
             let settingsViewController = viewController.viewControllers[0] as! SettingsViewController
             settingsViewController.delegate = self
-            settingsViewController.screenFlash = defaults.boolForKey("screenFlash")
-            settingsViewController.ledFlashOnBeat = defaults.boolForKey("ledFlashOnBeat")
-            settingsViewController.ledFlashOnAccent = defaults.boolForKey("ledFlashOnAccent")
-            settingsViewController.digitalVoice = defaults.boolForKey("digitalVoice")
+            settingsViewController.screenFlash = defaults.bool(forKey: "screenFlash")
+            settingsViewController.ledFlashOnBeat = defaults.bool(forKey: "ledFlashOnBeat")
+            settingsViewController.ledFlashOnAccent = defaults.bool(forKey: "ledFlashOnAccent")
+            settingsViewController.digitalVoice = defaults.bool(forKey: "digitalVoice")
         }
     }
 
     // MARK: Overlays
 
     @IBAction func presentSessionController() {
-        let window = UIApplication.sharedApplication().keyWindow!
-        sessionController = SessionViewController()
-        bpmControl.tintAdjustmentMode = .Dimmed
-        sessionController!.delegate = self
-        window.addSubview(sessionController!.view)
-        sessionController!.animateIn()
+        let window = UIApplication.shared.keyWindow!
+        bpmControl.tintAdjustmentMode = .dimmed
     }
 
     @IBAction func presentQuickSettings() {
-        let window = UIApplication.sharedApplication().keyWindow!
-        bpmControl.tintAdjustmentMode = .Dimmed
-        quickSettings = QuickSettingsViewController(nibName:"QuickSettingsPanel", bundle: NSBundle.mainBundle())
+        let window = UIApplication.shared.keyWindow!
+        bpmControl.tintAdjustmentMode = .dimmed
+        quickSettings = QuickSettingsViewController(nibName:"QuickSettingsPanel", bundle: Bundle.main)
 
         quickSettings!.delegate = self
         window.addSubview(quickSettings!.view)
-        quickSettings!.beatControl.on = defaults.boolForKey(PulseType.Beat.rawValue)
-        quickSettings!.divisionControl.on = defaults.boolForKey(PulseType.Division.rawValue)
-        quickSettings!.subdivisionControl.on = defaults.boolForKey(PulseType.Subdivision.rawValue)
-        quickSettings!.tripletControl.on = defaults.boolForKey(PulseType.Triplet.rawValue)
-        let beats = defaults.integerForKey("beats")
+        quickSettings!.beatControl.on = defaults.bool(forKey: PulseType.Beat.rawValue)
+        quickSettings!.divisionControl.on = defaults.bool(forKey: PulseType.Division.rawValue)
+        quickSettings!.subdivisionControl.on = defaults.bool(forKey: PulseType.Subdivision.rawValue)
+        quickSettings!.tripletControl.on = defaults.bool(forKey: PulseType.Triplet.rawValue)
+        let beats = defaults.integer(forKey: "beats")
         quickSettings!.beatsControlLabel.text = "\(beats)"
         quickSettings!.beatsControl.value = Double(beats)
         quickSettings!.animateIn()
     }
 
-
-    func sessionViewControllerDidFinish(event: SessionEvent?){
-        bpmControl.tintAdjustmentMode = .Normal
-        sessionController!.animateOut()
-        sessionController = nil
-        if event == nil {
-            ConnectionManager.stop()
-        } else {
-            switch event! {
-                case .Initiated:
-                    let initialConfig: [String: MPCSerializable] = ["bpm": MPCInt(value: self.bpmControl!.bpm), "beats": MPCInt(value: beatsControl!.numberOfShards)]
-                    ConnectionManager.sendEvent(.StartSession, object: initialConfig)
-                case .Left:
-                    ConnectionManager.stop()
-                default:
-                    ()
-            }
-        }
-
-    }
-
     func walkthroughCloseButtonPressed() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func unwindViewController(sender: UIStoryboardSegue){
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func unwindViewController(_ sender: UIStoryboardSegue){
+        dismiss(animated: true, completion: nil)
     }
 
     func quickSettingsViewControllerDidFinish() {
-        bpmControl.tintAdjustmentMode = .Normal
+        bpmControl.tintAdjustmentMode = .normal
         quickSettings = nil
     }
 
-    func settingChangedForKey(key: String, value: AnyObject) {
+    func settingChangedForKey(_ key: String, value: AnyObject) {
         defaults.setValue(value, forKey: key)
         defaults.synchronize()
     }
     func shouldDisplayHelpOverlay() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         presentHelpOverlay()
     }
 
     func presentHelpOverlay(){
         // Get view controllers and build the walkthrough
         let stb = UIStoryboard(name: "Walkthrough", bundle: nil)
-        let walkthrough = stb.instantiateViewControllerWithIdentifier("master") as! BWWalkthroughViewController
-        let page_one = stb.instantiateViewControllerWithIdentifier("basics")
+        let walkthrough = stb.instantiateViewController(withIdentifier: "master") as! BWWalkthroughViewController
+        let page_one = stb.instantiateViewController(withIdentifier: "basics")
 
         // Attach the pages to the master
         walkthrough.delegate = self
         walkthrough.addViewController(page_one)
         walkthrough.view!.backgroundColor = UIColor(white: 0.0, alpha: 0.3)
-        walkthrough.modalPresentationStyle = .OverCurrentContext
-        walkthrough.modalTransitionStyle = .CrossDissolve
+        walkthrough.modalPresentationStyle = .overCurrentContext
+        walkthrough.modalTransitionStyle = .crossDissolve
 
-        presentViewController(walkthrough, animated: true, completion: nil)
+        present(walkthrough, animated: true, completion: nil)
     }
 
     func activatedShardsChanged() {
-        defaults.setInteger(Int(beatsControl!.activated), forKey: "accents")
+        defaults.set(Int(beatsControl!.activated), forKey: "accents")
     }
 
     // MARK: Appearance
-    override func preferredStatusBarStyle() -> (UIStatusBarStyle) {
-        return .LightContent
+    override var preferredStatusBarStyle : (UIStatusBarStyle) {
+        return .lightContent
     }
     
-    private func addKerning(button: UIButton){
+    fileprivate func addKerning(_ button: UIButton){
         let string = button.titleLabel?.attributedText!.mutableCopy() as! NSMutableAttributedString
         string.addAttribute(NSKernAttributeName, value: 1.0, range: NSMakeRange(0, string.length))
-        button.setAttributedTitle(string, forState: .Normal)
+        button.setAttributedTitle(string, for: UIControlState())
         let insetAmount: CGFloat = 4.0;
         button.titleEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
         button.contentEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);
     
     }
 
-    // MARK: Sessions
-
-    private func setupSessionEventHandlers(){
-        ConnectionManager.onEvent(.StartSession, run: {
-            peerID, object in
-            let dict = object as! [String: NSData]
-
-            let bpm = MPCInt(mpcSerialized: dict["bpm"]!).value
-            let beats = MPCInt(mpcSerialized: dict["beats"]!).value
-            self.timer.bpm = bpm
-            self.bpmControl!.bpm = bpm
-            self.beatsControl!.numberOfShards = beats
-            if self.sessionController != nil {
-                //This may cause a bug if the other person starts a session very soon after the first
-                //person does. The SessionController will be already removed from the view or being animated.
-                self.sessionController!.delegate?.sessionViewControllerDidFinish(.Joined)
-            }
-            ConnectionManager.heartBeat()
-        })
-        ConnectionManager.onEvent(.ChangeBeats, run: {
-            peerID, object in
-            let dict = object as! [String: NSData]
-
-            let beats = MPCInt(mpcSerialized: dict["beats"]!).value
-            self.beatsControl!.numberOfShards = beats
-        })
-        ConnectionManager.onEvent(.ChangeBPM, run: {
-            peerID, object in
-            let dict = object as! [String: NSData]
-
-            let bpm = MPCInt(mpcSerialized: dict["bpm"]!).value
-            self.timer.bpm = bpm
-            self.bpmControl!.bpm = bpm
-        })
-        ConnectionManager.onEvent(.Start, run: {
-            peerID, object in
-            //Wait until a date in the future, then flip the switch
-            self.running = true
-
-        })
-        ConnectionManager.onEvent(.Stop, run: {
-            peerID, object in
-            self.running = false
-        })
-        ConnectionManager.onEvent(.Heartbeat, run: {
-            peerID, object in
-            let packet:[String: MPCSerializable] = ["HeartbeatResponse": MPCInt(value: Int(mach_absolute_time()))]
-            ConnectionManager.sendEvent(.HeartbeatResponse, object: packet)
-
-        })
-        ConnectionManager.onEvent(.HeartbeatResponse, run: {
-            peerID, object in
-            let dict = object as! [String: NSData]
-            let senderTime: Int = MPCInt(mpcSerialized: dict["HeartbeatResponse"]!).value
-            ConnectionManager.latency[peerID] = Int(ConnectionManager.lastHeartbeatTime) - senderTime
-           print(ConnectionManager.lastHeartbeatTime - senderTime)
-        })
-    }
 }

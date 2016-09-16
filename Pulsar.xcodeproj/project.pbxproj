@@ -43,12 +43,7 @@
 		D4C298711A6782DB00A87612 /* QuickSettingsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C298701A6782DB00A87612 /* QuickSettingsPanel.xib */; };
 		D4C298731A67831700A87612 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4C298721A67831700A87612 /* iPhone.storyboard */; };
 		D4C298D81A67856300A87612 /* BlurBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C298D71A67856300A87612 /* BlurBackground.swift */; };
-		D4C298DC1A67858B00A87612 /* MPCInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C298DB1A67858B00A87612 /* MPCInt.swift */; };
 		D4C298DE1A67859800A87612 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C298DD1A67859800A87612 /* Configuration.swift */; };
-		D4C298E11A6788B100A87612 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C298D91A67857100A87612 /* ConnectionManager.swift */; };
-		D4C298FC1A67893100A87612 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C298FB1A67893100A87612 /* Player.swift */; };
-		D4C298FE1A67895500A87612 /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C298FD1A67895500A87612 /* SessionViewController.swift */; };
-		D4C299001A67897200A87612 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C298FF1A67897200A87612 /* PlayerCell.swift */; };
 		D4C299011A67904800A87612 /* ShardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EBBAE51986D45E00050FBC /* ShardControl.swift */; };
 		D4CA5D521AD600B9001D2356 /* BWWalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D402DB511ABF578C00EBCDE0 /* BWWalkthroughViewController.swift */; };
 		D4EBBAE81986D45E00050FBC /* ShardLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EBBAE61986D45E00050FBC /* ShardLayer.swift */; };
@@ -121,13 +116,8 @@
 		D4C298701A6782DB00A87612 /* QuickSettingsPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickSettingsPanel.xib; sourceTree = "<group>"; };
 		D4C298721A67831700A87612 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		D4C298D71A67856300A87612 /* BlurBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurBackground.swift; sourceTree = "<group>"; };
-		D4C298D91A67857100A87612 /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
-		D4C298DB1A67858B00A87612 /* MPCInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCInt.swift; sourceTree = "<group>"; };
 		D4C298DD1A67859800A87612 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		D4C298DF1A6785C900A87612 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4C298FB1A67893100A87612 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		D4C298FD1A67895500A87612 /* SessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
-		D4C298FF1A67897200A87612 /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 		D4D586BC196B422400B9CC8F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D4EBBAE51986D45E00050FBC /* ShardControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShardControl.swift; path = Classes/ShardControl.swift; sourceTree = SOURCE_ROOT; };
 		D4EBBAE61986D45E00050FBC /* ShardLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShardLayer.swift; path = Classes/ShardLayer.swift; sourceTree = SOURCE_ROOT; };
@@ -280,7 +270,6 @@
 		D48158CD1A5494AA0040AD08 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D4C298FD1A67895500A87612 /* SessionViewController.swift */,
 				D4F42E22196C414200BB847F /* MetronomeViewController.swift */,
 				D457545D19859B9B00967641 /* QuickSettingsViewController.swift */,
 				D4D586BC196B422400B9CC8F /* SettingsViewController.swift */,
@@ -291,7 +280,6 @@
 		D48158CE1A5494B20040AD08 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D4C298FF1A67897200A87612 /* PlayerCell.swift */,
 				D4C298D71A67856300A87612 /* BlurBackground.swift */,
 				D4C298701A6782DB00A87612 /* QuickSettingsPanel.xib */,
 				D45740A019A3D45D00CB1C70 /* MetronomeView.swift */,
@@ -303,14 +291,11 @@
 		D4B8667E19721670000535F6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				D4C298DB1A67858B00A87612 /* MPCInt.swift */,
 				D405BB5F1A75A43C0018E0BF /* Bridging-Header.h */,
 				D405BB611A75A4800018E0BF /* TimerDriver.h */,
 				D405BB631A75A8FC0018E0BF /* TimerDriver.m */,
 				D405BB661A75B6D70018E0BF /* PrefixHeader.pch */,
-				D4C298FB1A67893100A87612 /* Player.swift */,
 				D4C298DD1A67859800A87612 /* Configuration.swift */,
-				D4C298D91A67857100A87612 /* ConnectionManager.swift */,
 				D4F42E28196C838B00BB847F /* Timer.swift */,
 				D4F42E24196C423800BB847F /* DeltaTracker.swift */,
 				D4ADD32E196EE3E40040DFF3 /* LED.swift */,
@@ -337,15 +322,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01B5453A179828B400A4F4E0 /* Build configuration list for PBXNativeTarget "Pulsar" */;
 			buildPhases = (
-				209567FF2BE092760EE25D1C /* 📦 Check Pods Manifest.lock */,
-				0192E30617A1A9E100DE45EC /* Bump Build Number */,
+				209567FF2BE092760EE25D1C /* [CP] Check Pods Manifest.lock */,
 				01B544F8179828B300A4F4E0 /* Sources */,
 				01B544F9179828B300A4F4E0 /* Frameworks */,
 				01B544FA179828B300A4F4E0 /* Resources */,
 				D44D7BC2196D9589006DE741 /* Embed Frameworks */,
 				D41C965E1D14EC010027D0C9 /* ShellScript */,
-				61AB1FEDCD6D35FFCB56FD42 /* 📦 Embed Pods Frameworks */,
-				49CD90663B6C902EF8E14E81 /* 📦 Copy Pods Resources */,
+				61AB1FEDCD6D35FFCB56FD42 /* [CP] Embed Pods Frameworks */,
+				49CD90663B6C902EF8E14E81 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -383,15 +367,17 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Nick Walker";
 				TargetAttributes = {
 					01B544FB179828B300A4F4E0 = {
 						DevelopmentTeam = 2627WG76ES;
+						LastSwiftMigration = 0800;
 					};
 					D4099B011A68966000BF3AD7 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = 2627WG76ES;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -448,28 +434,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0192E30617A1A9E100DE45EC /* Bump Build Number */ = {
+		209567FF2BE092760EE25D1C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Bump Build Number";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${PROJECT_DIR}/Tools/bump_build_number.sh \"${INFOPLIST_FILE}\"";
-		};
-		209567FF2BE092760EE25D1C /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,14 +449,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		49CD90663B6C902EF8E14E81 /* 📦 Copy Pods Resources */ = {
+		49CD90663B6C902EF8E14E81 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,14 +464,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pulsar/Pods-Pulsar-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		61AB1FEDCD6D35FFCB56FD42 /* 📦 Embed Pods Frameworks */ = {
+		61AB1FEDCD6D35FFCB56FD42 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,8 +489,9 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#\n# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\n# Updated with dSYM handling from http://yellowfeather.co.uk/blog/auto-incrementing-build-number-in-xcode-revisited/\n#\n\ngit=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list HEAD --count`\nif [ $CONFIGURATION = \"Debug\" ]; then\nbranchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi\necho \"Incremented the build number ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
+			shellPath = /bin/bash;
+			shellScript = "#\n# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\n# Updated with dSYM handling from http://yellowfeather.co.uk/blog/auto-incrementing-build-number-in-xcode-revisited/\n#\n\ngit=`sh /etc/profile; which git`\ncommitCount=$[`\"$git\" rev-list HEAD --count`]\n# Offset to get ahead of previous bulids\nappBuild=$((2300+commitCount))\nif [ $CONFIGURATION = \"Debug\" ]; then\nbranchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi\necho \"Incremented the build number ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -528,11 +501,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4ADD330196EF80A0040DFF3 /* AppDelegate.swift in Sources */,
-				D4C299001A67897200A87612 /* PlayerCell.swift in Sources */,
 				D4CA5D521AD600B9001D2356 /* BWWalkthroughViewController.swift in Sources */,
 				D45740A119A3D45D00CB1C70 /* MetronomeView.swift in Sources */,
-				D4C298DC1A67858B00A87612 /* MPCInt.swift in Sources */,
-				D4C298FE1A67895500A87612 /* SessionViewController.swift in Sources */,
 				D405BB641A75A8FC0018E0BF /* TimerDriver.m in Sources */,
 				D4EBBAE81986D45E00050FBC /* ShardLayer.swift in Sources */,
 				D4ADD331196EF80A0040DFF3 /* DeltaTracker.swift in Sources */,
@@ -546,9 +516,7 @@
 				D4BED45C1A7C739E0088A8A5 /* BackgroundLayer.swift in Sources */,
 				D4ADD334196EF80A0040DFF3 /* LED.swift in Sources */,
 				D4ADD335196EF80A0040DFF3 /* MetronomeViewController.swift in Sources */,
-				D4C298E11A6788B100A87612 /* ConnectionManager.swift in Sources */,
 				D4C298D81A67856300A87612 /* BlurBackground.swift in Sources */,
-				D4C298FC1A67893100A87612 /* Player.swift in Sources */,
 				D4C299011A67904800A87612 /* ShardControl.swift in Sources */,
 				D405BB651A75AA950018E0BF /* TimerDriver.h in Sources */,
 				D4ADD336196EF80A0040DFF3 /* SettingsViewController.swift in Sources */,
@@ -588,20 +556,26 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -628,13 +602,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -642,6 +622,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
@@ -652,7 +633,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 37CFC6AB5114918187AD1F90 /* Pods-Pulsar.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -662,7 +644,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos7.0]" = "iPhone Developer: Nick Walker (77YL974MZ8)";
 				DEFINES_MODULE = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/PrefixHeader.pch;
 				HEADER_SEARCH_PATHS = "";
@@ -678,6 +659,7 @@
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				SYMROOT = "$(PROJECT_DIR)/build";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -689,7 +671,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AD684A3C04BC841C058B3004 /* Pods-Pulsar.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -699,7 +682,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos7.0]" = "iPhone Developer: Nick Walker (77YL974MZ8)";
 				DEFINES_MODULE = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/PrefixHeader.pch;
 				HEADER_SEARCH_PATHS = "";
@@ -714,6 +696,8 @@
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Classes/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				SYMROOT = "$(PROJECT_DIR)/build";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -727,7 +711,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos7.0]" = "iPhone Developer: Nick Walker (77YL974MZ8)";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -749,6 +733,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -760,7 +745,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos7.0]" = "iPhone Developer: Nick Walker (77YL974MZ8)";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -778,6 +763,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "us.nickwalker.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

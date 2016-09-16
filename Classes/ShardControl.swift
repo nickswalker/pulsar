@@ -1,13 +1,24 @@
 import Foundation
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 public protocol ShardControlDelegate {
     func activatedShardsChanged()
 }
 
-@IBDesignable @objc public class ShardControl: UIControl {
+@IBDesignable @objc open class ShardControl: UIControl {
 
-    @IBInspectable public var numberOfShards: Int = 6 {
+    @IBInspectable open var numberOfShards: Int = 6 {
         didSet {
             if numberOfShards < minShards {
                 self.numberOfShards = minShards
@@ -19,7 +30,7 @@ public protocol ShardControlDelegate {
         }
     }
 
-    public var activeShard: Int? {
+    open var activeShard: Int? {
         willSet(newValue) {
             //Deactivate all because only one can be active at a time
             if activeShard != nil {
@@ -37,7 +48,7 @@ public protocol ShardControlDelegate {
         }
     }
 
-    public var maxShards: Int = 12 {
+    open var maxShards: Int = 12 {
         willSet(newValue) {
             if newValue < minShards {
                 self.maxShards = minShards + 1
@@ -48,7 +59,7 @@ public protocol ShardControlDelegate {
         }
     }
 
-    public var minShards: Int = 1 {
+    open var minShards: Int = 1 {
         willSet(newValue) {
             if newValue > maxShards {
                 self.minShards = maxShards - 1
@@ -59,7 +70,7 @@ public protocol ShardControlDelegate {
         }
     }
 
-    public var radius: CGFloat = 0.0 {
+    open var radius: CGFloat = 0.0 {
         didSet(oldValue){
             for layer in layers {
                 CATransaction.begin()
@@ -70,16 +81,16 @@ public protocol ShardControlDelegate {
         }
     }
 
-    public var activated: UInt = 0b0 {
+    open var activated: UInt = 0b0 {
         didSet(oldValue){
             updateAccentDisplay()
         }
     }
 
-    public var delegate: ShardControlDelegate?
-    private let doubleTapRecognizer = UITapGestureRecognizer()
-    private var layers = [ShardLayer]()
-    private var backgroundFlashLayer = BackgroundLayer()
+    open var delegate: ShardControlDelegate?
+    fileprivate let doubleTapRecognizer = UITapGestureRecognizer()
+    fileprivate var layers = [ShardLayer]()
+    fileprivate var backgroundFlashLayer = BackgroundLayer()
 
     // MARK: Init
 
@@ -93,16 +104,17 @@ public protocol ShardControlDelegate {
         commonInit()
     }
 
-    private func commonInit() {
+    fileprivate func commonInit() {
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.addTarget(self, action: #selector(ShardControl.handleDoubleTap(_:)))
         autoresizesSubviews = true
-        layer.insertSublayer(backgroundFlashLayer, atIndex: 0)
+        layer.insertSublayer(backgroundFlashLayer, at: 0)
         addGestureRecognizer(doubleTapRecognizer)
 
         setupShards()
     }
-    public override func layoutSublayersOfLayer(layer: CALayer) {
+    open override func layoutSublayers(of layer: CALayer) {
+
 
         if layer == self.layer {
             for targetLayer in layers {
@@ -114,12 +126,12 @@ public protocol ShardControlDelegate {
             }
             backgroundFlashLayer.frame = layer.frame
         } else {
-            super.layoutSublayersOfLayer(layer)
+            super.layoutSublayers(of: layer)
         }
     }
 
 
-    private func setupShards() {
+    fileprivate func setupShards() {
         //Adjust numbers as needed
         var toAdd: Int
         let currentNumber = layers.count
@@ -132,7 +144,7 @@ public protocol ShardControlDelegate {
         }
     }
 
-    private func updateAccentDisplay(){
+    fileprivate func updateAccentDisplay(){
         for i in 0 ..< layers.count {
             let targetLayer = layers[i]
 
@@ -144,7 +156,7 @@ public protocol ShardControlDelegate {
         }
     }
 
-    private func addSublayers(count: Int) {
+    fileprivate func addSublayers(_ count: Int) {
         for _ in 0 ..< count {
             let tempLayer = ShardLayer()
             tempLayer.frame = frame
@@ -153,7 +165,7 @@ public protocol ShardControlDelegate {
             tempLayer.startAngle = CGFloat(M_PI) * 3
             tempLayer.contentsScale = contentScaleFactor
             layer.addSublayer(tempLayer)
-            layer.insertSublayer(tempLayer, atIndex: 1) //Above the backgroundlayer but below the other shards
+            layer.insertSublayer(tempLayer, at: 1) //Above the backgroundlayer but below the other shards
             layers.append(tempLayer)
         }
         adjustSublayerAngles()
@@ -164,7 +176,7 @@ public protocol ShardControlDelegate {
 
     - parameter count: number to remove
     */
-    private func removeSublayers(count: Int) {
+    fileprivate func removeSublayers(_ count: Int) {
         for i in 0 ..< count {
             let targetLayer = layers.last!
             CATransaction.begin()
@@ -184,18 +196,18 @@ public protocol ShardControlDelegate {
 
     //MARK: Overrides
 
-    override public func didMoveToWindow() {
+    override open func didMoveToWindow() {
         if let window = window {
             contentScaleFactor = window.screen.scale
         }
     }
 
-    override public func tintColorDidChange() {
+    override open func tintColorDidChange() {
         super.tintColorDidChange()
-        ShardLayer.accentFillColor = tintColor.colorWithAlphaComponent(0.05).CGColor
+        ShardLayer.accentFillColor = tintColor.withAlphaComponent(0.05).cgColor
     }
 
-    private func adjustSublayerAngles() {
+    fileprivate func adjustSublayerAngles() {
         //Set the angle on all shards
         let accents = activated
         let theta: CGFloat = (CGFloat(M_PI) * 2) / CGFloat(numberOfShards)
@@ -217,18 +229,18 @@ public protocol ShardControlDelegate {
             CATransaction.commit()
     }
 
-    public func addShard() {
+    open func addShard() {
         if numberOfShards == maxShards {
             numberOfShards = minShards
         } else {
-            ++numberOfShards
+            numberOfShards += 1
         }
         activeShard = 0
     }
 
     // MARK: State Changers
 
-    public func activateNext() {
+    open func activateNext() {
         if activeShard != nil {
             //Check if advancing the activeShard would go over the number of shards, if so reset to 0
             if (activeShard! + 1) > (numberOfShards - 1) {
@@ -241,7 +253,7 @@ public protocol ShardControlDelegate {
         }
     }
 
-    public func activeIsAccent() -> Bool {
+    open func activeIsAccent() -> Bool {
         if activeShard != nil {
             let activeLayer = layers[activeShard!] as ShardLayer
             return activeLayer.accent
@@ -252,19 +264,19 @@ public protocol ShardControlDelegate {
     func flashBackground(){
         CATransaction.begin()
         CATransaction.setDisableActions(true)
-        backgroundFlashLayer.backgroundColor = UIColor.whiteColor().CGColor
+        backgroundFlashLayer.backgroundColor = UIColor.white.cgColor
         CATransaction.commit()
         CATransaction.begin()
         CATransaction.setAnimationDuration(0.2)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut))
-        backgroundFlashLayer.backgroundColor = UIColor.clearColor().CGColor
+        backgroundFlashLayer.backgroundColor = UIColor.clear.cgColor
         CATransaction.commit()
     }
 
-    func handleDoubleTap(recognizer: UIGestureRecognizer) {
+    func handleDoubleTap(_ recognizer: UIGestureRecognizer) {
         var targetShard: ShardLayer?
-        if recognizer.state == .Ended {
-            let point = recognizer.locationInView(self)
+        if recognizer.state == .ended {
+            let point = recognizer.location(in: self)
             targetShard = layer.hitTest(point) as? ShardLayer
             if targetShard != nil {
                 targetShard!.accent = !targetShard!.accent

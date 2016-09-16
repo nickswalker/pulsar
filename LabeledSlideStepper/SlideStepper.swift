@@ -1,13 +1,13 @@
-public class SlideStepper: UIControl {
+open class SlideStepper: UIControl {
 
-    private let labelFontSize = 84
+    fileprivate let labelFontSize = 84
     let defaultValue = 60
     var label = UILabel()
     var stepper = UIStepper()
     var maximumValue: Int = 300
     var minimumValue: Int = 20
 
-    public var value: Int {
+    open var value: Int {
         get {
             return Int(stepper.value)
         }
@@ -24,7 +24,7 @@ public class SlideStepper: UIControl {
             stepper.value = Double(valueToSet)
         }
     }
-    private var recognizer = UIPanGestureRecognizer()
+    fileprivate var recognizer = UIPanGestureRecognizer()
 
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -40,12 +40,12 @@ public class SlideStepper: UIControl {
         recognizer.addTarget(self, action: #selector(handlePan))
         recognizer.maximumNumberOfTouches = 1
 
-        label.textColor = UIColor.whiteColor()
-        label.textAlignment = .Center
+        label.textColor = UIColor.white
+        label.textAlignment = .center
         label.font = UIFont(name: "AvenirNext-UltraLight", size: CGFloat(labelFontSize))
         label.text = "\(defaultValue)"
 
-        stepper.addTarget(self, action: #selector(stepperValueChanged), forControlEvents: .ValueChanged)
+        stepper.addTarget(self, action: #selector(stepperValueChanged), for: .valueChanged)
 
         stepper.maximumValue = Double(maximumValue)
         stepper.minimumValue = Double(minimumValue)
@@ -61,27 +61,27 @@ public class SlideStepper: UIControl {
         label.translatesAutoresizingMaskIntoConstraints = false
         translatesAutoresizingMaskIntoConstraints = false
 
-        addConstraint(NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: stepper, attribute: .CenterX, multiplier: 1.0, constant: 1.0))
-        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: label, attribute: .CenterX, multiplier: 1.0, constant: 1.0))
-        addConstraint(NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: label, attribute: .Top, multiplier: 1.0, constant: 0))
-        addConstraint(NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.Bottom, relatedBy: .Equal, toItem: stepper, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0))
+        addConstraint(NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: stepper, attribute: .centerX, multiplier: 1.0, constant: 1.0))
+        addConstraint(NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: label, attribute: .centerX, multiplier: 1.0, constant: 1.0))
+        addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: label, attribute: .top, multiplier: 1.0, constant: 0))
+        addConstraint(NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.bottom, relatedBy: .equal, toItem: stepper, attribute: NSLayoutAttribute.top, multiplier: 1.0, constant: 0))
     }
 
-    override public func intrinsicContentSize() -> CGSize {
+    override open var intrinsicContentSize : CGSize {
         return CGSize(width: 110, height: 150)
     }
 
-    func stepperValueChanged(sender: UIStepper) {
+    func stepperValueChanged(_ sender: UIStepper) {
         label.text = "\(Int(stepper.value))"
-        sendActionsForControlEvents(.ValueChanged)
+        sendActions(for: .valueChanged)
     }
 
-    func handlePan(recognizer: UIPanGestureRecognizer) {
-        let translation = recognizer.translationInView(self)
+    func handlePan(_ recognizer: UIPanGestureRecognizer) {
+        let translation = recognizer.translation(in: self)
         let affector = Double(-1.0 * translation.y / 8.5)
         value = Int(Double(value) - affector)
-        recognizer.setTranslation(CGPoint(x: 0, y: 0), inView: self)
-        sendActionsForControlEvents(.ValueChanged)
+        recognizer.setTranslation(CGPoint(x: 0, y: 0), in: self)
+        sendActions(for: .valueChanged)
     }
 
 }

@@ -1,30 +1,30 @@
 @objc public protocol LabeledSlideStepperDelegate {
-    func switchToggled(sender: UISwitch)
-    func bpmChanged(sender: SlideStepper)
+    func switchToggled(_ sender: UISwitch)
+    func bpmChanged(_ sender: SlideStepper)
 }
 
-@IBDesignable public class LabeledSlideStepper: UIControl {
+@IBDesignable open class LabeledSlideStepper: UIControl {
 
     var bpmControl = SlideStepper()
 
-    public var delegate: LabeledSlideStepperDelegate? {
+    open var delegate: LabeledSlideStepperDelegate? {
         didSet {
-            runningSwitch.addTarget(delegate, action: #selector(delegate?.switchToggled), forControlEvents: .ValueChanged)
-            bpmControl.addTarget(delegate, action: #selector(delegate?.bpmChanged(_:)), forControlEvents: .ValueChanged)
+            runningSwitch.addTarget(delegate, action: #selector(delegate?.switchToggled), for: .valueChanged)
+            bpmControl.addTarget(delegate, action: #selector(delegate?.bpmChanged(_:)), for: .valueChanged)
         }
     }
     var runningSwitch = UISwitch()
 
-    public var running: Bool {
+    open var running: Bool {
         get {
-            return runningSwitch.on
+            return runningSwitch.isOn
         }
         set(newValue) {
-            runningSwitch.on = newValue
+            runningSwitch.isOn = newValue
         }
     }
 
-    public var bpm: Int {
+    open var bpm: Int {
         get {
             return bpmControl.value
         }
@@ -46,28 +46,28 @@
     func commonInit() {
         runningSwitch.onTintColor = tintColor
         bpmControl.tintColor = tintColor
-        runningSwitch.on = false
+        runningSwitch.isOn = false
         self.addSubview(bpmControl)
         self.addSubview(runningSwitch)
 
         runningSwitch.translatesAutoresizingMaskIntoConstraints = false
         //setTranslatesAutoresizingMaskIntoConstraints(false)
 
-        addConstraint(NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: bpmControl, attribute: .Top, multiplier: 1.0, constant: 0))
-        addConstraint(NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: runningSwitch, attribute: .CenterX, multiplier: 1.0, constant: 1.0))
-        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: bpmControl, attribute: .CenterX, multiplier: 1.0, constant: 1.0))
-        addConstraint(NSLayoutConstraint(item: bpmControl, attribute: NSLayoutAttribute.Bottom, relatedBy: .Equal, toItem: runningSwitch, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: -20))
+        addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: bpmControl, attribute: .top, multiplier: 1.0, constant: 0))
+        addConstraint(NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: runningSwitch, attribute: .centerX, multiplier: 1.0, constant: 1.0))
+        addConstraint(NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: bpmControl, attribute: .centerX, multiplier: 1.0, constant: 1.0))
+        addConstraint(NSLayoutConstraint(item: bpmControl, attribute: NSLayoutAttribute.bottom, relatedBy: .equal, toItem: runningSwitch, attribute: NSLayoutAttribute.top, multiplier: 1.0, constant: -20))
 
     }
 
-    public override func intrinsicContentSize() -> CGSize {
+    open override var intrinsicContentSize : CGSize {
         return CGSize(width: 110, height: 200)
     }
 
-    override public func tintColorDidChange() {
-        let isInactive = tintAdjustmentMode == .Dimmed
+    override open func tintColorDidChange() {
+        let isInactive = tintAdjustmentMode == .dimmed
         if isInactive {
-            runningSwitch.onTintColor = UIColor.grayColor()
+            runningSwitch.onTintColor = UIColor.gray
         } else {
             runningSwitch.onTintColor = tintColor
             bpmControl.tintColor = tintColor
