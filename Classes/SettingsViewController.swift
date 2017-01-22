@@ -48,7 +48,7 @@ class SettingsViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath as NSIndexPath).section == 1   {
-            UIApplication.shared.openURL(URL(string: "https://nickwalker.us/pulsar")!)
+            UIApplication.shared.openURL(URL(string: "https://nickwalker.us/projects/pulsar")!)
         }
         tableView.deselectRow(at: indexPath, animated: false)
     }
