@@ -76,10 +76,10 @@ enum PulseType: String {
         let file = try? AVAudioFile(forReading: url)
         let buffer = AVAudioPCMBuffer(pcmFormat: file!.processingFormat, frameCapacity: UInt32(file!.length))
         do {
-            try file!.read(into: buffer)
+            try file!.read(into: buffer!)
         } catch _ {
         }
-        return buffer
+        return buffer!
 
     }
 

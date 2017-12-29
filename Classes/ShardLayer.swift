@@ -11,15 +11,15 @@ import UIKit
     @NSManaged var radius: CGFloat
 
     fileprivate let strokeWidth: CGFloat = 2
-    var center: CGPoint = CGPoint()
+    @objc var center: CGPoint = CGPoint()
 
         static let customPropertyKeys: [String] = {
             var count: UInt32 = 0
             var keys = [String]()
             let properties = class_copyPropertyList(ShardLayer.self, &count)
             for i: UInt32 in 0 ..< count {
-                let property = property_getName(properties?[Int(i)])
-                keys.append(NSString(cString: property!, encoding: String.Encoding.utf8.rawValue)! as String)
+                let property = property_getName((properties?[Int(i)])!)
+                keys.append(NSString(cString: property, encoding: String.Encoding.utf8.rawValue)! as String)
             }
             return keys
         }()
@@ -32,8 +32,8 @@ import UIKit
     static let accentActiveFillColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.1).cgColor
     static let defaultTintColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.025).cgColor
 
-    var path: CGPath? = nil
-    var active: Bool = false {
+    @objc var path: CGPath? = nil
+    @objc var active: Bool = false {
         willSet(newValue) {
             if newValue == true {
                 let newColor = accent ? ShardLayer.accentActiveFillColor : ShardLayer.activeFillColor
@@ -51,7 +51,7 @@ import UIKit
 
         }
     }
-    var accent: Bool = false {
+    @objc var accent: Bool = false {
         willSet(newValue) {
             CATransaction.begin()
             CATransaction.setAnimationDuration(0.5)

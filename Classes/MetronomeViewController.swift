@@ -115,7 +115,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     }
 
     //@discussion listens to the timer emitting beatParts.
-    func intervalWasFired(_ notification: Notification) {
+    @objc func intervalWasFired(_ notification: Notification) {
         let part = (notification as NSNotification).userInfo!["beatPart"] as! Int
         let beatPart = UInt(part)
         if (beatPart & BeatPartMeanings.onTheBeat.rawValue) != 0 {
@@ -164,7 +164,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
         running = sender.isOn
     }
 
-    func updateSettingsFromUserDefaults() {
+    @objc func updateSettingsFromUserDefaults() {
         //The defaults were changed externally: pull in the changes
         defaults.synchronize()
 
@@ -303,7 +303,7 @@ class MetronomeViewController: UIViewController, SettingsDelegate,
     
     fileprivate func addKerning(_ button: UIButton){
         let string = button.titleLabel?.attributedText!.mutableCopy() as! NSMutableAttributedString
-        string.addAttribute(NSKernAttributeName, value: 1.0, range: NSMakeRange(0, string.length))
+        string.addAttribute(NSAttributedStringKey.kern, value: 1.0, range: NSMakeRange(0, string.length))
         button.setAttributedTitle(string, for: UIControlState())
         let insetAmount: CGFloat = 4.0;
         button.titleEdgeInsets = UIEdgeInsetsMake(0, insetAmount, 0, insetAmount);

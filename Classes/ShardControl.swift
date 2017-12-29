@@ -161,8 +161,8 @@ public protocol ShardControlDelegate {
             let tempLayer = ShardLayer()
             tempLayer.frame = frame
             tempLayer.radius = radius
-            tempLayer.endAngle = CGFloat(M_PI) * 3
-            tempLayer.startAngle = CGFloat(M_PI) * 3
+            tempLayer.endAngle = CGFloat.pi * 3
+            tempLayer.startAngle = CGFloat.pi * 3
             tempLayer.contentsScale = contentScaleFactor
             layer.addSublayer(tempLayer)
             layer.insertSublayer(tempLayer, at: 1) //Above the backgroundlayer but below the other shards
@@ -184,8 +184,8 @@ public protocol ShardControlDelegate {
                 targetLayer.removeFromSuperlayer()
             })
             CATransaction.setAnimationDuration(0.8)
-            targetLayer.endAngle = CGFloat(M_PI) * 3
-            targetLayer.startAngle = CGFloat(M_PI) * 3
+            targetLayer.endAngle = CGFloat.pi * 3
+            targetLayer.startAngle = CGFloat.pi * 3
 
             CATransaction.commit()
 
@@ -210,15 +210,15 @@ public protocol ShardControlDelegate {
     fileprivate func adjustSublayerAngles() {
         //Set the angle on all shards
         let accents = activated
-        let theta: CGFloat = (CGFloat(M_PI) * 2) / CGFloat(numberOfShards)
+        let theta: CGFloat = (CGFloat.pi * 2) / CGFloat(numberOfShards)
         CATransaction.begin()
         CATransaction.setAnimationDuration(0.8)
         for i in 0 ..< layers.count {
             let targetLayer = layers[i]
 
             //We'll offset by pi to start the sectors in the center-left
-            targetLayer.startAngle = theta * CGFloat(i) + CGFloat(M_PI)
-            targetLayer.endAngle = theta * CGFloat(i + 1) + CGFloat(M_PI)
+            targetLayer.startAngle = theta * CGFloat(i) + CGFloat.pi
+            targetLayer.endAngle = theta * CGFloat(i + 1) + CGFloat.pi
 
             if accents & UInt(1 << i) > 0 {
                 targetLayer.accent = true
@@ -273,7 +273,7 @@ public protocol ShardControlDelegate {
         CATransaction.commit()
     }
 
-    func handleDoubleTap(_ recognizer: UIGestureRecognizer) {
+    @objc func handleDoubleTap(_ recognizer: UIGestureRecognizer) {
         var targetShard: ShardLayer?
         if recognizer.state == .ended {
             let point = recognizer.location(in: self)

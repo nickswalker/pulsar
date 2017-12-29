@@ -1,22 +1,23 @@
 PODS:
-  - Mixpanel-swift (1.0.3)
+  - Mixpanel-swift (2.3.1):
+    - Mixpanel-swift/Complete (= 2.3.1)
+  - Mixpanel-swift/Complete (2.3.1)
 
 DEPENDENCIES:
-  - Mixpanel-swift (from `https://github.com/mixpanel/mixpanel-swift.git`, branch `swift3`)
+  - Mixpanel-swift (from `https://github.com/mixpanel/mixpanel-swift.git`)
 
 EXTERNAL SOURCES:
   Mixpanel-swift:
-    :branch: swift3
     :git: https://github.com/mixpanel/mixpanel-swift.git
 
 CHECKOUT OPTIONS:
   Mixpanel-swift:
-    :commit: d49d7d5a61fe2a065f7ce06f41df9e5e40c80cc2
+    :commit: 5f8b1370e96362bb1b23d7ea650b8ec37ed28a93
     :git: https://github.com/mixpanel/mixpanel-swift.git
 
 SPEC CHECKSUMS:
-  Mixpanel-swift: a10ae5e6965c4ae6267313f24fde9e6be31b4931
+  Mixpanel-swift: 1a36ae8e4e13dc7039ead43f6bff686a6b933792
 
-PODFILE CHECKSUM: e84011000c10c538c28770451b6970fd82a43839
+PODFILE CHECKSUM: dc4df4bc258ec1286416411586855569fd4c76b4
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.4.0.rc.1

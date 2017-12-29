@@ -54,12 +54,12 @@ import UIKit
         tintAdjustmentMode = .normal
     }
 
-    func touchDown() {
+    @objc func touchDown() {
         on = !on
         sendActions(for: .valueChanged)
     }
 
-    func cancel() {
+    @objc func cancel() {
         on = !on
         sendActions(for: .valueChanged)
     }

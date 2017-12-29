@@ -71,12 +71,12 @@ open class SlideStepper: UIControl {
         return CGSize(width: 110, height: 150)
     }
 
-    func stepperValueChanged(_ sender: UIStepper) {
+    @objc func stepperValueChanged(_ sender: UIStepper) {
         label.text = "\(Int(stepper.value))"
         sendActions(for: .valueChanged)
     }
 
-    func handlePan(_ recognizer: UIPanGestureRecognizer) {
+    @objc func handlePan(_ recognizer: UIPanGestureRecognizer) {
         let translation = recognizer.translation(in: self)
         let affector = Double(-1.0 * translation.y / 8.5)
         value = Int(Double(value) - affector)

@@ -11,7 +11,7 @@ class MetronomeView: UIView {
                 let button = subview as! UIButton
                 button.setTitleColor(tintColor, for: UIControlState())
                 let string = button.attributedTitle(for: UIControlState())!.mutableCopy() as! NSMutableAttributedString
-                string.addAttribute(NSForegroundColorAttributeName, value: tintColor, range: NSRange(location: 0, length: string.length))
+                string.addAttribute(NSAttributedStringKey.foregroundColor, value: tintColor, range: NSRange(location: 0, length: string.length))
                 button.setAttributedTitle(string, for: UIControlState())
             }
             else {

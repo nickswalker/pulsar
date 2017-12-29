@@ -1,0 +1,35 @@
+language: objective-c
+osx_image: xcode9.2
+
+cache: cocoapods
+podfile: Podfile
+
+email:
+  on_failure: change
+
+env:
+  global:
+  - LC_CTYPE=en_US.UTF-8
+  - LANG=en_US.UTF-8
+  - WORKSPACE=Pulsar.xcworkspace
+  - IOS_SDK=iphonesimulator11.2
+  - IOS_SCHEME="Pulsar"
+  matrix:
+    - DESTINATION="OS=11.2,platform=iOS Simulator,id=9C4C0DDA-839D-4851-AA09-4382DB814A63"  SCHEME="$IOS_SCHEME"  SDK="$IOS_SDK"  RUN_TESTS="NO"
+
+
+before_install:
+  - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
+
+script:
+  - set -o pipefail
+  - xcodebuild -version
+  - xcodebuild -showsdks
+
+  # Build Framework in Debug and Run Tests if specified
+  - if [ $RUN_TESTS == "YES" ]; then
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" ONLY_ACTIVE_ARCH=NO test | xcpretty -c;
+    else
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
+    fi
+

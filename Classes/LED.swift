@@ -2,7 +2,7 @@ import AVFoundation
 
 class LED {
 
-    static let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+    static let device = AVCaptureDevice.default(for: AVMediaType.video)
 
     class func flash() {
         let device = LED.device
@@ -13,7 +13,7 @@ class LED {
                 } catch _ {
                 }
                 do {
-                    try device!.setTorchModeOnWithLevel(0.1)
+                    try device!.setTorchModeOn(level: 0.1)
                 } catch _ {
                 }
                 device!.torchMode = .off
